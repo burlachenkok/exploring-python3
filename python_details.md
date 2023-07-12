@@ -11,9 +11,10 @@ Revision Update: July 06, 2023
 © 2023 Konstantin Burlachenko, all rights reserved.
 
 ----
-
+- [Technical Note. Some Python3 Details (Draft)](#technical-note-some-python3-details--draft-)
 - [Introduction](#introduction)
 - [What is a Python](#what-is-a-python)
+- [Where to learn about Python If I have never heard about it?](#where-to-learn-about-python-if-i-have-never-heard-about-it-)
 - [Source of Confusion](#source-of-confusion)
 - [Background: Programming Languages](#background--programming-languages)
   * [How typical compute device is working](#how-typical-compute-device-is-working)
@@ -49,6 +50,20 @@ Revision Update: July 06, 2023
   * [Printing](#printing)
 - [Enumeration and Loops](#enumeration-and-loops)
 - [More on Conditions](#more-on-conditions)
+- [Python Technical Details. Basics](#python-technical-details-basics)
+  * [Introspection of varions Information](#introspection-of-varions-information)
+  * [Basic data types](#basic-data-types)
+  * [Bool variables and operators](#bool-variables-and-operators)
+    + [Strings](#strings-1)
+  * [Containers](#containers)
+  * [Dictionaries](#dictionaries)
+  * [Sets](#sets)
+  * [Loops](#loops)
+  * [List Dictionary and Set comprehensions](#list-dictionary-and-set-comprehensions)
+  * [Tuples](#tuples)
+  * [Unpacking (Maybe Advanced)](#unpacking--maybe-advanced-)
+  * [Functions](#functions)
+  * [Classes](#classes)
 - [Python Technical Details. Middle](#python-technical-details-middle)
   * [Convention about Variable Names](#convention-about-variable-names)
   * [Inspect Python Objects](#inspect-python-objects)
@@ -87,19 +102,24 @@ Revision Update: July 06, 2023
 - [Python Notebooks](#python-notebooks)
   * [Working in a web-based interface.](#working-in-a-web-based-interface)
   * [PyTorch resources](#pytorch-resources)
-- [Various code snippets](#various-code-snippets)
-  * [Numpy](#numpy)
-    + [Ellipsis in NumPy](#ellipsis-in-numpy)
-    + [Newaxis in Numpy](#newaxis-in-numpy)
-  * [Matplotlib](#matplotlib)
-    + [Show the image with Matplotlib](#show-the-image-with-matplotlib)
-    + [Show a one-dimensional plot (simple)](#show-a-one-dimensional-plot--simple-)
-    + [Show sub-images](#show-sub-images)
+- [Matplotlib](#matplotlib)
+  * [Plots](#plots)
+  * [SubPlots](#subplots)
+  * [Show the image with Matplotlib](#show-the-image-with-matplotlib)
 - [Cython](#cython)
   * [How to optimize Python Code with Cython](#how-to-optimize-python-code-with-cython)
   * [About Cython Language](#about-cython-language)
   * [Easy Interoperability with Standar C Library](#easy-interoperability-with-standar-c-library)
     + [Example of function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
+- [Numpy](#numpy)
+  * [Arrays](#arrays)
+  * [Array indexing](#array-indexing)
+  * [Boolean array indexing](#boolean-array-indexing)
+  * [Datatypes](#datatypes)
+  * [Array math](#array-math)
+  * [Important notice about syntax for Matrix Multiplication](#important-notice-about-syntax-for-matrix-multiplication)
+  * [Various Utility functions in Numpy](#various-utility-functions-in-numpy)
+  * [Broadcasting](#broadcasting)
 - [References](#references)
 - [Introduction document](#introduction-document)
 - [Reference official materials](#reference-official-materials)
@@ -110,6 +130,7 @@ Revision Update: July 06, 2023
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
+----
 
 # Introduction
 
@@ -136,6 +157,22 @@ We hope to make it will be an interesting reading for you. So let's go.
 
 This language does not have any Standards. The only available language standard is Language reference: https://docs.python.org/3/reference/.
 
+The Python (and any interpreter) parses the program's text (source code) line by line (that is represented or in text form or extremely high-level instructions). 
+
+The standard implementation Python interpreter is CPython. It is called CPython because it has been implemented in C/C++. This software can be downloaded from https://www.python.org/.
+
+# Where to learn about Python If I have never heard about it?
+
+There is exist a book written by Guido van Rossum (original author of that language). It's a pretty big and nice written tutorial: https://docs.python.org/3/tutorial/
+
+* Python Language Reference: https://docs.python.org/3.8/reference/index.html 
+
+* Detailed description of different built-in functions for user-defined class: https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects - 
+
+* Built-in types: https://docs.python.org/3/library/stdtypes.html
+
+* Python Language Reference: https://docs.python.org/3.8/reference/index.html 
+ 
 
 # Source of Confusion
 
@@ -300,7 +337,7 @@ id(x) == id(y)
 
 However in reality you will not meet this code too much. If you need to compare references to an object, then this action is typically performed by using the operators:
 * `is`
-* `is not
+* `is not`
 
 They have the same semantical meaning as using `id()`.
 
@@ -444,6 +481,7 @@ The break statement, like in C/C++, breaks out of the innermost enclosing iterat
 
 * In Python there is the "Exotic" operator `**` used. This operator can raise integers, real, and complex numbers to specific power. Such a built-in operator is absent in C++.
 
+* Unlike many languages, Python does not have unary post(postfix) increment (`x++`) or decrement (`x--`) operators.
 
 # Python Technical Basics
 
@@ -624,7 +662,397 @@ What can confuse people with C++/Java/C#/C backgrounds is that comparisons can b
 
 In Python when you use it as a general expression (not necessarily Boolean), the return value of a short-circuit operator is the last evaluated expression (which is not the case in C++ where you don't obtain this information).
 
+# Python Technical Details. Basics
+
+Please if you mature enough with Python then it's better for you to skip this section or read it fast.
+
+## Introspection of varions Information 
+
+One way to get information about interpreter version:
+```bash
+python --version
+```
+
+Collect information about installed interpreter and system from the intepreter itself:
+```python
+import os, platform, socket
+print("==================================================")
+print("Information about your system")
+print("==================================================")
+print(f"Python interpretator: {sys.executable}")
+print(f"Python version: {sys.version}")
+print(f"Platform name: {sys.platform}")
+print("==================================================")
+print(f"Current working directory: {os.getcwd()}")
+(system, node, release, version, machine, processor) = platform.uname()
+print(f"OS name: {system}/{release}/{version}")
+print(f"Host: {socket.gethostname()} / IP: {socket.gethostbyname(socket.gethostname())}")
+```
+
+## Basic data types
+Python has a number of basic types including integers, floats, booleans, and strings. These data types behave in ways that are familiar from other programming languages.
+
+```python
+x = 3
+print(type(x)) # Prints "<class 'int'>"
+print(x)       # Prints "3"
+print(x + 1)   # Addition; prints "4"
+print(x - 1)   # Subtraction; prints "2"
+print(x * 2)   # Multiplication; prints "6"
+print(x ** 2)  # Exponentiation; prints "9"
+x += 1
+print(x)       # Prints "4"
+x *= 2
+print(x)       # Prints "8"
+y = 2.5
+print(type(y))                 # Prints "<class 'float'>"
+print(y, y + 1, y * 2, y ** 2) # Prints "2.5 3.5 5.0 6.25"
+```
+
+## Bool variables and operators
+
+Python implements all of the usual operators for Boolean logic, but uses English words rather than symbols (`&&`, `||`, etc.):
+
+```python
+t = True
+f = False
+print(type(t)) # Prints "<class 'bool'>"
+print(t and f) # Logical AND; prints "False"
+print(t or f)  # Logical OR; prints "True"
+print(not t)   # Logical NOT; prints "False"
+print(t != f)  # Logical XOR; prints "True"
+```
+
+Booleans are the results of comparisons like:
+```python
+a = 3
+b = 5
+c = 7
+print(a == a)     # Prints "True"
+print(a != a)     # Prints "False"
+print(a < b)      # Prints "True"
+print(a <= a)     # Prints "True"
+print(a <= b < c) # Prints "True"
+```
+
+### Strings
+
+Python has great support for strings:
+
+```python
+hello = 'hello'    # String literals can use single quotes
+world = "world"    # or double quotes; it does not matter.
+
+print(hello)       # Prints "hello"
+print(len(hello))  # String length; prints "5"
+
+hw = hello + ' ' + world  # String concatenation
+print(hw)                 # Prints "hello world"
+
+hw12 = '%s %s %d' % (hello, world, 12)  # C/C++ sprintf style string formatting
+print(hw12)                             # prints "hello world 12"
+
+hw21 = '{} {} {}'.format(hello, world, 21)  # formatting with format function in C# style
+print(hw21)                                 # prints "hello world 21"
+hw13 = '{} {} {:.2f}'.format(hello, world, 1 / 3)  # float formatting
+print(hw13)                                        # prints "hello world 0.33"
+hw3 = f'{hello} {world} {1 / 3:.2f}' # the f-strings
+print(hw3)                           # prints "hello world 0.33"
+```
+
+String objects have a bunch of useful methods, for example:
+
+```python
+s = "hello"
+print(s.capitalize())           # Capitalize a string; prints "Hello"
+print(s.upper())                # Convert a string to uppercase; prints "HELLO"
+print(s.rjust(7))               # Right-justify a string; prints "  hello"
+print(s.center(7))              # Center a string; prints " hello "
+print(s.replace('l', '(ell)'))  # Replace all instances; prints "he(ell)(ell)o"
+print('  wo rld '.strip())      # Strip surrounding whitespace; prints "wo rld"
+```
+
+## Containers
+Python includes several built-in container types: lists, dictionaries, sets, and tuples. Containers are devoted for storing values.
+
+A list is the Python equivalent of an array (conceptually, even inside Python interpreter it's really implemented as a list), but is resizeable and can contain elements of different types:
+
+```python
+xs = [3, 1, 2]    # Create a list
+print(xs, xs[2])  # Prints "[3, 1, 2] 2"
+print(xs[-1])     # Negative indices count from the end of the list; prints "2"
+xs[2] = 'foo'     # Lists can contain elements of different types
+print(xs)         # Prints "[3, 1, 'foo']"
+xs.append('bar')  # Add a new element to the end of the list
+print(xs)         # Prints "[3, 1, 'foo', 'bar']"
+x = xs.pop()      # Remove and return the last element of the list
+print(x, xs)      # Prints "bar [3, 1, 'foo']"
+```
+
+In addition to accessing list elements one at a time, Python provides concise syntax to access sublists. This is known as slicing. We will see slicing again in the context of numpy arrays.
+
+```python
+nums = list(range(5)) # range is a function that creates a list of integers
+print(nums)           # Prints "[0, 1, 2, 3, 4]"
+print(nums[2:4])      # Slice from index 2 to 4 (exclusive); prints "[2, 3]"
+print(nums[2:])       # Get a slice from index 2 to the end; prints "[2, 3, 4]"
+print(nums[:2])       # Slice from the start up to index 2; prints "[0, 1]"
+print(nums[:])        # Get a slice of the whole list; prints "[0, 1, 2, 3, 4]"
+print(nums[:-1])      # Slice indices can be negative; prints "[0, 1, 2, 3]"
+nums[2:4] = [8, 9]    # Assign a new sublist to a slice
+print(nums)           # Prints "[0, 1, 8, 9, 4]"
+```
+
+## Dictionaries
+
+A dictionary stores (key, value) pairs. You can use it like this:
+
+```python
+d = {'cat': 'cute', 'dog': 'furry'}  # Create a new dictionary with some data
+print(d['cat'])       # Get an entry from a dictionary; prints "cute"
+print('cat' in d)     # Check if a dictionary has a given key; prints "True"
+d['fish'] = 'wet'     # Set an entry in a dictionary
+print(d['fish'])      # Prints "wet"
+# print(d['monkey'])  # KeyError: 'monkey' not a key of d
+print(d.get('monkey', 'N/A'))  # Get an element with a default; prints "N/A"
+print(d.get('fish', 'N/A'))    # Get an element with a default; prints "wet"
+del d['fish']         # Remove an element from a dictionary
+print(d.get('fish', 'N/A')) # "fish" is no longer a key; prints "N/A"
+```
+
+## Sets
+A set is an unordered collection of distinct elements. As a simple example, consider the following:
+```python
+animals = {'cat', 'dog'}
+print('cat' in animals)   # Check if an element is in a set; prints "True"
+print('fish' in animals)  # prints "False"
+animals.add('fish')       # Add an element to a set
+print('fish' in animals)  # Prints "True"
+print(len(animals))       # Number of elements in a set; prints "3"
+animals.add('cat')        # Adding an existing element does nothing
+print(len(animals))       # Prints "3"
+animals.remove('cat')     # Remove an element from a set
+print(len(animals))       # Prints "2"
+```
+
+## Loops
+You can loop over the elements of a list like this:
+```python
+animals = ['cat', 'dog', 'monkey']
+for animal in animals:
+    print(animal)
+```
+
+If you want access to the index of each element and element itself within the body of a loop, use the built-in `enumerate` function:
+
+```python
+animals = ['cat', 'dog', 'monkey']
+for idx, animal in enumerate(animals):
+    print(f'#{idx+1}: {animal}')
+```
+
+It is easy to iterate over the keys in a dictionary:
+
+```python
+d = {'person': 2, 'cat': 4, 'spider': 8}
+for animal in d:
+    legs = d[animal]
+    print(f'A {animal} has {legs} legs')
+```
+
+If you want access to keys and their corresponding values, it's better to use `items` method:
+
+```python
+d = {'person': 2, 'cat': 4, 'spider': 8}
+for animal, legs in d.items():
+    print('A %s has %d legs' % (animal, legs))
+```
+
+Iterating over a set has the same syntax as iterating over a list. However since sets are unordered, you cannot make assumptions about the order in which you visit the elements of the set:
+```python
+animals = {'cat', 'dog', 'fish'}
+for idx, animal in enumerate(animals):
+    print('#%d: %s' % (idx + 1, animal))
+```
+
+## List Dictionary and Set comprehensions
+
+When programming, frequently we want to transform one type of data into another. As a simple example, consider the following code that computes square numbers:
+
+```python
+nums = [0, 1, 2, 3, 4]
+squares = []
+for x in nums:
+    squares.append(x ** 2)
+print(squares)   # Prints [0, 1, 4, 9, 16]
+```
+
+You can make this code simpler using a list comprehension:
+```python
+nums = [0, 1, 2, 3, 4]
+squares = [x ** 2 for x in nums]
+print(squares)   # Prints [0, 1, 4, 9, 16]
+```
+
+List comprehensions can also contain conditions:
+```python
+nums = [0, 1, 2, 3, 4]
+even_squares = [x ** 2 for x in nums if x % 2 == 0]
+print(even_squares)
+```
+
+These are similar to list comprehensions, but allow you to easily construct dictionaries. For example:
+
+```python
+nums = [0, 1, 2, 3, 4]
+even_num_to_square = {x: x ** 2 for x in nums if x % 2 == 0}
+print(even_num_to_square)
+```
+
+Like lists and dictionaries, we can easily construct sets using set comprehensions:
+
+```python
+from math import sqrt
+nums = {int(sqrt(x)) for x in range(30)}
+print(nums)
+```
+
+## Tuples
+A tuple is an (immutable) ordered list of values. A tuple is in many ways similar to a list. One of the most important differences is that tuples can be used as keys in dictionaries and as elements of sets, while lists cannot. Here is a trivial example:
+
+```python
+d = {(x, x + 1): x for x in range(10)}  # Create a dictionary with tuple keys
+t = (5, 6)                              # Create a tuple
+print(type(t))                          # Prints "<class 'tuple'>"
+print(d[t])                             # Prints "5"
+print(d[(1, 2)])                        # Prints "1"
+```
+
+## Unpacking (Maybe Advanced)
+All containers can be unpacked as follows:
+
+```python
+t = (3, 2, 1)
+a, b, c = t  # unpacks the tuple t; prints "3 2 1"
+print(a, b, c)
+
+l = [3, 2, 1]
+a, b, c = l  # unpacks the list l; prints "3 2 1"
+print(a, b, c)
+
+s = {3, 2, 1}
+a, b, c = s  # unpacks the set s; prints "1 2 3" (set ordering)
+print(a, b, c)
+
+d = {'c': 3, 'b': 2, 'a': 1}
+a, b, c = d            # unpacks the keys of the dict d; prints "c b a"
+print(a, b, c)
+ak, bk, ck = d.keys()  # unpacks the keys of the dict d; prints "c b a"
+print(ak, bk, ck)
+a, b, c = d.values()   # unpacks the values of the dict d; prints "3 2 1"
+print(a, b, c)
+(ak, a), (bk, b), (ck, c) = d.items()  # unpacks key-value tuples of the dict d
+print(ak, bk, ck)      # prints "c b a"
+print(a, b, c)         # prints "3 2 1"
+```
+
+The asterisk (`*`) can be used as an unpacking operator:
+```python
+l = [3, 2, 1]     # a list
+t = (4, 5, 6)     # a tuple
+s = {9, 8, 7}     # a set
+b = [*s, *t, *l]  # unpacks s, t, and l side to side in a new list
+print(b)          # prints "[8, 9, 7, 4, 5, 6, 3, 2, 1]"
+b = (*s, *t, *l)  # unpacks s, t, and l side to side in a new tuple
+print(b)          # prints "(8, 9, 7, 4, 5, 6, 3, 2, 1)"
+b = {*s, *t, *l}  # unpacks s, t, and l side to side in a new set
+print(b)          # prints "{1, 2, 3, 4, 5, 6, 7, 8, 9}"
+```
+
+For dictionaries, we use the double-asterisks (`**`) or the (`zip`) function:
+
+```python
+d1 = {'c': 3, 'b': 2, 'a': 1}
+d2 = {'d': 4, 'e': 5, 'f': 6}
+d = {**d1, **d2}
+print(d)
+
+keys = ['a', 'b', 'c']
+values = [1, 2, 3]
+print(type(zip(keys, values)))
+d = dict(zip(keys, values))
+print(d)
+```
+
+## Functions
+Python functions are defined using the `def` keyword. For example:
+
+```python
+def sign(x):
+    if x > 0:
+        return 'positive'
+    elif x < 0:
+        return 'negative'
+    else:
+        return 'zero'
+
+for x in [-1, 0, 1]:
+    print(sign(x))
+```
+
+You can also define variadic functions, like this:
+
+```python
+def hello(*names, **kwargs):
+    if 'loud' in kwargs and kwargs['loud']:
+        print('HELLO, {}!'.format([name.upper() for name in names]))
+    else:
+        print('Hello, %s' % [name for name in names])
+
+hello()                          # Prints "Hello, []"
+hello('Bob', 'Fred')             # Prints "Hello, ['Bob', 'Fred']"
+hello('Bob', 'Fred', loud=True)  # Prints "HELLO, ['BOB', 'FRED']!"
+```
+
+## Classes
+The syntax for defining classes in Python is straightforward and has the foolowing form:
+
+```python
+class Greeter(object):
+    
+    # Static variable
+    sneezes = 0
+
+    # Constructor
+    def __init__(self, name):
+        # super().__init__()  # call to the constructor of the parent class
+        self.name = name  # Create an instance variable
+
+    # Instance method
+    def greet(self, loud=False):
+        if loud:
+            print('HELLO, %s!' % self.name.upper())
+        else:
+            print('Hello, %s' % self.name)
+
+    @staticmethod
+    def sneeze(n_a=1, n_o=2):
+        print('A' * n_a + 'CH' + 'O' * n_o + '!!')
+        Greeter.sneezes += 1
+        
+    def __str__(self):  # The str dunder (or magic) function
+        return f'Greeter for {self.name}'
+
+g = Greeter('Fred')  # Construct an instance of the Greeter class
+g.greet()            # Call an instance method; prints "Hello, Fred"
+g.greet(loud=True)   # Call an instance method; prints "HELLO, FRED!"
+g.sneeze()           # Call a static method through an object; prints "ACHOO!!"
+Greeter.sneeze()     # Call a static method through the class; prints "ACHOO!!"
+print(g)             # Call __str__; prints "Greeter for Fred"
+```
+
 # Python Technical Details. Middle
+
 
 ## Convention about Variable Names
 
@@ -1200,7 +1628,21 @@ The class-based iterators is a functionality that is implemented via definition:
 
 See also [Interface and Protocols](#interfaces-and-protocols) in this document. What makes generators so compact is that the `__iter__()` and `__next__()` methods are created automatically.
 
-Next the key feature of **generator** is that the local variables and execution state are automatically saved between calls. When generators terminate, they automatically raise [StopIteration](https://docs.python.org/3/library/exceptions.html?highlight=stopiteration#StopIteration) exception.
+Generators in python are a specific type of functions that uses the (`yield`) statement. Example:
+
+```python
+def one_two_three():
+    x = 3
+    yield x // 3
+    x -= 2
+    yield x + 1
+    yield x * 3
+        
+for i in one_two_three():
+    print(i)  # prints 1, 2, 3 in sperate lines
+```
+
+The key feature of **generator** is that the local variables and execution state are automatically saved between calls. When generators terminate, they automatically raise [StopIteration](https://docs.python.org/3/library/exceptions.html?highlight=stopiteration#StopIteration) exception.
 
 The generators functionality dies not return a value via [return](https://docs.python.org/3/reference/simple_stmts.html?highlight=return#return) statement, instead, they send a value via [yield](https://docs.python.org/3/reference/simple_stmts.html?highlight=return#grammar-token-python-grammar-yield_stmt) statement. See also: [link to generators](
 https://docs.python.org/3/tutorial/classes.html#generators).
@@ -1376,41 +1818,14 @@ Losses/Binary Coss-Entropy with logits loss | [https://pytorch.org/docs/master/g
 
 > Comment: In the context of deep learning the logits mean the layer or scalars from R that are fed into softmax or similar layer in which the image(or output) is a probabilistic simplex.
 
-# Various code snippets
+# Matplotlib
 
-## Numpy 
-###  Ellipsis in NumPy
-The ellipsis is used in NumPy to slice higher-dimensional data structures. It's designed to mean at this point, insert as many full slices (`:`) to extend the multi-dimensional slice to all dimensions.
+[Matplotlib](http://matplotlib.org/) is a plotting library. In this section give a brief introduction to the **`matplotlib.pyplot`** module, which provides a plotting system similar to  MATLAB. Documentation: http://matplotlib.org/api/pyplot_api.html
 
-```python
-import numpy as np
-a = np.array ([[1,2,3], [4,5,6]])
-b = a [...]
-b[0,0]=11
-print(a == b)
-```
 
-###  Newaxis in Numpy
+## Plots
+The most important function in matplotlib is **`plot`**, which allows you to plot 2D data. Here is a simple example:
 
-Simply put, the new axis is used to increase the dimension of the existing array by one more dimension when used once. 
-```python
-import numpy as np
-a = np.array ([[1,2,3], [4,5,6]])
-b = a [..., np.newaxis]
-print(b.shapea)
-```
-## Matplotlib
-### Show the image with Matplotlib
-```python
-import sys 
-import matplotlib.pyplot as plt 
-import numpy as np 
-img = np.random.randint(low =  0, high =  255, size =  (16 ,  16,  3)) 
-plt.imshow(img) 
-plt.show()
-```
-
-### Show a one-dimensional plot (simple)
 ```python
 import matplotlib.pyplot as plt 
 import numpy as np
@@ -1421,7 +1836,71 @@ plt.plot(x, y)
 plt.grid(True)
 plt.show()
 ```
-### Show sub-images
+
+With just a little bit of extra work we can easily plot multiple lines at once, and add a title, legend, and axis labels:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Compute the x and y coordinates for points on sine and cosine curves
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Plot the points using matplotlib
+plt.plot(x, y_sin)
+plt.plot(x, y_cos)
+plt.xlabel('x axis label')
+plt.ylabel('y axis label')
+plt.title('Sine and Cosine')
+plt.legend(['Sine', 'Cosine'])
+plt.show()
+```
+
+## SubPlots
+You can plot different things in the same figure using the **`subplot`** function. Here is an example:
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Compute the x and y coordinates for points on sine and cosine curves.
+x = np.arange(0, 3 * np.pi, 0.1)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+# Set up a subplot grid that has 2 rows and 1 column.
+figure, axes = plt.subplots(2, 1)
+
+# Make the first plot
+ax = axes[0]  # plt.subplot(2, 1, 1)
+ax.plot(x, y_sin)
+ax.set_title('Sine')
+
+# Set the second subplot as active, and make the second plot.
+ax = axes[1]  # plt.subplot(2, 1, 2)
+ax.plot(x, y_cos)
+ax.grid(True)
+ax.set_title('Cosine')
+
+# Show the figure.
+plt.show(figure)
+```
+
+## Show the image with Matplotlib
+
+You can show image with the following code snippet:
+```python
+import sys 
+import matplotlib.pyplot as plt 
+import numpy as np 
+img = np.random.randint(low =  0, high =  255, size =  (16 ,  16,  3)) 
+plt.imshow(img) 
+plt.show()
+```
+
+Show sub-images:
+
 ```python
 import sys 
 import matplotlib.pyplot as plt 
@@ -1649,6 +2128,373 @@ def integrate_f_std(a, b, N):
 #   integration.intergrate_f(0.0,100.0,1000)
 #   integration.integrate_f_std(0.0,100.0,1000)
 ```
+
+# Numpy 
+
+[Numpy](http://www.numpy.org/) is the core library for scientific computing in Python.
+It provides a high-performance multidimensional array object, and tools for working with these arrays. If you are already familiar with MATLAB, you might find [this tutorial](https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html) useful to get started with Numpy.
+
+Check out the numpy reference (http://docs.scipy.org/doc/numpy/reference/) to find out much more about numpy beyond what is described below. You can find the full list of mathematical functions provided by numpy in: http://docs.scipy.org/doc/numpy/reference/routines.math.html.
+
+Numpy provides various functions for manipulating arrays; you can see the full list in: http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html.
+
+Broadcasting explanation: https://numpy.org/doc/stable/user/basics.broadcasting.html.
+
+(If you think that Broadcasting is incorrect thing to be designed in your first place - you are not alone).
+
+To use `numpy` library in your project you need to:
+* Install it with your package manager via `pip install numpy`
+* Import numpy via `import numpy as np`
+
+## Arrays
+A numpy array is a grid of values, **all of the same type**, and is indexed by a tuple of nonnegative integers.  The number of dimensions is the rank of the array. The shape of an array is a tuple of integers giving the size of the array along each dimension. 
+* Rank of array - is number of dimensions.
+* Tensor (in Machine Learning / Deep Learning) - is a name used to describe multidimensional arrays.
+* Shape - description of dimensions for multidimensional array organized as a tuple. Each dimension of multi dimensional array is called as "dimension" or "axe".
+
+We can initialize numpy arrays from nested Python lists, and access elements using square brackets:
+```python
+a = np.array([1, 2, 3])   # Create a rank 1 array
+print(type(a))            # Prints "<class 'numpy.ndarray'>"
+print(a.shape)            # Prints "(3,)"
+print(a[0], a[1], a[2])   # Prints "1 2 3"
+a[0] = 5                  # Change an element of the array
+print(a)                  # Prints "[5, 2, 3]"
+
+b = np.array([[1,2,3],[4,5,6]])    # Create a rank 2 array
+print(b.shape)                     # Prints "(2, 3)"
+print(b[0, 0], b[0, 1], b[1, 0])   # Prints "1 2 4"
+```
+
+Numpy provides many functions to create arrays:
+
+```python
+a = np.zeros((2,2))   # Create an array of all zeros with shape 2x2
+print(a)              # Prints "[[ 0.  0.]
+                      #          [ 0.  0.]]"
+
+b = np.ones((1,2))    # Create an array of all ones
+print(b)              # Prints "[[ 1.  1.]]"
+
+c = np.full((2,2), 7)  # Create a constant array
+print(c)               # Prints "[[ 7.  7.]
+                       #          [ 7.  7.]]"
+
+d = np.eye(2)         # Create a 2x2 identity matrix
+print(d)              # Prints "[[ 1.  0.]
+                      #          [ 0.  1.]]"
+
+e = np.random.random((2,2))  # Create an array filled with random values
+print(e)                     # Might print "[[ 0.42  0.42]
+                             #               [ 0.42  0.42]]"
+  
+f = np.arange(5)             # Create an array with the values from 0 to 4
+print(f)                     # Prints "[0 1 2 3 4]"
+
+g = np.arange(4.2, 7.1, 0.5)  # Create an array with the values from 4.2 to 
+                              # 7.1 on steps of 0.5
+print(g)                      # Prints "[4.2 4.7 5.2 5.7 6.2 6.7]"
+
+h = np.linspace(10, 20, 5)  # Create an array with 5 equally spaced values 
+                            # between 10 and 20
+print(h)                    # Prints "[[10. 12.5 15. 17.5 20.]"
+```
+
+## Array indexing
+
+Numpy offers several ways to index into arrays. Similar to Python lists, numpy arrays can be sliced. Since arrays may be multidimensional, you must specify a slice for each dimension of the array. Example:
+
+```python
+# Create the following rank 2 array with shape (3, 4)
+# [[ 1  2  3  4]
+#  [ 5  6  7  8]
+#  [ 9 10 11 12]]
+a = np.array([[1,2,3,4], 
+              [5,6,7,8], 
+              [9,10,11,12]])
+
+# Use slicing to pull out the subarray consisting of the first 2 rows
+# and columns 1 and 2 (and not 3); b is the following array of shape (2, 2):
+# [[2 3]
+#  [6 7]]
+b = a[:2, 1:3]
+print(b)
+
+# A slice of an array is a view into the same data, so modifying it
+# will modify the original array.
+
+print(a[0, 1])   # Prints "2"
+b[0, 0] = 77     # b[0, 0] is the same piece of data as a[0, 1]
+print(a[0, 1])   # Prints "77"
+print(b)
+```
+
+You can also mix integer indexing with slice indexing. However, doing so will yield an array of lower rank than the original array:
+
+```python
+# Create the following rank 2 array with shape (3, 4)
+# [[ 1  2  3  4]
+#  [ 5  6  7  8]
+#  [ 9 10 11 12]]
+a = np.array([[1,2,3,4], 
+              [5,6,7,8], 
+              [9,10,11,12]])
+
+# Two ways of accessing the data in the middle row of the array.
+
+# Mixing integer indexing with slices yields an array of lower rank,
+# while using only slices yields an array of the same rank as the
+# original array:
+row_r1 = a[1, :]    # Rank 1 view of the second row of a
+row_r2 = a[1:2, :]  # Rank 2 view of the second row of a
+print(row_r1, row_r1.shape)  # Prints "[5 6 7 8] (4,)"
+print(row_r2, row_r2.shape)  # Prints "[[5 6 7 8]] (1, 4)"
+
+# We can make the same distinction when accessing columns of an array:
+col_r1 = a[:, 1]
+col_r2 = a[:, 1:2]
+
+print(col_r1, col_r1.shape)  # Prints "[ 2  6 10] (3,)"
+
+print(col_r2, col_r2.shape)  # Prints "[[ 2]
+                             #          [ 6]
+                             #          [10]] (3, 1)"
+```
+
+
+The ellipsis is used in NumPy to slice higher-dimensional data structures. It's designed to mean at this point, insert as many full slices (`:`) to extend the multi-dimensional slice to all dimensions.
+
+```python
+a = np.array ([[1,2,3], [4,5,6]])
+b = a [...]
+b[0,0]=11
+print(a == b)
+```
+
+Also you can put, the new axis is used to increase the dimension of the existing array by one more dimension when used once. 
+```python
+import numpy as np
+a = np.array ([[1,2,3], [4,5,6]])
+b = a [..., np.newaxis]
+print(b.shapea)
+```
+
+## Boolean array indexing
+
+ Boolean array indexing lets you pick out arbitrary elements of an array. Frequently this type of indexing is used to select the elements of an array that satisfy some condition. Here is an example:
+
+```python
+a = np.array([[1,2], [3, 4], [5, 6]])
+
+bool_idx = (a > 2)   # Find the elements of a that are bigger than 2;
+                     # this returns a numpy array of Booleans of the same
+                     # shape as a, where each slot of bool_idx tells
+                     # whether that element of a is > 2.
+
+print(bool_idx)      # Prints "[[False False]
+                     #          [ True  True]
+                     #          [ True  True]]"
+
+# We use boolean array indexing to construct a rank 1 array
+# consisting of the elements of a corresponding to the True values
+# of bool_idx
+print(a[bool_idx])  # Prints "[3 4 5 6]"
+
+# We can do all of the above in a single concise statement:
+print(a[a > 2])     # Prints "[3 4 5 6]"
+```
+
+## Datatypes
+
+Every numpy array is a grid of elements of the same type. Numpy provides a large set of numeric datatypes that you can use to construct arrays. Numpy tries to guess a datatype when you create an array, but functions that construct arrays usually also include an optional argument to explicitly specify the datatype. Here is an example:
+
+```python
+x = np.array([1, 2])       # Let numpy choose the datatype
+print(x.dtype)             # Prints "int64"
+x = np.array([1.0, 2.0])   # Let numpy choose the datatype
+print(x.dtype)             # Prints "float64"
+
+x = np.array([1, 2], dtype=np.int64)   # Force a particular datatype
+print(x.dtype)                         # Prints "int64"
+```
+
+## Array math
+
+Basic mathematical functions operate elementwise on arrays, and are available both as operator overloads and as functions in the numpy module:
+
+```python
+x = np.array([[1,2],[3,4]], dtype=np.float64)
+y = np.array([[5,6],[7,8]], dtype=np.float64)
+
+# Elementwise sum; both produce the array
+# [[ 6.0  8.0]
+#  [10.0 12.0]]
+print(x + y)
+print(np.add(x, y))
+
+# Elementwise difference; both produce the array
+# [[-4.0 -4.0]
+#  [-4.0 -4.0]]
+print(x - y)
+print(np.subtract(x, y))
+
+# Elementwise product; both produce the array
+# [[ 5.0 12.0]
+#  [21.0 32.0]]
+print(x * y)
+print(np.multiply(x, y))
+
+# Elementwise division; both produce the array
+# [[ 0.2         0.33333333]
+#  [ 0.42857143  0.5       ]]
+print(x / y)
+print(np.divide(x, y))
+
+# Elementwise square root; produces the array
+# [[ 1.          1.41421356]
+#  [ 1.73205081  2.        ]]
+print(np.sqrt(x))
+print(x**0.5)
+```
+
+## Important notice about syntax for Matrix Multiplication
+
+Note that unlike MATLAB, **`*`** is elementwise multiplication, not matrix multiplication. 
+
+In numpy instead of use `*` you need to use the **`dot`** function or operator **`@`** to compute inner products of vectors, to multiply a vector by a matrix, and to multiply matrices. **`dot`** is available both as a function in the numpy module and as an instance method of array objects:
+
+```python
+x = np.array([[1,2],
+              [3,4]])
+y = np.array([[5,6],
+              [7,8]])
+
+v = np.array([9,10])
+w = np.array([11, 12])
+
+# Inner product of vectors
+print(v.dot(w))
+print(np.dot(v, w))
+print(v @ w)
+
+# Matrix / vector product; both produce the rank 1 array [29 67]
+print(x.dot(v))
+print(np.dot(x, v))
+print(x @ v)
+
+# Matrix / matrix product; both produce the rank 2 array
+# [[19 22]
+#  [43 50]]
+print(x.dot(y))
+print(np.dot(x, y))
+print(x@y)
+```
+
+## Various Utility functions in Numpy
+
+Numpy provides many useful functions for performing computations on arrays; one of the most useful is **`sum`**:
+```python
+x = np.array([[1,2],[3,4]])
+
+print(np.sum(x))          # Compute sum of all elements; prints "10"
+print(np.sum(x, axis=0))  # Compute sum of each column; prints "[4 6]"
+print(np.sum(x, axis=1))  # Compute sum of each row; prints "[3 7]"
+```
+
+Apart from computing mathematical functions using arrays, we frequently need to reshape or otherwise manipulate data in arrays. The simplest example of this type of operation is transposing a matrix. To transpose a matrix, simply use the **`T`** attribute of an array object:
+
+```python
+x = np.array([[1,2], [3,4]])
+print(x)    # Prints "[[1 2]
+            #          [3 4]]"
+print(x.T)  # Prints "[[1 3]
+            #          [2 4]]"
+
+# Note that taking the transpose of a rank 1 array does nothing:
+v = np.array([1,2,3])
+print(v)    # Prints "[1 2 3]"
+print(v.T)  # Prints "[1 2 3]"
+```
+
+For reshaping matrix into different form you can use reshaping function **`np.reshape`**:
+
+```python
+x = np.arange(12)
+y = x.reshape((3,4))
+
+print(x)    # Prints "[ 0  1  2  3  4  5  6  7  8  9 10 11]"
+print(y)    # Prints "[[ 0  1  2  3]
+            #          [ 4  5  6  7]
+            #          [ 8  9 10 11]]"
+```
+
+## Broadcasting
+
+Broadcasting is a powerful mechanism that allows numpy to work with arrays of different shapes when performing arithmetic operations. Frequently we have a smaller array and a larger array, and we want to use the smaller array multiple times to perform some operation on the larger array. Unfortunately in practice that mechanism can lead to confusion. So be very careful!
+
+Example: add a constant vector to each row of a matrix. 
+
+```python
+# We will add the vector v to each row of the matrix x,
+# storing the result in the matrix y
+x = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
+v = np.array([1, 0, 1])
+
+#=========================================================================
+# Add the vector v to each row of the matrix x with an explicit loop
+#=========================================================================
+y = np.empty_like(x)   # Create an empty matrix with the same shape as x
+for i in range(4):
+    y[i, :] = x[i, :] + v
+
+# Now y is the following
+# [[ 2  2  4]
+#  [ 5  5  7]
+#  [ 8  8 10]
+#  [11 11 13]]
+print(y)
+
+#=========================================================================
+# Add the vector with tiling
+#=========================================================================
+
+vv = np.tile(v, (4, 1))   # Stack 4 copies of v on top of each other
+print(vv)                 # Prints "[[1 0 1]
+                          #          [1 0 1]
+                          #          [1 0 1]
+                          #          [1 0 1]]"
+y = x + vv  # Add x and vv elementwise
+print(y)  # Prints "[[ 2  2  4
+          #          [ 5  5  7]
+          #          [ 8  8 10]
+          #          [11 11 13]]"
+            
+
+#=========================================================================
+# Add vector with broadcasting
+#=========================================================================
+# Numpy broadcasting allows us to perform computation without actually creating multiple copies of **`v`**. 
+# Consider this version, using broadcasting.
+# We will add the vector v to each row of the matrix x,
+# storing the result in the matrix y
+
+v = np.array([1, 0, 1])
+y = x + v  # Add v to each row of x using broadcasting
+print(y)  # Prints "[[ 2  2  4]
+          #          [ 5  5  7]
+          #          [ 8  8 10]
+          #          [11 11 13]]"
+            
+```
+
+Broadcasting two arrays together follows these rules:
+
+1. If the arrays do not have the same rank, prepend the shape of the lower rank array with 1s until both shapes have the same length.
+2. The two arrays are said to be compatible in a dimension if they have the same size in the dimension, or if one of the arrays has size 1 in that dimension.
+3. The arrays can be broadcast together if they are compatible in all dimensions.
+4. After broadcasting, each array behaves as if it had shape equal to the elementwise maximum of shapes of the two input arrays.
+5. In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension
+
 
 # References
 
