@@ -134,20 +134,19 @@ Revision Update: July 06, 2023
 
 # Introduction
 
-The web search engine Google returns around $6.95 \cdot 10^8$ answers from the search request "Python Tutorial". One of these tutorials is worthwhile to mention explicitly - it is a tutorial on the subject of this programming language originally written by *Guido Van Rossum* - https://docs.python.org/3/tutorial/index.html, which is located on the website of the most popular python distribution [CPython](https://www.python.org/). Another Python distributions [Jython](https://www.jython.org/), [Python for .NET](https://pythonnet.github.io/) are less popular.
+If you search for "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator Guido Van Rossum. You can find it here: https://docs.python.org/3/tutorial/index.html. This tutorial is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language which can be observed from:
-* [Tiobe-Index](https://www.tiobe.com/tiobe-index/)
-* [Google-Trends](https://trends.google.com/trends/explore?date=now%201-d&q=%2Fm%2F05z1_,%2Fm%2F0jgqg,C%23,%2Fm%2F07sbkfb,BASH&hl=ru)
+Python is a popular scripting language, even though it has some limitations common to other scripting languages (see this [link](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages) for more details) and it lacks an official ISO/IEEE standard. You can check its popularity from these sources like:
 
-On this note authors with some mix of backgrounds, but primarily CS
-background wants to achieve several goals:
+* The [Tiobe-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity.
+* The [Google-Trends](https://trends.google.com/trends/explore?date=now%201-d&q=%2Fm%2F05z1_,%2Fm%2F0jgqg,C%23,%2Fm%2F07sbkfb,BASH&hl=r), which shows the relative interest in different topics over time in society.
 
-* Share some technical details about some language features. It can be good material after reading [Official Python Tutorial](https://docs.python.org/3/tutorial/index.htm), if you do not have to get all important from the [Official Python Tutorial](https://docs.python.org/3/tutorial/index.htm).
-* Share vision which system aware people CS/EE people think about the subject
-* Provide a compact survey about several tools
+With this note, the authors have several objectives:
 
-We hope to make it will be an interesting reading for you. So let's go.
+* To explain some technical details about certain language features. This can be a useful resource for those who found the Official Python Tutorial too complex or confusing. 
+* This can also help to fill in the gaps in one's understanding of the subject.
+* Give a brief overview of various tools
+* Provide a bridge from system-aware people to Python, as from Python to system-aware mentality.
 
 # What is a Python
 
@@ -155,23 +154,31 @@ We hope to make it will be an interesting reading for you. So let's go.
 
 > "...My original motivation for creating Python was the perceived need for a higher-level language in the Amoeba project. I realized that the development of system administration utilities in C was taking too long. Moreover, doing these in the Bourne shell wouldn't work for a variety of reasons. The most important one was that as a distributed micro-kernel system with a radically new design, Amoeba's primitive operations were very different (and finer-grain) than the traditional primitive operations available in the Bourne shell. So there was a need for a language that would "bridge the gap between C and the shell..." - [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum).
 
-This language does not have any Standards. The only available language standard is Language reference: https://docs.python.org/3/reference/.
+The most common implementation of the Python interpreter is CPython. It is named CPython because it is written in C/C++. Unlike some other languages, Python does not have an official standard. The only available resources are:
 
-The Python (and any interpreter) parses the program's text (source code) line by line (that is represented or in text form or extremely high-level instructions). 
+* Language reference: https://docs.python.org/3/reference/
+* Source code of Python interpreter: https://github.com/python/cpython
 
-The standard implementation Python interpreter is CPython. It is called CPython because it has been implemented in C/C++. This software can be downloaded from https://www.python.org/.
+The Python (and any interpreter) parses the program's text (source code) line by line (that is represented or in text form or extremely high-level instructions). Even though Python is interpreted, internally the commands are translated into [Python Virtual Machine](https://docs.python.org/3/glossary.html#term-virtual-machine) before execution. If you want to see how the commands look like, you can use the [dis](https://docs.python.org/3/library/dis.html#module-dis) module to help you on that:
 
-# Where to learn about Python If I have never heard about it?
+```python
+import dis
+def f(x):
+    xmy = xmy + 1
+    return xmy
 
-There is exist a book written by Guido van Rossum (original author of that language). It's a pretty big and nice written tutorial: https://docs.python.org/3/tutorial/
+dis.dis(f)
+```
 
-* Python Language Reference: https://docs.python.org/3.8/reference/index.html 
+# Where to Learn About Python Officially?
 
-* Detailed description of different built-in functions for user-defined class: https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects - 
+* There is exist a book written by Guido van Rossum (original author of that language).  Today it has been converted into a pretty big tutorial: https://docs.python.org/3/tutorial/
 
-* Built-in types: https://docs.python.org/3/library/stdtypes.html
+* Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
 
-* Python Language Reference: https://docs.python.org/3.8/reference/index.html 
+* Python Interpreter is distributed with various standard modules which is called Python Standard Library: https://docs.python.org/3/library/index.html. For example this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation which described Standard Types.
+
+* Finally, the syntax of a language is typically described for Programming Languages with Backus–Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here: https://docs.python.org/3/reference/grammar.html
  
 
 # Source of Confusion
