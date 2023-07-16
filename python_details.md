@@ -22,7 +22,7 @@ Revision Update: July 06, 2023
   * [What is Object Orientated Programming (OOP)](#what-is-object-orientated-programming--oop-)
 - [Phylosophy of Python](#phylosophy-of-python)
 - [How to start Interpreter](#how-to-start-interpreter)
-- [Language Constructions and sources of confusion for people with another languages background](#language-constructions-and-sources-of-confusion-for-people-with-another-languages-background)
+- [Language Constructions and sources of confusion for people with another language background](#language-constructions-and-sources-of-confusion-for-people-with-another-languages-background)
   * [Comment about events](#comment-about-events)
   * [Meaning of Object](#meaning-of-object)
   * [Python does provide access to variables by value](#python-does-provide-access-to-variables-by-value)
@@ -51,7 +51,7 @@ Revision Update: July 06, 2023
 - [Enumeration and Loops](#enumeration-and-loops)
 - [More on Conditions](#more-on-conditions)
 - [Python Technical Details. Basics](#python-technical-details-basics)
-  * [Introspection of varions Information](#introspection-of-varions-information)
+  * [Introspection of various Information](#introspection-of-varions-information)
   * [Basic data types](#basic-data-types)
   * [Bool variables and operators](#bool-variables-and-operators)
     + [Strings](#strings-1)
@@ -109,7 +109,7 @@ Revision Update: July 06, 2023
 - [Cython](#cython)
   * [How to optimize Python Code with Cython](#how-to-optimize-python-code-with-cython)
   * [About Cython Language](#about-cython-language)
-  * [Easy Interoperability with Standar C Library](#easy-interoperability-with-standar-c-library)
+  * [Easy Interoperability with Standard C Library](#easy-interoperability-with-standar-c-library)
     + [Example of function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
 - [Numpy](#numpy)
   * [Arrays](#arrays)
@@ -117,7 +117,7 @@ Revision Update: July 06, 2023
   * [Boolean array indexing](#boolean-array-indexing)
   * [Datatypes](#datatypes)
   * [Array math](#array-math)
-  * [Important notice about syntax for Matrix Multiplication](#important-notice-about-syntax-for-matrix-multiplication)
+  * [Important notice about the syntax for Matrix Multiplication](#important-notice-about-syntax-for-matrix-multiplication)
   * [Various Utility functions in Numpy](#various-utility-functions-in-numpy)
   * [Broadcasting](#broadcasting)
 - [References](#references)
@@ -136,7 +136,7 @@ Revision Update: July 06, 2023
 
 If you search for "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator Guido Van Rossum. You can find it here: https://docs.python.org/3/tutorial/index.html. This tutorial is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language, even though it has some limitations common to other scripting languages (see this [link](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages) for more details) and it lacks an official ISO/IEEE standard. You can check its popularity from these sources like:
+Python is a popular scripting language, even though it has some limitations common to other scripting languages (see this [link](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages) for more details) and it lacks an official ISO/IEEE standard. You can check its popularity from these sources:
 
 * The [Tiobe-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity.
 * The [Google-Trends](https://trends.google.com/trends/explore?date=now%201-d&q=%2Fm%2F05z1_,%2Fm%2F0jgqg,C%23,%2Fm%2F07sbkfb,BASH&hl=r), which shows the relative interest in different topics over time in society.
@@ -159,7 +159,7 @@ The most common implementation of the Python interpreter is CPython. It is named
 * Language reference: https://docs.python.org/3/reference/
 * Source code of Python interpreter: https://github.com/python/cpython
 
-The Python (and any interpreter) parses the program's text (source code) line by line (that is represented or in text form or extremely high-level instructions). Even though Python is interpreted, internally the commands are translated into [Python Virtual Machine](https://docs.python.org/3/glossary.html#term-virtual-machine) before execution. If you want to see how the commands look like, you can use the [dis](https://docs.python.org/3/library/dis.html#module-dis) module to help you on that:
+Python (and any interpreter) parses the program's text (source code) line by line (that is represented or in text form or extremely high-level instructions). Even though Python is interpreted, internally the commands are translated into [Python Virtual Machine](https://docs.python.org/3/glossary.html#term-virtual-machine) before execution. If you want to see what the commands look like, you can use the [dis](https://docs.python.org/3/library/dis.html#module-dis) module to help you with that:
 
 ```python
 import dis
@@ -176,7 +176,7 @@ dis.dis(f)
 
 * Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
 
-* Python Interpreter is distributed with various standard modules which is called Python Standard Library: https://docs.python.org/3/library/index.html. For example this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation which described Standard Types.
+* Python Interpreter is distributed with various standard modules which are called Python Standard Library: https://docs.python.org/3/library/index.html. For example this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation which described Standard Types.
 
 * Finally, the syntax of a language is typically described for Programming Languages with Backus–Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here: https://docs.python.org/3/reference/grammar.html
  
@@ -189,51 +189,47 @@ Python language has a very fast learning curve which opened the door fortunately
 
 > Python is a programming language which...
 
-Unfortunately, if you are around people with CS/EE/System/Compilers backgrounds it may be the case that these people will make a statement: **"Python is not a programming language"**. 
+Unfortunately, if you are around people with CS/EE/System/Compilers backgrounds it may be the case that these people will make a statement: *"Python is not a programming language"*.  To state that Python is *Programming Language* we need to define what is (1) programming and what is a (2) Language. 
 
-To state that Python is *Programming Language* we need to define what is (1) programming and what is a (2) language. 
+One meaning is that Language expresses ideas and you don't care at all how these ideas are materialized. But it's not the only definition. 
 
-One vague (and market) meaning is that Language expresses ideas and you don't care at all how these ideas are materialized.
+The message which one scientist [B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) (author of C++) tries to bring for people for already 3 decades that *Programming Language* is the language that gives you a way to describe the algorithm and this algorithm will be executed in the computer (compute device). With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is an interpreter. C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler.
 
-But it's not the only definition. The message which one scientist [B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) (author of C++) tries to bring people at least for already 3 decades that *Programming Language* is the language that gives you a way to describe the algorithm and this algorithm will be executed in the computer (compute device). With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) what is executed is not your program. It's an interpreter in the case of Python and runtime coupled with a Just-In-Time(JIT) compiler for another two languages. If you only start with Programming or if you have no experience in Compilers/OS/Systems you may not see the difference, but their difference is fundamental even to catch this difference you should have some background. 
+If you only start with Programming in your career, or if you have no experience in Compilers/OS/Systems you may not see the difference, but there is a fundamental difference. It does not say that these languages are incorrect, but at least understand that it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. And any level of Abstraction is not free in terms of consumed memory and execution time.
 
-It does not say that this language is incorrect, but I hope you should understand that it's not the computer that executes this program, but what is executing is another (one more) level of abstraction.
+> Python is a general-purpose programming language.
 
-**"Python is a general purpose programming language"**.
+It is at the same time a very strong statement and at the same time vague statement. It can be three points of view on such a statement:
 
-This is a very strong statement. And it can be three points of view on such a statement with anybody who has CS background:
+1. By general-purpose programming language you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes maybe have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness).
 
-1. By general-purpose programming language you mean that you can create any Algorithm. If this is a definition, then it's correct. Only DSL languages constructed for special purposes maybe have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness).
+2. By General Purpose you mean that you can use it across many domains. But how big is big? Depending on the definition of "Big" Python may lie in this class.
 
-2. If by General Purpose you mean that you can use it across a big amount of domains, then how big is big? This is a pretty vague definition.
+3. By General Purpose you mean you can create programs for different computing elements in the Computer. If this is your definition and you believe that Python can help with this - it's *wrong*. Python by design is the replacement for Bash, it's not a replacement for C or C++, or any other traditional language. Conter example: You can not create drivers for your devices.
 
-3. If by General Purpose you mean you can create programs for different computing elements in the Computer, then it's almost *wrong*. You should have big flexibility with what you're doing. Second Python by design is the replacement for Bash, it's not a replacement for C or C++, or any other traditional language. You can not create drivers for your devices.
+> Python is more elegant and short than C++.
 
-**"Python is more elegant and short than C++"**.
-
-This is true if look into lines of code, however the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code there is a very strange asymmetry that you will observe once you will create projects in Python and C++ with 40K lines of code and more.
-
-With such a big size (lower bound) Python is not even close to C++. The thing is that the absence of compilers and toolchains which you need to install and spend time using compile, just-in-time compile languages will hurt you. There are very well-developed tools.
+One more time it depends on what you mean exactly. This is true if look into lines of code. However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Because compiling languages enforces you to follow some discipline.
 
 Of course, there is a tool for Python that helps [pylint](https://pypi.org/project/pylint/), but a compiler and linker are far more powerful tools for detecting errors than a static analyzer.
 
-**"Python is everywhere"**.
+> Python is everywhere
 
-This overstatement can also be read from Python Tutorial. Please be aware that (any) interpretable language which exists or will be created in the future fundamentally will have the following downsides:
+This overstatement can also be read from Python Tutorial.
+
+Please be aware that (any) interpretable language which exists or will be created in the future fundamentally will have the following downsides:
+
 [C++ Technical Note / Downsides of Interpretable Languages
-](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages) fundamentally.
+](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages).
 
-# Background: Programming Languages
+# Backgrounds
 
 ## How typical compute device is working
 
-It's important to understand that computational devices do not execute code in Java, C#, Matlab, or Python.
-Computers can not do it. It is what happening in reality.
+It's important to understand that computational devices do not execute code in Java, C#, Matlab, or Python. Computers can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA). 
 
-The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA). A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments and writing results into some form of memory. Memory allows to store input and output results.
-Control units that control the execution of these low-level commands. 
-
-Finer details about how computers are working can be obtained from *System Architecture*, *Performace Engineering* courses and books.
+A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments and writing results memory. Memory allows to store input and output results.
+The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how computers are working can be obtained from *System Architecture*, *Performace Engineering* courses and books.
 
 ## Programming Languages Taxonomy
 
@@ -244,22 +240,18 @@ There are a lot of programming languages these days. One way to analyze programm
 * **Strong Type System** or **Strong Type safety** - implicit type casting is prohibited
 * **Weak Type System** or **Weak Type safety** - implicit type casting is allowed.
 
-C and C++ have a *Strong Static Type System*.
-
-Examples of Languages with *Weak Type System* are Javascript and Perl.
+C and C++ have a *Strong Static Type System*. Examples of Languages with *Weak Type System* are JavaScript and Perl.
 
 Ruby and Python have a *Strong Dynamic Type System*. This means that types are inferred at runtime (dynamic type system), but implicit conversions between types are not allowed (strong type system).
 
 ## What is Object Orientated Programming (OOP)
 
-Please take a good course or read good books. Object-Orientated-Programming requires some special way to organize code, but it does not force to have a `class` keyword in Language.
-
-Please check this Appendix if you're curious about what is OOP from a Computer Science point of view: [C++ Technical Note/Object Orientated Design
+ Object-Orientated-Programming requires some special way to organize code, but it does not force to have a `class` keyword in Language. Please check this Appendix if you're curious about what is OOP from a Computer Science point of view: [C++ Technical Note/Object Orientated Design
 ](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#object-orientated-design).
 
-# Phylosophy of Python
+# Philosophy of Python
 
-If you want to understand some hidden principles built-in Python language then read from the following command:
+If you want to understand some hidden principles built-in Python language then after having a workable version of Python Interpreter read output from the following command:
 ```bash
 python -c "import this"
 ```
@@ -267,22 +259,21 @@ This provides a point of view of the world from the point of view of Python lang
 
 # How to start Interpreter
 
-Based on [1] the Python interpreter operates somewhat like the Unix shell. In general, there are three ways to start the execution of a Python interpreter:
+Based on [1] the Python interpreter operates somewhat like the Unix shell. There are three ways to start the Python interpreter:
 
-1. When it is called with standard input connected to a device that can emit symbols - it reads and executes commands interactively. 
+1. When it is called with standard input connected to a device - it reads and executes commands interactively.
 
-2. When a Python interpreter is called with a file name argument or with a file as standard input, it reads and executes a script from that file. For details see [Python Tutorial / Interpreter](https://docs.python.org/3.13/tutorial/interpreter.html)
+2. When a Python interpreter is called with a file name argument it reads and executes a script from that file. For details see [Python Tutorial / Interpreter](https://docs.python.org/3.13/tutorial/interpreter.html)
 
-3. Next way of starting the interpreter is by calling
+3. You can start the interpreter by calling
     ```bash
     python -c command [arg] ...
     ```
-    It executes the statement(s) in the command, analogous to the shell s `-c` option. Since Python statements often contain spaces or other characters that are special to the shell, it is usually advised to quote the command in its entirety.
+    It executes the statement(s) in the command, analogous to the shell s `-c` option. Since Python statements often contain spaces or other characters that are special to the shell, it is usually advised to quote the command.
 
-4. Some Python modules are also useful as scripts. These can be invoked using `python -m module [arg] ...`, which executes the source file for the module as if you had spelled out its full name on the command line.
+4. Some Python modules can be used as scripts. These can be invoked using `python -m module [arg] ...`, which executes the source file for the module as if you had spelled out its full name on the command line.
 
-
-The script name and additional arguments are turned into a list of strings and assigned to the `sys.argv` variable. 
+**Script Arguments.** The script name and additional arguments are turned into a list of strings and assigned to the `sys.argv` variable with the following rules:
 
 * When no script and no arguments are given, `sys.argv[0]` is an empty string. 
 
@@ -295,14 +286,14 @@ The script name and additional arguments are turned into a list of strings and a
 
 *  When the `-m` module is used, `sys.argv[0]` is set to the full name of the located module.
 
-# Language Constructions and sources of confusion for people with another languages background
+# If you arrived to Python from the Compiling Languages
 
-## Comment about events
-Some programming languages like C# contain native support of event-based communication between objects to support Object Orientated Programming, however, Python (and C, C++) programming languages do not contain a native event-based system, even though there are frameworks on top of it that supported that (for example Qt). 
+## About Events
+Some programming languages like C# contain native support of event-based communication between objects to support Object Orientated Programming, however, Python (and C++) programming language does not contain a native event-based system, even though there are frameworks on top of it that supported that (for example Qt). 
 
 ## Meaning of Object
 
-Now there is a clash of terminology if you have C++, Java, or C# background. In Python, everything that takes up memory in some form is called the **object**. In other languages (Java, C#, C++) object is an instance of the class. So an object in Python terminology is:
+There is a clash of terminology if you have C++, Java, or C# background. In Python, everything that takes up memory in some form is called the **object**. In other languages (Java, C#, C++) object is an instance of the class. So an object in Python terminology is:
 * Class instances 
 * Exotic built-in objects (e.g. files)
 * Fundamental built-in data types (e.g. integers)
@@ -311,17 +302,17 @@ It's not true that all things are classes in Python.
 
 ## Python does provide access to variables by value
 
-In Python, there are only references to objects. Python has named references to objects. It has no variables available to the programmer for reference by value. Functions return and accept arguments by reference in the terminology of C++, C#, and Java.
+Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the level of Language). Functions return and accept arguments by reference in the terminology of C++, C#, and Java.
 
-Moreover, there is a very strange thing, which was in Python 2.* and still is in the language about default argument. For the default argument - the default value itself is passed by reference and *calculated once*. This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, in the usual way of writing arguments, and is just a shorthand.
+Moreover, there is a very strange thing with default argument which was in Python since early version. For the default argument - the default value itself is passed by reference and *calculated once*. 
 
-# Context in Python is the same as scopes (in C++)
+This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, in the usual way of writing arguments, and is just a shorthand at least conceptually.
 
-The context in Python is a concept similar to C++'s scope. However, in Python, you can not create scopes inside the function. For example if inside the function you have a nested loop, then its level of nested loop **does not** introduce a new scope, as a consequence the indexing variable will be rewritten.
+# Context in Python is the same as scopes in C++
 
-In fact, in Python, there are only 4 contexts (scopes):
+The context in Python is a concept similar to C++'s scope. However, in Python, you can not create scopes inside the function. For example if inside the function you have a nested loop, then its level of nested loop **does not** introduce a new scope. In fact, in Python, there are only 4 contexts (which is in C++ terminology called scopes):
 
-* **Local Context/Scope.** The context inside the current function. Importantly, a new loop with a new indentation does not introduce a new local scope.
+* **Local Context/Scope.** The context inside the current function. As we have mentioned earlier a new loop with a new indentation does not introduce a new local scope.
 
 * **Enclosing Context/Scope.** Locally declare a function inside a function. Variables from the parent function will be implicitly accessible to the children.
 
@@ -331,13 +322,15 @@ In fact, in Python, there are only 4 contexts (scopes):
 
 ## Pointers and Object Reference Equality
 
-> Object in Python is everything that takes memory. Fundamentally in Python Object equality can test in one of two types:
+Object in Python is everything that takes memory. Fundamentally in Python Object equality can test in one of two types:
 
-> **Value equality** - testing which takes a reference to objects. And what is tested the objects have the same content. The programmer can define what this means via defining `__eq__` in your class. (This operator is the same as `==` in C++)
+**Value equality** - testing which takes a reference to objects. And what is tested the objects have the same content. The programmer can define what this means via defining `__eq__` in your class. This operator semantically is the same as `==` in C++.
 
-> **Identity equality** - testing when two references are referenced to the same object. The programmer can not determine what it means, it is defined by the language. Such type of equality is used during the use of operators `is`, `is not` or built-in function `id()`.
+**Identity equality** - testing when two references are referenced to the same object. The programmer can not determine what it means, it is defined by the language. Such type of equality is used during the use of operators `is`, `is not` or built-in function `id()`.
 
-In Python 2/3 there are no pointers. However, there is a built-in function called `id`. In fact `id(obj)` according to [1],[2] `id` means the address of an object in the interpreter's memory. In principle that two objects refer to the same memory can be checked in the following way:
+In Python 2/3 there are no pointers. However, there is a built-in function called `id`. In fact function `id(obj)` according to [1],[2] means the address of an object in the interpreter's memory. 
+
+In principle that two objects refer to the same memory can be checked in the following way:
 ```python
 id(x) == id(y)
 ```
@@ -348,42 +341,38 @@ However in reality you will not meet this code too much. If you need to compare 
 
 They have the same semantical meaning as using `id()`.
 
-> If you C++ background. The fact that id(x) is the memory address of object "x" is a CPython implementation detail. CPython can change this in the future. It's also hard to say what is standard and what is not - there is no standard for Language.
+> The fact that `id(x)` is the memory address of object *x* is a CPython implementation detail. CPython can change this in the future. It's also hard to say what is guaranteed by the standard - because there is no standard.
 
 
-## All class methods are virtual (in terms of C++)
+## All class methods are virtual in terms of C++
 
-Without loss of generality, we can assume that in Python all methods of all classes are `virtual`. But actually, there are no virtual methods and virtual keyword and virtual tables in Python at all mentioned in [1] or [2]. 
+Without loss of generality, we can assume that in Python all methods of all classes are `virtual`. But actually, there are no virtual methods and virtual keywords and virtual tables in Python at all. In fact, in Python methods are *attributes*. They are bound at runtime and executed dynamically. 
 
-In fact, in Python methods are attributes. They are bound at runtime and executed dynamically. In very specific circumstances you can manually remove, get, and set attributes:
+In very specific circumstances you can manually remove, get, and set attributes:
 
 * [delattr()](https://docs.python.org/3/library/functions.html?highlight=getattr#delattr) - remove an attribute
 
-* [hasattr()](https://docs.python.org/3/library/functions.html?highlight=getattr#hasattr) - checks if an attribute exist.
+* [hasattr()](https://docs.python.org/3/library/functions.html?highlight=getattr#hasattr) - checks if an attribute exists.
 
 * [setattr()](https://docs.python.org/3/library/functions.html?highlight=getattr#setattr) - set the value of an attribute
 
 * [getattr()](https://docs.python.org/3/library/functions.html?highlight=getattr#getattr) - get the value of an attribute
 
-There is also no division of fields into public/private/protected as it is in C++ and there are no different types of inheritances. What is absent in Python is a limited type of support for `private` names, which we will describe later.
+There is also no division of fields into public/private/protected as it is in C++ and there are no different types of inheritances. However, in Python, there is a limited type of support for `private` names, which we will describe later.
 
 
 # Interfaces and Protocols
 
-In Python languages, you will not find the keyword `interface` such as in Java/C# or pure virtual class methods as in C++.
+In Python languages, you will not find the keyword `interface` such as in Java/C# or pure virtual class methods as in C++. Python does not have interfaces as a language concept. 
 
-In contrast, Python does not have interfaces as a language concept. 
+Instead of a specific (and robust) interface notion Python (and other scripting languages) uses what is known as Duck Typing. This concept is described typically in the following way:
 
-Instead of a specific (and robust) interface Python and other scripting languages uses what is known as Duck Typing.
+> *"If it walks like a duck and it quacks like a duck, then it must be a duck"*.
 
-This concept is described typically in the following way:
+In Python, any object may be used in any context until it is used in a way that it does not support. In this latter case the [AttributeError](
+https://docs.python.org/3/library/exceptions.html#AttributeError) will be raised.
 
-*"If it walks like a duck and it quacks like a duck, then it must be a duck"*.
-
-In Python, any object may be used in any context until it is used in a way that it does not support. The [AttributeError](
-https://docs.python.org/3/library/exceptions.html#AttributeError) will raise.
-
-If your class is in Python and you want the objects of your class can be used in specific language construction (like) iteration you should support **protocol**. The protocol may not be a formal name, however, during the conversation you will hear about it:
+If you define your classes in Python and you want the objects of your class can be used in specific language construction (like) iteration you should support **protocol**:
 
 * **Container protocol.** Built-in container types in Python
 tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` operations for them. Support of this is named container protocol. For your types, you should define 
@@ -401,7 +390,7 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
 
   Such objects can be used in for-loops:
   ```python
-  for I in iterable: smth(i)
+  for i in iterable: smth(i)
   ```
   For your types you should define:
     ```python
@@ -411,7 +400,7 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
 
   More details:  https://docs.python.org/3/tutorial/classes.html#iterators
 
-- **Sequence protocol.** Except dict, all Built-in container types in Python support indexing. It's known as sequence protocol. For your types, you should define [__getitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [__setitem__](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [__delitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). Once you will define this operator you can call:
+- **Sequence protocol.** Except dict, all built-in container types in Python support indexing. It's known as sequence protocol. For your types, you should define [__getitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [__setitem__](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [__delitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). Once you will define this operators you can use the following laguage operators:
 
   ```python
   x [integral_index] 
@@ -420,107 +409,104 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
   produceReverseSeq = reversed(x)
   ```
 
-# What is a False statement ?
+# What is a False statement
 
 The following expressions are considered as `false` in Python:
-* None
-* 0
-* Empty sequence. I.e. sequence which `len() == 0`
+* `None`
+* `0`
+* Sequence which `len() == 0` named as empty sequence.
 
 
-# Possible Python benefits which are absent in most Languages
+# Python Language benefits which are absent in most Scripting Languages
 
-It very depends on your point of view and your style, but there is a point of view where the following things are benefits. Especially if you have limited time for a project:
-  1. More correct code from a style point of view
+It very depends on your point of view and your style, but there is a point of view where the following things are benefits. Especially if you have limited time for finishing a project:
+
+  1. More correct code from a style point of view.
   2. Automatic cross-platform serialization "pickling" for the user and built-in types from the Python standard library.
   3. A lot of free and commercial IDE with intellisense.
-  4. Python has a built-in debugger. 
-  The parsing of the function is performed only at the moment of the direct call. To run the script with a debugger call `python -m pdb scriptname.py`. After this, you will have the ability to insert text commands in the interactive shell with [pdb commands](https://docs.python.org/3/library/pdb.html#debugger-commands).
+  4. Built-in debugger. 
   5. Python use <`.`> token to separate packages/subpackage/class like C# and Java. Packages from Perl are called modules in Python.
 
+During debugging it's worthwhile to say that parsing of the function is performed only at the moment of the direct call. 
 
-# About classes inside Python
+To run the script with a debugger call:
 
-Python has limited support for private attribute objects when naming attributes as `__attributename`. In this case, the interpreter performs name mangling. In the end, this attribute will be `_classname__attribute`.
+```bash
+python -m pdb scriptname.py
+```
 
-In C++ terminology Python classes have the following characteristics:
-  1. Normal class members (including the data members) are public except for some small support for  Private Variables.
+After this, you will have the ability to insert text commands in the interactive shell with [pdb commands](https://docs.python.org/3/library/pdb.html#debugger-commands).
+  
+
+# User Defined Classes with Python
+
+Firstly, Python has limited support for private attribute objects. When you names attributes as `__attributename` the interpreter performs name mangling. In reality this attribute in case have access to it outside methods of the class will have the name `_classname__attribute`. In C++ terminology Python classes have the following characteristics:
+  1. Normal class members (including the data members) are public except for some small support for Private Variables.
   2. All member functions/methods are virtual.
-  3. Like in C ++, most built-in operators with special syntax (arithmetic operators, etc.) can be redefined for class instances.
+  3. Like in C++, most built-in operators with special syntax (arithmetic operators, etc.) can be redefined for user defined class.
   4. Python Data attributes correspond to "data members" in C ++.
   5. Python supports multiple inheritance, and exceptions.
   6. In Python (and in Perl) there is not exist such term as function overloading.
 
 # Key differences with C++
 
-* Assignments do not copy data - the language just binds names to objects. 
-* In Python class data attributes override method attributes with the same name. To avoid accidental name conflicts, which may cause hard-to-find bugs in large programs, it is wise to use some kind of convention that minimizes the chance of conflicts.
-* Nothing in Python makes it possible to enforce data hiding - it is all based upon convention.
-* In Python, when using logical connectives, the result of a compound expression is equal to the result of the last subexpression evaluated. In C and C++ the result of a Boolean expression with short-circuiting is always an integer 0 or 1:
+1. Assignments opertor `=` does not copy data. The language just binds a right object to the left operand of the `=` operator.
+2. In Python class data attributes override method attributes with the same name. To avoid accidental name conflicts, which may cause hard-to-find bugs in large programs, it is wise to use some kind of convention that minimizes the chance of conflicts.
+3. Nothing in Python makes it possible to enforce data hiding - it is all based upon convention.
+4. In Python, when using logical connectives, the result of a compound expression is equal to the result of the last subexpression evaluated. In C and C++ the result of a Boolean expression with short-circuiting is always an integer 0 or 1:
 
-  ```cpp
-  #include <iostream>
-  int main() {
-      std::cout << (12 || 2);
-      return 0;
-  }
-  // Out: 1
-  ```
+    ```cpp
+    #include <iostream>
+    int main() {
+        std::cout << (12 || 2);
+        return 0;
+    }
+    // Out: 1
+    ```
 
-  ```python
-  #!/usr/bin/env python3
-  print(12 or 2)
-  # Out: 12
-  ```
-* Python has the `elif` keyword. For Python, it's crucial because their syntax rules require creating indentation between `else` and `if`. C++ Language is more flexible, and such a keyword is absent in C/C++ but is presented in C Language Preprocessor. Example:
+    ```python
+    #!/usr/bin/env python3
+    print(12 or 2)
+    # Out: 12
+    ```
 
-  ```python
-  if x < 0:
-      pass
-  elif x == 0:
-      pass
-  else:
-      pass
-  ```
+5. Python has the `elif` keyword. For Python, it's crucial because their syntax rules require creating indentation between `else` and `if`. The absence of such a keyword potentially will make the source code less readable. C++ Language is more flexible, and such a keyword is absent in C/C++ but is presented in C Language Preprocessor. Example:
 
-* Python has a break statement in the else branch. If you did not read Python Tutorial [1] it can be the case that you never heard about it. In programming languages and fact in scripting languages (such as Python) such a concept is absent.
-The break statement, like in C/C++, breaks out of the innermost enclosing iteration loop. Loop statements may have an `else` path. This logic is executed when the loop terminates through exhaustion of the iterable or when the condition becomes false. See Also: https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops
+    ```python
+    if x < 0:
+        pass
+    elif x == 0:
+        pass
+    else:
+        pass
+    ```
 
-* In Python there is the "Exotic" operator `**` used. This operator can raise integers, real, and complex numbers to specific power. Such a built-in operator is absent in C++.
+6. In Python you may have the else branch inside the loops. If you did not read Python Tutorial [1] it can be the case that you never heard about it. This logic in the else path of a loop statement is executed when the loop terminates through exhaustion of the iterable or when the condition becomes false. However, the `else` path will not be executed if the loop has been early terminated with `break` statement. See Also: https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops
 
-* Unlike many languages, Python does not have unary post(postfix) increment (`x++`) or decrement (`x--`) operators.
+7. In Python there is the "exotic" operator `**` used. This operator can raise integers, real, and complex numbers to specific power. Such a built-in operator is absent in C++.
+
+8. Unlike many C-based languages, Python does not have unary post(postfix) `++` increment or `--` decrement operators.
 
 # Python Technical Basics
 
-In the terminology of Programming Languages, **tokens** are separate words of a program text. One easy case is when such words (tokens) are split between each other by spaces. In most programming languages, the tokens fundamentally can be one of the following types:
+##  First Line
 
-* Operators
-* Separators
-* Identifiers
-* Keywords
-* Literal constants
+The line `#!/usr/bin/env python3` in a well is called as sha-bang. It has a long history for Unix/Linux OS. For Windows, it's possible to use it as well. In Windows a binary application named `py.exe` is a launcher with performs a choice of a used interpreter based on mentioned sha-bang.
 
-## Source file organization
+## Possible Second Line. Source file encoding.
 
-The line `#!/usr/bin/env python3` in well-developed scripts is presented and it's called sha-bang. It has a long history for Unix/Linux OS-es. For Windows, it's possible to use it as well. 
+The source file by itself is represented in characters. Characters that constitute the file content can be in any supported encoding https://docs.python.org/3.13/library/codecs.html#standard-encodings. By default, Python source files are treated to be encoded in UTF-8. To declare an encoding other than the default one, a special comment line should be added as the first line of the file or a second line in the file if the first line is sha-bang:
 
-A binary named `py` is a launcher with performs a choice of a used interpreter if using sha-bang under Windows.
-
-## Source file encoding
-
-The source file is represented in characters. Characters can be in any supported encoding https://docs.python.org/3.13/library/codecs.html#standard-encodings. By default, Python source files are treated to be encoded in UTF-8. 
-
-To declare an encoding other than the default one, a special comment line should be added as the first line of the file or a second line in the file if the first line is sha-bang.Example:
 ```python
 #!/usr/bin/env python3
 # -*- coding: cp1252 -*-
 ```
 
-## Logical Lines and Parsing
+## Lines of Script
 
-Physical lines in source code are physical different lines in the text inside the file. 
+Physical lines in the source code of a script are physical different lines the inside the text file encoded with one of the possible encodings.
 
-A Python program is read by a parser. The physical lines in the source text are not necessarily equivalent to the logical lines of the source program. A logical line of a program is constructed from one or more physical lines by following the explicit or implicit line-joining rules:
+A Logical line of a program is constructed from one or more physical lines by following the explicit or implicit line-joining rules:
 
 * When a physical line ends in a backslash `\` character that is not part of a string literal or comment, it is joined with the following forming a single logical line, deleting the backslash and the following end-of-line character.
 
@@ -528,7 +514,7 @@ A Python program is read by a parser. The physical lines in the source text are 
 
 * Expressions in parentheses, square brackets, and curly braces can be split over more than one physical line without using the backslash symbol `\`. 
 
-The parsing of Python source code (e.g. of the function) is performed only at the moment of the direct call of this function.
+A Python script is read by a parser. The parsing of some pieces of Python source code (e.g. of the function) is performed only at the moment of the direct call of this function.
 
 ## Comments
 
@@ -539,7 +525,7 @@ Comments in Python start with the hash character `#` and extend to the end of th
 Information about operator precedence is available here:
 https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
-# Simple built-in types
+# Simple built-in types (Start from this place)
 
 * **Ellipsis.** This type has a single value namely There is a single object with this value. This object is accessed through the literal `...`. If use this expression in condition then `...` is implicitly converted into `True`.
 
