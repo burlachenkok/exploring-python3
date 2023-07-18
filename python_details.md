@@ -525,26 +525,26 @@ Comments in Python start with the hash character `#` and extend to the end of th
 Information about operator precedence is available here:
 https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
-# Simple built-in types (Start from this place)
+# Simple built-in types
 
-* **Ellipsis.** This type has a single value namely There is a single object with this value. This object is accessed through the literal `...`. If use this expression in condition then `...` is implicitly converted into `True`.
+* **Ellipsis.** There is a single object with this value. This object is accessed through the literal `...`. If the expression `...` is used inside the condition, then `...` is implicitly converted into `True`.
 
-* **NoneType.** This type has a single value and there is a single object with this value. This object is accessed through the built-in name `None`. It is used to signify the absence of a value in many situations. Also, it is returned from functions that do not explicitly return anything. 
- If use this expression in condition then `...` is implicitly converted into `False`.
+* **NoneType.** This type has a single value and there is a single object with this value. This object is accessed through the built-in name `None`. It is used to signify the absence of a value in many situations. Also, it is returned from functions that do not explicitly return anything. If this expression is used inside the condition, then `...` is implicitly converted into `False`.
  
-* **Integers (int)**. The type which is used to represent integers in Python does not have any fixed number of bits. Instead, it has a varying size. In this sense, an integer has an unlimited range. Practically you can hold as big an integer as you want until you start having problems with virtual memory.
+* **Integers (int)**. The type that is used to represent integers in Python interpreter does not have any fixed number of bits. Instead, it has a varying size. In this sense, an integer has an unlimited range. You can practically hold as big an integer as you want until you start having problems with virtual memory.
 
-* **numbers.Real (float).** These represent machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating point numbers..."* It's the design choice of a language. Of course, for people involved in numerics, such a statement is deeply wrong and sometimes laughable only. Documentaion: https://docs.python.org/3.13/reference/datamodel.html
+* **numbers. Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerics, such a statement is deeply wrong and sometimes laughable only in the case of writing software that takes care of compute time and memory footprint.
 
+Documentation on thus subject: https://docs.python.org/3.13/reference/datamodel.html
 
 ## Simple Statements
 
-A simple statement is comprised of a single logical line. Several simple statements may occur on a single line separated by semicolons. Example:
+Typically, a simple statement is comprised of a single logical line. However, several simple statements may occur on a single line separated by semicolons. Example:
 ```python
 a=1;b=2;
 ```
 
-See Also: https://docs.python.org/2/reference/simple_stmts.html
+For more precise definition see: https://docs.python.org/2/reference/simple_stmts.html
 
 ## Compound Statements
 
@@ -560,18 +560,27 @@ The `pass` statement does nothing similar to C++ `;` statement.
 ## Division of numbers in Python
 The division operator in Python `/` always returns a float. To do floor division and get an integer result you can use the `//` operator. 
 
-To calculate the remainder you can use `%` similar to C/C++/Java.
+To calculate the remainder, you can use `%` similar to C/C++/Java.
 
-## Comparision of Containers
+## Comparison of Containers 
 
 Sequence objects (typically) can be compared to other objects with the same sequence type. The comparison uses lexicographical ordering.
 
 ## Strings
-Python can also manipulate strings, which can be expressed in several ways. They can be enclosed in single quotes ('...') or double quotes ("...").
+
+Python can manipulate with strings, which can be expressed in several ways:
+
+* String enclosed in single quotes ('...') can use double quotes <"> inside the string literal.
+* String enclosed in double quotes ("...") can use single quotes <'> inside the string literal.
+* String enclosed in triple quotes ("""...""") or ('''...''') is a multiline string. Multiline strings can be placed in several strings. In this case, the used new line character is part of the string literal.
+* The raw string literal is represented as r"..." or r'...' or r'''...''' or r"""...""". Inside the raw string you can use backslash characters in the usual way. The raw string notion is similar to C++11 construction `R"(hello\n)"`.
 
 ## Printing
+## Printing
 
-The standard way to print something in Python 3 is by utilizing the built-in [print()](https://docs.python.org/3/library/functions.html#print) function. There is a style for printing with a C# style string format:
+The standard way to print something in Python 3 is by utilizing the built-in [print()](https://docs.python.org/3/library/functions.html#print) function. 
+
+There is exist a style for printing with a C\# style string format:
 ```python
 print("Hello {1} / {0}".format(12,14))
 ```
@@ -597,15 +606,16 @@ a = 123
 print (f"Hello {a}")
 ```
 
-The f-string forms what is known as a formatted string literal. To use formatted string literals, you should begin a string with `for `F` before the opening quotation mark.
+The f-string form is known as a formatted string literal. To use formatted string literals, you should begin a string with `for `F` before the opening quotation mark.
 
-Inside this string, you can write a Python expression between `{` and `}`. For example, you can refer to variables or literal values. During using f-string you can pass an integer after the `:`. It will cause that field to be a minimum number of characters wide. This is useful for making columns line up. Example:
+Inside this string, you can write an arbitrary Python expression between `{` and `}`. For example, you can refer to variables or literal values. During using f-string you can pass an integer after the `:`. It will cause that field to be a minimum number of characters wide. This is useful for making columns line up. Example:
 ```python
 a = 123
 print (f"Hello {a:10}")
 ```
 
-Next, there is one extra feature. The `=` specifier can be used to expand an expression to:
+Next, there is one extra feature that can be useful during debugging.
+The `=` specifier can be used to expand an expression too:
 * Text of the expression in text form
 * An equal sign
 * Representation of the evaluated expression
@@ -631,9 +641,9 @@ for i in range(5):
     print(i)
 ```
 
-The object returned by `range()` behaves as if it is a list, but it is not. It is an object of class `range` which returns the successive items of the desired sequence when you iterate over it. It does not make the list, thus saving space.
+The object returned by `range()` behaves as if it is a list, but it is not. It is an object of class `range` that returns the successive items of the desired sequence when you iterate over it. It does not make the list, thus saving space.
 
-When you are looping through dictionaries you are enumerating through `keys`. If the key and corresponding value are important for you, then can retrieve the value and key at the same time.  For doing it you should use the [items()](https://docs.python.org/3/library/stdtypes.html?highlight=items#dict.items) method in the dictionary built-in type.
+When you are looping through dictionaries you are enumerating through `keys`. If the key and corresponding value are important for you, then you can retrieve the value and key at the same time.  For doing it you should use the [items()](https://docs.python.org/3/library/stdtypes.html?highlight=items#dict.items) method in the dictionary built-in type.
 
 Next, when you are looping through a sequence, the position index and corresponding value can be retrieved at the same time using the `enumerate()` function. Example:
 
@@ -651,15 +661,37 @@ The conditions used in `while` and `if` statements can contain any operators.
 * The comparison operators `in` and `not in` are membership tests.
 * The operators `is` and `is not` compare whether two objects are the same object in memory.
 
-What can confuse people with C++/Java/C#/C backgrounds is that comparisons can be chained. For example: `a < b == c` tests the following *"a is less than b **and** b equals c"*. Comparisons may be combined using the Boolean operators `and` and `or`, `not`. The Boolean operators `and` and `or` are so-called short-circuit operators and are analogous to `&&` and `||`. Python supports the same set of the bitwise operator as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it inludes: `&`, `|`, `<<`, `>>`, `~`.
+What can confuse people with C++/Java/C#/C backgrounds is that comparisons can be chained. For example, `a < b == c` tests the following *"a is less than b **and** b equals c"*. 
 
-In Python when you use it as a general expression (not necessarily Boolean), the return value of a short-circuit operator is the last evaluated expression (which is not the case in C++ where you don't obtain this information).
+Comparisons may be combined using the Boolean operators `and` and `or`, `not`. The Boolean operators `and` and `or` are so-called short-circuit operators and are analogous to `&&` and `||`. 
+
+Python supports the same set of the bitwise operator as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it includes: `&`, `|`, `<<`, `>>`, `~`.
+
+In Python when you use an expression (not necessarily Boolean) which internally uses Boolean operators, the return value of a short-circuit operator is the last evaluated expression (which is not the case in C++ where you don't obtain this information):
+
+```python
+#/usr/bin/env python3
+# Python
+a=123 or 12
+print(a)
+# Output: 123
+```
+
+```cpp
+#include <iostream>
+int main() {
+  int a = 123 || 12;  
+  // (Alternative) notation "123 or 12" is rarely used in C++
+
+  std::cout << a;
+  // Output: 1
+  return 0;
+}
+```
 
 # Python Technical Details. Basics
 
-Please if you mature enough with Python then it's better for you to skip this section or read it fast.
-
-## Introspection of varions Information 
+## Introspection of various Information
 
 One way to get information about interpreter version:
 ```bash
@@ -683,7 +715,7 @@ print(f"Host: {socket.gethostname()} / IP: {socket.gethostbyname(socket.gethostn
 ```
 
 ## Basic data types
-Python has a number of basic types including integers, floats, booleans, and strings. These data types behave in ways that are familiar from other programming languages.
+Python has a number of basic types including integers, floats, booleans, and strings. These data types behave in ways that are familiar to other programming languages.
 
 ```python
 x = 3
@@ -704,7 +736,7 @@ print(y, y + 1, y * 2, y ** 2) # Prints "2.5 3.5 5.0 6.25"
 
 ## Bool variables and operators
 
-Python implements all of the usual operators for Boolean logic, but uses English words rather than symbols (`&&`, `||`, etc.):
+Python implements all of the usual operators for Boolean logic, but uses English words rather than special symbols (such as `&&`, `||`, etc.):
 
 ```python
 t = True
@@ -716,7 +748,7 @@ print(not t)   # Logical NOT; prints "False"
 print(t != f)  # Logical XOR; prints "True"
 ```
 
-Booleans are the results of comparisons like:
+Booleans are also the results of comparisons like:
 ```python
 a = 3
 b = 5
@@ -782,7 +814,7 @@ x = xs.pop()      # Remove and return the last element of the list
 print(x, xs)      # Prints "bar [3, 1, 'foo']"
 ```
 
-In addition to accessing list elements one at a time, Python provides concise syntax to access sublists. This is known as slicing. We will see slicing again in the context of numpy arrays.
+In addition to accessing list elements one at a time, Python provides concise syntax to access the sublist. This is known as slicing. We will see slicing again in the context of NumPy arrays.
 
 ```python
 nums = list(range(5)) # range is a function that creates a list of integers
@@ -836,7 +868,7 @@ for animal in animals:
     print(animal)
 ```
 
-If you want access to the index of each element and element itself within the body of a loop, use the built-in `enumerate` function:
+If you want access to the index of each element and the element itself within the body of a loop, use the built-in `enumerate` function:
 
 ```python
 animals = ['cat', 'dog', 'monkey']
@@ -861,7 +893,7 @@ for animal, legs in d.items():
     print('A %s has %d legs' % (animal, legs))
 ```
 
-Iterating over a set has the same syntax as iterating over a list. However since sets are unordered, you cannot make assumptions about the order in which you visit the elements of the set:
+Iterating over a set has the same syntax as iterating over a list. However, since sets are unordered, you cannot make assumptions about the order in which you visit the elements of the set:
 ```python
 animals = {'cat', 'dog', 'fish'}
 for idx, animal in enumerate(animals):
@@ -894,7 +926,7 @@ even_squares = [x ** 2 for x in nums if x % 2 == 0]
 print(even_squares)
 ```
 
-These are similar to list comprehensions, but allow you to easily construct dictionaries. For example:
+Also, in Python, there is a syntax for Dictionary comprehension. These are similar to list comprehensions, but allow you to easily construct dictionaries. For example:
 
 ```python
 nums = [0, 1, 2, 3, 4]
@@ -911,7 +943,9 @@ print(nums)
 ```
 
 ## Tuples
-A tuple is an (immutable) ordered list of values. A tuple is in many ways similar to a list. One of the most important differences is that tuples can be used as keys in dictionaries and as elements of sets, while lists cannot. Here is a trivial example:
+
+A tuple is an (immutable) ordered list of values. A tuple is in many ways similar to a list. One of the most important differences is that tuples can be used as keys in dictionaries and as elements of sets, while lists cannot. Tuples are created using parenthesis in the following form: 
+`(elementA, elementA)`. Example:
 
 ```python
 d = {(x, x + 1): x for x in range(10)}  # Create a dictionary with tuple keys
@@ -921,7 +955,7 @@ print(d[t])                             # Prints "5"
 print(d[(1, 2)])                        # Prints "1"
 ```
 
-## Unpacking (Maybe Advanced)
+## Unpacking
 All containers can be unpacked as follows:
 
 ```python
@@ -968,13 +1002,17 @@ For dictionaries, we use the double-asterisks (`**`) or the (`zip`) function:
 d1 = {'c': 3, 'b': 2, 'a': 1}
 d2 = {'d': 4, 'e': 5, 'f': 6}
 d = {**d1, **d2}
-print(d)
+print(d)                 
+# Prints: {'c': 3, 'b': 2, 'a': 1, 'd': 4, 'e': 5, 'f': 6}
 
 keys = ['a', 'b', 'c']
 values = [1, 2, 3]
 print(type(zip(keys, values)))
+# Prints: zip
+
 d = dict(zip(keys, values))
 print(d)
+# Prints: {'a': 1, 'b': 2, 'c': 3}
 ```
 
 ## Functions
@@ -1008,6 +1046,7 @@ hello('Bob', 'Fred', loud=True)  # Prints "HELLO, ['BOB', 'FRED']!"
 ```
 
 ## Classes
+
 The syntax for defining classes in Python is straightforward and has the foolowing form:
 
 ```python
@@ -1044,8 +1083,7 @@ Greeter.sneeze()     # Call a static method through the class; prints "ACHOO!!"
 print(g)             # Call __str__; prints "Greeter for Fred"
 ```
 
-# Python Technical Details. Middle
-
+# Python Technical Details. Middle (From Here)
 
 ## Convention about Variable Names
 
