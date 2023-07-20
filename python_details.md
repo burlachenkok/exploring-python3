@@ -1083,21 +1083,20 @@ Greeter.sneeze()     # Call a static method through the class; prints "ACHOO!!"
 print(g)             # Call __str__; prints "Greeter for Fred"
 ```
 
-# Python Technical Details. Middle (From Here)
+# Python Technical Details. Middle.
 
 ## Convention about Variable Names
 
 | **Convention**      | **Example** | **Meaning** |
 |---------------|------------|------------------------|
-| Single Leading Underscore  | `_var` |  This naming convention indicates a name is meant for internal use. Generally not enforced by the Python interpreter (except in wildcard imports) and meant as a hint to the programmer only. During import using the wildcard symbol (`from my_module import *`), these symbols will not be imported in the global namespace.|
+| Single Leading Underscore  | `_var` |  This naming convention indicates a name is meant for internal use. Generally (with one exception) not enforced by the Python interpreter. In this case, it was meant as a hint to the programmer only. The exception case is the behavior of wildcard imports. During import using the wildcard symbol (`from my_module import *`), these symbols will not be imported in the global namespace. |
 | Single Trailing Underscore     | `var_`         | Used by convention to avoid naming conflicts with Python keywords.          |
-| Double Leading Underscore      | `__var`           | Triggers name mangling when used in a class context. Enforced by the Python interpreter to make name mangling                      |
+| Double Leading Underscore      | `__var`           | Triggers name mangling when used in a class context. Enforced by the Python interpreter to make name mangling for variables. Python interpreter will automatically use correct mangling inside methods of the class. Outside the class, Python interpreters will not perform any name mangling. |
 | Double Leading and Trailing Underscore | `__var__`        | Indicates special methods defined by the Python language. Avoid this naming scheme for your attributes. |
 | Single Underscore         | `_`          | Sometimes used as a name for temporary or insignificant variables ("don't care"). Also, it is the result of the last expression in a Python REPL (interactive Python mode). |
 
 ## Inspect Python Objects
-As we have already mentioned In Python, everything is an object. 
-The [dir(obj)](https://docs.python.org/3/library/functions.html#dir) built-in function displays the attributes of an object.  Attributes that all objects (typically) have:
+In Python, everything is an object.  The [dir(obj)](https://docs.python.org/3/library/functions.html#dir) built-in function displays the attributes of an object.  Attributes that all objects (typically) have:
 * `__name__` - is the name of the object such as a function.
 * `__doc__` - documentation string for the object.
 * `__class__` - type name of the object.
@@ -1110,7 +1109,9 @@ print(a.__class__)
 
 ## Variables Introspection
 
-* [globals()](https://docs.python.org/3/library/functions.html#globals) - will give you a dictionary of global variables
+There are several ways to take a look at available symbols:
+
+* [globals()](https://docs.python.org/3/library/functions.html#globals) - will give you a dictionary of current available global variables
 * [locals()](https://docs.python.org/3/library/functions.html#locals) and [vars()](https://docs.python.org/3/library/functions.html#vars) - will give you a dictionary of local variables
 * [dir()](https://docs.python.org/3/library/functions.html#dir) - will give you the list of in-scope variables which includes locals, and enclosed variables from another function if you use the style in which you define a function inside the function.
 
@@ -1143,21 +1144,22 @@ f()
 #   in-scope: ['my_enclosing', 'my_local']
 ```
 
-There are several different contexts/scopes in Python as has been described in [Context in Python](#context-in-python-is-the-same-as-scopes-in-c) Section.
+These variations exist because there are several different contexts/scopes in Python as has been described in [Context in Python](#context-in-python-is-the-same-as-scopes-in-c) Section.
 
 ## Global and Nonlocal Variables
 
-In example [Variables Introspection](#variables-introspection) we have used [nonlocal](https://docs.python.org/3/reference/simple_stmts.html#nonlocal), and [global](https://docs.python.org/3/reference/simple_stmts.html#global) keywords. You should use this variable access modifiers when you're going to write to the variable and provide an interpreter and hint about what you are going to do exactly:
+In example [Variables Introspection](#variables-introspection) we have used [nonlocal](https://docs.python.org/3/reference/simple_stmts.html#nonlocal), and [global](https://docs.python.org/3/reference/simple_stmts.html#global) keywords. 
+
+**global.** The global statement is a declaration that holds for the entire current code block. It means that the listed identifiers are to be interpreted as globals. Global variable scope changed immediately to the module-level binding without any intermediate outer scope, relative to the current scope. Also, it is impossible to assign value to a global variable without using `global`. You can refer to global variables if you want to read from them.
+
+**nonlocal.**  The nonlocal statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals. So nonlocal variables changed the scope to the outer function. This is important because the default behavior for binding is to search the local namespace first. Names listed in a nonlocal statement must not collide with pre-existing bindings in the local scope.
+
+You should use this variable access modifiers when you're going to write to the variable and provide an interpreter and hint about what you are going to do exactly:
 
 * You want to define a new local variable and you provide the default value with the `=` operator
 * You do not want to create a local variable, but instead, you want to write to a global variable or variable from a previous(nested) context.
 
-
-**global.** The global statement is a declaration that holds for the entire current code block. It means that the listed identifiers are to be interpreted as globals. Global variable scope changed immediately to the module-level binding without any intermediate outer scope, relative to the current scope. Also, it is impossible to assign value to a global variable without using `global`. Although you can refer to global variables if you want to read from them.
-
-**nonlocal.**  The nonlocal statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals. So nonlocal variables scope changed the scope to the outer function. This is important because the default behavior for binding is to search the local namespace first. Names listed in a nonlocal statement must not collide with pre-existing bindings in the local scope.
-
-In C++/C#/Java, such nonlocal scope is impossible because in these languages you can not define a function inside another function. (except lambda)
+In C++/C#/Java, such nonlocal scope is impossible because in these languages you cannot define a function inside another function. Synthetically in C++ you can define lambda function inside a function, but it is a syntax sugar. You can read more about Lambda C++ functions from [C++ Technical Note from C++1998 to C++2020/ Lambda Functions](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#lambda-functions). In C++ you cannot define a function inside a function because it does not add extra expressibility.
 
 ## Working with Tuples
 
@@ -1175,43 +1177,39 @@ Empty tuples are constructed by an empty pair of parentheses. Example:
  
 You can create a tuple from the list:
  ```python
- ([1,2,23])
+b = tuple([1,2,23])
  ```
 
-If you want to include tuples in another tuple you need to use parentheses `()`, so that nested tuples are interpreted correctly. Example of creating a tuple with 2 elements:
+If you want to include tuples in another tuple you need to use parentheses `()`, so that nested tuples are interpreted correctly. Example of creating a tuple with 2 elements where second element is tuple by itself:
  ```python
  a=(1,(2,3,4,5,6))
  ```
 
-
-Tuple packing, unpacking is an interesting idea at the language level.
-https://docs.python.org/3/tutorial/controlflow.html#unpacking-argument-lists
-
-
 ## Modules and Packages
 
 ### Modules
-A module is a file containing Python definitions and statements. The file name is the module name with the suffix `.py`. Within a module, the module name (as a string) is available as the value of the global variable `__name__`. 
+A module is a file containing Python definitions and statements. The file name is the module name with the suffix `.py`. Python module files are files written with Python language and in general they look like usual scripts.  Within a module, the module name (as a string) is available as the value of the global variable `__name__`.  
+
+Typically, you can launch the Python module as a script if the authors of the module provide some utility functionality. During launching the module, the code in the module will be executed, just as if you imported it, but with the __name__ set to "__main__".  The part of the code for executing the script in the module typically has the following condition:
+    ```python
+    if __name__ == "__main__":
+        pass
+    ```
+It provides means to distinguish behavior when the script is used for execution logic, rather than be a facade interface to some functionality.
 
 To import the module the following instruction should be used:
 ```python
  import my_module
 ```
 
-This does not add the names of the functions defined in `my_module` directly to the current namespace. Each module has its own private namespace, which is used as the global namespace by all functions defined in the module. With this form of import statement all global symbols defined in `my_module` are available through `my_module.<function|variable name>`.
+It is typical, but it is not required by interpreter design to place all import statements at the beginning of a module. The import statement does not add the names of the functions defined in `my_module` directly to the current namespace. Each module has its own private namespace, which is used as the global namespace by all functions defined in the module. In the form of an import statement in form of  `import my_module` all global symbols are defined in `my_module` and they are available through `my_module.<function|variable name>`.
 
 Next, there is a variant of the import statement that imports names from a module directly into the importing modules namespace:
-`from my_module import func_f, func_g`
- 
-This statement does not introduce the module name in the global namespace of the current module.
+`from my_module import func_f, func_g`. In this form of import statement, the imported module name itself is not introduced into the global namespace of the current module.
 
-The next variant is to import all names that a module defines `from my_module import *`, except variables and functions whose names are started with an underscore.
+The next variant is to import all names that a module defines `from my_module import *`. It imports all symbols from the module into the current module global namespace, except variables and functions whose names are started with an underscore `_`.
 
-A module can contain function definitions.
-
-But also it can contain executable statements. These statements are intended to initialize the module. They are executed only the first time the module name is encountered in an import statement.
-
-It is typically, but it is not required by interpreter design to place all import statements at the beginning of a module.
+A module typically contains function and class definitions. But also, it can contain executable statements. These statements are intended to initialize the module. They are executed only the first time the module name is encountered in an import statement.
 
 If the module name is followed by [as](https://docs.python.org/3/reference/simple_stmts.html#the-import-statement), then the name following [as](https://docs.python.org/3/reference/simple_stmts.html#the-import-statement) is bound directly to the imported module. Example:
 
@@ -1220,42 +1218,25 @@ import my_module as my
 ```
 
 To inspect the name defined in module `my` you should use the built-in function `dir()` e.g. in the following way `dir(my)`. It is used to find out which names a module defines. 
- 
 
-
-
-In some sense, Python module files are files written with Python source code. When the Python module is executed as a script.
-
-There are only two differences from code execution if comparing the launching script of the module and importing the module.
-
-1. During launching the module the code in the module will be executed, just as if you imported it, but with the __name__ set to "__main__".  The part of the code for executing the script in the module typically has the following condition:
-    ```python
-    if __name__ == "__main__":
-        pass
-    ```
-  It provides means to distinguish behavior when the script is used for execution logic, rather than be a facade interface to some functionality.
-
-2. When you launch Python scripts if all is OK in OS and you have enough privileges inside OS then the script will be launched and executed. However, the `import` statement (by default) is executed only once per Python session. See Also [Module Reloading](#module-reloading).
+When you launch any Python scripts if all is OK in OS and you have enough privileges inside OS then the script will be launched and executed. However, it is important to mention that the `import` statement (by default) is executed only once per Python session. If you really want to reload the module (e.g. because source code has been changed and you don't want to relaunch application) please consulate  [Module Reloading] (#module-reloading).
 
 ### Packages
-Packages are a way of structuring Python's module namespace by using "dotted module names". Firstly you should have source code files with modules. To group these modules into the package you should place modules in one directory and create file `__init__.py` in this directory.
-
-The `__init__.py` files are required to make Python treat directories containing the file as packages. This prevents directories with a common name, such as string, from unintentionally hiding valid modules that occur later on the module search path. In the simplest case, `__init__.py` can just be an empty file, but it can also execute the initialization code for the package or set the `__all__` variable.
+### Packages
+Packages are a way of structuring Python's module namespace by using "dotted module names". Firstly, you should have several source code files with modules. To group these modules into the package you should place modules in one directory and create file `__init__.py` in this directory. The `__init__.py` files are required to make Python treat directories containing the file as packages. This prevents directories with a common name, such as string, from unintentionally hiding valid modules that occur later on the module search path. In the simplest case, `__init__.py` can just be an empty file, but it can also execute the initialization code for the package or set the `__all__` variable.
 
 If execute code:
 ```python
 from package_name.module_name import *
 ```
 
-Then `__all__` variables define the index of modules.
-
-
+The `__all__` variable defines the modules that you should import to a client who requested an [import wildcard form](https://docs.python.org/3/tutorial/modules.html?highlight=__all__#importing-from-a-package).
 
 ### Reference between modules and packages
 
-To use intra-package references imports use leading dots to indicate the current and parent packages involved in the relative import. Relative imports are based on the name of the current module.
+There is a specific way to use relative addressing schemas between modules via intra-package reference schema. The intra-package reference imports use leading dots to indicate the current and parent packages involved in the relative import. 
 
-A single dot means that the module or package referenced is in the same directory as the current location:
+Relative imports are based on the name of the current module. A single dot means that the module or package referenced is in the same directory as the current location:
 ```python
 from . import echo         
 ```
@@ -1269,7 +1250,7 @@ from .. import formats
 
 When you import a module via keyword [import](https://docs.python.org/3/reference/simple_stmts.html#import) runtime importing the module via following the next rules:
 
-1. Interpreter first searches for a built-in module. The built-in module names are built-in into the language and are listed in `sys.builtin_module_names`.
+1. The interpreter first searches for a built-in module. The built-in module names are built-in into the language and are listed in `sys.builtin_module_names`.
 
 2. In a list of directories given by the variable `sys.path`.
 
@@ -1281,14 +1262,12 @@ Python programs can modify the `sys.path` variable itself, but the variable `sys
 
 ## Comprehensions syntax
 
-Comprehensions syntax provides a short syntax to create several iterable types.
-
-List comprehensions in Python:
+Comprehensions syntax provides a short syntax to create several inerrable types with short expressions. List comprehensions in Python:
 ```python
 [expr(item) for an item in iterable if condition (item)]  
 ```
 
-set comprehensions in Python:
+Set comprehensions in Python:
 ```python
 {expr(item) for an item in iterable if condition (item)}
 ```
@@ -1306,12 +1285,11 @@ Generator comprehensions in Python:
 List comprehension is described in Python Tutorial [1]: 
 [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions), [nested list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions)
 
-
 ## Random Interesting Construction
 
 1. Work with the reverse sequence:
     ```python
-    for i in reversed ([1,3]): 
+    for i in reversed([1,3]): 
         print i  
     ```
 
@@ -1327,7 +1305,7 @@ List comprehension is described in Python Tutorial [1]:
     aSet = {1,2}   # set
     ```
 
-5. Creating an empty seta, possible only through the constructor because `{}` is reserved as an empty dictionary description and interpreter due to its design (it has a Dynamic Type System) can not derive information that you want an empty set, no dictionary. Example:
+5. Creating an empty set, possible only through the constructor `set()`. It is because `{}` is reserved as an empty dictionary description and interpreter due to its design (it has a Dynamic Type System) can not derive information that you want an empty set, no dictionary. Example:
     ```python
     emptySet = set()
     ```
@@ -1372,7 +1350,7 @@ List comprehension is described in Python Tutorial [1]:
 
 ## About Indentation
 
-Unfortunately, Python was designed using indentation, and there are no scopes constructed with `{}` as in C/C++. During writing language construction sometimes it can be shorter, but sometimes when you 3-9 nested loops of Algorithm logic, the indentation makes the problem less readable and more error-prone. In principle, you can use both spaces and tabs, but it is recommended to use spaces instead of tabs according to this recommendation:
+Unfortunately, Python was designed using indentation, and there are no scopes constructed with `{}` as in C/C++. During writing language construction sometimes it can be shorter, but sometimes when you have 3-9 nested loops of Algorithm logic, the indentation makes the problem less readable and more error-prone. In principle, you can use both spaces and tabs, but it is recommended to use spaces instead of tabs according to this recommendation:
 https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces
 
 ## Arguments of the function and return value
@@ -1383,13 +1361,15 @@ The execution of a function introduces a new symbol table used for the local var
 
 Variable references first look in the local symbol table, then in the local symbol tables of enclosing functions, then in the global symbol table, and finally in the table of built-in names. Global variables and variables of enclosing functions cannot be directly assigned a value within a function (unless you use `global` and `nolocal` statements). Although they may be referenced.
 
-The actual parameters (arguments) to a function call are introduced in the local symbol table of the called function when it is called. Arguments are passed by value, where the value is always an object reference, not the value of the object. A function definition associates the function name with the function object in the current symbol table.
+The actual parameters (arguments) to a function call are introduced by themselves in the local symbol table of the called function when it is called. Arguments are passed by value, where the value is always an object reference, not the value of the object. A function definition associates the function name with the function object in the current symbol table.
 
 The `return` statement returns with a value from a function. Return without an expression argument returns None. Falling off the end of a function also returns `None`.
 
 ## Default Value of Argument for a function
 
-The most useful form is to specify a default value for one or more arguments. Important warning: The default value is evaluated only once.
+The most useful form is to specify a default value for one or more arguments. 
+
+> Warning: The default value is evaluated only once.
 
 ## Keyword and Positional Arguments
 
@@ -1426,8 +1406,8 @@ def f(a, **args):
 ```
 
 Next, if you want to call a function by passing a *tuple* and *dictionary*, but transfer this not as objects but make a substitution of the content of *tuple* and *dictionary* as a formal argument you should:
-* Expand list and tuple with `*`
-* Expand the dictionary (dict) with `**`
+* Expand list and tuple with `*` for positional arguments only.
+* Expand the dictionary (dict) with `**`for keyword arguments only.
 
 Example:
 ```python
@@ -1452,7 +1432,7 @@ printInfo(*x, aa = 1, bb = 9, cc = 1)
 
 Lambda functions can be used wherever function objects are required. They are syntactically restricted to a single expression. 
 
-## Function and Type Annotation
+## Function and Type Annotation (From Here)
 
 Function annotations ([link](https://docs.python.org/3/tutorial/controlflow.html#function-annotations)) and type annotation ([link](https://docs.python.org/3/library/typing.html)) are completely optional metadata information about the types used by user-defined functions (see [PEP 3107](https://peps.python.org/pep-3107/) and [PEP 484](https://peps.python.org/pep-0484/) for more information). 
 
