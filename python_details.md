@@ -2163,28 +2163,28 @@ def integrate_f_std(a, b, N):
 #   integration.integrate_f_std(0.0,100.0,1000)
 ```
 
-## NumPy (from here)
+## NumPy
 
 [NumPy](http://www.numpy.org/) is the core library for scientific computing in Python.
-It provides a high-performance multidimensional array object, and tools for working with these arrays. If you are already familiar with MATLAB, you might find [this tutorial](https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html) useful to get started with Numpy.
+It provides a high-performance multidimensional array object and tools for working with these arrays. If you are already familiar with MATLAB, you might find [this tutorial](https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html) useful to get started with Numpy.
 
-Check out the NumPy reference (http://docs.scipy.org/doc/numpy/reference/) to find out much more about numpy beyond what is described below. You can find the full list of mathematical functions provided by numpy in: http://docs.scipy.org/doc/numpy/reference/routines.math.html.
+Check out the NumPy reference (http://docs.scipy.org/doc/numpy/reference/) to find out much more about numpy beyond what is described below. You can find the full list of mathematical functions provided by numpy at: http://docs.scipy.org/doc/numpy/reference/routines.math.html.
 
-Numpy provides various functions for manipulating arrays; you can see the full list in: http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html.
+Numpy provides various functions for manipulating arrays; you can see the full list at: http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html.
 
 Broadcasting explanation: https://numpy.org/doc/stable/user/basics.broadcasting.html.
 
-(If you think that Broadcasting is incorrect thing to be designed in your first place - you are not alone).
+(If you think that Broadcasting is an incorrect thing to be designed in the first place - you are not alone).
 
-To use `numpy` library in your project you need to:
+To use the `numpy` library in your project you need to:
 * Install it with your package manager via `pip install numpy`
 * Import numpy via `import numpy as np`
 
 ## Arrays
 A numpy array is a grid of values, **all of the same type**, and is indexed by a tuple of nonnegative integers.  The number of dimensions is the rank of the array. The shape of an array is a tuple of integers giving the size of the array along each dimension. 
-* Rank of array - is number of dimensions.
+* Rank of the array - is a number of dimensions.
 * Tensor (in Machine Learning / Deep Learning) - is a name used to describe multidimensional arrays.
-* Shape - description of dimensions for multidimensional array organized as a tuple. Each dimension of multi dimensional array is called as "dimension" or "axe".
+* Shape - description of dimensions for a multidimensional array organized as a tuple. Each dimension of a multi-dimensional array is called as "dimension" or "axe".
 
 We can initialize numpy arrays from nested Python lists, and access elements using square brackets:
 ```python
@@ -2321,7 +2321,7 @@ print(b.shapea)
 a = np.array([[1,2], [3, 4], [5, 6]])
 
 bool_idx = (a > 2)   # Find the elements of a that are bigger than 2;
-                     # this returns a numpy array of Booleans of the same
+                     # This returns a numpy array of Booleans of the same
                      # shape as a, where each slot of bool_idx tells
                      # whether that element of a is > 2.
 
@@ -2330,7 +2330,7 @@ print(bool_idx)      # Prints "[[False False]
                      #          [ True  True]]"
 
 # We use boolean array indexing to construct a rank 1 array
-# consisting of the elements of a corresponding to the True values
+# consisting of the elements of corresponding to the True values
 # of bool_idx
 print(a[bool_idx])  # Prints "[3 4 5 6]"
 
@@ -2391,7 +2391,7 @@ print(np.sqrt(x))
 print(x**0.5)
 ```
 
-## Important notice about syntax for Matrix Multiplication
+## Important notice about the syntax for Matrix Multiplication
 
 Note that unlike MATLAB, **`*`** is elementwise multiplication, not matrix multiplication. 
 
@@ -2526,16 +2526,16 @@ Broadcasting two arrays together follows these rules:
 1. If the arrays do not have the same rank, prepend the shape of the lower rank array with 1s until both shapes have the same length.
 2. The two arrays are said to be compatible in a dimension if they have the same size in the dimension, or if one of the arrays has size 1 in that dimension.
 3. The arrays can be broadcast together if they are compatible in all dimensions.
-4. After broadcasting, each array behaves as if it had shape equal to the elementwise maximum of shapes of the two input arrays.
-5. In any dimension where one array had size 1 and the other array had size greater than 1, the first array behaves as if it were copied along that dimension
+4. After broadcasting, each array behaves as if it had a shape equal to the elementwise maximum of shapes of the two input arrays.
+5. In any dimension where one array had size 1 and the other array had a size greater than 1, the first array behaves as if it were copied along that dimension
 
 
 # References
 
-# Introduction document
+## Introduction document
 [1] Python Tutorial: https://docs.python.org/3/tutorial/
 
-# Reference official materials
+## Reference official materials
 [2] Python Language Reference: https://docs.python.org/3.8/reference/index.html
 
 [3] Built-in Types: https://docs.python.org/3/library/stdtypes.html 
@@ -2548,15 +2548,15 @@ Broadcasting two arrays together follows these rules:
 
 [7] Python standard library: https://docs.python.org/3/library/index.html#library-index
 
-# Mapping concepts from other languages/libraries to Python language/libraries
+## Mapping concepts from other languages/libraries to Python language/libraries
 
 [8] Matlab/Numpy translation: http://mathesaurus.sourceforge.net/matlab-numpy.html
 
-# Tutorial for Libraries
+## Tutorial for Libraries
 
 [9] http://cs231n.github.io/python-numpy-tutorial/
 
-# Howto
+## Howto
 
 [10]  http://www.java2s.com/Tutorial/Python/0400__XML/AccessingChildNodes.htm
 
@@ -2564,7 +2564,7 @@ Broadcasting two arrays together follows these rules:
 
 [12] How to for Python: https://docs.python.org/3/howto/index.html
 
-# Repositories
+## Repositories
 
 [13] Find, install, and publish Python packages:
 https://pypi.org/
