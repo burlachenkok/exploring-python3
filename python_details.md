@@ -123,7 +123,7 @@ Revision Update: July 22, 2023
   * [Introduction document](#introduction-document)
   * [Reference official materials](#reference-official-materials)
   * [Mapping concepts from other languages/libraries to Python language/libraries](#mapping-concepts-from-other-languages-libraries-to-python-language-libraries)
-  * [Tutorial for Libraries](#tutorial-for-libraries)
+  * [Tutorials for Libraries](#tutorials-for-libraries)
   * [How To](#how-to)
   * [Repositories](#repositories)
 
@@ -2570,7 +2570,7 @@ def integrate_f_std(a, b, N):
 
 [8] Matlab/Numpy translation: http://mathesaurus.sourceforge.net/matlab-numpy.html
 
-## Tutorial for Libraries
+## Tutorials for Libraries
 
 [9] http://cs231n.github.io/python-numpy-tutorial/
 
