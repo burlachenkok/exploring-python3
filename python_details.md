@@ -6,7 +6,7 @@
 
 Correspondence to: konstantin.burlachenko@kaust.edu.sa
 
-Revision Update: July 06, 2023
+Revision Update: July 22, 2023
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -150,7 +150,7 @@ With this note, the authors have several objectives:
 
 # What is a Python
 
-[Python](https://www.python.org/) is an interpretable scripting language. Python has been designed originally only as a replacement for Bash, which has been described in that [Blog Post](https://l.facebook.com/l.php?u=https%3A%2F%2Fpython-history.blogspot.com%2F2009%2F01%2Fpersonal-history-part-1-cwi.html%3Ffbclid%3DIwAR1v3C4KHiJtBbG4NYVY2o__lMchCNVKQGe2ozoI-gcxnwCYNvcdxzD_sHU&h=AT1quzeQEvwmfgFXMnWscdzCzWIJrbgoyQKX22c6w2yzVSaUt9LBMdrL66UgpJaz3rh_-BLBa8FVu3sdV_NzuiuSTU4XPZ5zADu4wGoASMxLcRR-n7Emwogq664lszQUbTZM&__tn__=-UK-R&c[0]=AT3TC-zKWleGu9UDUQg6mUKEWZ-El56OnANy8jfnUXLhGPAIHIfrXp6ZVEhtbJztlbUu_3OhD9sRJ7JA_F3ETiL3BsR0dKi58KfhLRwPsHtyRauqYQXDGtxnIeFWRyAxyop0WlHBapKPdoYnVar9DUy3pudNCdWdZ1c4wlxvNA3qoA) written by original author:
+[Python](https://www.python.org/) is an interpretable scripting language. Python was designed originally only as a replacement for Bash, which has been described in that [Blog Post](https://l.facebook.com/l.php?u=https%3A%2F%2Fpython-history.blogspot.com%2F2009%2F01%2Fpersonal-history-part-1-cwi.html%3Ffbclid%3DIwAR1v3C4KHiJtBbG4NYVY2o__lMchCNVKQGe2ozoI-gcxnwCYNvcdxzD_sHU&h=AT1quzeQEvwmfgFXMnWscdzCzWIJrbgoyQKX22c6w2yzVSaUt9LBMdrL66UgpJaz3rh_-BLBa8FVu3sdV_NzuiuSTU4XPZ5zADu4wGoASMxLcRR-n7Emwogq664lszQUbTZM&__tn__=-UK-R&c[0]=AT3TC-zKWleGu9UDUQg6mUKEWZ-El56OnANy8jfnUXLhGPAIHIfrXp6ZVEhtbJztlbUu_3OhD9sRJ7JA_F3ETiL3BsR0dKi58KfhLRwPsHtyRauqYQXDGtxnIeFWRyAxyop0WlHBapKPdoYnVar9DUy3pudNCdWdZ1c4wlxvNA3qoA) written by original author:
 
 > "...My original motivation for creating Python was the perceived need for a higher-level language in the Amoeba project. I realized that the development of system administration utilities in C was taking too long. Moreover, doing these in the Bourne shell wouldn't work for a variety of reasons. The most important one was that as a distributed micro-kernel system with a radically new design, Amoeba's primitive operations were very different (and finer-grain) than the traditional primitive operations available in the Bourne shell. So there was a need for a language that would "bridge the gap between C and the shell..." - [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum).
 
@@ -172,7 +172,7 @@ dis.dis(f)
 
 # Where to Learn About Python Officially?
 
-* There is exist a book written by Guido van Rossum (original author of that language).  Today it has been converted into a pretty big tutorial: https://docs.python.org/3/tutorial/
+* There exists a book written by Guido van Rossum (the original author of that language).  Today it has been converted into a pretty big tutorial: https://docs.python.org/3/tutorial/
 
 * Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
 
@@ -185,7 +185,7 @@ dis.dis(f)
 
 Python is a useful and nice *scripting language*, which of course more comfortable to use compared to [Perl](https://www.perl.org/books/beginning-perl/) or [Windows Batch](https://en.wikibooks.org/wiki/Windows_Batch_Scripting) and sometimes more comfortable to use compare to [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html). In our experience [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html) is still more easy to use if the script contains executing external processes for different tasks and less logic.
 
-Python language has a very fast learning curve which opened the door fortunately for people not only in CS to create useful scripts in day-to-day life.
+Python has a very fast learning curve which opened the door fortunately for people not only in CS to create useful scripts in day-to-day life.
 
 > Python is a programming language which...
 
@@ -195,13 +195,13 @@ One meaning is that Language expresses ideas and you don't care at all how these
 
 The message which one scientist [B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) (author of C++) tries to bring for people for already 3 decades that *Programming Language* is the language that gives you a way to describe the algorithm and this algorithm will be executed in the computer (compute device). With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is an interpreter. C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler.
 
-If you only start with Programming in your career, or if you have no experience in Compilers/OS/Systems you may not see the difference, but there is a fundamental difference. It does not say that these languages are incorrect, but at least understand that it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. And any level of Abstraction is not free in terms of consumed memory and execution time.
+If you only start with Programming in your career, or if you have no experience in Compilers/OS/Systems you may not see the difference, but there is a fundamental difference. It does not say that these languages are incorrect, but at least understand that it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. Any level of Abstraction is not free in terms of consumed memory and execution time.
 
 > Python is a general-purpose programming language.
 
 It is at the same time a very strong statement and at the same time vague statement. It can be three points of view on such a statement:
 
-1. By general-purpose programming language you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes maybe have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness).
+1. By general-purpose programming language you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes may have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness).
 
 2. By General Purpose you mean that you can use it across many domains. But how big is big? Depending on the definition of "Big" Python may lie in this class.
 
@@ -215,7 +215,7 @@ Of course, there is a tool for Python that helps [pylint](https://pypi.org/proje
 
 > Python is everywhere
 
-This overstatement can also be read from Python Tutorial.
+This overstatement can also be read from the Python Tutorial.
 
 Please be aware that (any) interpretable language which exists or will be created in the future fundamentally will have the following downsides:
 
@@ -228,7 +228,7 @@ Please be aware that (any) interpretable language which exists or will be create
 
 It's important to understand that computational devices do not execute code in Java, C#, Matlab, or Python. Computers can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA). 
 
-A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments and writing results memory. Memory allows to store input and output results.
+A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments and writing results memory. Memory provides the storage of input and output results.
 The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how computers are working can be obtained from *System Architecture*, *Performace Engineering* courses and books.
 
 ## Programming Languages Taxonomy
@@ -251,11 +251,11 @@ Ruby and Python have a *Strong Dynamic Type System*. This means that types are i
 
 # Philosophy of Python
 
-If you want to understand some hidden principles built-in Python language then after having a workable version of Python Interpreter read output from the following command:
+If you want to understand some hidden principles built-in Python language then after having a workable version of Python Interpreter read the output from the following command:
 ```bash
 python -c "import this"
 ```
-This provides a point of view of the world from the point of view of Python language.
+This provides a point of view of the world from the point of view of Python.
 
 # How to start Interpreter
 
@@ -289,11 +289,11 @@ Based on [1] the Python interpreter operates somewhat like the Unix shell. There
 # If you arrived to Python from the Compiling Languages
 
 ## About Events
-Some programming languages like C# contain native support of event-based communication between objects to support Object Orientated Programming, however, Python (and C++) programming language does not contain a native event-based system, even though there are frameworks on top of it that supported that (for example Qt). 
+Some programming languages like C# contain native support of event-based communication between objects to support Object Orientated Programming, however, Python (and C++) programming language does not contain a native event-based system, even though there are frameworks on top of it that supports that (for example Qt). 
 
 ## Meaning of Object
 
-There is a clash of terminology if you have C++, Java, or C# background. In Python, everything that takes up memory in some form is called the **object**. In other languages (Java, C#, C++) object is an instance of the class. So an object in Python terminology is:
+There is a clash of terminology if you have a C++, Java, or C# background. In Python, everything that takes up memory in some form is called the **object**. In other languages (Java, C#, C++) object is an instance of the class. So an object in Python terminology is:
 * Class instances 
 * Exotic built-in objects (e.g. files)
 * Fundamental built-in data types (e.g. integers)
@@ -304,13 +304,13 @@ It's not true that all things are classes in Python.
 
 Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the level of Language). Functions return and accept arguments by reference in the terminology of C++, C#, and Java.
 
-Moreover, there is a very strange thing with default argument which was in Python since early version. For the default argument - the default value itself is passed by reference and *calculated once*. 
+Moreover, there is a very strange thing with default argument which was in Python since the early version. For the default argument - the default value itself is passed by reference and *calculated once*. 
 
 This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, in the usual way of writing arguments, and is just a shorthand at least conceptually.
 
 # Context in Python is the same as scopes in C++
 
-The context in Python is a concept similar to C++'s scope. However, in Python, you can not create scopes inside the function. For example if inside the function you have a nested loop, then its level of nested loop **does not** introduce a new scope. In fact, in Python, there are only 4 contexts (which is in C++ terminology called scopes):
+The context in Python is a concept similar to C++'s scope. However, in Python, you can not create scopes inside the function. For example if inside the function you have a nested loop, then its level of nested loop **does not** introduce a new scope. In fact, in Python, there are only 4 contexts (which are in C++ terminology called scopes):
 
 * **Local Context/Scope.** The context inside the current function. As we have mentioned earlier a new loop with a new indentation does not introduce a new local scope.
 
@@ -318,13 +318,13 @@ The context in Python is a concept similar to C++'s scope. However, in Python, y
 
 * **Global Context/Scope.** Variables from the top level of the module.
 
-* **Built-in Context/Scope.** Built-in variables and functions built-in into the interpreter.
+* **Built-in Context/Scope.** Built-in variables and functions are built into the interpreter.
 
 ## Pointers and Object Reference Equality
 
 Object in Python is everything that takes memory. Fundamentally in Python Object equality can test in one of two types:
 
-**Value equality** - testing which takes a reference to objects. And what is tested the objects have the same content. The programmer can define what this means via defining `__eq__` in your class. This operator semantically is the same as `==` in C++.
+**Value equality** - testing that takes a reference to objects. And what is tested the objects have the same content. The programmer can define what this means via defining `__eq__` in your class. This operator semantically is the same as `==` in C++.
 
 **Identity equality** - testing when two references are referenced to the same object. The programmer can not determine what it means, it is defined by the language. Such type of equality is used during the use of operators `is`, `is not` or built-in function `id()`.
 
@@ -346,7 +346,7 @@ They have the same semantical meaning as using `id()`.
 
 ## All class methods are virtual in terms of C++
 
-Without loss of generality, we can assume that in Python all methods of all classes are `virtual`. But actually, there are no virtual methods and virtual keywords and virtual tables in Python at all. In fact, in Python methods are *attributes*. They are bound at runtime and executed dynamically. 
+Without loss of generality, we can assume that in Python all methods of all classes are `virtual`. But actually, there are no virtual methods virtual keywords, and virtual tables in Python at all. In fact, in Python methods are *attributes*. They are bound at runtime and executed dynamically. 
 
 In very specific circumstances you can manually remove, get, and set attributes:
 
@@ -400,7 +400,7 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
 
   More details:  https://docs.python.org/3/tutorial/classes.html#iterators
 
-- **Sequence protocol.** Except dict, all built-in container types in Python support indexing. It's known as sequence protocol. For your types, you should define [__getitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [__setitem__](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [__delitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). Once you will define this operators you can use the following laguage operators:
+- **Sequence protocol.** Except dict, all built-in container types in Python support indexing. It's known as sequence protocol. For your types, you should define [__getitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [__setitem__](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [__delitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). Once you will define these operators you can use the following language operators:
 
   ```python
   x [integral_index] 
@@ -411,21 +411,21 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
 
 # What is a False statement
 
-The following expressions are considered as `false` in Python:
+The following expressions are considered `false` in Python:
 * `None`
 * `0`
 * Sequence which `len() == 0` named as empty sequence.
 
 
-# Python Language benefits which are absent in most Scripting Languages
+# Python Language benefits that are absent in most Scripting Languages
 
-It very depends on your point of view and your style, but there is a point of view where the following things are benefits. Especially if you have limited time for finishing a project:
+It depends on your point of view and your style, but there is a point of view where the following things are benefits. Especially if you have limited time to finish a project:
 
   1. More correct code from a style point of view.
   2. Automatic cross-platform serialization "pickling" for the user and built-in types from the Python standard library.
   3. A lot of free and commercial IDE with intellisense.
   4. Built-in debugger. 
-  5. Python use <`.`> token to separate packages/subpackage/class like C# and Java. Packages from Perl are called modules in Python.
+  5. Python uses <`.`> token to separate packages/subpackage/classes like C# and Java. Packages from Perl are called modules in Python.
 
 During debugging it's worthwhile to say that parsing of the function is performed only at the moment of the direct call. 
 
@@ -440,13 +440,13 @@ After this, you will have the ability to insert text commands in the interactive
 
 # User Defined Classes with Python
 
-Firstly, Python has limited support for private attribute objects. When you names attributes as `__attributename` the interpreter performs name mangling. In reality this attribute in case have access to it outside methods of the class will have the name `_classname__attribute`. In C++ terminology Python classes have the following characteristics:
+Firstly, Python has limited support for private attribute objects. When you name attributes as `__attributename` the interpreter performs name mangling. In reality, this attribute in case have access to it outside methods of the class will have the name `_classname__attribute`. In C++ terminology Python classes have the following characteristics:
   1. Normal class members (including the data members) are public except for some small support for Private Variables.
   2. All member functions/methods are virtual.
-  3. Like in C++, most built-in operators with special syntax (arithmetic operators, etc.) can be redefined for user defined class.
+  3. Like in C++, most built-in operators with special syntax (arithmetic operators, etc.) can be redefined for user-defined classes.
   4. Python Data attributes correspond to "data members" in C ++.
   5. Python supports multiple inheritance, and exceptions.
-  6. In Python (and in Perl) there is not exist such term as function overloading.
+  6. In Python (and in Perl) there is no such term as function overloading.
 
 # Key differences with C++
 
@@ -483,15 +483,15 @@ Firstly, Python has limited support for private attribute objects. When you name
 
 6. In Python you may have the else branch inside the loops. If you did not read Python Tutorial [1] it can be the case that you never heard about it. This logic in the else path of a loop statement is executed when the loop terminates through exhaustion of the iterable or when the condition becomes false. However, the `else` path will not be executed if the loop has been early terminated with `break` statement. See Also: https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops
 
-7. In Python there is the "exotic" operator `**` used. This operator can raise integers, real, and complex numbers to specific power. Such a built-in operator is absent in C++.
+7. In Python there is the "exotic" operator `**` is used. This operator can raise integers, real, and complex numbers to specific power. Such a built-in operator is absent in C++.
 
-8. Unlike many C-based languages, Python does not have unary post(postfix) `++` increment or `--` decrement operators.
+8. Unlike many C-based languages, Python does not have a unary post(postfix) `++` increment or `--` decrement operators.
 
 # Python Technical Basics
 
 ##  First Line
 
-The line `#!/usr/bin/env python3` in a well is called as sha-bang. It has a long history for Unix/Linux OS. For Windows, it's possible to use it as well. In Windows a binary application named `py.exe` is a launcher with performs a choice of a used interpreter based on mentioned sha-bang.
+The line `#!/usr/bin/env python3` in a well is called as sha-bang. It has a long history in Unix/Linux OS. For Windows, it's possible to use it as well. In Windows a binary application named `py.exe` is a launcher with performs a choice of a used interpreter based on the mentioned sha-bang.
 
 ## Possible Second Line. Source file encoding.
 
@@ -504,7 +504,7 @@ The source file by itself is represented in characters. Characters that constitu
 
 ## Lines of Script
 
-Physical lines in the source code of a script are physical different lines the inside the text file encoded with one of the possible encodings.
+Physical lines in the source code of a script are physical lines inside the text file encoded with one of the possible encodings.
 
 A Logical line of a program is constructed from one or more physical lines by following the explicit or implicit line-joining rules:
 
@@ -544,7 +544,7 @@ Typically, a simple statement is comprised of a single logical line. However, se
 a=1;b=2;
 ```
 
-For more precise definition see: https://docs.python.org/2/reference/simple_stmts.html
+For a more precise definition see: https://docs.python.org/2/reference/simple_stmts.html
 
 ## Compound Statements
 
@@ -555,7 +555,7 @@ if 1: print (2); print (2); #legal python code
 ```
 
 ## Empty(Pass) Statements
-The `pass` statement does nothing similar to C++ `;` statement.
+The `pass` statement does nothing similar to the C++ `;` statement.
 
 ## Division of numbers in Python
 The division operator in Python `/` always returns a float. To do floor division and get an integer result you can use the `//` operator. 
@@ -580,7 +580,7 @@ Python can manipulate with strings, which can be expressed in several ways:
 
 The standard way to print something in Python 3 is by utilizing the built-in [print()](https://docs.python.org/3/library/functions.html#print) function. 
 
-There is exist a style for printing with a C\# style string format:
+There exists a style for printing with a C\# style string format:
 ```python
 print("Hello {1} / {0}".format(12,14))
 ```
@@ -643,7 +643,7 @@ for i in range(5):
 
 The object returned by `range()` behaves as if it is a list, but it is not. It is an object of class `range` that returns the successive items of the desired sequence when you iterate over it. It does not make the list, thus saving space.
 
-When you are looping through dictionaries you are enumerating through `keys`. If the key and corresponding value are important for you, then you can retrieve the value and key at the same time.  For doing it you should use the [items()](https://docs.python.org/3/library/stdtypes.html?highlight=items#dict.items) method in the dictionary built-in type.
+When you are looping through dictionaries you are enumerating through `keys`. If the key and corresponding value are important to you, then you can retrieve the value and key at the same time.  For doing it you should use the [items()](https://docs.python.org/3/library/stdtypes.html?highlight=items#dict.items) method in the dictionary built-in type.
 
 Next, when you are looping through a sequence, the position index and corresponding value can be retrieved at the same time using the `enumerate()` function. Example:
 
@@ -667,7 +667,7 @@ Comparisons may be combined using the Boolean operators `and` and `or`, `not`. T
 
 Python supports the same set of the bitwise operator as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it includes: `&`, `|`, `<<`, `>>`, `~`.
 
-In Python when you use an expression (not necessarily Boolean) which internally uses Boolean operators, the return value of a short-circuit operator is the last evaluated expression (which is not the case in C++ where you don't obtain this information):
+In Python when you use an expression (not necessarily Boolean) that internally uses Boolean operators, the return value of a short-circuit operator is the last evaluated expression (which is not the case in C++ where you don't obtain this information):
 
 ```python
 #/usr/bin/env python3
@@ -693,12 +693,12 @@ int main() {
 
 ## Introspection of various Information
 
-One way to get information about interpreter version:
+One way to get information about the interpreter version:
 ```bash
 python --version
 ```
 
-Collect information about installed interpreter and system from the intepreter itself:
+Collect information about the installed interpreter and system from the interpreter itself:
 ```python
 import os, platform, socket
 print("==================================================")
@@ -798,7 +798,7 @@ print('  wo rld '.strip())      # Strip surrounding whitespace; prints "wo rld"
 ```
 
 ## Containers
-Python includes several built-in container types: lists, dictionaries, sets, and tuples. Containers are devoted for storing values.
+Python includes several built-in container types: lists, dictionaries, sets, and tuples. Containers are devoted to storing values.
 
 A list is the Python equivalent of an array (conceptually, even inside Python interpreter it's really implemented as a list), but is resizeable and can contain elements of different types:
 
@@ -821,7 +821,7 @@ nums = list(range(5)) # range is a function that creates a list of integers
 print(nums)           # Prints "[0, 1, 2, 3, 4]"
 print(nums[2:4])      # Slice from index 2 to 4 (exclusive); prints "[2, 3]"
 print(nums[2:])       # Get a slice from index 2 to the end; prints "[2, 3, 4]"
-print(nums[:2])       # Slice from the start up to index 2; prints "[0, 1]"
+print(nums[:2])       # Slice from the start-up to index 2; prints "[0, 1]"
 print(nums[:])        # Get a slice of the whole list; prints "[0, 1, 2, 3, 4]"
 print(nums[:-1])      # Slice indices can be negative; prints "[0, 1, 2, 3]"
 nums[2:4] = [8, 9]    # Assign a new sublist to a slice
@@ -1180,7 +1180,7 @@ You can create a tuple from the list:
 b = tuple([1,2,23])
  ```
 
-If you want to include tuples in another tuple you need to use parentheses `()`, so that nested tuples are interpreted correctly. Example of creating a tuple with 2 elements where second element is tuple by itself:
+If you want to include tuples in another tuple you need to use parentheses `()`, so that nested tuples are interpreted correctly. Example of creating a tuple with 2 elements where the second element is a tuple by itself:
  ```python
  a=(1,(2,3,4,5,6))
  ```
@@ -1202,7 +1202,7 @@ To import the module the following instruction should be used:
  import my_module
 ```
 
-It is typical, but it is not required by interpreter design to place all import statements at the beginning of a module. The import statement does not add the names of the functions defined in `my_module` directly to the current namespace. Each module has its own private namespace, which is used as the global namespace by all functions defined in the module. In the form of an import statement in form of  `import my_module` all global symbols are defined in `my_module` and they are available through `my_module.<function|variable name>`.
+It is typical, but it is not required by interpreter design to place all import statements at the beginning of a module. The import statement does not add the names of the functions defined in `my_module` directly to the current namespace. Each module has its private namespace, which is used as the global namespace by all functions defined in the module. In the form of an import statement in the form of  `import my_module` all global symbols are defined in `my_module` and they are available through `my_module.<function|variable name>`.
 
 Next, there is a variant of the import statement that imports names from a module directly into the importing modules namespace:
 `from my_module import func_f, func_g`. In this form of import statement, the imported module name itself is not introduced into the global namespace of the current module.
@@ -1219,7 +1219,7 @@ import my_module as my
 
 To inspect the name defined in module `my` you should use the built-in function `dir()` e.g. in the following way `dir(my)`. It is used to find out which names a module defines. 
 
-When you launch any Python scripts if all is OK in OS and you have enough privileges inside OS then the script will be launched and executed. However, it is important to mention that the `import` statement (by default) is executed only once per Python session. If you really want to reload the module (e.g. because source code has been changed and you don't want to relaunch application) please consulate  [Module Reloading] (#module-reloading).
+When you launch any Python scripts if all is OK in OS and you have enough privileges inside OS then the script will be launched and executed. However, it is important to mention that the `import` statement (by default) is executed only once per Python session. If you want to reload the module (e.g. because source code has been changed and you don't want to relaunch application) please consulate  [Module Reloading] (#module-reloading).
 
 ### Packages
 ### Packages
@@ -1339,7 +1339,7 @@ List comprehension is described in Python Tutorial [1]:
     python -m http.server
     ```
 
-9. Deleted statement. Delete statement `del` is used to delete elements from a container such as a list. And also it is used to delete variables from the interpreter. After variable deletion, the variable is not defined. If a variable is not "defined" which means it has not been assigned a value or deleted, trying to use it for reading will give you an error. Trying to use it for write will create a new variable. Objects are never explicitly destroyed. When they become unreachable they may be garbage-collected. An implementation is allowed to postpone garbage collection or omit it altogether it is a matter of implementation quality how garbage collection is implemented.
+9. Deleted statement. Delete statement `del` is used to delete elements from a container such as a list. Also, it is used to delete variables from the interpreter. After variable deletion, the variable is not defined. If a variable is not "defined" which means it has not been assigned a value or deleted, trying to use it for reading will give you an error. Trying to use it for writing will create a new variable. Objects are never explicitly destroyed. When they become unreachable they may be garbage-collected. An implementation is allowed to postpone garbage collection or omit it altogether it is a matter of implementation quality how garbage collection is implemented.
 
 10. Multiple assignments in Python:
     ```python
@@ -2305,7 +2305,7 @@ b[0,0]=11
 print(a == b)
 ```
 
-Also you can put, the new axis is used to increase the dimension of the existing array by one more dimension when used once. 
+Also, you can put, the new axis to increase the dimension of the existing array by one more dimension when used once. 
 ```python
 import numpy as np
 a = np.array ([[1,2,3], [4,5,6]])
@@ -2424,7 +2424,7 @@ print(np.dot(x, y))
 print(x@y)
 ```
 
-## Various Utility functions in Numpy
+## Various Utility functions in NumPy
 
 Numpy provides many useful functions for performing computations on arrays; one of the most useful is **`sum`**:
 ```python
@@ -2450,7 +2450,7 @@ print(v)    # Prints "[1 2 3]"
 print(v.T)  # Prints "[1 2 3]"
 ```
 
-For reshaping matrix into different form you can use reshaping function **`np.reshape`**:
+For reshaping the matrix into different form, you can use the reshaping function **`np.reshape`**:
 
 ```python
 x = np.arange(12)
@@ -2466,7 +2466,7 @@ print(y)    # Prints "[[ 0  1  2  3]
 
 Broadcasting is a powerful mechanism that allows numpy to work with arrays of different shapes when performing arithmetic operations. Frequently we have a smaller array and a larger array, and we want to use the smaller array multiple times to perform some operation on the larger array. Unfortunately in practice that mechanism can lead to confusion. So be very careful!
 
-Example: add a constant vector to each row of a matrix. 
+Example: Add a constant vector to each row of a matrix. 
 
 ```python
 # We will add the vector v to each row of the matrix x,
