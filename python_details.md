@@ -48,7 +48,6 @@ Revision Update: July 22, 2023
   * [Comparison of Containers](#comparison-of-containers)
   * [Strings](#strings)
   * [Printing](#printing)
-  * [Printing](#printing-1)
 - [Enumeration and Loops](#enumeration-and-loops)
 - [More on Conditions](#more-on-conditions)
 - [Python Technical Details. Basics](#python-technical-details-basics)
@@ -489,6 +488,8 @@ Firstly, Python has limited support for private attribute objects. When you name
 
 8. Unlike many C-based languages, Python does not have a unary post(postfix) `++` increment or `--` decrement operators.
 
+9. The boolean literals are named as `true`, `false` in C++. However, in Python, they are named as `True`, `False`. The underlying type `bool` has the same typing both in C++ and in Python.
+
 # Python Technical Basics
 
 ##  First Line
@@ -576,8 +577,8 @@ Python can manipulate with strings, which can be expressed in several ways:
 * String enclosed in double quotes ("...") can use single quotes <'> inside the string literal.
 * String enclosed in triple quotes ("""...""") or ('''...''') is a multiline string. Multiline strings can be placed in several strings. In this case, the used new line character is part of the string literal.
 * The raw string literal is represented as r"..." or r'...' or r'''...''' or r"""...""". Inside the raw string you can use backslash characters in the usual way. The raw string notion is similar to C++11 construction `R"(hello\n)"`.
+* Two or more string literals next to each other are automatically concatenated without using the plus sign. This syntax and semantics coincide exactly with C++/C.
 
-## Printing
 ## Printing
 
 The standard way to print something in Python 3 is by utilizing the built-in [print()](https://docs.python.org/3/library/functions.html#print) function. 
