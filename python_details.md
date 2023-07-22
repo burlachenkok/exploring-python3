@@ -1432,17 +1432,17 @@ printInfo(*x, aa = 1, bb = 9, cc = 1)
 
 Lambda functions can be used wherever function objects are required. They are syntactically restricted to a single expression. 
 
-## Function and Type Annotation (From Here)
+## Function and Type Annotation
 
 Function annotations ([link](https://docs.python.org/3/tutorial/controlflow.html#function-annotations)) and type annotation ([link](https://docs.python.org/3/library/typing.html)) are completely optional metadata information about the types used by user-defined functions (see [PEP 3107](https://peps.python.org/pep-3107/) and [PEP 484](https://peps.python.org/pep-0484/) for more information). 
 
 Annotations are stored in the `__annotations__`attribute of the function as a dictionary. 
 
-Parameter annotations are defined by a colon after the parameter name, followed by an expression evaluating the value of the annotation. Return annotations are defined by a literal `->`, followed by an expression, similar to the trailing return type in C++.
+Parameter annotations are defined by a colon after the parameter name, followed by an expression evaluating the value of the annotation. Return function annotations are defined by a literal `->`, followed by an expression, similar to the trailing return type in C++.
 
-Annotations do not affect any part of the function (if the function does not use this system meta information in its logic).
+Annotations do not affect any part of the function (if the function does not use this system metadata in its logic).
 
-General Convention is using parameter annotations with expressions that produce a `type` value, and this functionality is used to augment Python with type information. Example:
+General Convention uses parameter annotations with expressions that produce a `type` value, and this functionality is used to augment Python with type information. Example:
 ```python
 def f(ham:str , eggs:str  =  'eggs' )->str: 
     print( "Annotations from function:" , f . __annotations__ )
@@ -1498,13 +1498,25 @@ This concept is called decorator because the intention of using it is to decorat
 
 # Classes in Python
 
-Classes provide a means of bundling data and functionality together. In C++ normally terminology class members, the data members are public, and all member functions are virtual. 
+Classes provide a means of bundling data and functionality together. In C++ terminology the data members in Python are public, and all member functions are virtual and public. 
 
-The method function is declared with an explicit first argument representing the object, which is provided implicitly by the call. Unlike C++ built-in types can be used as base classes for extension by the user. Also, like in C++, most built-in operators with special syntax can be redefined for class instances.
+The method function is declared with an explicit first argument representing the object, which is provided implicitly by the call. 
+
+Like in C++, most built-in operators with special syntax can be redefined for class instances. Unlike C++ built-in types can be used as base classes for extension by the user:
+```python
+class A(int): pass
+print(issubclass(A, int))
+# Print: True
+```
+
+To inspect is the object is an instance of some class you can use [isinstance(obj, classinfo)](https://docs.python.org/3/library/functions.html#isinstance) which is analog of C++ [dynamic_cast](https://en.cppreference.com/w/cpp/language/dynamic_cast).
+
+To inspect class relationships you can use [issubclass(classDerived, classBase)](https://docs.python.org/3/library/functions.html#issubclass). This functionality is absent by design in C++. The C++ style says if you need it, you should implement it and pay for it with computing time and memory.
+
 
 The [super()](https://docs.python.org/3/library/functions.html#super) lets you avoid referring to the base class explicitly, which can be nice sometimes.
 
-```cpp
+```python
 
 #!/usr/bin/env python3
 
@@ -1526,24 +1538,21 @@ class DerivedAB(DerivedA, DerivedB):
       super(DerivedAB, self).f()   # Call one of direct base with using super()
       DerivedB.f(self)             # Call DerivedB explicitly
 
-obj = DerivedAB()
-obj.fproxy()
+obj = DerivedAB(time. Sleepxy()
 ```
 
 # Python Technical Details. Advanced.
 
 ## Special or Magic method for classes
 
-Magic is an official term used by the Python community, even though in professional literature this term is used rarely. This informal name shines a light that a lot of things inside the Python community happen informally without any standardization. The effect that both styles (formal and informal) can coexist can be obtained into look into API and development style for Android OS and Linux/Windows OS. The development for Android OS is mostly cowboy style.
+Magic is an official term used by the Python community, even though in professional and science literature this term is used rarely. This informal name shines a light that a lot of things inside the Python community happen informally without any standardization. The effect that both styles (formal and informal) can coexist can be obtained into look into API and development style for Android OS and Linux/Windows OS. The development for Android OS is mostly cowboy style.
 
 A class can implement certain operations that are invoked by special syntax.
 A complete list of these special methods is available in The Python Language Reference [2] https://docs.python.org/3/reference/datamodel.html#special-method-names.
 
-
 ## Module Reloading
 
-For efficiency reasons, each module is only imported once per interpreter session. 
-If you change your modules source code you have two options on how to reload this module:
+For efficiency reasons, each module is only imported once per interpreter session.  If you change your modules source code you have two options on how to reload this module:
 
 * Restart the interpreter
 * Use [reload()](https://docs.python.org/3/library/imp.html?highlight=reload#imp.reload) function from [imp](https://docs.python.org/3/library/imp.html) module which provides access the import internals. Example: 
@@ -1552,9 +1561,9 @@ If you change your modules source code you have two options on how to reload thi
   imp.reload(module name)
   ```
 
-## Encoding for Files
+## Encoding during reading files and with statement
 
-The text file is iterable and the content of the file is returned line by line. You can check the used default encoding for reading text files:
+The text file is iterable and the content of the file is returned line by line. You can check the used *default* encoding for reading text files:
 ```python
 import sys 
 print(sys.getdefaultencoding())
@@ -1563,26 +1572,29 @@ print(sys.getdefaultencoding())
 If you want to open the file in the specified encoding you can specify this in [open()](
 https://docs.python.org/3/library/functions.html#open).
 
-To open and close files you can use open()/close() calls. One shorthand provides:
+To open and close files you can use open()/close() calls. 
+One shorthand to automatize this operation is to use [with](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) statement. With statement provides:
 * The opening of the file 
 * Closing in success/exception
-is [with](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) statement. 
 
 Example:
 ```python
 with open("my_file.txt", "rt") as f:
   for line in f:
       print(line)
-
 ```
 
-The reason for closing files is in that some objects contain references to external resources such as open files in the filesystem. It is understood that these resources are freed when the object is garbage-collected, but since garbage collection is not guaranteed to happen, such objects also provide an explicit way to release the external resource, usually with a `close()` method.
+The reason for closing files and closing existence in general is the following: Some objects contain references to external resources such as open files in the filesystem. These resources are freed when the object is garbage-collected, but since garbage collection is not guaranteed to happen, such objects also provide an explicit way to release the external resource, usually with a `close()` method.
+
+This design demonstrates that garbage collection is not a universal solution for all situations and all different types of resources.
 
 ## Defaultdict
 
-[Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) is a subclass (derived class) of the built-in [dict](https://docs.python.org/3/library/stdtypes.html?highlight=dict#dict) class. It can be found in the [collections](https://docs.python.org/3/library/collections.html) module in Python standard library.
+[Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) is a subclass (derived class) of the built-in [dict](https://docs.python.org/3/library/stdtypes.html?highlight=dict#dict) class. It can be found in the [collections](https://docs.python.org/3/library/collections.html) module in the Python standard library.
 
- [Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) is working mostly like a [std::map](https://en.cppreference.com/w/cpp/container/map) in C++. When the key is encountered for the first time and it is not already in the mapping then an entry value corresponding to the requested *key* is automatically created using the default_factory function and is instantiated.
+ [Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) is working mostly like a [std::map](https://en.cppreference.com/w/cpp/container/map) in C++. 
+
+When the key is encountered for the first time and it is not already in the mapping then an entry value corresponding to the requested *key* is automatically created using the default_factory function and is instantiated.
 
 Example:
 ```python
@@ -1616,11 +1628,10 @@ The variable name `_` acts as a wildcard and never fails to match, similar to `d
 
 # Walrus
 
-In Python, unlike C and C++, assignment inside expressions which is used in the conditional statement must be done explicitly with the walrus operator `:=`. 
+In Python, unlike C and C++, assignment inside expressions which is used in the conditional statement must be done explicitly with the walrus operator `:=`. It's the same as the operator `=` in C++ applied in the context of expression inside the `if` statement.
 
-The operator `:=` in Python can be used in the context when you want to perform an assignment inside an expression that is used for a condition.
+So the operator `:=` in Python can be used only in the context when you want to perform an assignment inside an expression that is used for conditions in the `if` statement.
 
-It's the same as the operator `=` in C++ but with restricted context.
 
 ```python
 a=2
@@ -1639,7 +1650,7 @@ The class-based iterators is a functionality that is implemented via definition:
 
 See also [Interface and Protocols](#interfaces-and-protocols) in this document. What makes generators so compact is that the `__iter__()` and `__next__()` methods are created automatically.
 
-Generators in python are a specific type of functions that uses the (`yield`) statement. Example:
+Generators in Python are a specific type of function that uses the (`yield`) statement. Example:
 
 ```python
 def one_two_three():
@@ -1650,12 +1661,12 @@ def one_two_three():
     yield x * 3
         
 for i in one_two_three():
-    print(i)  # prints 1, 2, 3 in sperate lines
+    print(i)  # prints 1, 2, 3 in separate lines
 ```
 
 The key feature of **generator** is that the local variables and execution state are automatically saved between calls. When generators terminate, they automatically raise [StopIteration](https://docs.python.org/3/library/exceptions.html?highlight=stopiteration#StopIteration) exception.
 
-The generators functionality dies not return a value via [return](https://docs.python.org/3/reference/simple_stmts.html?highlight=return#return) statement, instead, they send a value via [yield](https://docs.python.org/3/reference/simple_stmts.html?highlight=return#grammar-token-python-grammar-yield_stmt) statement. See also: [link to generators](
+The generators functionality does not return a value via [return](https://docs.python.org/3/reference/simple_stmts.html?highlight=return#return) statement, instead, they send a value via [yield](https://docs.python.org/3/reference/simple_stmts.html?highlight=return#grammar-token-python-grammar-yield_stmt) statement. See also: [link to generators](
 https://docs.python.org/3/tutorial/classes.html#generators).
 
 ```python
@@ -1665,41 +1676,47 @@ def gen():
     yield 2 # emit one more value   
 
 a = gen ()
-print(next(a))   # use it to explicitly first yeild statement
+print(next(a))   # use it to explicitly first yield statement
 print(next(a))   # run to second yield statement, etc. 
 
 # Next yield will throw a StopIteration exception    
 ```
 
-# Conda/Pip/Venv package and environment managers
+# Standard Tools
 
 ## Package managers
 
-Conda has two goals:
+To have the ability to launch a project you need to install the needed libraries. Two standard way to install libraries for Python is `pip` and `conda` package managers. Conda has two goals:
   1. Conda is a package manager.
   2. Conda is an environment manager. 
 
-Each project can have a specific requirement in a specific version of the library and this is the motivation behind the environment manager idea.
-
-To install Conda there are two ways to:
-  1. Anaconda distribution contains Conda and other things.
-  2. Install Miniconda (https://docs.conda.io/en/latest/miniconda.html)
-
-I prefer not to use pip directly, but instead use command for call pip directly from Python:
+The `pip` package manager is preinstalled with a Python interpreter. I prefer not to use pip directly, but instead use command for call pip directly from Python:
 ```python
 python -m pip list
 ```
 It's useful to eliminate problems with various installations of Python interpreters.
+
+To install conda there are two ways: (1) Use Anaconda distribution containing Conda and other things; (2) Install Miniconda (https://docs.conda.io/en/latest/miniconda.html).
+
+If you want to select (2) way then for example you can use the following command if you are using Linux distribution for x86-64 compute architecture:
+
+```bash
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b
+export PATH="${PATH}:~/miniconda3/bin"
+~/miniconda3/bin/conda init bash && source ~/.bashrc && conda config --set auto_activate_base false
+```
+This code snippet has been taken from this OpenSource project: https://github.com/burlachenkok/flpytorch/tree/main.
 
 Package manager commands comparison:
 
 | # | **Command in Conda**      | **Command in Pip** | **Description** |
 |---|---------------|------------|------------------------|
 | 1 | conda search  | pip search | Search package                       |
-| 2 | conda install/uninstall	     | pip install/uninstall name	  | install/uninstall package              |
-| 3 | conda update	| pip install --upgrade name	   | upgrade package                       |
+| 2 | conda install/uninstall      | pip install/uninstall name   | install/uninstall package              |
+| 3 | conda update  | pip install --upgrade name     | upgrade package                       |
 | 4 | conda install package=version | pip install package=version  | Install a specific version of package   |
-| 5 | conda list	| pip list 	 | List of installed packages      |
+| 5 | conda list  | pip list   | List of installed packages      |
 | 6 | conda install mnist --channel conda-forge | pip install somepkg --extra-index-url http://myindex.org  |     Install package from non-standart place |
 | 7 | conda update package_name | pip install -U package_name | Upgrade package |
 | 8 | [Use pip for it, not conda](https://docs.conda.io/projects/conda-build/en/latest/user-guide/wheel-files.html) | pip install *.whl | Install package from local WHL ([Python wheel packaging standard](https://packaging.python.org/en/latest/specifications/binary-distribution-format/)) distribution.
@@ -1719,6 +1736,8 @@ https://pypi.python.org/pypi - standard packages repository
 
 ## Environment managers
 
+Each project can have a specific requirement in a specific version of the library and this is the motivation behind the environment manager idea.
+
 The venv module is a standard virtual environment in Python. In this section, we will compare venv with conda. If you want to obtain a list of available conda environments please use [conda info -e](https://docs.conda.io/projects/conda/en/main/commands/info.html).
 
 
@@ -1733,7 +1752,7 @@ The venv module is a standard virtual environment in Python. In this section, we
 | 7|   conda env create --file myenv.yml | pip install -r requirements.txt | Install all packages from requirement list |
 | 8 |  conda remove --name myenv --all	| Remove directory in filesystem with environment and it's scripts | Remove environment |
 
-# Python Notebooks
+## Python Notebooks. General.
 
 Jupyter documentation is available here https://docs.jupyter.org/en/latest/. Jupyter Notebooks presents a way to create source code mixed with documentation in the form of Markdown. Also, Notebooks can serialize the results of numerical computation in the form of graphics into a single file.
 
@@ -1766,7 +1785,7 @@ Python notebook files extension is `*.ipynb`. The notebook contains code snippet
 * Code
 * Markdown
 
-## Working in a web-based interface.
+## Python Notebooks. Working in a web-based interface.
 
 | **Command**      | **Description** |
 |---------------|------------|
@@ -1797,7 +1816,11 @@ https://ipython.org/ipython-doc/dev/interactive/magics.html
 
 ## PyTorch resources
 
-PyTorch is a big numerical package.
+[PyTorch](https://pytorch.org/) is a big numerical package which most often used for purpose of training Machine Learning models. However, it can be used in another situation as well:
+* You have computations in [NumPy](https://numpy.org/), and you want to port them to GPU
+* You work in domain when you have to deal with explicit mathematical functions. Function is pretty complex to compute partial derivative explicitly.
+
+In both cases [PyTorch](https://pytorch.org/) will help you.
 
 | **Description**      | **Link** |
 |------------------|------------|      
@@ -1829,12 +1852,12 @@ Losses/Binary Coss-Entropy with logits loss | [https://pytorch.org/docs/master/g
 
 > Comment: In the context of deep learning the logits mean the layer or scalars from R that are fed into softmax or similar layer in which the image(or output) is a probabilistic simplex.
 
-# Matplotlib
+## Matplotlib
 
 [Matplotlib](http://matplotlib.org/) is a plotting library. In this section give a brief introduction to the **`matplotlib.pyplot`** module, which provides a plotting system similar to  MATLAB. Documentation: http://matplotlib.org/api/pyplot_api.html
 
 
-## Plots
+### Plots
 The most important function in matplotlib is **`plot`**, which allows you to plot 2D data. Here is a simple example:
 
 ```python
@@ -1869,7 +1892,7 @@ plt.legend(['Sine', 'Cosine'])
 plt.show()
 ```
 
-## SubPlots
+### SubPlots
 You can plot different things in the same figure using the **`subplot`** function. Here is an example:
 ```python
 import numpy as np
@@ -1898,7 +1921,7 @@ ax.set_title('Cosine')
 plt.show(figure)
 ```
 
-## Show the image with Matplotlib
+### Show the image with Matplotlib
 
 You can show image with the following code snippet:
 ```python
@@ -1931,7 +1954,7 @@ for n in range(16):
 plt.show( )
 ```
 
-# Cython
+## Cython
 
 [Cython](https://cython.readthedocs.io/en/latest/index.html) is Python with C data types. Official documentation: https://cython.readthedocs.io/en/latest/index.html.
 
@@ -2061,7 +2084,7 @@ References with further details:
 * https://cython.readthedocs.io/en/latest/index.html
 * https://pythonprogramming.net/introduction-and-basics-cython-tutorial
 
-## Easy Interoperability with Standar C Library
+### Easy Interoperability with Standar C Library
 ```python
 #!/usr/bin/env python3
 
@@ -2140,12 +2163,12 @@ def integrate_f_std(a, b, N):
 #   integration.integrate_f_std(0.0,100.0,1000)
 ```
 
-# Numpy 
+## NumPy (from here)
 
-[Numpy](http://www.numpy.org/) is the core library for scientific computing in Python.
+[NumPy](http://www.numpy.org/) is the core library for scientific computing in Python.
 It provides a high-performance multidimensional array object, and tools for working with these arrays. If you are already familiar with MATLAB, you might find [this tutorial](https://docs.scipy.org/doc/numpy/user/numpy-for-matlab-users.html) useful to get started with Numpy.
 
-Check out the numpy reference (http://docs.scipy.org/doc/numpy/reference/) to find out much more about numpy beyond what is described below. You can find the full list of mathematical functions provided by numpy in: http://docs.scipy.org/doc/numpy/reference/routines.math.html.
+Check out the NumPy reference (http://docs.scipy.org/doc/numpy/reference/) to find out much more about numpy beyond what is described below. You can find the full list of mathematical functions provided by numpy in: http://docs.scipy.org/doc/numpy/reference/routines.math.html.
 
 Numpy provides various functions for manipulating arrays; you can see the full list in: http://docs.scipy.org/doc/numpy/reference/routines.array-manipulation.html.
 
