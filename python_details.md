@@ -1,4 +1,4 @@
-# Exploring Python3 Language from Computer Science Perspective
+# Exploring Python3 Language from Computer Science Perspective [Draft]
 
 [Konstantin Burlachenko](https://burlachenkok.github.io/), et al.
 
@@ -6,7 +6,7 @@
 
 Correspondence to: konstantin.burlachenko@kaust.edu.sa
 
-Revision Update: July 22, 2023
+Revision Update: July 22, 2023 [v0.1]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -332,6 +332,12 @@ There is also no division of fields into public/private/protected as it is in C+
 
 9. The boolean literals are named as `true`, `false` in C++. However, in Python, they are named as `True`, `False`. The underlying type `bool` has the same typing both in C++ and in Python.
 
+10. In C/C++ you have ability to implicitly cast expression to bool or integer type. In Python the following expressions are considered `False`: `None`, `0`, `empty sequence`.
+
+11. Python use `.`` to separate packages/subpackage/class like C#, and Java.
+
+12. In Python (and in Perl) there is no such term as function overloading.
+
 # Sources of Confusion if C++ person will talk to Python person
 
 Python is a useful and nice *scripting language*, which of course more comfortable to use compared to [Perl](https://www.perl.org/books/beginning-perl/) or [Windows Batch](https://en.wikibooks.org/wiki/Windows_Batch_Scripting) and sometimes more comfortable to use compare to [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html). In our experience [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html) is still more easy to use if the script contains executing external processes for different tasks and less logic.
@@ -447,7 +453,7 @@ The source file by itself is represented in characters. Characters that constitu
 # -*- coding: cp1252 -*-
 ```
 
-## Another Lines of Script
+## First Lines of Script
 
 Physical lines in the source code of a script are physical lines inside the text file encoded with one of the possible encodings.
 
@@ -457,7 +463,12 @@ A Logical line of a program is constructed from one or more physical lines by fo
 
 * A physical and logical line that contains only spaces, tabs, and possibly a comment is ignored by the parser.
 
-* Expressions in parentheses, square brackets, and curly braces can be split over more than one physical line without using the backslash symbol `\`. 
+* Normally you should use `\` for line continuation, however, Python supports automatically multi-line continuation inside:
+  * Expressions in parentheses `()`
+  * Expressios in square brackets `[]`
+  * Expressios in curly braces `{}`
+  
+When you are inside such expression you can split you expression over more than one physical line without using the backslash symbol. 
 
 A Python script is read by a parser. The parsing of some pieces of Python source code (e.g. of the function) is performed only at the moment of the direct call of this function.
 
@@ -1886,7 +1897,7 @@ plt.grid(True)
 plt.show()
 ```
 
-With just a little bit of extra work we can easily plot multiple lines at once, and add a title, legend, and axis labels:
+With a little of extra work we can easily plot multiple lines at once, and add a title, legend, and axis labels:
 
 ```python
 import numpy as np
