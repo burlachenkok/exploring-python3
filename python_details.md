@@ -171,7 +171,7 @@ dis.dis(f)
 
 ## Where to Learn About Python Officially
 
-There are several resource about the subject:
+There are several resources about the subject:
 
 * There exists a book written by Guido van Rossum (the original author of that language).  Today it has been converted into a pretty big tutorial: https://docs.python.org/3/tutorial/
 
@@ -313,7 +313,7 @@ There is also no division of fields into public/private/protected as it is in C+
     # Out: 12
     ```
 
-5. Python has the `elif` keyword. For Python, it's crucial because their syntax rules require creating indentation between `else` and `if`. The absence of such a keyword potentially will make the source code less readable. C++ Language is more flexible, and such a keyword is absent in C/C++ but is presented in C Language Preprocessor. Example:
+5. Python has the `elif` keyword. For Python, it's crucial because their syntax rules require creating indentation between `else` and `if`. The absence of such a keyword potentially will make the source code less readable. C++ Language is more flexible, and such a keyword is absent in C/C++ but is presented in the C Language Preprocessor. Example:
 
     ```python
     if x < 0:
@@ -332,9 +332,9 @@ There is also no division of fields into public/private/protected as it is in C+
 
 9. The boolean literals are named as `true`, `false` in C++. However, in Python, they are named as `True`, `False`. The underlying type `bool` has the same typing both in C++ and in Python.
 
-10. In C/C++ you have ability to implicitly cast expression to bool or integer type. In Python the following expressions are considered `False`: `None`, `0`, `empty sequence`.
+10. In C/C++ you have the ability to implicitly cast expression to bool or integer type. In Python the following expressions are considered `False`: `None`, `0`, `empty sequence`.
 
-11. Python use `.`` to separate packages/subpackage/class like C#, and Java.
+11. Python uses `.`` to separate packages/subpackage/class like C#, and Java.
 
 12. In Python (and in Perl) there is no such term as function overloading.
 
@@ -366,7 +366,7 @@ It is at the same time a very strong statement and at the same time vague statem
 
 > Python is more elegant and short than C++.
 
-One more time it depends on what you mean exactly. This is true if look into lines of code. However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Because compiling languages enforces you to follow some discipline.
+One more time it depends on what you mean exactly. This is true if look into lines of code. However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Because compiling languages forces you to follow some discipline.
 
 Of course, there is a tool for Python that helps [pylint](https://pypi.org/project/pylint/), but a compiler and linker are far more powerful tools for detecting errors than a static analyzer.
 
@@ -381,7 +381,7 @@ Please be aware that (any) interpretable language which exists or will be create
 
 # Python Technical Basics
 
-## Python Language Benefits over other Scripting Languages
+## Python Language Benefits over Other Scripting Languages
 
 It depends on your point of view and your style, but there is a point of view where the following things are benefits. 
 
@@ -389,7 +389,7 @@ Especially if you have limited time to finish a project:
 
   1. More correct code from a style point of view.
   2. Automatic cross-platform serialization "pickling" for the user and built-in types from the Python standard library.
-  3. A lot of free and commercial IDE with intellisense.
+  3. A lot of free and commercial IDE with IntelliSense.
   4. Built-in debugger. 
   5. Python uses <`.`> token to separate packages/subpackage/classes like C# and Java. Packages from Perl are called modules in Python.
 
@@ -442,7 +442,7 @@ The following expressions are considered `false` in Python:
 
 ##  First Line in Your Script
 
-The line `#!/usr/bin/env python3` in a well is called as sha-bang. It has a long history in Unix/Linux OS. For Windows, it's possible to use it as well. In Windows a binary application named `py.exe` is a launcher with performs a choice of a used interpreter based on the mentioned sha-bang.
+The line `#!/usr/bin/env python3` in a well is called sha-bang. It has a long history in Unix/Linux OS. For Windows, it's possible to use it as well. In Windows a binary application named `py.exe` is a launcher with performs a choice of a used interpreter based on the mentioned sha-bang.
 
 ## Possible Second Line. Source File Encoding.
 
@@ -465,10 +465,10 @@ A Logical line of a program is constructed from one or more physical lines by fo
 
 * Normally you should use `\` for line continuation, however, Python supports automatically multi-line continuation inside:
   * Expressions in parentheses `()`
-  * Expressios in square brackets `[]`
-  * Expressios in curly braces `{}`
+  * Expressions in square brackets `[]`
+  * Expressions in curly braces `{}`
   
-When you are inside such expression you can split you expression over more than one physical line without using the backslash symbol. 
+When you are inside such an expression you can split your expression over more than one physical line without using the backslash symbol. 
 
 A Python script is read by a parser. The parsing of some pieces of Python source code (e.g. of the function) is performed only at the moment of the direct call of this function.
 
@@ -486,7 +486,7 @@ Based on [C++ Tehnical Note/Lexical Analysis](https://github.com/burlachenkok/CP
 * d. Keywords
 * e. Literal constants
 
-So operators in the Programming is one of the five fundamental language concept. Information about operator precedence in Python Languge is available here:
+So operators in Programming is one of the five fundamental language concepts. Information about operator precedence in Python Language is available here:
 https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
 ## Simple built-in types
@@ -499,7 +499,7 @@ https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
 * **numbers. Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerics, such a statement is deeply wrong and sometimes laughable only in the case of writing software that takes care of compute time and memory footprint.
 
-Documentation on thus subject: https://docs.python.org/3.13/reference/datamodel.html
+Documentation on this subject: https://docs.python.org/3.13/reference/datamodel.html
 
 ## Simple Statements
 
@@ -757,7 +757,7 @@ print(s.replace('l', '(ell)'))  # Replace all instances; prints "he(ell)(ell)o"
 print('  wo rld '.strip())      # Strip surrounding whitespace; prints "wo rld"
 ```
 
-The Python can manipulate with strings, which can be expressed in several ways:
+Python can manipulate with strings, which can be expressed in several ways:
 
 * String enclosed in single quotes ('...') can use double quotes <"> inside the string literal.
 * String enclosed in double quotes ("...") can use single quotes <'> inside the string literal.
@@ -878,7 +878,7 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
 
   More details:  https://docs.python.org/3/tutorial/classes.html#iterators
 
-- **Sequence protocol.** Except dict, all built-in container types in Python support indexing. It's known as sequence protocol. For your types, you should define [__getitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [__setitem__](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [__delitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). Once you will define these operators you can use the following language operators:
+- **Sequence protocol.** Except `dict`, all built-in container types in Python support indexing. It's known as *sequence protocol*. For your classes, you should define [__getitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [__setitem__](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [__delitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). Once you will define these operators you can use the following language operators:
 
   ```python
   x [integral_index] 
@@ -900,7 +900,7 @@ import os, platform, socket
 print("==================================================")
 print("Information about your system")
 print("==================================================")
-print(f"Python interpretator: {sys.executable}")
+print(f"Python interpreter: {sys.executable}")
 print(f"Python version: {sys.version}")
 print(f"Platform name: {sys.platform}")
 print("==================================================")
@@ -1132,7 +1132,7 @@ Firstly, Python has limited support for private attribute objects. When you name
 
 ## The Syntax for Defining Classes
 
-The syntax for defining classes in Python is straightforward and has the foolowing form:
+The syntax for defining classes in Python is straightforward and has the following form:
 
 ```python
 class Greeter(object):
@@ -1176,14 +1176,14 @@ print(g)             # Call __str__; prints "Greeter for Fred"
         print i  
     ```
 
-2. Dictionary (also known as a map or associative array in other languages) can be built through `{}`, which takes as input list of pair-tuples with key and value separated by a column.
+2. Dictionary (also known as a map or associative array in other languages) can be built through `{}`, which takes as input a list of pair-tuples with key and value separated by a column.
     ```python
     emptyDictinoary = {}
     ```
 
 3. Dict can be merged with another dict via [update()](https://docs.python.org/3/library/stdtypes.html?highlight=update#dict.update) method.
 
-4. In Python another datatype which is built-in in the Language is set. On sets, you can perform set-theoretic operations on it. Example:
+4. In Python another datatype that is built-in in the Language is set. On sets, you can perform set-theoretic operations. Example:
     ```python
     aSet = {1,2}   # set
     ```
@@ -1210,7 +1210,7 @@ print(g)             # Call __str__; prints "Greeter for Fred"
         pass
     ```
 
-7. There is a ternary expression similar to C/C++ `?:` expression. Example:
+7. There is a ternary expression similar to the C/C++ `?:` expression. Example:
     ```python
     sym = '0' if 1> 5 else ''1" 
     ```
@@ -1571,7 +1571,7 @@ obj = DerivedAB(time. Sleepxy()
 
 ## Magic Methods for Classes
 
-Magic is an official term used by the Python community, even though in professional and science literature this term is used rarely. This informal name shines a light that a lot of things inside the Python community happen informally without any standardization. The effect that both styles (formal and informal) can coexist can be obtained into look into API and development style for Android OS and Linux/Windows OS. The development for Android OS is mostly cowboy style.
+Magic is an official term used by the Python community, even though in professional and science literature this term is used rarely. This informal name shines a light that a lot of things inside the Python community happen informally without any standardization. The effect that both styles (formal and informal) can coexist can be obtained by looking into API and development style for Android OS and Linux/Windows OS. The development for Android OS is mostly cowboy style.
 
 A class can implement certain operations that are invoked by special syntax.
 A complete list of these special methods is available in The Python Language Reference [2] https://docs.python.org/3/reference/datamodel.html#special-method-names.
@@ -1842,9 +1842,9 @@ https://ipython.org/ipython-doc/dev/interactive/magics.html
 
 ## PyTorch Resources
 
-[PyTorch](https://pytorch.org/) is a big numerical package which most often used for purpose of training Machine Learning models. However, it can be used in another situation as well:
+[PyTorch](https://pytorch.org/) is a big numerical package which most often used for the purpose of training Machine Learning models. However, it can be used in another situation as well:
 * You have computations in [NumPy](https://numpy.org/), and you want to port them to GPU
-* You work in domain when you have to deal with explicit mathematical functions. Function is pretty complex to compute partial derivative explicitly.
+* You work in the domain when you have to deal with explicit mathematical functions. The function is pretty complex to compute partial derivatives explicitly.
 
 In both cases [PyTorch](https://pytorch.org/) will help you.
 
@@ -1880,7 +1880,7 @@ Losses/Binary Coss-Entropy with logits loss | [https://pytorch.org/docs/master/g
 
 ## Matplotlib
 
-[Matplotlib](http://matplotlib.org/) is a plotting library. In this section give a brief introduction to the **`matplotlib.pyplot`** module, which provides a plotting system similar to  MATLAB. Documentation: http://matplotlib.org/api/pyplot_api.html
+[Matplotlib](http://matplotlib.org/) is a plotting library. This section gives a brief introduction to the **`matplotlib.pyplot`** module, which provides a plotting system similar to  MATLAB. Documentation: http://matplotlib.org/api/pyplot_api.html
 
 
 ### Plots
@@ -1897,7 +1897,7 @@ plt.grid(True)
 plt.show()
 ```
 
-With a little of extra work we can easily plot multiple lines at once, and add a title, legend, and axis labels:
+With a little extra work, we can easily plot multiple lines at once, and add a title, legend, and axis labels:
 
 ```python
 import numpy as np
@@ -1949,7 +1949,7 @@ plt.show(figure)
 
 ### Show the image with Matplotlib
 
-You can show image with the following code snippet:
+You can show the image with the following code snippet:
 ```python
 import sys 
 import matplotlib.pyplot as plt 
@@ -2002,7 +2002,7 @@ To use the `numpy` library in your project you need to:
 A numpy array is a grid of values, **all of the same type**, and is indexed by a tuple of nonnegative integers.  The number of dimensions is the rank of the array. The shape of an array is a tuple of integers giving the size of the array along each dimension. 
 * Rank of the array - is a number of dimensions.
 * Tensor (in Machine Learning / Deep Learning) - is a name used to describe multidimensional arrays.
-* Shape - description of dimensions for a multidimensional array organized as a tuple. Each dimension of a multi-dimensional array is called as "dimension" or "axe".
+* Shape - description of dimensions for a multidimensional array organized as a tuple. Each dimension of a multi-dimensional array is called a "dimension" or "axe".
 
 We can initialize numpy arrays from nested Python lists, and access elements using square brackets:
 ```python
@@ -2081,10 +2081,10 @@ print(a[0, 1])   # Prints "77"
 print(b)
 ```
 
-You can also mix integer indexing with slice indexing. However, doing so will yield an array of lower rank than the original array:
+You can also mix integer indexing with slice indexing. However, doing so will yield an array of lower ranks than the original array:
 
 ```python
-# Create the following rank 2 array with shape (3, 4)
+# Create the following rank 2 arrays with shapes (3, 4)
 # [[ 1  2  3  4]
 #  [ 5  6  7  8]
 #  [ 9 10 11 12]]
@@ -2094,7 +2094,7 @@ a = np.array([[1,2,3,4],
 
 # Two ways of accessing the data in the middle row of the array.
 
-# Mixing integer indexing with slices yields an array of lower rank,
+# Mixing integer indexing with slices yields an array of lower ranks,
 # while using only slices yields an array of the same rank as the
 # original array:
 row_r1 = a[1, :]    # Rank 1 view of the second row of a
@@ -2213,7 +2213,7 @@ print(x**0.5)
 
 Note that unlike MATLAB, **`*`** is elementwise multiplication, not matrix multiplication. 
 
-In numpy instead of use `*` you need to use the **`dot`** function or operator **`@`** to compute inner products of vectors, to multiply a vector by a matrix, and to multiply matrices. **`dot`** is available both as a function in the numpy module and as an instance method of array objects:
+In numpy instead of using `*` you need to use the **`dot`** function or operator **`@`** to compute inner products of vectors, to multiply a vector by a matrix, and to multiply matrices. **`dot`** is available both as a function in the numpy module and as an instance method of array objects:
 
 ```python
 x = np.array([[1,2],
@@ -2229,12 +2229,12 @@ print(v.dot(w))
 print(np.dot(v, w))
 print(v @ w)
 
-# Matrix / vector product; both produce the rank 1 array [29 67]
+# Matrix/vector product; both produce the rank 1 array [29 67]
 print(x.dot(v))
 print(np.dot(x, v))
 print(x @ v)
 
-# Matrix / matrix product; both produce the rank 2 array
+# Matrix/matrix product; both produce the rank 2 array
 # [[19 22]
 #  [43 50]]
 print(x.dot(y))
@@ -2268,7 +2268,7 @@ print(v)    # Prints "[1 2 3]"
 print(v.T)  # Prints "[1 2 3]"
 ```
 
-For reshaping the matrix into different form, you can use the reshaping function **`np.reshape`**:
+For reshaping the matrix into different forms, you can use the reshaping function **`np.reshape`**:
 
 ```python
 x = np.arange(12)
@@ -2369,19 +2369,19 @@ The files in Cython have several functions inside them:
 
 * `cdef-functions` - C functions are defined using the new compare to Python `cdef` statement. Within a Cython module, Python functions and C functions can call each other.
 
-* `cpdef-functions` - is a hybrid of `cdef` and `def`. It uses the faster C calling conventions when being called from other Cython code and uses a Python interpreter when they are called from Python. Essentially it will create a C function and a wrapper for Python.
+* `cpdef-functions` - is a hybrid of `cdef` and `def`. It uses the faster C calling conventions when being called from other Cython codes and uses a Python interpreter when they are called from Python. Essentially it will create a C function and a wrapper for Python.
 
 
-During passing argument from `cdef` to `def` functions and vice versa there is an automatic type casting is occurring:
+During passing argument from `cdef` to `def` functions and vice versa there is an automatic type casting occurs:
 https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#automatic-type-conversions
 
 ### How to optimize Python Code with Cython
 
 0. Install Cython for your Python interpreter: `python -m pip install Cython`.
 
-1. First step is to take the usual Python file "*.py" and change the extension to "*.pyx".
+1. The first step is to take the usual Python file "*.py" and change the extension to "*.pyx".
 
-2. Second and most powerful step that can be used now during using Cython you can append type information to variables. In practice especially if you are using loops it brings good speedup immediately. Examples:
+2. The second and most powerful step that can be used now while using Cython is to append type information to variables. In practice especially if you are using loops it brings good speedup immediately. Examples:
 
     ```python
     #!/usr/bin/env python3
@@ -2424,7 +2424,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
       return s
     ```
 
-4. Next Step is to build your code because Cython is not an interpretable Python language extension. The script that describes that you want to build all *.pyx files in the current directory, which is typically used for projects that use Cython:
+4. The Next Step is to build your code because Cython is not an interpretable Python language extension. The script that describes that you want to build all *.pyx files in the current directory, which is typically used for projects that use Cython:
     ```python
     #!/usr/bin/env python
     # filename: setup.py
@@ -2439,7 +2439,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
     ```
 5. Launch the build process from the previous description:
     ```bash
-    python build.py build_ext --inplace
+    python build.py build_ext --in place
     ```
     The output of this command is
     * `*.so` in Unix-like OS.
@@ -2452,7 +2452,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
 
 ### About Cython Language
 
-The `cdef`  statement is used to declare C variables, either in the local function scope or in the module level:
+The `cdef`  statement is used to declare C variables, either in the local function scope or at the module level:
 ```python
 cdef int i, j, k
 ```
