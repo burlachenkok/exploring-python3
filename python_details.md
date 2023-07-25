@@ -1,4 +1,4 @@
-# Exploring Python3 Language from Computer Science Perspective [Draft]
+# Exploring Python3 Language from Computer Science Perspective
 
 [Konstantin Burlachenko](https://burlachenkok.github.io/), et al.
 
@@ -6,11 +6,12 @@
 
 Correspondence to: konstantin.burlachenko@kaust.edu.sa
 
-Revision Update: July 22, 2023 [v0.1]
+Revision Update: July 26, 2023 [v0.2]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
 ----
+
 - [Introduction](#introduction)
   * [What is Python](#what-is-python)
   * [Where to Learn About Python Officially](#where-to-learn-about-python-officially)
@@ -22,30 +23,30 @@ Revision Update: July 22, 2023 [v0.1]
 - [If you arrived at Python from C++](#if-you-arrived-at-python-from-c--)
   * [About Events](#about-events)
   * [Meaning of Object](#meaning-of-object)
-  * [Python does provide access to variables by value](#python-does-provide-access-to-variables-by-value)
-  * [Context in Python is the same as scopes in C++](#context-in-python-is-the-same-as-scopes-in-c--)
+  * [Python does Provide Access to Variables by Value](#python-does-provide-access-to-variables-by-value)
+  * [Context in Python is the Same as Scopes in C++](#context-in-python-is-the-same-as-scopes-in-c--)
   * [Pointers and Object Reference Equality](#pointers-and-object-reference-equality)
-  * [All class methods are virtual in terms of C++](#all-class-methods-are-virtual-in-terms-of-c--)
-  * [Some language differences between Python and C++](#some-language-differences-between-python-and-c--)
+  * [All Class Methods are Virtual in Terms of C++](#all-class-methods-are-virtual-in-terms-of-c--)
+  * [Some Language Differences Between Python and C++](#some-language-differences-between-python-and-c--)
 - [Sources of Confusion if C++ person will talk to Python person](#sources-of-confusion-if-c---person-will-talk-to-python-person)
 - [Python Technical Basics](#python-technical-basics)
-  * [Python Language Benefits over other Scripting Languages](#python-language-benefits-over-other-scripting-languages)
-  * [How to start Interpreter](#how-to-start-interpreter)
+  * [Python Language Benefits over Other Scripting Languages](#python-language-benefits-over-other-scripting-languages)
+  * [How to Start Interpreter](#how-to-start-interpreter)
   * [What is a False Statement](#what-is-a-false-statement)
   * [First Line in Your Script](#first-line-in-your-script)
   * [Possible Second Line. Source File Encoding.](#possible-second-line-source-file-encoding)
-  * [Another Lines of Script](#another-lines-of-script)
+  * [First Lines of Script](#first-lines-of-script)
   * [Comments](#comments)
   * [Operator Precedence](#operator-precedence)
-  * [Simple built-in types](#simple-built-in-types)
+  * [Simple Built-In Types](#simple-built-in-types)
   * [Simple Statements](#simple-statements)
   * [Compound Statements](#compound-statements)
   * [Empty(Pass) Statements](#empty-pass--statements)
-  * [Division of numbers in Python](#division-of-numbers-in-python)
+  * [Division of Numbers in Python](#division-of-numbers-in-python)
   * [Printing](#printing)
   * [Enumeration and Loops](#enumeration-and-loops)
   * [More on Conditions](#more-on-conditions)
-  * [Basic data types](#basic-data-types)
+  * [Basic Data Types](#basic-data-types)
   * [Bool Variables and Boolean Operators](#bool-variables-and-boolean-operators)
   * [Containers](#containers)
   * [Comparison of Containers](#comparison-of-containers)
@@ -57,12 +58,12 @@ Revision Update: July 22, 2023 [v0.1]
   * [Interfaces and Protocols](#interfaces-and-protocols)
   * [Introspection of System](#introspection-of-system)
   * [Introspection of Python Objects](#introspection-of-python-objects)
-  * [Comprehensions syntax](#comprehensions-syntax)
-  * [Working with List Dictionary and Set comprehensions](#working-with-list-dictionary-and-set-comprehensions)
+  * [Comprehensions Syntax](#comprehensions-syntax)
+  * [Working with List Dictionary and Set Comprehensions](#working-with-list-dictionary-and-set-comprehensions)
   * [Tuples](#tuples)
   * [Working with Tuples](#working-with-tuples)
   * [Unpacking of Containers](#unpacking-of-containers)
-  * [Functions Introduction](#functions-introduction)
+  * [Functions: Introduction](#functions--introduction)
   * [Classes](#classes)
   * [User Defined Classes in Python](#user-defined-classes-in-python)
   * [The Syntax for Defining Classes](#the-syntax-for-defining-classes)
@@ -74,14 +75,14 @@ Revision Update: July 22, 2023 [v0.1]
   * [Modules and Packages](#modules-and-packages)
     + [Modules](#modules)
     + [Packages](#packages)
-    + [Reference between modules and packages](#reference-between-modules-and-packages)
+    + [Reference between Modules in Packages](#reference-between-modules-in-packages)
     + [Rules for Search Modules and Packages](#rules-for-search-modules-and-packages)
   * [About Functions: Now in Details](#about-functions--now-in-details)
     + [About Indentation](#about-indentation)
     + [Function Arguments and Return Value](#function-arguments-and-return-value)
     + [Default Argument Value](#default-argument-value)
     + [Keyword and Positional Arguments](#keyword-and-positional-arguments)
-    + [Syntax to split Positional and Keyword Arguments](#syntax-to-split-positional-and-keyword-arguments)
+    + [Syntax to Split Positional and Keyword Arguments](#syntax-to-split-positional-and-keyword-arguments)
     + [Varying Number of Arguments](#varying-number-of-arguments)
     + [Lambda Function](#lambda-function)
   * [Function and Type Annotation](#function-and-type-annotation)
@@ -94,7 +95,7 @@ Revision Update: July 22, 2023 [v0.1]
   * [Match Statement](#match-statement)
   * [Walrus](#walrus)
   * [Generators](#generators)
-- [Standard Tools and some De Facto Libraries for Computing and Visualize](#standard-tools-and-some-de-facto-libraries-for-computing-and-visualize)
+- [Standard Tools and Some Libraries for Computing and Visualize](#standard-tools-and-some-libraries-for-computing-and-visualize)
   * [Package Managers](#package-managers)
   * [Environment Managers](#environment-managers)
   * [Python Notebooks: General](#python-notebooks--general)
@@ -106,23 +107,23 @@ Revision Update: July 22, 2023 [v0.1]
     + [Show the image with Matplotlib](#show-the-image-with-matplotlib)
   * [NumPy](#numpy)
     + [Arrays](#arrays)
-    + [Array indexing](#array-indexing)
-    + [Boolean array indexing](#boolean-array-indexing)
+    + [Array Indexing](#array-indexing)
+    + [Boolean Array Indexing](#boolean-array-indexing)
     + [Datatypes](#datatypes)
-    + [Array math](#array-math)
-    + [Important notice about the syntax for Matrix Multiplication](#important-notice-about-the-syntax-for-matrix-multiplication)
-    + [Utility functions in NumPy](#utility-functions-in-numpy)
+    + [Array Math](#array-math)
+    + [Important Notice About the Syntax for Matrix Multiplication](#important-notice-about-the-syntax-for-matrix-multiplication)
+    + [Utility Functions in NumPy](#utility-functions-in-numpy)
     + [Broadcasting](#broadcasting)
 - [Appendix](#appendix)
   * [Cython](#cython)
     + [How to optimize Python Code with Cython](#how-to-optimize-python-code-with-cython)
     + [About Cython Language](#about-cython-language)
     + [Easy Interoperability with Standard C Library](#easy-interoperability-with-standard-c-library)
-    + [Example of function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
+    + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
 - [References](#references)
-  * [Introduction document](#introduction-document)
-  * [Reference official materials](#reference-official-materials)
-  * [Mapping concepts from other languages/libraries to Python language/libraries](#mapping-concepts-from-other-languages-libraries-to-python-language-libraries)
+  * [Introduction Document](#introduction-document)
+  * [Official Materials](#official-materials)
+  * [Mapping Concepts from other Languages to Python](#mapping-concepts-from-other-languages-to-python)
   * [Tutorials for Libraries](#tutorials-for-libraries)
   * [How To](#how-to)
   * [Repositories](#repositories)
@@ -169,18 +170,24 @@ def f(x):
 dis.dis(f)
 ```
 
+Documentation: [dis - Disassembler for Python bytecode](https://docs.python.org/3/library/dis.html?highlight=dis#module-dis).
+
 ## Where to Learn About Python Officially
 
 There are several resources about the subject:
 
-* There exists a book written by Guido van Rossum (the original author of that language).  Today it has been converted into a pretty big tutorial: https://docs.python.org/3/tutorial/
+1. There is a book written by Guido van Rossum (the original author of that language).  Today it has been converted into a pretty big tutorial and it not named as a book: https://docs.python.org/3/tutorial/
 
-* Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
+2. Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
 
-* Python Interpreter is distributed with various standard modules which are called Python Standard Library: https://docs.python.org/3/library/index.html. For example this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation which described Standard Types.
+3. Python Interpreter is distributed with various standard modules which are called Python Standard Library: https://docs.python.org/3/library/index.html. For example, this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation that described Standard Types.
 
-* Finally, the syntax of a language is typically described for Programming Languages with Backus–Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here: https://docs.python.org/3/reference/grammar.html
- 
+4. CPython interpreter web-site contains full text search over Python documentation. You can use this utility both in terms of learning and both in terms of finding details: https://docs.python.org/3/search.html
+
+5. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here: https://docs.python.org/3/reference/grammar.html
+
+Finally please take a look into materials from [references](#references) section of this document. It contains short bibliography, which can also be useful.
+
 # Backgrounds
 
 ## How Typical Compute Device is Working
@@ -231,7 +238,7 @@ There is a clash of terminology if you have a C++, Java, or C# background. In Py
 
 It's not true that all things are classes in Python.
 
-## Python does provide access to variables by value
+## Python does Provide Access to Variables by Value
 
 Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the level of Language). Functions return and accept arguments by reference in the terminology of C++, C#, and Java.
 
@@ -239,7 +246,7 @@ Moreover, there is a very strange thing with default argument which was in Pytho
 
 This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, in the usual way of writing arguments, and is just a shorthand at least conceptually.
 
-## Context in Python is the same as scopes in C++
+## Context in Python is the Same as Scopes in C++
 
 The context in Python is a concept similar to C++'s scope. However, in Python, you can not create scopes inside the function. For example if inside the function you have a nested loop, then its level of nested loop **does not** introduce a new scope. In fact, in Python, there are only 4 contexts (which are in C++ terminology called scopes):
 
@@ -275,7 +282,7 @@ They have the same semantical meaning as using `id()`.
 > The fact that `id(x)` is the memory address of object *x* is a CPython implementation detail. CPython can change this in the future. It's also hard to say what is guaranteed by the standard - because there is no standard.
 
 
-## All class methods are virtual in terms of C++
+## All Class Methods are Virtual in Terms of C++
 
 Without loss of generality, we can assume that in Python all methods of all classes are `virtual`. But actually, there are no virtual methods virtual keywords, and virtual tables in Python at all. In fact, in Python methods are *attributes*. They are bound at runtime and executed dynamically. 
 
@@ -291,7 +298,7 @@ In very specific circumstances you can manually remove, get, and set attributes:
 
 There is also no division of fields into public/private/protected as it is in C++ and there are no different types of inheritances. However, in Python, there is a limited type of support for `private` names, which we will describe later.
 
-## Some language differences between Python and C++
+## Some Language Differences Between Python and C++
 
 1. Assignments opertor `=` does not copy data. The language just binds a right object to the left operand of the `=` operator.
 2. In Python class data attributes override method attributes with the same name. To avoid accidental name conflicts, which may cause hard-to-find bugs in large programs, it is wise to use some kind of convention that minimizes the chance of conflicts.
@@ -403,7 +410,9 @@ python -m pdb scriptname.py
 
 After this, you will have the ability to insert text commands in the interactive shell with [pdb commands](https://docs.python.org/3/library/pdb.html#debugger-commands).
 
-## How to start Interpreter
+Documentation: [pdb — The Python Debugger](https://docs.python.org/3/library/pdb.html?highlight=pdb#module-pdb).
+
+## How to Start Interpreter
 
 Based on [1] the Python interpreter operates somewhat like the Unix shell. There are three ways to start the Python interpreter:
 
@@ -489,7 +498,7 @@ Based on [C++ Tehnical Note/Lexical Analysis](https://github.com/burlachenkok/CP
 So operators in Programming is one of the five fundamental language concepts. Information about operator precedence in Python Language is available here:
 https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
-## Simple built-in types
+## Simple Built-In Types
 
 * **Ellipsis.** There is a single object with this value. This object is accessed through the literal `...`. If the expression `...` is used inside the condition, then `...` is implicitly converted into `True`.
 
@@ -521,7 +530,7 @@ if 1: print (2); print (2); #legal python code
 ## Empty(Pass) Statements
 The `pass` statement does nothing similar to the C++ `;` statement.
 
-## Division of numbers in Python
+## Division of Numbers in Python
 The division operator in Python `/` always returns a float. To do floor division and get an integer result you can use the `//` operator. 
 
 To calculate the remainder, you can use `%` similar to C/C++/Java.
@@ -639,7 +648,7 @@ int main() {
 }
 ```
 
-## Basic data types
+## Basic Data Types
 Python has a number of basic types including integers, floats, booleans, and strings. These data types behave in ways that are familiar to other programming languages.
 
 ```python
@@ -923,9 +932,9 @@ print(a.__class__)
 ```
 
 
-## Comprehensions syntax
+## Comprehensions Syntax
 
-Comprehensions syntax provides a short syntax to create several inerrable types with short expressions. List comprehensions in Python:
+Comprehensions Syntax provides a short syntax to create several inerrable types with short expressions. List comprehensions in Python:
 ```python
 [expr(item) for an item in iterable if condition (item)]  
 ```
@@ -948,7 +957,7 @@ Generator comprehensions in Python:
 List comprehension is described in Python Tutorial [1]: 
 [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions), [nested list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions)
 
-## Working with List Dictionary and Set comprehensions
+## Working with List Dictionary and Set Comprehensions
 
 When programming, frequently we want to transform one type of data into another. As a simple example, consider the following code that computes square numbers:
 
@@ -1087,7 +1096,7 @@ print(d)
 # Prints: {'a': 1, 'b': 2, 'c': 3}
 ```
 
-## Functions Introduction
+## Functions: Introduction
 
 Python functions are defined using the `def` keyword. For example:
 
@@ -1343,7 +1352,7 @@ from package_name.module_name import *
 
 The `__all__` variable defines the modules that you should import to a client who requested an [import wildcard form](https://docs.python.org/3/tutorial/modules.html?highlight=__all__#importing-from-a-package).
 
-### Reference between modules and packages
+### Reference between Modules in Packages
 
 There is a specific way to use relative addressing schemas between modules via intra-package reference schema. The intra-package reference imports use leading dots to indicate the current and parent packages involved in the relative import. 
 
@@ -1404,7 +1413,7 @@ Functions can be called using keyword arguments of the form `kwarg = value`. Key
 * All the keyword arguments passed must match one of the arguments accepted by the function
 * No argument may receive a value more than once
 
-### Syntax to split Positional and Keyword Arguments
+### Syntax to Split Positional and Keyword Arguments
 
 ```python
 def f(pos_only, pos_only_2, /, pos_or_kwd, *, kwd_only_1, kwd_only_2):
@@ -1708,7 +1717,7 @@ print(next(a))   # run to second yield statement, etc.
 # Next yield will throw a StopIteration exception    
 ```
 
-# Standard Tools and some De Facto Libraries for Computing and Visualize
+# Standard Tools and Some Libraries for Computing and Visualize
 
 ## Package Managers
 
@@ -2052,7 +2061,7 @@ h = np.linspace(10, 20, 5)  # Create an array with 5 equally spaced values
 print(h)                    # Prints "[[10. 12.5 15. 17.5 20.]"
 ```
 
-### Array indexing
+### Array Indexing
 
 Numpy offers several ways to index into arrays. Similar to Python lists, numpy arrays can be sliced. Since arrays may be multidimensional, you must specify a slice for each dimension of the array. Example:
 
@@ -2131,7 +2140,7 @@ b = a [..., np.newaxis]
 print(b.shapea)
 ```
 
-### Boolean array indexing
+### Boolean Array Indexing
 
  Boolean array indexing lets you pick out arbitrary elements of an array. Frequently this type of indexing is used to select the elements of an array that satisfy some condition. Here is an example:
 
@@ -2170,7 +2179,7 @@ x = np.array([1, 2], dtype=np.int64)   # Force a particular datatype
 print(x.dtype)                         # Prints "int64"
 ```
 
-### Array math
+### Array Math
 
 Basic mathematical functions operate elementwise on arrays, and are available both as operator overloads and as functions in the numpy module:
 
@@ -2209,7 +2218,7 @@ print(np.sqrt(x))
 print(x**0.5)
 ```
 
-### Important notice about the syntax for Matrix Multiplication
+### Important Notice About the Syntax for Matrix Multiplication
 
 Note that unlike MATLAB, **`*`** is elementwise multiplication, not matrix multiplication. 
 
@@ -2242,7 +2251,7 @@ print(np.dot(x, y))
 print(x@y)
 ```
 
-### Utility functions in NumPy
+### Utility Functions in NumPy
 
 Numpy provides many useful functions for performing computations on arrays; one of the most useful is **`sum`**:
 ```python
@@ -2502,7 +2511,7 @@ The C compiler will see the original declaration in math.h at compile time. Impo
 
 It is possible to declare and call into any C library as long as the module that Cython generates is properly linked against the shared or static library.
 
-### Example of function Integration in Cython and Python
+### Example of Function Integration in Cython and Python
 ```
 # Source File: integration.pyx 
 # Depencies:
@@ -2561,10 +2570,10 @@ def integrate_f_std(a, b, N):
 
 # References
 
-## Introduction document
+## Introduction Document
 [1] Python Tutorial: https://docs.python.org/3/tutorial/
 
-## Reference official materials
+## Official Materials
 [2] Python Language Reference: https://docs.python.org/3.8/reference/index.html
 
 [3] Built-in Types: https://docs.python.org/3/library/stdtypes.html 
@@ -2577,7 +2586,7 @@ def integrate_f_std(a, b, N):
 
 [7] Python standard library: https://docs.python.org/3/library/index.html#library-index
 
-## Mapping concepts from other languages/libraries to Python language/libraries
+## Mapping Concepts from other Languages to Python
 
 [8] Matlab/Numpy translation: http://mathesaurus.sourceforge.net/matlab-numpy.html
 
