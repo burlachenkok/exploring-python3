@@ -140,7 +140,7 @@ Python is a popular scripting language, even though it has plenty of technical l
 
 You can check its popularity in this world from these sources:
 
-* The [Tiobe-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity.
+* The [Tiobe-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity on their own metrics.
 * The [Google-Trends](https://trends.google.com/trends/explore?date=now%201-d&q=%2Fm%2F05z1_,%2Fm%2F0jgqg,C%23,%2Fm%2F07sbkfb,BASH&hl=r), which shows the relative interest in different topics over time in society.
 
 With this note, the authors have several objectives:
