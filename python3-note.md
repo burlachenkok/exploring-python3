@@ -1,4 +1,4 @@
-# Technical Note. Exploring Python3 Language from Computer Science Perspective [Draft]
+# Technical Note. Exploring Python3 Language from Computer Science Perspective 
 
 [Konstantin Burlachenko](https://burlachenkok.github.io/), et al.
 
@@ -6,7 +6,7 @@
 
 Correspondence to: konstantin.burlachenko@kaust.edu.sa
 
-Revision Update: July 26, 2023 [v0.2]
+Revision Update: July 29, 2023 [v0.3. Working Draft.]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -191,7 +191,7 @@ There are several resources about the subject:
 5. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here: https://docs.python.org/3/reference/grammar.html
 
 6. If you really need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
- 
+
 Finally please take a look into materials from [references](#references) section of this document. It contains short bibliography, which can also be useful.
 
 # Backgrounds
@@ -483,6 +483,7 @@ A Logical line of a program is constructed from one or more physical lines by fo
   * Expressions in square brackets `[]`
   * Expressions in curly braces `{}`
   
+
 When you are inside such an expression you can split your expression over more than one physical line without using the backslash symbol. 
 
 A Python script is read by a parser. The parsing of some pieces of Python source code (e.g. of the function) is performed only at the moment of the direct call of this function.
@@ -509,7 +510,7 @@ https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 * **Ellipsis.** There is a single object with this value. This object is accessed through the literal `...`. If the expression `...` is used inside the condition, then `...` is implicitly converted into `True`.
 
 * **NoneType.** This type has a single value and there is a single object with this value. This object is accessed through the built-in name `None`. It is used to signify the absence of a value in many situations. Also, it is returned from functions that do not explicitly return anything. If this expression is used inside the condition, then `...` is implicitly converted into `False`.
- 
+
 * **Integers (int)**. The type that is used to represent integers in Python interpreter does not have any fixed number of bits. Instead, it has a varying size. In this sense, an integer has an unlimited range. You can practically hold as big an integer as you want until you start having problems with virtual memory.
 
 * **numbers. Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerics, such a statement is deeply wrong and sometimes laughable only in the case of writing software that takes care of compute time and memory footprint.
@@ -953,7 +954,7 @@ Set comprehensions in Python:
 Dictionary comprehensions in Python:
 ```python
 {someKey:someValue for someKey, someValue in someDict.items() if condition(someKey, someValue)}
-``` 
+```
 
 Generator comprehensions in Python: 
 ```python
@@ -1029,8 +1030,8 @@ a = (12,)
 Empty tuples are constructed by an empty pair of parentheses. Example:
 ```python
  a = ()
- ```
- 
+```
+
 You can create a tuple from the list:
  ```python
 b = tuple([1,2,23])
@@ -2413,7 +2414,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
 3. Next step you can append extra modifiers to functions. Example:
     ```python
     #!/usr/bin/env python3
-
+    
     # Can not be called from Python
     cdef sumCDef(): 
       cdef int i
@@ -2421,7 +2422,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
       for i in range(10):
         s += i
       return s
-
+    
     # Can be called from Python and Cython
     def sumDef(): 
       cdef int i
@@ -2429,7 +2430,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
       for i in range(10):
         s += i
       return s
-
+    
     # Can be called from Python and Cython effectively
     cpdef sumCpDef(): 
       cdef int i
