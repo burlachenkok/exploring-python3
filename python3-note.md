@@ -138,9 +138,11 @@ Revision Update: July 26, 2023 [v0.2]
 
 If you search for "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator Guido Van Rossum. You can find it here: https://docs.python.org/3/tutorial/index.html. This tutorial is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language, even though it has some limitations common to other scripting languages (see this [link](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages) for more details) and it lacks an official ISO/IEEE standard. You can check its popularity from these sources:
+Python is a popular scripting language, even though it has plenty of technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages), and it lacks an official [ISO/IEEE](https://www.iso.org) standard. 
 
-* The [Tiobe-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity.
+You can check its popularity in this world from these sources:
+
+* The [Tiobe-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity on their own metrics.
 * The [Google-Trends](https://trends.google.com/trends/explore?date=now%201-d&q=%2Fm%2F05z1_,%2Fm%2F0jgqg,C%23,%2Fm%2F07sbkfb,BASH&hl=r), which shows the relative interest in different topics over time in society.
 
 With this note, the authors have several objectives:
@@ -182,12 +184,14 @@ There are several resources about the subject:
 
 2. Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
 
-3. Python Interpreter is distributed with various standard modules which are called Python Standard Library: https://docs.python.org/3/library/index.html. For example, this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation that described Standard Types.
+3. Python Interpreter is distributed with various standard modules called Python Standard Library: https://docs.python.org/3/library/index.html. For example, this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation that described Standard Types.
 
-4. CPython interpreter web-site contains full text search over Python documentation. You can use this utility both in terms of learning and both in terms of finding details: https://docs.python.org/3/search.html
+4. CPython interpreter website contains full text search over Python documentation. You can use this utility both in terms of learning and both in terms of finding details: https://docs.python.org/3/search.html
 
 5. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here: https://docs.python.org/3/reference/grammar.html
 
+6. If you really need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
+ 
 Finally please take a look into materials from [references](#references) section of this document. It contains short bibliography, which can also be useful.
 
 # Backgrounds
