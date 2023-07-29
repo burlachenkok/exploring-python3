@@ -11,7 +11,7 @@ Revision Update: July 26, 2023 [v0.2]
 © 2023 Konstantin Burlachenko, all rights reserved.
 
 ----
-
+- [Technical Note. Exploring Python3 Language from Computer Science Perspective [Draft]](#technical-note-exploring-python3-language-from-computer-science-perspective--draft-)
 - [Introduction](#introduction)
   * [What is Python](#what-is-python)
   * [Where to Learn About Python Officially](#where-to-learn-about-python-officially)
@@ -120,6 +120,8 @@ Revision Update: July 26, 2023 [v0.2]
     + [About Cython Language](#about-cython-language)
     + [Easy Interoperability with Standard C Library](#easy-interoperability-with-standard-c-library)
     + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
+  * [Python Profiling](#python-profiling)
+    + [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
 - [References](#references)
   * [Introduction Document](#introduction-document)
   * [Official Materials](#official-materials)
@@ -2566,6 +2568,51 @@ def integrate_f_std(a, b, N):
 #   import integration
 #   integration.intergrate_f(0.0,100.0,1000)
 #   integration.integrate_f_std(0.0,100.0,1000)
+```
+
+## Python Profiling
+
+### Profiling Python Code with Python Tools
+
+Python interpreter has built-in profiling tools: [cProfile](https://docs.python.org/3/library/profile.html#module-cProfile) and [profile](https://docs.python.org/3/library/profile.html#module-profile). Invocation of these profiling tools for your code snippet can be done in the following way. Example:
+
+```python
+#!/usr/bin/env python3
+
+# Source: sum_with_numpy.py
+import numpy as np
+
+for i in range(10000):
+    z = np.arange(100000).sum()
+```
+
+To launch the Python profile you should invoke the following:
+```bash
+python -m cProfile sum_with_numpy.py 
+```
+or
+```bash
+python -m profile sum_with_numpy.py 
+```
+Information about text report format which is dumped into standard output can be read from [python profile module](https://docs.python.org/3/library/profile.html#module-profile) documentation. The main values are the following:
+
+* **ncalls** - the number of calls.
+* **tottime** -  the total time spent in the given function, excluding time made in calls to sub-functions.
+* **cumtime** - is the cumulative time spent in this and all subfunctions
+
+For most use cases the most prevalent way to measure performance is using the [cProfile](https://docs.python.org/3/library/profile.html#module-cProfile) module.
+
+Another built-in tool for profiling small code snippets from Python interpreters is [timeit](https://docs.python.org/3/library/timeit.html). It can be invoked like this and used for measuring the time for execution of Python statement from several repeating trials:
+```bash
+python -m timeit --number 200 --setup "" --unit=sec "'-'.join([str(n) for n in range(1)])"
+```
+
+The timeit can be used not only as a separate tool, but can be used inside the Python code itself:
+
+```python
+import timeit
+#....
+timeit.timeit("'-'.join([str(n) for n in range(1)])", setup="", number=1000000)
 ```
 
 # References
