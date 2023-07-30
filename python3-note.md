@@ -1,4 +1,4 @@
-# Technical Note. Exploring Python3 Language from Computer Science Perspective 
+# Technical Note. Exploring Python3 Language from Computer Science Perspective [Draft] 
 
 [Konstantin Burlachenko](https://burlachenkok.github.io/), et al.
 
@@ -11,7 +11,6 @@ Revision Update: July 29, 2023 [v0.3. Working Draft.]
 © 2023 Konstantin Burlachenko, all rights reserved.
 
 ----
-- [Technical Note. Exploring Python3 Language from Computer Science Perspective [Draft]](#technical-note-exploring-python3-language-from-computer-science-perspective--draft-)
 - [Introduction](#introduction)
   * [What is Python](#what-is-python)
   * [Where to Learn About Python Officially](#where-to-learn-about-python-officially)
@@ -122,6 +121,7 @@ Revision Update: July 29, 2023 [v0.3. Working Draft.]
     + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
   * [Python Profiling](#python-profiling)
     + [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
+    + [Profiling with Tools Available in Operation System: Windows OS](#profiling-with-tools-available-in-operation-system-windows-os)
 - [References](#references)
   * [Introduction Document](#introduction-document)
   * [Official Materials](#official-materials)
@@ -2620,6 +2620,135 @@ import timeit
 timeit.timeit("'-'.join([str(n) for n in range(1)])", setup="", number=1000000)
 ```
 
+### Profiling with Tools Available in Operation System: Windows OS
+
+From the perspective of Operation System (OS) the Python Process is just a program operating in userspace. In modern OS the processes can not issue direct requests to BIOS and all communication with OS happens via System Calls. So even though your program is not built from some source code:
+* You are using precompiled/prebuilt version of the Python interpreter
+* You are using precompiled/prebuilt version of dynamic libraries distributed with packages
+* You have also the source code of your Pyhon program that is interpreted by the interpreter on the fly.
+
+To get a general picture into executed Python process with your scripts - one way is to observe it from system calls characteristics. To take hands-on experience and also analyze overheads from Python, for example, you can use the following code snippet:
+
+```python
+#!/usr/bin/env python3
+
+# filename: test.py
+
+import numpy as np
+import time
+
+s = time.time()
+for i in range(10000):
+    z = np.arange(100000).sum()
+    if i == 10000-1:
+        print("Sum: ", z)
+e = time.time()
+print("Elapsed Time: ", (e-s)*1000, "milliseconds")
+
+input()
+```
+
+Hot to run:
+```bash
+python3 test.py
+```
+
+For comparison, you can create equivalent code in C++:
+
+```cpp
+#include <iostream>
+#include <chrono>
+#include <iterator>
+// #include <windows.h>
+
+namespace chrono = std::chrono;
+
+int main()
+{
+    auto start = chrono::steady_clock::now();
+    for (size_t i = 0; i < 10000; ++i)
+    {       
+        int32_t sum = 0;
+        for (int32_t j = 0; j < 100000; ++j)
+            sum += j;
+
+        if (i == 10000 -1)
+            std::cout << "Sum: " << sum << "\n";
+    }
+    auto end = chrono::steady_clock::now();
+
+    std::cout << "Eclapsed Time: " << chrono::duration_cast<chrono::milliseconds>(end - start).count() << " milliseconds\n";
+    
+    //void * pp =VirtualAlloc(0, 1024 * 1024 * 100, MEM_RESERVE, PAGE_READWRITE);
+    //void* pp2 = VirtualAlloc(0, 1024 * 1024 * 400, MEM_RESERVE|MEM_COMMIT, PAGE_READWRITE);
+
+    getchar();
+    return 0;
+}
+```
+
+Hot to build and run:
+```bash
+build_and_run.bat
+```
+
+Content of `build_and_run.bat`:
+```bash
+:: Even to build simple code snippets you should have a collection of programs (toolchain) that will be used together to build various applications for OS
+::  https://learn.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-170
+
+:: For compiler flags references:
+::   https://learn.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-alphabetically?view=msvc-170
+::   https://learn.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-by-category?view=msvc-170
+
+:: Execute vcvarsall.bat from Windows SDK or Visual Studio. 
+:: Default Path for Visual Studio 2022
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64
+
+echo ***************IMPORTING MSVC TOOLCHAIN IS FINISHED************************************************
+:: Compile and link test.cpp to executable
+cl.exe /std:c++latest /EHsc /MT /Ot /O2 /GL test.cpp
+echo ***************COMPILING/LINK IS FINISHED**********************************************************
+
+test.exe
+```
+
+
+At the end of scipt, there is an `input()` which will wait for input, and similar to C++ code there is a blocking for waiting input from stdin and processes will be alive. For Windows OS collecting a large number of counters is possible via the [SysInternals Suite](https://learn.microsoft.com/en-us/sysinternals/) created by [Mark Russinovich](https://en.wikipedia.org/wiki/Mark_Russinovich):
+
+* [Procmon](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) will allow you to collect statistics and exact systems calls that process (such as `python.exe`) did with Files, Registry, Network, Load Dynamic Libraries. It also allows us to inspect how long call stacks are and inspect during the timeline of execution where there is a bottleneck - I/O, Memory, and CPU Computing.
+
+* [Procexplorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer). It allows inspecting the name of files that are currently open to specific processes (such as `python.exe`) and, a list of dynamic libraries (`.dll`) mapped into virtual images of process (such as `python.exe`).
+
+* [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap). It demonstrates a process of virtual and physical memory.
+
+
+Please be aware. These are pretty advanced and powerful profiling/inspection tools that can be used to find malware software in the OS. If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the Sysinternals Tools
+](https://www.youtube.com/watch?v=A_TPZxuTzBU&ab_channel=MarkRussinovich). 
+
+Python is used also by people without a CS background but with another background (biology, chemistry, etc.). Terminology used in these tools has a OS system flavor. And below we will present some terminology used in these tools:
+
+>
+> **User Space Time** - your Python interpreter, is not one thing inside Windows OS (press CTRL+Esc and you will see it). User space-time is the time that your process (python.exe) has spent in userspace. This time excludes the time that the system spends on another process.
+>
+> **Kernel Space Time** - your Python interpreter and any program will request OS to open the file. After the moment you have initialized the System Call and you form the request to OS (in fact I/O Dispatcher) you execution thread that executes code inside Python interpreter, compiled C libraries will be blocked and will be sleep. In this moment on behalf of this thread, the OS will spend time executing logic inside the kernel. At least some operations that OS did on behalf of your thread after I/O Dispatching to correct the Driver will take some time. This time is Kernel Space-Time.
+>
+> **Working Set** - *working set* or *pinned memory* or *non-paged memory* is the same concept which means that memory.
+>
+> **Virtual Memory** - It is a concept that separates a program's view of memory from the system's physical memory. In general, It is an operating system that decides when to store the program's code and data in physical memory and when to store it in some file.
+>
+> **Commit Memory** - Almost always the tools from SysInternals report the Committed Virtual Memory that your process has requested. The *commit limit* is the sum of physical memory and the sizes of the paging files used for backing up your data. In Windows OS there is another type of memory *"reserved virtual memory"*, which is a memory address reserved by the application, but the application does not (and ca not) use it, until memory is committed. When a process commits a region of virtual memory, the operating system guarantees that it can maintain all the data the process stores in the memory either in physical memory or on disk.
+>
+> **Physical Memory** - The installed physical memory in the computer by the Windows memory manager populates memory with the code and data from all processes, device drivers, and the OS. The amount of memory can affect performance, because when data or code a process or the operating system needs is not present, the memory manager must bring it in from disk. 
+>
+> **System Virtual Memory Limit** -  the sum of roughly the size of physical memory plus the maximum configured size of any paging files.
+>
+> **Nonpaged Memory (Kernel) Pool** - authors of drivers for Windows OS have two options for where to allocate memory. One of these resources is a nonpaged memory pool. The OS kernel and drivers use a nonpaged pool to store data that might be accessed when the system can't handle page faults. 
+The kernel enters such a state when it executes interrupt service routines (ISRs) and deferred procedure calls (DPCs). A nonpaged pool is always kept present in physical memory. Information About this value can be obtained from Process Explorer->System Information->Memory".
+>
+> **Paged (Kernel) Pool** - Paged pool is used by OS and device drivers to situation when can store data that is backed in the paging file, and not necessarily presented in physical memory. Information About this value can be obtained from Process Explorer->System Information->Memory".
+
+
 # References
 
 ## Introduction Document
@@ -2644,7 +2773,7 @@ timeit.timeit("'-'.join([str(n) for n in range(1)])", setup="", number=1000000)
 
 ## Tutorials for Libraries
 
-[9] http://cs231n.github.io/python-numpy-tutorial/
+[9] NumPy: http://cs231n.github.io/python-numpy-tutorial/
 
 ## How To
 
