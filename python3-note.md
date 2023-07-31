@@ -2716,14 +2716,15 @@ test.exe
 
 At the end of scipt, there is an `input()` which will wait for input, and similar to C++ code there is a blocking for waiting input from stdin and processes will be alive. For Windows OS collecting a large number of counters is possible via the [SysInternals Suite](https://learn.microsoft.com/en-us/sysinternals/) created by [Mark Russinovich](https://en.wikipedia.org/wiki/Mark_Russinovich):
 
-* [Procmon](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) will allow you to collect statistics and exact systems calls that process (such as `python.exe`) did with Files, Registry, Network, Load Dynamic Libraries. It also allows us to inspect how long call stacks are and inspect during the timeline of execution where there is a bottleneck - I/O, Memory, and CPU Computing.
+* [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) will allow you to collect statistics and exact systems calls that process (such as `python.exe`) did with Files, Registry, Network, Load Dynamic Libraries. It also allows us to inspect how long call stacks are and inspect during the timeline of execution where there is a bottleneck - I/O, Memory, and CPU Computing.
 
-* [Procexplorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer). It allows inspecting the name of files that are currently open to specific processes (such as `python.exe`) and, a list of dynamic libraries (`.dll`) mapped into virtual images of process (such as `python.exe`).
+* [Process Explorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer). It allows inspecting the name of files that are currently open to specific processes (such as `python.exe`) and, a list of dynamic libraries (`.dll`) mapped into virtual images of process (such as `python.exe`).
 
-* [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap). It demonstrates a process of virtual and physical memory.
+* [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap). It demonstrates a process of virtual memory map.
 
+* [RAMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/RAMMap). It demonstrates a distribution of physical DRAM memory among parts in Windows OS.
 
-Please be aware. These are pretty advanced and powerful profiling/inspection tools that can be used to find malware software in the OS. If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the Sysinternals Tools
+Please be aware. Even though these tools have a nice GUI interface, using them if you have a lack of Operation Systems background may not be easy at the beginning. These tools are powerful profiling/inspection tools that can be used to find malware software in the OS. If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the SysInternals Tools
 ](https://www.youtube.com/watch?v=A_TPZxuTzBU&ab_channel=MarkRussinovich). 
 
 Python is used also by people without a CS background but with another background (biology, chemistry, etc.). Terminology used in these tools has a OS system flavor. And below we will present some terminology used in these tools:
