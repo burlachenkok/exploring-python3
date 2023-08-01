@@ -124,6 +124,7 @@ Revision Update: July 29, 2023 [v0.3. Working Draft.]
     + [Profiling with Tools Available in Operation System: Windows OS](#profiling-with-tools-available-in-operation-system--windows-os)
     + [Understand which underlying Dynamic Libraries are Loaded into the Python interpreter](#understand-which-underlying-dynamic-libraries-are-loaded-into-the-python-interpreter)
     + [Profiling with Tools Available in Operation System: Linux OS](#profiling-with-tools-available-in-operation-system--linux-os)
+- [Acknowledgements](#acknowledgements)
 - [References](#references)
   * [Introduction Document](#introduction-document)
   * [Official Materials](#official-materials)
@@ -2908,6 +2909,15 @@ Unlike the executable and dynamic library format in Windows OS (PE format), the 
   ```bash
   objdump -h /usr/bin/python3
   ```
+
+# Acknowledgements
+
+Konstantin Burlachenko, would like to acknowledge:
+
+* The original author and contributors to the official [Python Tutorial](https://docs.python.org/3/tutorial/index.html).
+
+* [Modar Alfadly](https://cemse.kaust.edu.sa/cs/people/modar-alfadly) for providing in-depth PyTorch, NumPy, Python Tutorials during the course [Deep Learning for Visual Computing, CS323](https://registrar-programguide.kaust.edu.sa/2021-2022/Program-Guide/Courses/CS-Computer-Science/300/CS-323) with [prof. Bernard Ghanem](https://www.bernardghanem.com/).
+
 
 # References
 
