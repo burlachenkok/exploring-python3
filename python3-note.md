@@ -121,7 +121,9 @@ Revision Update: July 29, 2023 [v0.3. Working Draft.]
     + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
   * [Python Profiling](#python-profiling)
     + [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
-    + [Profiling with Tools Available in Operation System: Windows OS](#profiling-with-tools-available-in-operation-system-windows-os)
+    + [Profiling with Tools Available in Operation System: Windows OS](#profiling-with-tools-available-in-operation-system--windows-os)
+    + [Understand which underlying Dynamic Libraries are Loaded into the Python interpreter](#understand-which-underlying-dynamic-libraries-are-loaded-into-the-python-interpreter)
+    + [Profiling with Tools Available in Operation System: Linux OS](#profiling-with-tools-available-in-operation-system--linux-os)
 - [References](#references)
   * [Introduction Document](#introduction-document)
   * [Official Materials](#official-materials)
@@ -131,7 +133,6 @@ Revision Update: July 29, 2023 [v0.3. Working Draft.]
   * [Repositories](#repositories)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 ----
 
 # Introduction
@@ -2627,7 +2628,7 @@ From the perspective of Operation System (OS) the Python Process is just a progr
 * You are using precompiled/prebuilt version of dynamic libraries distributed with packages
 * You have also the source code of your Pyhon program that is interpreted by the interpreter on the fly.
 
-To get a general picture into executed Python process with your scripts - one way is to observe it from system calls characteristics. To take hands-on experience and also analyze overheads from Python, for example, you can use the following code snippet:
+To get a general picture of the executed Python process with your scripts - one way is to observe it from system call characteristics. To take hands-on experience and also analyze overheads from Python, for example, you can use the following code snippet:
 
 ```python
 #!/usr/bin/env python3
@@ -2720,14 +2721,14 @@ At the end of scipt, there is an `input()` which will wait for input, and simila
 
 * [Process Explorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer). It allows inspecting the name of files that are currently open to specific processes (such as `python.exe`) and, a list of dynamic libraries (`.dll`) mapped into virtual images of process (such as `python.exe`).
 
-* [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap). It demonstrates a process of virtual memory map.
+* [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap). It demonstrates a process of the virtual memory map.
 
 * [RAMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/RAMMap). It demonstrates a distribution of physical DRAM memory among parts in Windows OS.
 
 Please be aware. Even though these tools have a nice GUI interface, using them if you have a lack of Operation Systems background may not be easy at the beginning. These tools are powerful profiling/inspection tools that can be used to find malware software in the OS. If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the SysInternals Tools
 ](https://www.youtube.com/watch?v=A_TPZxuTzBU&ab_channel=MarkRussinovich). 
 
-Python is used also by people without a CS background but with another background (biology, chemistry, etc.). Terminology used in these tools has a OS system flavor. And below we will present some terminology used in these tools:
+Python is used also by people without a CS background but with another background (biology, chemistry, etc.). The terminology used in these tools has an OS system flavor. And below we will present some terminology used in these tools:
 
 >
 > **User Space Time** - your Python interpreter, is not one thing inside Windows OS (press CTRL+Esc and you will see it). User space-time is the time that your process (python.exe) has spent in userspace. This time excludes the time that the system spends on another process.
@@ -2749,6 +2750,164 @@ The kernel enters such a state when it executes interrupt service routines (ISRs
 >
 > **Paged (Kernel) Pool** - Paged pool is used by OS and device drivers to situation when can store data that is backed in the paging file, and not necessarily presented in physical memory. Information About this value can be obtained from Process Explorer->System Information->Memory".
 
+Process Monitor allows you to capture your application (as a Python interpreter process `python.exe`) and obtain the following statistics:
+* Windows Registry Access Statistics
+* File Summary Statistics
+* Process Activity Timelines
+* Amount of sent and received bytes via Communication Network
+* Stack Summary. That gives you the view of stacks.
+
+Process Monitor not only produce statistic but produces pretty detailed information about system calls devoted to Registry, Filesystem, Network, Creation of Threads inside your Python interpreter, and Load Dynamic Libraries.
+
+Process Monitor not only detect one of these event type, but also provide you with a calling stack at the moment of call, and arguments for a call (such as name of file in case of file activity) and export this information into Comma Separated Values (CSV) text file, that can be opened e.g. in Office tools such as Microsoft Excel.
+
+In addition to getting aggregated statistics about some events, the Tools->Count Occurrences can be obtained. 
+
+For example during launching this Python code in an interactive session:
+```python
+import numpy
+```
+* The path: `C:\Program Files\python3.9\DLLs` has been used `507` times.
+* Total it was `575` accesses to Windows Registry
+* Total it was `7982` accesses to File System
+* Number of sent and received bytes across the network: `0`
+* From analysis of operations duration the most time is spent File I/O access, which unfortunately has no relation to `numpy` itself. Rather than that these files are dynamic libaries that are required to support Python interpreter by itself.
+* Interactive session during its run has used `27` Megabytes of physical DRAM.
+* The interpreter first carried approximately `4500` file operations, and after that, it carried `3400` file operations.
+* Interactive session during its run has used `500` Megabytes of virtual committed memory. The pretty horrible aspect is that this memory once Numpy has been imported is not freed in any way. This virtual memory is committed by the process.
+
+If open VMMap it's possible to observe that after `import numpy` the 66 MBytes is a memory dedicated to images (i.e. executable file `python.exe` intepreter and loaded dynamic libraries). The committed `500` Megabytes are private data specific for your interpreter, for numpy, and for libraries under which the python interpreter and numpy python module are dependent.
+
+### Understand which underlying Dynamic Libraries are Loaded into the Python interpreter
+
+Next, we want to highlight how to understand what binaries implement specific functionality. It can provide information for you about versions, names, and design choices for the implementation of specific module functionality.
+
+Python interpreter is a binary application working in userspace. In its core Python interpreter interpreted commands. The big extra functionality is obtained from using [Python Modules](https://packaging.python.org/en/latest/glossary/#term-Module) which as said in [Python Glossary](https://packaging.python.org/en/latest/glossary/) can be one of two types:
+  * [Pure Module](https://packaging.python.org/en/latest/glossary/#term-Pure-Module) written in Python
+  * [Extension Module](https://packaging.python.org/en/latest/glossary/#term-Extension-Module) written in low-level (in Python terminology) C/C++/Java/etc.
+
+In the case of using modules written in compiled languages, they will be loaded in the form of a shared dynamic library object (.so) file for Linux or a DLL Windows. This dynamic library has a `.pyd` file extension. In terms of flexibility, this is a good design for creating software, but is such design good or bad from the general perspective of creating software (especially when time is computation time is important) is out of the scope of this note. For example to identify which Dynamic Libraries implement `numpy` functionality you can do the following:
+
+1. Open Python interpreter: `python`
+2. Dump list of used dynamic libraries in the python process with [Listdlls](https://learn.microsoft.com/en-us/sysinternals/downloads/listdlls): `listdlls.exe python.exe -v > a.txt`
+3. Import numpy in python interpreter: `import numpy`
+4. Dump updated list of used dynamic libraries in the python process with [Listdlls](https://learn.microsoft.com/en-us/sysinternals/downloads/listdlls): `listdlls.exe python.exe -v > b.txt`
+5. Use one of the diff tools ([Araxis Merge](https://www.araxis.com/merge/index.en) of GNU Diff in Windows OS available as a part of [MSYS2](https://www.msys2.org/)) to compare a.txt and b.txt: `diff a.txt b.txt`.
+
+While doing this in my Machine with installed Numpy 1.21.4 I can observe that one of the load libraries is `openBLAS`. From this, we can conclude that Numpy in its implementation leverages this libray. If you want to look into the name of symbols of specific dynamic libraries under Windows it's possible to use [dll export viewer](https://www.nirsoft.net/utils/dll_export_viewer.html). If you plan to automotize this process and write script in Windows Batch, Bash, or Python you should use the [dumpbin](https://learn.microsoft.com/en-us/cpp/build/reference/dumpbin-reference?view=msvc-170) tool from Microsoft MSVC Toolchain. For example in the following way:
+
+
+* Activate Environment from Windows Command Line: 
+  ```bash
+  %comspec% /k "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64
+  ```
+
+* List of symbols:
+  ```bash
+  dumpbin /exports "C:\Program Files\python3.9\lib\site-packages\numpy\.libs\libopenblas.XWYDX2IKJW2NMTWSFYNGFUWKQU3LYTCZ.gfortran-win_amd64.dll"
+  ```
+
+* Module preferred image base address:
+  ```bash
+  dumpbin /headers "C:\Program Files\python3.9\lib\site-packages\numpy\.libs\libopenblas.XWYDX2IKJW2NMTWSFYNGFUWKQU3LYTCZ.gfortran-win_amd64.dll"  | grep "image base"
+  ```
+
+* Target compute architecture:
+  ```bash
+  dumpbin /headers "C:\Program Files\python3.9\lib\site-packages\numpy\.libs\libopenblas.XWYDX2IKJW2NMTWSFYNGFUWKQU3LYTCZ.gfortran-win_amd64.dll" | grep headers
+  ```
+
+### Profiling with Tools Available in Operation System: Linux OS
+
+The close-by concepts in terms of userspace application are presented in Linux OS with slightly changed terminology:
+
+> **Two most important types of memory for profiling application:**
+>
+> * Current resident set size (VmRSS) - is analogous to Windows OS Working set and represents allocated memory from DRAM for your application.
+>
+> * Current virtual memory size (VmSize) - is currently allocated memory for your process.
+
+To obtain this information in Linux OS after launching your Python interpreter:
+```python
+import numpy
+```
+
+To obtain information about memory consumed by this process if your Python interpreter is only one Python interpreter currently running in the system then just call:
+```bash
+cat /proc/$(pidof python)/status
+```
+
+
+Next To find out which shared libraries a process is currently using, we can list the
+contents of the corresponding Linux-specific files you can make:
+```bash
+cat /proc/$(pidof python)/status
+```
+This file demonstrated the memory segments and libraries mapped by a program. There is no information about size. This information should be derived from you somehow. Specifically, each line corresponding at the beginning contains a pair of hyphen-separated numbers indicating the virtual address range (in hexadecimal format) at which the memory segment is mapped.
+
+In Linux OS the OS concept by design is tried to be represented as files. Dynamic (Shared) Libraries are also files. And you can obtain a list of all open files with the following command:
+```bash
+lsof -p `pidof python`
+```
+
+The lsof command can also be used to look into open Internet network connections in the system:
+```bash
+lsof -i
+```
+
+The Analogous program to Process Monitor under Linux OS is system util `strace`. It allows monitoring system calls. For example, you call it in the following way:
+```bash
+strace python -c "import numpy" 2>&1 | grep .so | grep blas
+```
+
+Once I have identified that `import numpy` loads the following shared library `/usr/lib/x86_64-linux-gnu/libblas.so.3` I can make several things:
+
+* You can view the dependencies for a shared library ( or an executable file through) `ldd` system util. It will show dependencies on other `lib*.so` dynamic libraries. Very often you can see the following dependencies:
+  * **libc.so.6** - is the standard library of C language functions ([ISO C11](https://www.iso.org/standard/57853.html)), implementaion of [POSIX.1-2008](https://pubs.opengroup.org/onlinepubs/9699919799.2008edition/functions/contents.html), and another OS specific APIs.
+  * **ld-linux.so.2** - dynamic linking library for ELF programs.
+
+  Example:
+  ```bash
+  ldd /usr/lib/x86_64-linux-gnu/libblas.so.3
+  ```
+
+* Next you can inspect what symbols are actually in some library. For example with the following command you can observe that libc.so.6 is not only the C runtime library:
+  ```bash
+  objdump -T /lib/x86_64-linux-gnu/libc.so.6 | grep -E "ioctl|pthread_exit|malloc$"
+  ```
+
+> The objdump has the following format:
+>
+>**1st** column - the symbol's value, sometimes referred to as its address.
+>
+>**2nd** column - flags. Some of them:  
+>* 'l'  means symbols visible only within a >particular file being linked (local scope).
+>* 'g' means symbols that can be referenced from within functions located in other files (global scope) 
+>* 'd' debugging symbol 
+>* 'D' dynamic symbol 
+>* 'F' symbol is the name of the function 
+>* 'O' symbol is the name of the object file 
+>
+>**3rd** column can be represented in several options for a symbol:
+>
+> * It is the name of the section in which the symbol is defined 
+> * It has name *ABS* if essentially there is no section and address of Symbol is absolute address. 
+> * It has name *UND* if symbol currently is not defined.An will defined later.
+>
+> **4th** column - alignment.
+>
+> **5th** column - symbol's name is displayed.
+
+* You can list the imported symbols by binary/ dynamic library in the following way:
+  ```bash
+  objdump -T <file>|grep "\*UND\*"
+  ```
+Unlike the executable and dynamic library format in Windows OS (PE format), the Linux ELF format does not contain a name binding to a specific library.
+
+* You can view a summary of the available sections in the binary program. Example:
+  ```bash
+  objdump -h /usr/bin/python3
+  ```
 
 # References
 
