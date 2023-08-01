@@ -6,7 +6,7 @@
 
 Correspondence to: konstantin.burlachenko@kaust.edu.sa
 
-Revision Update: July 29, 2023 [v0.3. Working Draft.]
+Revision Update: July 29, 2023 [v0.4. Working Draft.]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -119,11 +119,15 @@ Revision Update: July 29, 2023 [v0.3. Working Draft.]
     + [About Cython Language](#about-cython-language)
     + [Easy Interoperability with Standard C Library](#easy-interoperability-with-standard-c-library)
     + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
-  * [Python Profiling](#python-profiling)
-    + [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
-    + [Profiling with Tools Available in Operation System: Windows OS](#profiling-with-tools-available-in-operation-system--windows-os)
+  * [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
+  * [Profiling Python Process with Tools Available in Operation Systems: Windows OS](#profiling-python-process-with-tools-available-in-operation-systems--windows-os)
+    + [SysInternals Suite from Mark Rusinovich, et al.](#sysinternals-suite-from-mark-rusinovich--et-al)
     + [Understand which underlying Dynamic Libraries are Loaded into the Python interpreter](#understand-which-underlying-dynamic-libraries-are-loaded-into-the-python-interpreter)
-    + [Profiling with Tools Available in Operation System: Linux OS](#profiling-with-tools-available-in-operation-system--linux-os)
+  * [Profiling Python Process with Tools Available in Operation Systems: Linux OS](#profiling-python-process-with-tools-available-in-operation-systems--linux-os)
+    + [About Valgrind Tool for Linux OS](#about-valgrind-tool-for-linux-os)
+      - [Callgrind](#callgrind)
+      - [Massif](#massif)
+      - [Helgrind](#helgrind)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
   * [Introduction Document](#introduction-document)
@@ -134,6 +138,7 @@ Revision Update: July 29, 2023 [v0.3. Working Draft.]
   * [Repositories](#repositories)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 ----
 
 # Introduction
@@ -2577,9 +2582,7 @@ def integrate_f_std(a, b, N):
 #   integration.integrate_f_std(0.0,100.0,1000)
 ```
 
-## Python Profiling
-
-### Profiling Python Code with Python Tools
+## Profiling Python Code with Python Tools
 
 Python interpreter has built-in profiling tools: [cProfile](https://docs.python.org/3/library/profile.html#module-cProfile) and [profile](https://docs.python.org/3/library/profile.html#module-profile). Invocation of these profiling tools for your code snippet can be done in the following way. Example:
 
@@ -2622,12 +2625,14 @@ import timeit
 timeit.timeit("'-'.join([str(n) for n in range(1)])", setup="", number=1000000)
 ```
 
-### Profiling with Tools Available in Operation System: Windows OS
+## Profiling Python Process with Tools Available in Operation Systems: Windows OS
 
 From the perspective of Operation System (OS) the Python Process is just a program operating in userspace. In modern OS the processes can not issue direct requests to BIOS and all communication with OS happens via System Calls. So even though your program is not built from some source code:
 * You are using precompiled/prebuilt version of the Python interpreter
 * You are using precompiled/prebuilt version of dynamic libraries distributed with packages
 * You have also the source code of your Pyhon program that is interpreted by the interpreter on the fly.
+
+### SysInternals Suite from Mark Rusinovich, et al.
 
 To get a general picture of the executed Python process with your scripts - one way is to observe it from system call characteristics. To take hands-on experience and also analyze overheads from Python, for example, you can use the following code snippet:
 
@@ -2655,7 +2660,7 @@ Hot to run:
 python3 test.py
 ```
 
-For comparison, you can create equivalent code in C++:
+Only if you wish to compare C++ and Python code you can create (or find) equivalent code for your Python Logic. For example this is the following code:
 
 ```cpp
 #include <iostream>
@@ -2689,6 +2694,8 @@ int main()
 }
 ```
 
+Unfortunately to build even simple C++ Program under Windows OS you have to install [Microsoft Visual Studio](https://visualstudio.microsoft.com/) or [Microsoft Visual Studio C++ Command Line Tools](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170).
+
 Hot to build and run:
 ```bash
 build_and_run.bat
@@ -2715,8 +2722,9 @@ echo ***************COMPILING/LINK IS FINISHED**********************************
 test.exe
 ```
 
+At the end of the script, there is an `input()` which will wait for input, and similar to C++ code there is a blocking for waiting input from standard input and processes will be alive. Sometimes it can be helpful of purpose of profiling to prevent the Python process from dying early.
 
-At the end of scipt, there is an `input()` which will wait for input, and similar to C++ code there is a blocking for waiting input from stdin and processes will be alive. For Windows OS collecting a large number of counters is possible via the [SysInternals Suite](https://learn.microsoft.com/en-us/sysinternals/) created by [Mark Russinovich](https://en.wikipedia.org/wiki/Mark_Russinovich):
+For Windows OS collecting a large number of counters is possible via the [SysInternals Suite](https://learn.microsoft.com/en-us/sysinternals/) created by [Mark Russinovich](https://en.wikipedia.org/wiki/Mark_Russinovich):
 
 * [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) will allow you to collect statistics and exact systems calls that process (such as `python.exe`) did with Files, Registry, Network, Load Dynamic Libraries. It also allows us to inspect how long call stacks are and inspect during the timeline of execution where there is a bottleneck - I/O, Memory, and CPU Computing.
 
@@ -2818,11 +2826,11 @@ While doing this in my Machine with installed Numpy 1.21.4 I can observe that on
   dumpbin /headers "C:\Program Files\python3.9\lib\site-packages\numpy\.libs\libopenblas.XWYDX2IKJW2NMTWSFYNGFUWKQU3LYTCZ.gfortran-win_amd64.dll" | grep headers
   ```
 
-### Profiling with Tools Available in Operation System: Linux OS
+## Profiling Python Process with Tools Available in Operation Systems: Linux OS
 
 The close-by concepts in terms of userspace application are presented in Linux OS with slightly changed terminology:
 
-> **Two most important types of memory for profiling application:**
+> **Two most important types of memory for profiling applications:**
 >
 > * Current resident set size (VmRSS) - is analogous to Windows OS Working set and represents allocated memory from DRAM for your application.
 >
@@ -2877,7 +2885,17 @@ Once I have identified that `import numpy` loads the following shared library `/
   objdump -T /lib/x86_64-linux-gnu/libc.so.6 | grep -E "ioctl|pthread_exit|malloc$"
   ```
 
-> The objdump has the following format:
+* You can list the imported symbols by binary/ dynamic library in the following way:
+  ```bash
+  objdump -T <file>|grep "\*UND\*"
+  ```
+
+* You can view a summary of the available sections in the binary program. Example:
+  ```bash
+  objdump -h /usr/bin/python3
+  ```
+
+> The [objdump](https://man7.org/linux/man-pages/man1/objdump.1.html) has the following format:
 >
 >**1st** column - the symbol's value, sometimes referred to as its address.
 >
@@ -2892,32 +2910,98 @@ Once I have identified that `import numpy` loads the following shared library `/
 >**3rd** column can be represented in several options for a symbol:
 >
 > * It is the name of the section in which the symbol is defined 
-> * It has name *ABS* if essentially there is no section and address of Symbol is absolute address. 
-> * It has name *UND* if symbol currently is not defined.An will defined later.
+> * It has the name *ABS* if essentially there is no section and the address of Symbol is an absolute address. 
+> * It has name *UND* if symbol currently is not defined.And will be defined later.
 >
 > **4th** column - alignment.
 >
 > **5th** column - symbol's name is displayed.
 
-* You can list the imported symbols by binary/ dynamic library in the following way:
-  ```bash
-  objdump -T <file>|grep "\*UND\*"
-  ```
+
 Unlike the executable and dynamic library format in Windows OS (PE format), the Linux ELF format does not contain a name binding to a specific library.
 
-* You can view a summary of the available sections in the binary program. Example:
-  ```bash
-  objdump -h /usr/bin/python3
-  ```
+### About Valgrind Tool for Linux OS
+
+[Valgrind](https://valgrind.org/) is a famous tool used for memory debugging, memory leak detection, and profiling in case of using compiled languages. Valgrind works by running the program on a virtual machine that simulates the CPU and memory. Valgrind supports various Posix platforms but is not available under Windows OS. Once you run a program under valgrind it performs extensive checking of memory allocations and memory accesses and provides a report with detailed information.
+
+Valgrind is not only a single tool, but it contains internally several tools (https://valgrind.org/info/tools.html) and it includes:
+
+* [Memcheck](https://valgrind.org/docs/manual/mc-manual.html) - Detects memory-management problems.
+* [Callgrind](https://valgrind.org/docs/manual/cl-manual.html) - Call functions profiler and CPU cache profiler.
+* [Massif](https://valgrind.org/docs/manual/ms-manual.html) - Heap profiler.
+* [Helgrind](https://valgrind.org/docs/manual/hg-manual.html) - Thread debugger which finds data races in multithreaded programs.
+* [Drd](https://valgrind.org/docs/manual/drd-manual.html#drd-manual.using-drd
+) - tool for detecting errors in multithreaded C/C++ programs.
+
+To install Valgrind in Linux OS with [apt package manager](https://help.ubuntu.com/community/AptGet/Howto):
+```bash
+sudo  apt-get install valgrind
+```
+
+#### Callgrind
+For example, you can analyze how the running code is using CPU Caching in emulated environment:
+```bash
+valgrind --tool=callgrind --simulate-cache=yes python -c "import numpy"
+```
+
+Callgrind measures only code that is executed. Please be sure you are making diverse and representative runs that exercise all appropriate code paths. Also, callgrind records the count of instructions, not the actual time spent in a function. Costs associated with I/O won't show up in the profile.
+
+The result of this program returns the following counters:
+* Ir: I cache reads (instructions executed)
+* I1mr: I1 cache read misses (instruction wasn't in I1 cache but was in L2)
+* I2mr: L2 cache instruction read misses (instruction wasn't in I1 or L2 cache, had to be fetched from memory)
+* Dr: D cache reads (memory reads)
+D1mr: D1 cache read misses (data location not in D1 cache, but in L2)
+* D2mr: L2 cache data read misses (location not in D1 or L2)
+Dw: D cache writes (memory writes)
+* D1mw: D1 cache write misses (location not in D1 cache, but in L2)
+* D2mw: L2 cache data write misses (location not in D1 or L2)
+
+Please take in mind:
+* L1 miss will typically cost around 5-10 cycles
+* L2 miss can cost as much as 100-200 cycles
+
+#### Massif
+With [massif](https://valgrind.org/docs/manual/ms-manual.html) you can look into dynamic memory allocation happening in the program. Any executable code operating in Linux OS in case of dynamically allocated memory utilizes one of the following functions:
+
+* Use C/C++ runtime memory allocations with `malloc`, `calloc`, `realloc`, `memalign`, `new`, `new[]`
+* Use lower-level OS system calls such as `mmap`, `mremap`, and `brk`.
+
+Valgrind can measure all these calls in the following way:
+```bash
+rm massif.out*
+valgrind --tool=massif --pages-as-heap=yes python -c "import numpy"
+```
+
+To visualize results in GUI you can use [massif-visualizer](https://github.com/KDE/massif-visualizer), and to visualize results in the terminal you can use `ms_print`:
+```bash
+ms_print massif.out.24492
+```
+
+To visualize the histogram of consumed Megabytes from Dynamic Memory allocation (in OY axis) as a function of time in milliseconds (in OX axis) you look at the beginning of the report:
+```bash
+ms_print massif.out.24492 | head -n 35
+```
+#### Helgrind
+
+To use this tool use the following format:
+```bash
+valgrind --tool=helgrind python -c "import numpy"
+```
+
+Helgrind is a tool for detecting synchronization errors in programs that use the POSIX pthreads threading primitives. Helgrind can detect:
+
+* Misuses of the POSIX pthreads API.
+* Potential deadlocks arising from lock ordering problems.
+* Accessing memory without adequate locking or synchronization (Data races)
 
 # Acknowledgements
 
-Konstantin Burlachenko, would like to acknowledge:
+Konstantin Burlachenko would like to acknowledge:
 
 * The original author and contributors to the official [Python Tutorial](https://docs.python.org/3/tutorial/index.html).
 
 * [Modar Alfadly](https://cemse.kaust.edu.sa/cs/people/modar-alfadly) for providing in-depth PyTorch, NumPy, Python Tutorials during the course [Deep Learning for Visual Computing, CS323](https://registrar-programguide.kaust.edu.sa/2021-2022/Program-Guide/Courses/CS-Computer-Science/300/CS-323) with [prof. Bernard Ghanem](https://www.bernardghanem.com/).
-
 
 # References
 
@@ -2947,13 +3031,13 @@ Konstantin Burlachenko, would like to acknowledge:
 
 ## How To
 
-[10]  http://www.java2s.com/Tutorial/Python/0400__XML/AccessingChildNodes.htm
+[10] Python Tutorial http://www.java2s.com/Tutorial/Python/CatalogPython.htm
 
-[11] http://book.pythontips.com/
+[11] Open Source book about Python Tips: http://book.pythontips.com/
 
 [12] How to for Python: https://docs.python.org/3/howto/index.html
 
 ## Repositories
 
-[13] Find, install, and publish Python packages:
+[13] Find, Install, and Publish Python packages:
 https://pypi.org/
