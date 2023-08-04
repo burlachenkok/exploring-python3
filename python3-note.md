@@ -1,4 +1,4 @@
-# Technical Note. Exploring Python3 Language from Computer Science Perspective [Draft] 
+# Technical Note. Exploring Python3 Language from Computing Perspective [Draft] 
 
 [Konstantin Burlachenko](https://burlachenkok.github.io/), et al.
 
