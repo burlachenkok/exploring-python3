@@ -1,4 +1,4 @@
-# Technical Note. Exploring Python3 Language from Computing Perspective [Draft] 
+# Technical Note. Exploring Python3 Language from Computing Perspective 
 
 [Konstantin Burlachenko](https://burlachenkok.github.io/), et al.
 
@@ -6,7 +6,7 @@
 
 Correspondence to: konstantin.burlachenko@kaust.edu.sa
 
-Revision Update: July 29, 2023 [v0.5. Working Draft.]
+Revision Update: Aug 04, 2023 [**v0.6. Working Draft.**]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
