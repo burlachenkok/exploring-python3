@@ -131,7 +131,7 @@ Revision Update: Aug 04, 2023 [**v0.6. Working Draft.**]
     + [Profiling Hardware Counters with Perf Tool](#profiling-hardware-counters-with-perf-tool)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
-  * [Introduction Document](#introduction-document)
+  * [Introduction Documents](#introduction-documents)
   * [Official Materials](#official-materials)
   * [Mapping Concepts from other Languages to Python](#mapping-concepts-from-other-languages-to-python)
   * [Tutorials for Libraries](#tutorials-for-libraries)
@@ -3050,7 +3050,7 @@ Konstantin Burlachenko would like to acknowledge:
 
 # References
 
-## Introduction Document
+## Introduction Documents
 [1] Python Tutorial: https://docs.python.org/3/tutorial/
 
 ## Official Materials
