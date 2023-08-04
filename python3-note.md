@@ -3014,7 +3014,8 @@ Very good organized one-liner commands for perf are available here [Homepage of 
 
 **One liners for perf commands ([Original source](https://www.brendangregg.com/perf.html#OneLiners)):**
 
-* `perf stat python -d "pass"`. Obtain CPU counter statistics for launching Python interpreter with empty command.
+* `perf stat python -d "pass"`. Obtain CPU counter statistics for launching Python interpreter with empty command incuding page faults, branch misprediction, cache misses, CPU migration.
+A percentage in the perf stat output means the percentage of time that the specific event was being measured. However, it does not necessarily indicate a bottleneck. To identify a bottleneck, you need to compare the performance metrics of different components.
 
 * `perf stat python -d "import numpy"`. Obtain CPU counter statistics for launching the Python interpreter and import the numpy library.
 
