@@ -3054,11 +3054,11 @@ Konstantin Burlachenko would like to acknowledge:
 
 # Contributions to This Document
 
-If you want to contribute to any of the goals above and support further development of the document we are only open to adding you as an  *Author* in case you contributed to creating sections, or to the list of *Editors* if you want to clarify and polish the text.
+If you want to contribute to any of the goals above and support further development of the document, we are only open to adding you as an *Author* in case you contributed to creating sections. If you want to clarify and polish the text, provided that you have used Python for at least 2 years we would appreciate polishing from your side, and we would be glad to you as *Editor*. 
 
 From our side, we ask you to:
 
-**a.** Provide short examples (or no examples)
+**a.** Provide short examples (or no examples) to support your point if it is possible.
 
 **b.** Provide the minimum code snippet.  We do not want to see expressive power when you can create 5-level nested comprehension construction in one line.
 
