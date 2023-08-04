@@ -115,7 +115,7 @@
     + [Important Notice About the Syntax for Matrix Multiplication](#important-notice-about-the-syntax-for-matrix-multiplication)
     + [Utility Functions in NumPy](#utility-functions-in-numpy)
     + [Broadcasting](#broadcasting)
-- [Profiling And Compute Optimization](#profiling-and-compute-opitmization)
+- [Profiling And Compute Optimization](#profiling-and-compute-optimization)
   * [Cython](#cython)
     + [How to optimize Python Code with Cython](#how-to-optimize-python-code-with-cython)
     + [About Cython Language](#about-cython-language)
@@ -3053,6 +3053,8 @@ Konstantin Burlachenko would like to acknowledge:
 * The original author and contributors to the official [Python Tutorial](https://docs.python.org/3/tutorial/index.html).
 
 * [Modar Alfadly](https://cemse.kaust.edu.sa/cs/people/modar-alfadly) for providing in-depth PyTorch, NumPy, Python Tutorials during the course [Deep Learning for Visual Computing, CS323](https://registrar-programguide.kaust.edu.sa/2021-2022/Program-Guide/Courses/CS-Computer-Science/300/CS-323) with [prof. Bernard Ghanem](https://www.bernardghanem.com/).
+
+* [Aleksandar Cvejic](https://cemse.kaust.edu.sa/vcc/people/person/aleksandar-cvejic) for providing suggestions to improve this note with Profiling information.
 
 # Contributions to This Document
 
