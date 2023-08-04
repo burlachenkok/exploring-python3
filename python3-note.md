@@ -130,7 +130,7 @@ Revision Update: Aug 04, 2023 [Prerelease v1.0]
       - [Helgrind](#helgrind)
     + [Profiling Hardware Counters with Perf Tool](#profiling-hardware-counters-with-perf-tool)
 - [Acknowledgements](#acknowledgements)
-- [Contributions to This Document][#contributions-to-this-document]
+- [Contributions to This Document](#contributions-to-this-document)
 - [References](#references)
   * [Introduction Documents](#introduction-documents)
   * [Official Materials](#official-materials)
