@@ -6,7 +6,7 @@
 
 Correspondence to: konstantin.burlachenko@kaust.edu.sa
 
-Revision Update: July 29, 2023 [v0.4. Working Draft.]
+Revision Update: July 29, 2023 [v0.5. Working Draft.]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -128,6 +128,7 @@ Revision Update: July 29, 2023 [v0.4. Working Draft.]
       - [Callgrind](#callgrind)
       - [Massif](#massif)
       - [Helgrind](#helgrind)
+    + [Profiling Hardware Counters with Perf Tool](#profiling-hardware-counters-with-perf-tool)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
   * [Introduction Document](#introduction-document)
@@ -2924,6 +2925,8 @@ Unlike the executable and dynamic library format in Windows OS (PE format), the 
 
 [Valgrind](https://valgrind.org/) is a famous tool used for memory debugging, memory leak detection, and profiling in case of using compiled languages. Valgrind works by running the program on a virtual machine that simulates the CPU and memory. Valgrind supports various Posix platforms but is not available under Windows OS. Once you run a program under valgrind it performs extensive checking of memory allocations and memory accesses and provides a report with detailed information.
 
+The [Valgrind](https://valgrind.org/) is a simulator. Once you use it in term of wall clock time you program (Python interpreter process) runs very slow. But [Valgrind](https://valgrind.org/) and simulators in general produce accurate and repeatable performance counters.
+
 Valgrind is not only a single tool, but it contains internally several tools (https://valgrind.org/info/tools.html) and it includes:
 
 * [Memcheck](https://valgrind.org/docs/manual/mc-manual.html) - Detects memory-management problems.
@@ -2994,6 +2997,47 @@ Helgrind is a tool for detecting synchronization errors in programs that use the
 * Misuses of the POSIX pthreads API.
 * Potential deadlocks arising from lock ordering problems.
 * Accessing memory without adequate locking or synchronization (Data races)
+
+### Profiling Hardware Counters with Perf Tool
+
+To install the Perf tool under Linux you should perform the following command mentioned Ubuntu questions website [how-to-install-perf-monitoring-tool](https://askubuntu.com/questions/50145/how-to-install-perf-monitoring-tool):
+```bash
+apt-get install linux-tools-common linux-tools-generic linux-tools-`uname -r`
+```
+
+In modern CPUs from ARM Cortex A5 [link](https://developer.arm.com/documentation/ddi0434/c/performance-monitoring-unit/about-the-performance-monitoring-unit?lang=en), and most modern processes support Performance Monitoring Unit(PMU) unit. There is a helper library [libpfm4](https://man7.org/linux/man-pages/man3/libpfm.3.html) available in Linux OS. This library is exploited by the tool called [perf](https://perf.wiki.kernel.org/index.php/Main_Page). This tool measures hardware counters per process. The Library [libpfm4](https://man7.org/linux/man-pages/man3/libpfm.3.html) saves all counters and carries collecting them.
+
+> Warning **A**: Most Counters are poorly documented.
+> Warning **B**: Maybe observing all counters will require superuser access to the machine.
+
+Very good organized one-liner commands for perf are available here [Homepage of Brendan Gregg](https://www.brendangregg.com/perf.html). Some of them:
+
+**One liners for perf commands ([Original source](https://www.brendangregg.com/perf.html#OneLiners)):**
+
+* `perf stat python -d "pass"`. Obtain CPU counter statistics for launching Python interpreter with empty command.
+
+* `perf stat python -d "import numpy"`. Obtain CPU counter statistics for launching the Python interpreter and import the numpy library.
+
+* `perf stat -e dTLB-loads,dTLB-load-misses,dTLB-prefetch-misses python -d "import numpy"`. Obtain Translation Lookaside Buffer (TLB) statistics.
+
+> **Why TLB Cache is important:**
+>
+> Control Unit inside microprocessor operates at the level of micro-operations and it essentially selects the way to connect electrical components using multiplexers and demultiplexers, turning on/off different electronic components, and controlling the control lines. The Load Store units in the execution pipeline are in charge of carrying 
+memory access. These units have access to the Register File, the TLB for address translation, and the Memory Cache. If the data is not available in the Cache, then the CPU Cache requests a block of memory from the Memory Controller, which accesses the DRAM memory via the DRAM memory controller.
+>
+> Even if are from the world of scripting languages and you may miss details about memory access, you may heard about L1, L2, L3 (Last Level Cache) Caches. However, there is a more horrible thing than Data Cache Miss - it is a miss in Translation Lookaside Buffer (TLB). To read code or data from memory, the first step is to find the actual physical address of the specific memory
+location. This operation occurs for every instruction of a program. Without the TLB, the virtual addressing mechanism would require several accesses to different page tables, significantly increasing the time needed. The TLB is a cache that stores the mapping between virtual page numbers and physical frame numbers, speeding up the address translation process for memory access.
+
+
+* `perf stat -e 'syscalls:sys_enter_*' python -c "pass"`. This command count system calls. One system called roughlt speaking takes 100-2000 instructions from the CPU. In Windows OS the switching from userspace to kernel space takes 1000 cycles. So if you have a lot of System Calls it will hurt your performance.
+
+* `perf stat -e 'block:*' python -c pass`. Count block device I/O events. These events are addressed directly to the block device. These events happen when a block device I/O request is issued (disk I/O).
+
+* `perf stat -e 'ext4:*' python -c "import numpy"`. Count `ext4` filesystem events. If you are not sure about your filesystem - you can observe disk partition sizes and used filesystem in partition with `df` command in Posix OS. When specifying a file or directory, the section on which the file is located will be shown: `df -Th`.
+
+* `perf -e migrations python -c "import numpy"`. Report the number of process migrations. In computing, process migration is a specialized form of process management whereby processes are moved from one computing environment to another.
+
+* `perf list`. List all currently known software and hardware events in the OS.
 
 # Acknowledgements
 
