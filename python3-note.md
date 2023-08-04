@@ -4,9 +4,11 @@
 
 [King Abdullah University of Science and Technology](https://www.kaust.edu.sa/en), Thuwal, Saudi Arabia.
 
-Correspondence to: konstantin.burlachenko@kaust.edu.sa
+**Correspondence to:** konstantin.burlachenko@kaust.edu.sa
 
-Revision Update: Aug 04, 2023 [Pre-Release v1.0]
+**Revision Update:** Aug 04, 2023
+
+**Revision Version:** [Pre-Release v1.0]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
