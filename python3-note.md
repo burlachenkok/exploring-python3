@@ -113,7 +113,7 @@ Revision Update: July 29, 2023 [v0.5. Working Draft.]
     + [Important Notice About the Syntax for Matrix Multiplication](#important-notice-about-the-syntax-for-matrix-multiplication)
     + [Utility Functions in NumPy](#utility-functions-in-numpy)
     + [Broadcasting](#broadcasting)
-- [Appendix](#appendix)
+- [Profiling And Compute Optimization](#profiling-and-compute-opitmization)
   * [Cython](#cython)
     + [How to optimize Python Code with Cython](#how-to-optimize-python-code-with-cython)
     + [About Cython Language](#about-cython-language)
@@ -2372,7 +2372,7 @@ Broadcasting two arrays together follows these rules:
 5. In any dimension where one array had size 1 and the other array had a size greater than 1, the first array behaves as if it were copied along that dimension
 
 
-# Appendix
+# Profiling And Compute Optimization
 
 ## Cython
 
