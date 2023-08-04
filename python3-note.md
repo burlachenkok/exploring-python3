@@ -130,6 +130,7 @@ Revision Update: Aug 04, 2023 [Prerelease v1.0]
       - [Helgrind](#helgrind)
     + [Profiling Hardware Counters with Perf Tool](#profiling-hardware-counters-with-perf-tool)
 - [Acknowledgements](#acknowledgements)
+- [Contributions to This Document][#contributions-to-this-document]
 - [References](#references)
   * [Introduction Documents](#introduction-documents)
   * [Official Materials](#official-materials)
@@ -153,12 +154,15 @@ You can check its popularity in this world from these sources:
 * The [Tiobe-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity on their own metrics.
 * The [Google-Trends](https://trends.google.com/trends/explore?date=now%201-d&q=%2Fm%2F05z1_,%2Fm%2F0jgqg,C%23,%2Fm%2F07sbkfb,BASH&hl=r), which shows the relative interest in different topics over time in society.
 
-With this note, the authors have several objectives:
+With this note, the authors have three objectives:
 
-* To explain some technical details about certain language features. This can be a useful resource for those who found the Official Python Tutorial too complex or confusing. 
-* This can also help to fill in the gaps in one's understanding of the subject.
-* Give a brief overview of various tools
-* Provide a bridge from system-aware people to Python, as from Python to system-aware mentality.
+1. To explain some technical details about certain language features with examples. This can be a useful resource for those who found the Official Python Tutorial too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
+
+2. Give a brief overview of various tools that can assist development in Python if you are in circumstances with using this Language.
+
+3. Provide a bridge from system-aware people to Python, as from Python to system-aware mentality.
+
+> If after reading you wish to contribute to this document, please take a look into [contributions section](#contributions-to-this-document) of this document.
 
 ## What is Python
 
@@ -3047,6 +3051,20 @@ Konstantin Burlachenko would like to acknowledge:
 * The original author and contributors to the official [Python Tutorial](https://docs.python.org/3/tutorial/index.html).
 
 * [Modar Alfadly](https://cemse.kaust.edu.sa/cs/people/modar-alfadly) for providing in-depth PyTorch, NumPy, Python Tutorials during the course [Deep Learning for Visual Computing, CS323](https://registrar-programguide.kaust.edu.sa/2021-2022/Program-Guide/Courses/CS-Computer-Science/300/CS-323) with [prof. Bernard Ghanem](https://www.bernardghanem.com/).
+
+# Contributions to This Document
+
+If you want to contribute to any of the goals above and support further development of the document we are only open to adding you as an  *Author* in case you contributed to creating sections, or to the list of *Editors* if you want to clarify and polish the text.
+
+From our side, we ask you to:
+
+**a.** Provide short examples (or no examples)
+
+**b.** Provide the minimum code snippet.  We do not want to see expressive power when you can create 5-level nested comprehension construction in one line.
+
+**c.** Please provide links to original sources of information. Original sources are documentation of language or libraries. The knowledge in Society tends to be spread across different communities, rather than one person knowing everything.
+
+**d.** For big software packages with which you gained knowledge by spending plenty of time you have two options: Either Create a short Section or create a reference to original documentation.
 
 # References
 
