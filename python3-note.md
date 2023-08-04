@@ -1,6 +1,6 @@
 # Technical Note. Exploring Python3 Language from Computing Perspective 
 
-[Konstantin Burlachenko](https://burlachenkok.github.io/), et al.
+[Konstantin Burlachenko](https://burlachenkok.github.io/)
 
 [King Abdullah University of Science and Technology](https://www.kaust.edu.sa/en), Thuwal, Saudi Arabia.
 
