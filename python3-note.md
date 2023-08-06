@@ -942,9 +942,10 @@ print(f"Host: {socket.gethostname()} / IP: {socket.gethostbyname(socket.gethostn
 
 ## Introspection of Python Objects
 In Python, everything is an object.  The [dir(obj)](https://docs.python.org/3/library/functions.html#dir) built-in function displays the attributes of an object.  Attributes that all objects (typically) have:
-* `__name__` - is the name of the object such as a function.
-* `__doc__` - documentation string for the object.
-* `__class__` - type name of the object.
+* `__name__` - is the name of the current module [link](https://docs.python.org/3/reference/import.html?highlight=__name__#name__).
+* `__doc__` - documentation string for the object [link](https://docs.python.org/3/library/types.html?highlight=__doc__#types.ModuleType.__doc__).
+* `__class__` - type name of the object [link](https://docs.python.org/3/library/stdtypes.html?highlight=__class__#instance.__class__).
+* `__file__` - the name of the current source file. [link](https://docs.python.org/3/reference/import.html?highlight=__file__#file__)
 
 Example:
 ```python
@@ -2379,6 +2380,57 @@ Broadcasting two arrays together follows these rules:
 
 
 # Profiling And Compute Optimization
+
+## Usage of Matrix Matrix Multiplication when Possible
+
+One general recommendation, if you can cast your problem into operations from linear algebra supported by Numpy, is to use vectors and matrices instead of the explicit loop in the Python interpreter. Speedup improvement from using matrices directly can be on order of `10-20`. Example:
+
+```python
+
+import numpy as np
+import time, os, platform, sys
+
+def dumpProgramInfo():
+    print(f"Executed program: {__file__}")
+    (system, node, release, version, machine, processor) = platform.uname()
+    print(f"OS name: {system}/{release}/{version}")
+    print(f"Python interpreter: {sys.executable}")
+    print(f"Python version: {sys.version}")
+    print(f"Platform name: {sys.platform}")
+    print(f"NumPy version: {np.__version__}")
+    print()
+
+def testMatrixVectorMultiply(N=5000, D=3000, C=50):
+    W = np.random.rand(C,D)                            # Matrix CxD
+    vecList = [np.random.rand(D,1) for i in range(N)]  # List of vectors [D,1]
+    vecListInMatrix = np.random.rand(D,N)              # List of vectors [D,1] organized as "N" columns
+
+    print("************************************************")
+    print("Test function name: ", testMatrixVectorMultiply.__name__)
+    print("Matrix W Shape: ", W.shape)
+    print("Vector List Length: ", len(vecList))
+    print("Vectors Plugged into matrix. Columns: ", vecListInMatrix.shape[1])
+
+    s1 = time.time()
+    R1 = W@vecListInMatrix
+    e1 = time.time()
+
+    s2 = time.time()
+    R2 = [W@(vecList[i]) for i in range(N)]
+    e2 = time.time()
+
+    print(f" Matrix-vector operations using matrices: {e1-s1:.5f} seconds")
+    print(f" Matrix-vector operations using lists: {e2-s2:.5f} seconds")
+    print("RESULTS")
+    print(f" Speedup from using matrix-matrix mult. VS sequence of matrix-vector mult.: {(e2-s2)/(e1-s1):.5f} seconds")
+    print("************************************************")
+
+if __name__ == "__main__":
+    dumpProgramInfo()
+    testMatrixVectorMultiply()
+```
+
+> If your functionality is not expressible at all with affine operations (matrix multiplications and vectors scaling and addition) then you are out of luck.
 
 ## Cython
 
