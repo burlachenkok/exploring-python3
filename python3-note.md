@@ -116,7 +116,7 @@
     + [Utility Functions in NumPy](#utility-functions-in-numpy)
     + [Broadcasting](#broadcasting)
 - [Profiling And Compute Optimization](#profiling-and-compute-optimization)
-  * [Collection Preliminary Information About the System](#collection-preliminary-information-about-the-system)
+  * [Collecting Preliminary Information About the System](#collecting-preliminary-information-about-the-system)
   * [Usage of Matrix - Matrix Multiplication](#usage-of-matrix-matrix-multiplication)
   * [Cython](#cython)
     + [How to optimize Python Code with Cython](#how-to-optimize-python-code-with-cython)
@@ -2383,7 +2383,7 @@ Broadcasting two arrays together follows these rules:
 
 # Profiling And Compute Optimization
 
-## Collection Preliminary Information About the System
+## Collecting Preliminary Information About the System
 
 To obtain version of Python interpreter use the following command:
 `python --version`
