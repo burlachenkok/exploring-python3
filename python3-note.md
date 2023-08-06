@@ -6,9 +6,9 @@
 
 **Correspondence to:** konstantin.burlachenko@kaust.edu.sa
 
-**Revision Update:** Aug 04, 2023
+**Revision Update:** Aug 05, 2023
 
-**Revision Version:** [Pre-Release v1.0]
+**Revision Version:** [Pre-Release v1.1]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -116,6 +116,8 @@
     + [Utility Functions in NumPy](#utility-functions-in-numpy)
     + [Broadcasting](#broadcasting)
 - [Profiling And Compute Optimization](#profiling-and-compute-optimization)
+  * [Collection Preliminary Information About the System](#collection-preliminary-information-about-the-system)
+  * [Usage of Matrix - Matrix Multiplication](#usage-of-matrix-matrix-multiplication)
   * [Cython](#cython)
     + [How to optimize Python Code with Cython](#how-to-optimize-python-code-with-cython)
     + [About Cython Language](#about-cython-language)
@@ -2381,9 +2383,41 @@ Broadcasting two arrays together follows these rules:
 
 # Profiling And Compute Optimization
 
-## Usage of Matrix Matrix Multiplication when Possible
+## Collection Preliminary Information About the System
 
-One general recommendation, if you can cast your problem into operations from linear algebra supported by Numpy, is to use vectors and matrices instead of the explicit loop in the Python interpreter. Speedup improvement from using matrices directly can be on order of `10-20`. Example:
+To obtain version of Python interpreter use the following command:
+`python --version`
+
+To collect a summary  about your system running on **Windows OS Family** please use the following command:
+```bash
+systeminfo
+```
+
+To collect a summary  about your system running on **Linux OS Family** please use the following commands:
+```bash
+#!/usr/bin/env bash
+
+echo "Computer architecture:" $(arch)
+echo "Python version:" $(python --version)
+echo "Linux verion:" $(uname -a)
+echo "Linux distribution specific information"
+lsb_release --all
+echo "Information about CPU"
+echo "Number of processors in system:" $(nproc)
+lscpu
+lscpu --extended
+echo "Physical and Swap memory"
+free
+echo "Current Working Directory: $(pwd)"
+echo "Disk Partition size for Current Working Directory"
+df -h .
+```
+
+## Usage of Matrix-Matrix Multiplication
+
+One general recommendation (which is mentioned in any applied Machine Learning courses these days), if you can cast your problem into operations from linear algebra supported by Numpy, is to use vectors and matrices instead of the explicit loop in the Python interpreter. Speedup improvement from using matrices directly can be on the order of `10-20`.
+
+Concrete Example:
 
 ```python
 
@@ -2401,9 +2435,12 @@ def dumpProgramInfo():
     print()
 
 def testMatrixVectorMultNumpy(N=5000, D=3000, C=50):
-    W = np.random.rand(C,D)                            # Matrix CxD
-    vecList = [np.random.rand(D,1) for i in range(N)]  # List of vectors [D,1]
-    vecListInMatrix = np.random.rand(D,N)              # List of vectors [D,1] organized as "N" columns
+    # Matrix CxD
+    W = np.random.rand(C,D)                            
+    # List of vectors [D,1]
+    vecList = [np.random.rand(D,1) for i in range(N)]  
+     # List of vectors [D,1] organized as "N" columns
+    vecListInMatrix = np.random.rand(D,N)
 
     print("************************************************")
     print("Test function name: ", testMatrixVectorMultNumpy.__name__)
@@ -2430,7 +2467,8 @@ if __name__ == "__main__":
     testMatrixVectorMultNumpy()
 ```
 
-Output in my Machine with Intel Core I7@2.3 Ghz:
+Output in my Machine with 
+`Intel64 Family 6 Model 165 Stepping 2 GenuineIntel 2304 Mhz` CPU:
 
 ```
 Executed program: using_numpy_aka_vectorization_for_python_users.py
@@ -2452,9 +2490,7 @@ RESULTS
 ************************************************
 ```
 
-
-
-> If your functionality is not expressible at all with affine operations (matrix multiplications and vectors scaling and addition) then you are out of luck.
+> If your functionality is not expressible at all with affine operations (matrix multiplications and vectors scaling and addition) then you are out of luck with this technic of compute optimization for Python Language.
 
 ## Cython
 
