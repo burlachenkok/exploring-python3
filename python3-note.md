@@ -2400,13 +2400,13 @@ def dumpProgramInfo():
     print(f"NumPy version: {np.__version__}")
     print()
 
-def testMatrixVectorMultiply(N=5000, D=3000, C=50):
+def testMatrixVectorMultNumpy(N=5000, D=3000, C=50):
     W = np.random.rand(C,D)                            # Matrix CxD
     vecList = [np.random.rand(D,1) for i in range(N)]  # List of vectors [D,1]
     vecListInMatrix = np.random.rand(D,N)              # List of vectors [D,1] organized as "N" columns
 
     print("************************************************")
-    print("Test function name: ", testMatrixVectorMultiply.__name__)
+    print("Test function name: ", testMatrixVectorMultNumpy.__name__)
     print("Matrix W Shape: ", W.shape)
     print("Vector List Length: ", len(vecList))
     print("Vectors Plugged into matrix. Columns: ", vecListInMatrix.shape[1])
@@ -2427,8 +2427,32 @@ def testMatrixVectorMultiply(N=5000, D=3000, C=50):
 
 if __name__ == "__main__":
     dumpProgramInfo()
-    testMatrixVectorMultiply()
+    testMatrixVectorMultNumpy()
 ```
+
+Output in my Machine with Intel Core I7@2.3 Ghz:
+
+```
+Executed program: using_numpy_aka_vectorization_for_python_users.py
+OS name: Windows/10/10.0.19041
+Python interpreter: C:\Program Files\python3.9\python.exe
+Python version: 3.9.4 (tags/v3.9.4:1f2e308, Apr  6 2021, 13:40:21) [MSC v.1928 64 bit (AMD64)]
+Platform name: win32
+NumPy version: 1.21.4
+
+************************************************
+Test function name:  testMatrixVectorMultNumpy
+Matrix W Shape:  (50, 3000)
+Vector List Length:  5000
+Vectors Plugged into matrix. Columns:  5000
+ Matrix-vector operations using matrices: 0.03790 seconds
+ Matrix-vector operations using lists: 0.49867 seconds
+RESULTS
+ Speedup from using matrix-matrix mult. VS sequence of matrix-vector mult.: 13.15767 seconds
+************************************************
+```
+
+
 
 > If your functionality is not expressible at all with affine operations (matrix multiplications and vectors scaling and addition) then you are out of luck.
 
