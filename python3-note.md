@@ -8,7 +8,7 @@
 
 **Revision Update:** Aug 05, 2023
 
-**Revision Version:** [Pre-Release v1.1]
+**Revision Version:** [Pre-Release v1.2]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -117,6 +117,7 @@
     + [Broadcasting](#broadcasting)
 - [Profiling And Compute Optimization](#profiling-and-compute-optimization)
   * [Collecting Preliminary Information About the System](#collecting-preliminary-information-about-the-system)
+  * [Select Libraries Based on Benchmarks and Preferences](#select-libraries-based-on-benchmarks-and-preferences)
   * [Usage of Matrix - Matrix Multiplication](#usage-of-matrix-matrix-multiplication)
   * [Cython](#cython)
     + [How to optimize Python Code with Cython](#how-to-optimize-python-code-with-cython)
@@ -2412,6 +2413,49 @@ echo "Current Working Directory: $(pwd)"
 echo "Disk Partition size for Current Working Directory"
 df -h .
 ```
+
+## Select Libraries Based on Benchmarks and Preferences
+
+Python was originally designed as an extension to Bash, but nowadays (Aug 2023) the Python community is exploring new applications for this language. However, Python has some serious fundamental limitations and some tasks might be impossible or inefficient to implement in this language. Why it is so fundamentally you can check this section [[C++ from 1998 to 2020: Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages)].
+
+This situation with Python is mitigated by using *libraries/middleware/framework*. A decade ago these terms in Computer Science had a specific meaning, but nowadays they tend to be used in a dirty sense. This implies that you should not differentiate between these terms.
+
+If you are working in a specific domain, and you use Python then it can be the case that you will need to use external libraries. You might not be interested in the debate about which language to use for which situation, especially if your language choice is fixed (i.e., Python). 
+
+> The commitment to the library and the absence of the ability to write effective algorithms (in which you gain expertise) have serious implications, but it is out of the scope of this note.
+
+Even in the case of deciding to use a third-party library, you will need to commit to a choice of the library.
+
+There are social aspects that are sometimes even more important than technical:
+* The size of the community
+* Quality of documentation
+* Number of bugs or rate of fixing them
+* Existence of courses and books if the framework is huge
+* Form of the learning curve
+
+Of course, there are technical aspects:
+* Quality of code snippets and examples
+* Interoperability with other libraries. I.e. how easy and effective two libraries can be combined. (E.g.: [PyQt](https://en.wikipedia.org/wiki/PyQt) can integrated plots in [Matplotlib](https://en.wikipedia.org/wiki/Matplotlib)).
+* Can customize the framework with your form data and/or presentation formats
+
+There are even more deep aspects between science and engineering:
+* Support your target hardware effectively
+* Support state of art algorithms in the field
+* Support parallelization across nodes and utilize communication patterns effectively
+* Support of streaming i.e. make all work in one sequential pass
+* Consumed memory
+* Scalability for extra communication or computation hardware
+* Last, but not least: *wall clock time*.
+
+If the library represents a bottleneck, you may want to compare different solutions. One way is to read engineering blogs or academic papers that provide benchmarks for similar settings. The most straightforward metric is *wall clock time* for a sequence of experiments carried in the same flavor, but as we said sometimes it is not *the most important metric*. Be careful both in the selection and in criticism of people who are motivated by not wall clock time.
+
+For instance, for popular web frameworks for creating web services and websites, you can check the following benchmark:
+https://www.techempower.com/benchmarks/.
+
+Please research what solutions suit your needs and use these benchmarks as a first approximation. Keep in mind that benchmarks are not perfect and they might not reflect your specific setting or problem size in your hands, but they can provide you first steps in selection.
+
+> Do not be upset if the Python solution is in the low list of benchmarks such as presented above. Python has another benefit.
+> But if you want to *fight* in an honest fight with another technology/language be ready for a (hard) *fight* especially with well-prepated scientists and engineers.
 
 ## Usage of Matrix-Matrix Multiplication
 
