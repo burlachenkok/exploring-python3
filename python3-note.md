@@ -161,7 +161,7 @@ You can check its popularity in this world from these sources:
 
 With this note, the authors have three objectives:
 
-1. To explain some technical details about certain language features with examples. This can be a useful resource for those who found the Official Python Tutorial too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
+1. To explain some technical details about certain language features from `Python 3.11` with examples. This can be a useful resource for those who found the Official Python Tutorial too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
 
 2. Give a brief overview of various tools that can assist development in Python if you are in circumstances with using this Language.
 
