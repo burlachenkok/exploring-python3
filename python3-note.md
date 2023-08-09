@@ -199,15 +199,17 @@ There are several resources about the subject:
 
 1. There is a book written by [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum) (the original author of that language).  Today it has been converted into a pretty big tutorial and it is not named a book but named "tutorial": https://docs.python.org/3/tutorial/
 
-2. Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
+2. The compiled documentation is available here in various formats (including PDF and HTML) : [https://docs.python.org/3.11/download.html](https://docs.python.org/3.11/download.html). The archive contains all the documents for the version of Python that you will select.
 
-3. Python Interpreter is distributed with various standard modules called Python Standard Library: https://docs.python.org/3/library/index.html. For example, this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation that described Standard Types.
+3. Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
 
-4. The CPython interpreter website contains a full-text search over Python documentation. You can use this utility both in terms of learning and in terms of finding details if you already know this language: https://docs.python.org/3/search.html
+4. Python Interpreter is distributed with various standard modules called Python Standard Library: https://docs.python.org/3/library/index.html. For example, this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation that described Standard Types.
 
-5. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here (in case you need really dig into specific construction rules): https://docs.python.org/3/reference/grammar.html
+5. The CPython interpreter website contains a full-text search over Python documentation. You can use this utility both in terms of learning and in terms of finding details if you already know this language: https://docs.python.org/3/search.html
 
-6. If you really need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
+6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here (in case you need really dig into specific construction rules): https://docs.python.org/3/reference/grammar.html
+
+7. If you really need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
 
 Finally please take a look into materials from [references](#references) section of this document.
 
