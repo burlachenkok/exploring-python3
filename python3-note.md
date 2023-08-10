@@ -6,9 +6,9 @@
 
 **Correspondence to:** konstantin.burlachenko@kaust.edu.sa
 
-**Revision Update:** Aug 05, 2023
+**Revision Update:** Aug 10, 2023
 
-**Revision Version:** [Pre-Release v1.2]
+**Revision Version:** [Pre-Release v1.3]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
