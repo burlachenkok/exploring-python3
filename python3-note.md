@@ -6,9 +6,9 @@
 
 **Correspondence to:** konstantin.burlachenko@kaust.edu.sa
 
-**Revision Update:** Aug 10, 2023
+**Revision Update:** Aug 14, 2023
 
-**Revision Version:** [Pre-Release v1.3]
+**Revision Version:** [Pre-Release v1.4]
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -19,17 +19,17 @@
 - [Backgrounds](#backgrounds)
   * [How Typical Compute Device is Working](#how-typical-compute-device-is-working)
   * [Programming Languages Taxonomy](#programming-languages-taxonomy)
-  * [What is Object Orientated Programming (OOP)](#what-is-object-orientated-programming--oop-)
+  * [What is Object Orientated Programming (OOP)](#what-is-object-orientated-programming-oop)
 - [Philosophy of Python](#philosophy-of-python)
-- [If you arrived at Python from C++](#if-you-arrived-at-python-from-c--)
+- [If you arrived at Python from C++](#if-you-arrived-at-python-from-c)
   * [About Events](#about-events)
   * [Meaning of Object](#meaning-of-object)
   * [Python does Provide Access to Variables by Value](#python-does-provide-access-to-variables-by-value)
-  * [Context in Python is the Same as Scopes in C++](#context-in-python-is-the-same-as-scopes-in-c--)
+  * [Context in Python is the Same as Scopes in C++](#context-in-python-is-the-same-as-scopes-in-c)
   * [Pointers and Object Reference Equality](#pointers-and-object-reference-equality)
-  * [All Class Methods are Virtual in Terms of C++](#all-class-methods-are-virtual-in-terms-of-c--)
-  * [Some Language Differences Between Python and C++](#some-language-differences-between-python-and-c--)
-- [Sources of Confusion if C++ person will talk to Python person](#sources-of-confusion-if-c---person-will-talk-to-python-person)
+  * [All Class Methods are Virtual in Terms of C++](#all-class-methods-are-virtual-in-terms-of-c)
+  * [Some Language Differences Between Python and C++](#some-language-differences-between-python-and-c)
+- [Sources of Confusion if C++ person will talk to Python person](#sources-of-confusion-if-c-person-will-talk-to-python-person)
 - [Python Technical Basics](#python-technical-basics)
   * [Python Language Benefits over Other Scripting Languages](#python-language-benefits-over-other-scripting-languages)
   * [How to Start Interpreter](#how-to-start-interpreter)
@@ -42,7 +42,7 @@
   * [Simple Built-In Types](#simple-built-in-types)
   * [Simple Statements](#simple-statements)
   * [Compound Statements](#compound-statements)
-  * [Empty(Pass) Statements](#empty-pass--statements)
+  * [Empty(Pass) Statements](#emptypass-statements)
   * [Division of Numbers in Python](#division-of-numbers-in-python)
   * [Printing](#printing)
   * [Enumeration and Loops](#enumeration-and-loops)
@@ -55,7 +55,7 @@
   * [Dictionaries](#dictionaries)
   * [Sets](#sets)
   * [Loops](#loops)
-- [Python Technical Details: One step after Basics](#python-technical-details--one-step-after-basics)
+- [Python Technical Details: One step after Basics](#python-technical-details-one-step-after-basics)
   * [Interfaces and Protocols](#interfaces-and-protocols)
   * [Introspection of System](#introspection-of-system)
   * [Introspection of Python Objects](#introspection-of-python-objects)
@@ -64,7 +64,7 @@
   * [Tuples](#tuples)
   * [Working with Tuples](#working-with-tuples)
   * [Unpacking of Containers](#unpacking-of-containers)
-  * [Functions: Introduction](#functions--introduction)
+  * [Functions: Introduction](#functions-introduction)
   * [Classes](#classes)
   * [User Defined Classes in Python](#user-defined-classes-in-python)
   * [The Syntax for Defining Classes](#the-syntax-for-defining-classes)
@@ -78,7 +78,7 @@
     + [Packages](#packages)
     + [Reference between Modules in Packages](#reference-between-modules-in-packages)
     + [Rules for Search Modules and Packages](#rules-for-search-modules-and-packages)
-  * [About Functions: Now in Details](#about-functions--now-in-details)
+  * [About Functions: Now in Details](#about-functions-now-in-details)
     + [About Indentation](#about-indentation)
     + [Function Arguments and Return Value](#function-arguments-and-return-value)
     + [Default Argument Value](#default-argument-value)
@@ -99,8 +99,8 @@
 - [Standard Tools and Some Libraries for Computing and Visualize](#standard-tools-and-some-libraries-for-computing-and-visualize)
   * [Package Managers](#package-managers)
   * [Environment Managers](#environment-managers)
-  * [Python Notebooks: General](#python-notebooks--general)
-  * [Python Notebooks: Working in a web-based interface](#python-notebooks--working-in-a-web-based-interface)
+  * [Python Notebooks: General](#python-notebooks-general)
+  * [Python Notebooks: Working in a web-based interface](#python-notebooks-working-in-a-web-based-interface)
   * [PyTorch Resources](#pytorch-resources)
   * [Matplotlib](#matplotlib)
     + [Plots](#plots)
@@ -125,10 +125,10 @@
     + [Easy Interoperability with Standard C Library](#easy-interoperability-with-standard-c-library)
     + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
   * [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
-  * [Profiling Python Process with Tools Available in Operation Systems: Windows OS](#profiling-python-process-with-tools-available-in-operation-systems--windows-os)
-    + [SysInternals Suite from Mark Rusinovich, et al.](#sysinternals-suite-from-mark-rusinovich--et-al)
+  * [Profiling Python Process with Tools Available in Operation Systems: Windows OS](#profiling-python-process-with-tools-available-in-operation-systems-windows-os)
+    + [SysInternals Suite from Mark Rusinovich, et al.](#sysinternals-suite-from-mark-rusinovich-et-al)
     + [Understand which underlying Dynamic Libraries are Loaded into the Python interpreter](#understand-which-underlying-dynamic-libraries-are-loaded-into-the-python-interpreter)
-  * [Profiling Python Process with Tools Available in Operation Systems: Linux OS](#profiling-python-process-with-tools-available-in-operation-systems--linux-os)
+  * [Profiling Python Process with Tools Available in Operation Systems: Linux OS](#profiling-python-process-with-tools-available-in-operation-systems-linux-os)
     + [About Valgrind Tool for Linux OS](#about-valgrind-tool-for-linux-os)
       - [Callgrind](#callgrind)
       - [Massif](#massif)
@@ -2899,10 +2899,10 @@ For Windows OS collecting a large number of counters is possible via the [SysInt
 
 * [RAMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/RAMMap). It demonstrates a distribution of physical DRAM memory among parts in Windows OS.
 
-Please be aware. Even though these tools have a nice GUI interface, using them if you have a lack of Operation Systems background may not be easy at the beginning. These tools are powerful profiling/inspection tools that can be used to find malware software in the OS. If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the SysInternals Tools
+Even though these tools have a nice GUI interface, using them if you have a lack of Operation Systems background may not be easy at the beginning. These tools are powerful profiling/inspection tools that can be used to find malware software in the OS. If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the SysInternals Tools
 ](https://www.youtube.com/watch?v=A_TPZxuTzBU&ab_channel=MarkRussinovich). 
 
-Python is used also by people without a CS background but with another background (biology, chemistry, etc.). The terminology used in these tools has an OS system flavor. And below we will present some terminology used in these tools:
+Python is used also by people without a CS background but with another background (biology, chemistry, etc.). The terminology used in these tools has an OS system flavor. And with these tools, you can actually look into these counters. Below we will present some terminology used in these tools:
 
 >
 > **User Space Time** - your Python interpreter, is not one thing inside Windows OS (press CTRL+Esc and you will see it). User space-time is the time that your process (python.exe) has spent in userspace. This time excludes the time that the system spends on another process.
@@ -2923,8 +2923,10 @@ Python is used also by people without a CS background but with another backgroun
 The kernel enters such a state when it executes interrupt service routines (ISRs) and deferred procedure calls (DPCs). A nonpaged pool is always kept present in physical memory. Information About this value can be obtained from Process Explorer->System Information->Memory".
 >
 > **Paged (Kernel) Pool** - Paged pool is used by OS and device drivers to situation when can store data that is backed in the paging file, and not necessarily presented in physical memory. Information About this value can be obtained from Process Explorer->System Information->Memory".
+>
+> **Context Switches** - When the time slice has elapsed for the thread assigned to a specific processor, or a running thread needs to wait, or a thread with a higher priority has become ready to run the OS performs context switch. A high-level picture is on that the OS saves the context of the thread that just finished executing, places the thread that just finished executing at the end of the queue for its priority, and finds the highest priority queue that contains ready threads and executes it.
 
-Process Monitor allows you to capture your application (as a Python interpreter process `python.exe`) and obtain the following statistics:
+[Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) allows you to capture your application (as a Python interpreter process `python.exe`) and obtain the following statistics:
 * Windows Registry Access Statistics
 * File Summary Statistics
 * Process Activity Timelines
@@ -2951,6 +2953,17 @@ import numpy
 * Interactive session during its run has used `500` Megabytes of virtual committed memory. The pretty horrible aspect is that this memory once Numpy has been imported is not freed in any way. This virtual memory is committed by the process.
 
 If open VMMap it's possible to observe that after `import numpy` the 66 MBytes is a memory dedicated to images (i.e. executable file `python.exe` intepreter and loaded dynamic libraries). The committed `500` Megabytes are private data specific for your interpreter, for numpy, and for libraries under which the python interpreter and numpy python module are dependent.
+
+There are several other tools from SysInternals suite that can be helpful:
+
+* [pskill](https://learn.microsoft.com/en-us/sysinternals/downloads/pskill). Windows OS does not come with a command-line 'kill' utility. The `pskill` can be used to kill processes by its identifier or by the name of the executable binary image. Example: `pskill python.exe` kills all Python interpreters running in the current system. 
+
+* [pslist](https://learn.microsoft.com/en-us/sysinternals/downloads/pslist). These tools obtain as input name of the process image file and reports:
+Number of Threads (Thd), Number of Handles to kernel objects(Hnd), Virtual Memory in KBytes (VM), Working Set in KBytes (WS), Page Faults (Faults), Non-Paged Pool (NonP)
+Paged Pool (Page), Context Switches (Cswtch). Example: `pslist -x python`
+
+* [listdlls](https://learn.microsoft.com/en-us/sysinternals/downloads/listdlls). ListDLLs is a utility that reports the Dynamic Link Library(DLL) loaded into processes or lists the processes that have a particular DLL loaded. An example of usage comes in the next section.
+
 
 ### Understand which underlying Dynamic Libraries are Loaded into the Python interpreter
 
