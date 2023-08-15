@@ -113,9 +113,9 @@ and Technology}, Thuwal, Saudi Arabia.
 \textbf{Correspondence to:}
 \href{mailto:konstantin.burlachenko@kaust.edu.sa}{\nolinkurl{konstantin.burlachenko@kaust.edu.sa}}
 
-\textbf{Revision Update:} Aug 14, 2023
+\textbf{Revision Update:} Aug 15, 2023
 
-\textbf{Revision Version:} {[}Pre-Release v1.4{]}
+\textbf{Revision Version:} {[}Release v1.5{]}
 
 © 2023 Konstantin Burlachenko, all rights reserved.
 
@@ -158,8 +158,8 @@ and Technology}, Thuwal, Saudi Arabia.
   \item
     \protect\hyperlink{meaning-of-object}{Meaning of Object}
   \item
-    \protect\hyperlink{python-does-provide-access-to-variables-by-value}{Python
-    does Provide Access to Variables by Value}
+    \protect\hyperlink{python-does-not-provide-access-to-variables-by-value}{Python
+    does not Provide Access to Variables by Value}
   \item
     \protect\hyperlink{context-in-python-is-the-same-as-scopes-in-c}{Context
     in Python is the Same as Scopes in C++}
@@ -417,7 +417,7 @@ and Technology}, Thuwal, Saudi Arabia.
     Libraries Based on Benchmarks and Preferences}
   \item
     \protect\hyperlink{usage-of-matrix-matrix-multiplication}{Usage of
-    Matrix - Matrix Multiplication}
+    Matrix-Matrix Multiplication}
   \item
     \protect\hyperlink{cython}{Cython}
 
@@ -488,7 +488,7 @@ and Technology}, Thuwal, Saudi Arabia.
     \protect\hyperlink{official-materials}{Official Materials}
   \item
     \protect\hyperlink{mapping-concepts-from-other-languages-to-python}{Mapping
-    Concepts from other Languages to Python}
+    Concepts from Other Languages to Python}
   \item
     \protect\hyperlink{tutorials-for-libraries}{Tutorials for Libraries}
   \item
@@ -522,14 +522,16 @@ technical limitations common to all scripting languages described in the
 section of this document
 \href{https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md\#downsides-of-interpretable-languages}{C++
 Technical Note / Downsides of Interpretable Languages}, and it lacks an
-official \href{https://www.iso.org}{ISO/IEEE} standard.
+official \href{https://www.iso.org}{ISO/IEEE} standard. The lack of
+standardization has its pros. and cons.
 
-You can check its popularity in this world from these sources:
+You can check the popularity of Python scripting language in this world
+from these sources:
 
 \begin{itemize}
 \item
   The \href{https://www.tiobe.com/tiobe-index/}{TIOBE-Index}, which
-  ranks programming languages by their popularity on their own metrics.
+  ranks programming languages by their popularity on their metrics.
 \item
   The
   \href{https://trends.google.com/trends/explore?date=now\%201-d\&q=\%2Fm\%2F05z1_,\%2Fm\%2F0jgqg,C\%23,\%2Fm\%2F07sbkfb,BASH\&hl=r}{Google-Trends},
@@ -568,8 +570,8 @@ section} of this document.
 \href{https://www.python.org/}{Python} is an interpretable scripting
 language. Python was designed originally only as a replacement for Bash,
 which has been described in that
-\href{https://l.facebook.com/l.php?u=https\%3A\%2F\%2Fpython-history.blogspot.com\%2F2009\%2F01\%2Fpersonal-history-part-1-cwi.html\%3Ffbclid\%3DIwAR1v3C4KHiJtBbG4NYVY2o__lMchCNVKQGe2ozoI-gcxnwCYNvcdxzD_sHU\&h=AT1quzeQEvwmfgFXMnWscdzCzWIJrbgoyQKX22c6w2yzVSaUt9LBMdrL66UgpJaz3rh_-BLBa8FVu3sdV_NzuiuSTU4XPZ5zADu4wGoASMxLcRR-n7Emwogq664lszQUbTZM\&__tn__=-UK-R\&c\%5B0\%5D=AT3TC-zKWleGu9UDUQg6mUKEWZ-El56OnANy8jfnUXLhGPAIHIfrXp6ZVEhtbJztlbUu_3OhD9sRJ7JA_F3ETiL3BsR0dKi58KfhLRwPsHtyRauqYQXDGtxnIeFWRyAxyop0WlHBapKPdoYnVar9DUy3pudNCdWdZ1c4wlxvNA3qoA}{Blog
-Post} written by original author:
+\href{https://python-history.blogspot.com/2009/01/personal-history-part-1-cwi.html?fbclid=IwAR1v3C4KHiJtBbG4NYVY2o__lMchCNVKQGe2ozoI-gcxnwCYNvcdxzD_sHU}{Blog
+Post} written by the original author back in 2009:
 
 \begin{quote}
 "...My original motivation for creating Python was the perceived need
@@ -584,10 +586,10 @@ language that would "bridge the gap between C and the shell..." -
 \href{https://en.wikipedia.org/wiki/Guido_van_Rossum}{Guido van Rossum}.
 \end{quote}
 
-The most common implementation of the Python interpreter is CPython. It
-is named CPython because it is written in C/C++. Unlike some other
-languages, Python does not have an official standard. The only available
-resources are:
+As we have already stated, the most common implementation of the Python
+interpreter is CPython. It is named CPython because it is written in
+C/C++. Unlike some other languages, Python does not have an official
+standard. The only available resources are:
 
 \begin{itemize}
 \item
@@ -633,11 +635,11 @@ There are several resources about the subject:
 \item
   There is a book written by
   \href{https://en.wikipedia.org/wiki/Guido_van_Rossum}{Guido van
-  Rossum} (the original author of that language). Today it has been
-  converted into a pretty big tutorial and it is not named a book but
-  named "tutorial": \url{https://docs.python.org/3/tutorial/}
+  Rossum} (the original author of this language). Today it has been
+  converted into a pretty big tutorial and it is not named as a book,
+  but named as a "tutorial": \url{https://docs.python.org/3/tutorial/}
 \item
-  The compiled documentation is available here in various formats
+  All compiled documentation is available here in various formats
   (including PDF and HTML) :
   \url{https://docs.python.org/3.11/download.html}. The archive contains
   all the documents for the version of Python that you will select.
@@ -662,12 +664,11 @@ There are several resources about the subject:
 \item
   The syntax of most Programming Languages is typically described with
   Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules
-  can be found here (in case you need really dig into specific
-  construction rules):
-  \url{https://docs.python.org/3/reference/grammar.html}
+  can be found here (in case you need to dig into specific construction
+  rules): \url{https://docs.python.org/3/reference/grammar.html}
 \item
-  If you really need to understand how some built-in type is implemented
-  you more likely need to go to the level of a source code of Python
+  If you need to understand how some built-in type is implemented you
+  more likely need to go to the level of a source code of Python
   interpreter: \url{https://github.com/python/cpython}
 \end{enumerate}
 
@@ -691,7 +692,7 @@ arithmetic operations via reading arguments and writing results memory.
 Memory provides the storage of input and output results.\\
 The control unit in the CPU controls the execution and operation of
 Electrical Components (developed by Electrical Engineers). Finer details
-about how computers are working can be obtained from \emph{System
+about how computers work in details can be obtained from \emph{System
 Architecture}, \emph{Performace Engineering} courses and books.
 
 \hypertarget{programming-languages-taxonomy}{%
@@ -699,7 +700,11 @@ Architecture}, \emph{Performace Engineering} courses and books.
 Taxonomy}\label{programming-languages-taxonomy}}
 
 There are a lot of programming languages these days. One way to analyze
-programming languages is from the angle of the implemented type system:
+programming languages is from the angle of the implemented type system
+(types are objects and operations with them, and this concept is close
+by to the concept of Algebras in mathematics, even in mathematics Alebra
+operations is closed under the underlying set and for types it's not
+necessary the case):
 
 \begin{itemize}
 \item
@@ -710,7 +715,7 @@ programming languages is from the angle of the implemented type system:
   in which type checking is done at runtime (execution time).
 \item
   \textbf{Strong Type System} or \textbf{Strong Type safety} - implicit
-  type casting is prohibited
+  type casting is prohibited.
 \item
   \textbf{Weak Type System} or \textbf{Weak Type safety} - implicit type
   casting is allowed.
@@ -740,7 +745,8 @@ Technical Note/Object Orientated Design\\
 
 If you want to understand some hidden principles built-in Python
 language then after having a workable version of Python Interpreter read
-the output from the following command:
+the output from the following command, which Python developers have left
+ad Paschal egg:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -770,7 +776,9 @@ top of it that supports that (for example Qt).
 There is a clash of terminology if you have a C++, Java, or C\#
 background. In Python, everything that takes up memory in some form is
 called the \textbf{object}. In other languages (Java, C\#, C++) object
-is an instance of the class. So an object in Python terminology is:
+is an instance of the class.
+
+So an object in Python terminology is:
 
 \begin{itemize}
 \item
@@ -781,11 +789,12 @@ is an instance of the class. So an object in Python terminology is:
   Fundamental built-in data types (e.g. integers)
 \end{itemize}
 
-It's not true that all things are classes in Python.
+It's not true that all things are classes in Python, but all entities
+that take some memory are objects.
 
-\hypertarget{python-does-provide-access-to-variables-by-value}{%
-\subsection{Python does Provide Access to Variables by
-Value}\label{python-does-provide-access-to-variables-by-value}}
+\hypertarget{python-does-not-provide-access-to-variables-by-value}{%
+\subsection{Python does not Provide Access to Variables by
+Value}\label{python-does-not-provide-access-to-variables-by-value}}
 
 Python has named references to objects. It has no variables available to
 the programmer for reference by value (at least at the level of
@@ -793,8 +802,9 @@ Language). Functions return and accept arguments by reference in the
 terminology of C++, C\#, and Java.
 
 Moreover, there is a very strange thing with default argument which was
-in Python since the early version. For the default argument - the
-default value itself is passed by reference and \emph{calculated once}.
+in Python since the early \texttt{2.*} version. For the default argument
+- the default value itself is passed by reference and \emph{calculated
+once}.
 
 This (unfortunately) creates an implicit global default value object.
 For C++ this is not observed, because arguments are passed by value, in
@@ -815,7 +825,7 @@ are only 4 contexts (which are in C++ terminology called scopes):
 \item
   \textbf{Local Context/Scope.} The context inside the current function.
   As we have mentioned earlier a new loop with a new indentation does
-  not introduce a new local scope.
+  not introduce a new local scope as it is in C++.
 \item
   \textbf{Enclosing Context/Scope.} Locally declare a function inside a
   function. Variables from the parent function will be implicitly
@@ -832,13 +842,13 @@ are only 4 contexts (which are in C++ terminology called scopes):
 \subsection{Pointers and Object Reference
 Equality}\label{pointers-and-object-reference-equality}}
 
-Object in Python is everything that takes memory. Fundamentally in
-Python Object equality can test in one of two types:
+As we have said Object in Python is everything that takes memory.
+Fundamentally in Python Object equality can test in one of two types:
 
-\textbf{Value equality} - testing that takes a reference to objects. And
-what is tested the objects have the same content. The programmer can
-define what this means via defining \texttt{\_\_eq\_\_} in your class.
-This operator semantically is the same as \texttt{==} in C++.
+\textbf{Value equality} - what is tested is the fact that the objects
+have the same content. The programmer can define what this means via
+defining \texttt{\_\_eq\_\_} in user user-defined class. This operator
+semantically is the same as \texttt{==} in C++.
 
 \textbf{Identity equality} - testing when two references are referenced
 to the same object. The programmer can not determine what it means, it
@@ -913,6 +923,12 @@ is in C++ and there are no different types of inheritances. However, in
 Python, there is a limited type of support for \texttt{private} names,
 which we will describe later.
 
+\begin{quote}
+Payment for this flexibility - the class methods invoke mechanism
+implementation is suboptimal for Python runtime compared to available
+options for C and C++.
+\end{quote}
+
 \hypertarget{some-language-differences-between-python-and-c}{%
 \subsection{Some Language Differences Between Python and
 C++}\label{some-language-differences-between-python-and-c}}
@@ -922,6 +938,8 @@ C++}\label{some-language-differences-between-python-and-c}}
 \item
   Assignments opertor \texttt{=} does not copy data. The language just
   binds a right object to the left operand of the \texttt{=} operator.
+  So equal operator \texttt{=} does not copy data, it reassigns object
+  reference.
 \item
   In Python class data attributes override method attributes with the
   same name. To avoid accidental name conflicts, which may cause
@@ -978,26 +996,26 @@ C++}\label{some-language-differences-between-python-and-c}}
   heard about it. This logic in the else path of a loop statement is
   executed when the loop terminates through exhaustion of the iterable
   or when the condition becomes false. However, the \texttt{else} path
-  will not be executed if the loop has been early terminated with
+  will not be executed if the loop has been early terminated with a
   \texttt{break} statement. See Also:
-  \url{https://docs.python.org/3/tutorial/controlflow.html\#break-and-continue-statements-and-else-clauses-on-loops}
+  \url{https://docs.python.org/3/tutorial/controlflow.html\#break-and-continue-statements-and-else-clauses-on-loops}.
 \item
-  In Python there is the "exotic" operator \texttt{**} is used. This
-  operator can raise integers, real, and complex numbers to specific
-  power. Such a built-in operator is absent in C++.
+  In Python there is the "exotic" operator \texttt{**}. This operator
+  can raise integers, real, and complex numbers to specific power. Such
+  a built-in operator is absent in C++.
 \item
   Unlike many C-based languages, Python does not have a unary
   post(postfix) \texttt{++} increment or \texttt{-\/-} decrement
-  operators.
+  operators that increment or decrements integer operands by one.
 \item
-  The boolean literals are named as \texttt{true}, \texttt{false} in
-  C++. However, in Python, they are named as \texttt{True},
+  The boolean literals are named as \texttt{true}, and \texttt{false} in
+  C++. However, in Python, they are named as \texttt{True}, or
   \texttt{False}. The underlying type \texttt{bool} has the same typing
   both in C++ and in Python.
 \item
-  In C/C++ you have the ability to implicitly cast expression to bool or
-  integer type. In Python the following expressions are considered
-  \texttt{False}: \texttt{None}, \texttt{0}, \texttt{empty\ sequence}.
+  In C/C++ you can implicitly cast expression to bool or integer type.
+  In Python the following expressions are considered \texttt{False}:
+  \texttt{None}, \texttt{0}, \texttt{empty\ sequence}.
 \item
   Python uses `.`` to separate packages/subpackage/class like C\#, and
   Java.
@@ -1017,7 +1035,7 @@ Batch} and sometimes more comfortable to use compare to
 \href{https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html}{Bash}.
 In our experience
 \href{https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html}{Bash}
-is still more easy to use if the script contains executing external
+is still easier to use if the script contains executing external
 processes for different tasks and less logic.
 
 Python has a very fast learning curve which opened the door fortunately
@@ -1030,13 +1048,11 @@ Python is a programming language which...
 Unfortunately, if you are around people with CS/EE/System/Compilers
 backgrounds it may be the case that these people will make a statement:
 \emph{"Python is not a programming language"}. To state that Python is
-\emph{Programming Language} we need to define what is (1) programming
-and what is a (2) Language.
+\emph{Programming Language} we need to define what is it by itself.
 
-One meaning is that Language expresses ideas and you don't care at all
-how these ideas are materialized. But it's not the only definition.
-
-The message which one scientist
+One meaning is that Language expresses ideas with defined formalisms and
+you don't care at all how these ideas are materialized. But in fact,
+it's not the only definition. The message which one scientist
 \href{https://scholar.google.com/citations?user=Rr9Y8acAAAAJ\&hl=ru\&oi=ao}{B.
 Stroustroup} (author of C++) tries to bring for people for already 3
 decades that \emph{Programming Language} is the language that gives you
@@ -1051,9 +1067,9 @@ runtimes coupled with a Just-In-Time(JIT) compiler.
 If you only start with Programming in your career, or if you have no
 experience in Compilers/OS/Systems you may not see the difference, but
 there is a fundamental difference. It does not say that these languages
-are incorrect, but at least understand that it's not the computer that
-executes this program, but what is executing is another (one more) level
-of abstraction. Any level of Abstraction is not free in terms of
+are incorrect, but at least please understand that it's not the computer
+that executes this program, but what is executing is another (one more)
+level of abstraction. Any level of Abstraction is not free in terms of
 consumed memory and execution time.
 
 \begin{quote}
@@ -1073,45 +1089,45 @@ vague statement. It can be three points of view on such a statement:
   Complete}.
 \item
   By General Purpose you mean that you can use it across many domains.
-  But how big is big? Depending on the definition of "Big" Python may
-  lie in this class.
+  But how many are many? Depending on the definition of "Many" Python
+  may lie in this class.
 \item
   By General Purpose you mean you can create programs for different
   computing elements in the Computer. If this is your definition and you
   believe that Python can help with this - it's \emph{wrong}. Python by
   design is the replacement for Bash, it's not a replacement for C or
   C++, or any other traditional language. Conter example: You can not
-  create drivers for your devices.
+  create drivers for your devices in Python.
 \end{enumerate}
 
 \begin{quote}
 Python is more elegant and short than C++.
 \end{quote}
 
-One more time it depends on what you mean exactly. This is true if look
-into lines of code. However, the first thing in creating algorithms -
-they should be correct. In our experience, what is interesting after
-some amount of code is that there is a very strange asymmetry that you
-will observe once you create projects in Python and C++ with 40K lines
-of code and more. With at least such a big size Python is not even close
-to C++. Because compiling languages forces you to follow some
-discipline.
+One more time it depends on what you mean exactly. Some logic that works
+with byte view into virtual memory of the process even can not be
+expressed in Python at all. If consider an application that can be
+expressed in Python, then this is in general true if look into a number
+of lines of code in Python. However, the first thing in creating
+algorithms - they should be correct. In our experience, what is
+interesting after some amount of code is that there is a very strange
+asymmetry that you will observe once you create projects in Python and
+C++ with 40K lines of code and more. With at least such a big size
+Python is not even close to C++. Because compiling languages forces you
+to follow some discipline, and Python does not.
 
 Of course, there is a tool for Python that helps
 \href{https://pypi.org/project/pylint/}{pylint}, but a compiler and
 linker are far more powerful tools for detecting errors than a static
-analyzer.
+analyzer applied for Language with Dynamic Type Systems.
 
 \begin{quote}
 Python is everywhere
 \end{quote}
 
-This overstatement can also be read from the Python Tutorial.
-
-Please be aware that (any) interpretable language which exists or will
-be created in the future fundamentally will have the following
-downsides:
-
+This overstatement can also be read from the Python Tutorial. Please be
+aware that (any) interpretable language which exists or will be created
+in the future fundamentally will have the following downsides:\\
 \href{https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md\#downsides-of-interpretable-languages}{C++
 Technical Note / Downsides of Interpretable Languages\\
 }.
@@ -1124,9 +1140,9 @@ Technical Note / Downsides of Interpretable Languages\\
 Languages}\label{python-language-benefits-over-other-scripting-languages}}
 
 It depends on your point of view and your style, but there is a point of
-view where the following things are benefits.
-
-Especially if you have limited time to finish a project:
+view where the following things presented in Python are benefits. In
+fact, they shine especially if you have limited time to finish a
+project:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1138,11 +1154,15 @@ Especially if you have limited time to finish a project:
 \item
   A lot of free and commercial IDE with IntelliSense.
 \item
-  Built-in debugger.
-\item
   Python uses \textless{}\texttt{.}\textgreater{} token to separate
   packages/subpackage/classes like C\# and Java. Packages from Perl are
   called modules in Python.
+\item
+  An extremely big collection of extra modules for Python (e.g. official
+  \href{https://pypi.org/}{pypi index storage} has around 474.5K
+  projects)
+\item
+  Built-in debugger.
 \end{enumerate}
 
 During debugging it's worthwhile to say that parsing of the function is
@@ -1243,11 +1263,12 @@ The following expressions are considered \texttt{false} in Python:
 \hypertarget{first-line-in-your-script}{%
 \subsection{First Line in Your Script}\label{first-line-in-your-script}}
 
-The line \texttt{\#!/usr/bin/env\ python3} in a well is called sha-bang.
-It has a long history in Unix/Linux OS. For Windows, it's possible to
-use it as well. In Windows a binary application named \texttt{py.exe} is
-a launcher with performs a choice of a used interpreter based on the
-mentioned sha-bang.
+The line \texttt{\#!/usr/bin/env\ python3} in a well-developed script
+contains what is known as sha-bang. It has a long history in Unix/Linux
+OS. For Windows, it's possible to use it as well. In Windows a binary
+application named \texttt{py.exe} is a launcher with performs a choice
+of a used interpreter based on the mentioned sha-bang. Formally this
+line is optional.
 
 \hypertarget{possible-second-line-source-file-encoding}{%
 \subsection{Possible Second Line. Source File
@@ -1289,15 +1310,18 @@ lines by following the explicit or implicit line-joining rules:
 \item
   Normally you should use \texttt{\textbackslash{}} for line
   continuation, however, Python supports automatically multi-line
-  continuation inside:
+  continuation inside the following constructions:
 
   \begin{itemize}
   \item
-    Expressions in parentheses \texttt{()}
+    Expressions in parentheses \texttt{()}, e.g. which is used for
+    passing arguments to function invokation.
   \item
-    Expressions in square brackets \texttt{{[}{]}}
+    Expressions in square brackets \texttt{{[}{]}}, e.g. which is used
+    to initialize the list object.
   \item
-    Expressions in curly braces \texttt{\{\}}
+    Expressions in curly braces \texttt{\{\}}, e.g. which is used to
+    define sets or dictionaries.
   \end{itemize}
 \end{itemize}
 
@@ -1319,7 +1343,7 @@ to the end of the physical line.
 
 Based on
 \href{https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md\#lexical-analysis}{C++
-Tehnical Note/Lexical Analysis} - in the terminology of Programming
+Technical Note/Lexical Analysis} - in the terminology of Programming
 Languages, tokens are separate words of a program text. In most
 programming languages, the tokens fundamentally can be one of the
 following types:
@@ -1352,27 +1376,26 @@ available here:\\
   \texttt{...} is used inside the condition, then \texttt{...} is
   implicitly converted into \texttt{True}.
 \item
-  \textbf{NoneType.} This type has a single value and there is a single
-  object with this value. This object is accessed through the built-in
-  name \texttt{None}. It is used to signify the absence of a value in
-  many situations. Also, it is returned from functions that do not
-  explicitly return anything. If this expression is used inside the
-  condition, then \texttt{...} is implicitly converted into
-  \texttt{False}.
+  \textbf{NoneType.} This type has a single object. This object is
+  accessed through the built-in name \texttt{None}. It is used to
+  signify the absence of a value in many situations. Also, it is
+  returned from functions that do not explicitly return anything. If
+  this expression is used inside the condition, then \texttt{...} is
+  implicitly converted into \texttt{False}.
 \item
   \textbf{Integers (int)}. The type that is used to represent integers
   in Python interpreter does not have any fixed number of bits. Instead,
   it has a varying size. In this sense, an integer has an unlimited
   range. You can practically hold as big an integer as you want until
-  you start having problems with virtual memory.
+  you start having problems with virtual memory in the interpreter
+  process.
 \item
-  \textbf{numbers. Real (float).} This type represents machine-level
+  \textbf{Real (float).} This type represents machine-level
   double-precision floating point numbers. From Documentation:
   \emph{"...there is no reason to complicate the language with two kinds
   of floating-point numbers..."} It's the design choice for a language.
   Of course, for people involved in scientific numerics, such a
-  statement is deeply wrong and sometimes laughable only in the case of
-  writing software that takes care of compute time and memory footprint.
+  statement may be in some circumstances very unlikely.
 \end{itemize}
 
 Documentation on this subject:
@@ -1408,6 +1431,16 @@ can be written on a single logical line. Example:
 \end{Highlighting}
 \end{Shaded}
 
+which is equivalent to:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if} \DecValTok{1}\NormalTok{:}
+    \BuiltInTok{print}\NormalTok{ (}\DecValTok{2}\NormalTok{)}
+    \BuiltInTok{print}\NormalTok{ (}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{emptypass-statements}{%
 \subsection{Empty(Pass) Statements}\label{emptypass-statements}}
 
@@ -1420,9 +1453,7 @@ Python}\label{division-of-numbers-in-python}}
 
 The division operator in Python \texttt{/} always returns a float. To do
 floor division and get an integer result you can use the \texttt{//}
-operator.
-
-To calculate the remainder, you can use \texttt{\%} similar to
+operator. To calculate the remainder, you can use \texttt{\%} similar to
 C/C++/Java.
 
 \hypertarget{printing}{%
@@ -1465,9 +1496,9 @@ You can use various formatting rules described here to configure
 output:\\
 \url{https://docs.python.org/3.11/library/string.html\#formatspec}
 
-Since Python 3.6 is in the interpreter, a string interpolation feature
-has been added (\url{https://www.python.org/dev/peps/pep-0498/}). It is
-presented in Bash and similar scripting languages.\\
+Since Python 3.6 a string interpolation feature has been added
+(\url{https://www.python.org/dev/peps/pep-0498/}) in the interpreter. It
+is presented in Bash and similar scripting languages.\\
 Example:
 
 \begin{Shaded}
@@ -1478,12 +1509,15 @@ Example:
 \end{Shaded}
 
 The f-string form is known as a formatted string literal. To use
-formatted string literals, you should begin a string with \texttt{for}F`
-before the opening quotation mark.
+formatted string literals, you should begin a string with \texttt{f} or
+\texttt{F} before the opening quotation mark in the form of
+\textless{}\texttt{\textquotesingle{}}\textgreater,
+\textless{}\texttt{"}\textgreater, \textless{}\texttt{"""}\textgreater,
+\textless{}\texttt{\textquotesingle{}\textquotesingle{}\textquotesingle{}}\textgreater.
 
 Inside this string, you can write an arbitrary Python expression between
-\texttt{\{} and \texttt{\}}. For example, you can refer to variables or
-literal values. During using f-string you can pass an integer after the
+\texttt{\{} and \texttt{\}}. Also, you can refer to variables or literal
+values. During using f-string you can pass an integer after the
 \texttt{:}. It will cause that field to be a minimum number of
 characters wide. This is useful for making columns line up. Example:
 
@@ -1494,12 +1528,12 @@ characters wide. This is useful for making columns line up. Example:
 \end{Highlighting}
 \end{Shaded}
 
-Next, there is one extra feature that can be useful during debugging.\\
+Next, there is one extra feature that can be useful during debugging.
 The \texttt{=} specifier can be used to expand an expression too:
 
 \begin{itemize}
 \item
-  Text of the expression in text form
+  Text of the expression in the form of the text
 \item
   An equal sign
 \item
@@ -1515,11 +1549,20 @@ Example:
 \end{Highlighting}
 \end{Shaded}
 
+Output:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a}\OperatorTok{=}\DecValTok{123}
+\end{Highlighting}
+\end{Shaded}
+
 String interpolation (named formatted string literal) is evaluated
 during script execution. In terms of type, they are just \texttt{str}
 and it's not a new type. Implementing in C++ or any compiling language
 such functionality is impossible (of course if you don't want to write
-your interpreter inside your project).
+your interpreter inside your project or want implement this
+functionality by yourself).
 
 Finally, old string formatting from Python 2 which is still supported in
 Python 3 for C style \texttt{printf()} C++ specification. Example:
@@ -1549,7 +1592,10 @@ function will help you with that:
 The object returned by \texttt{range()} behaves as if it is a list, but
 it is not. It is an object of class \texttt{range} that returns the
 successive items of the desired sequence when you iterate over it. It
-does not make the list, thus saving space.
+does not make the list, thus saving space.\\
+In the old days, the Python language created a list, but it was a lot of
+time ago in Python \texttt{2.*}, and currently we can forget that such a
+situation had place.
 
 When you are looping through dictionaries you are enumerating through
 \texttt{keys}. If the key and corresponding value are important to you,
@@ -1569,8 +1615,8 @@ corresponding value can be retrieved at the same time using the
 \end{Highlighting}
 \end{Shaded}
 
-To loop over a sequence in reverse, first, specify the sequence in a
-forward direction and then call the \texttt{reversed()} function. To
+To loop over a sequence in reverse order, first, specify the sequence in
+a forward direction and then call the \texttt{reversed()} function. To
 loop over a sequence in sorted order, use the \texttt{sorted()} function
 which returns a new sorted list while leaving the source unaltered.
 Using \texttt{set()} on a sequence eliminates duplicate elements because
@@ -1594,15 +1640,27 @@ contain any operators.
 What can confuse people with C++/Java/C\#/C backgrounds is that
 comparisons can be chained. For example,
 \texttt{a\ \textless{}\ b\ ==\ c} tests the following \emph{"a is less
-than b \textbf{and} b equals c"}.
+than b" \textbf{and} "b equals c"}.
 
 Comparisons may be combined using the Boolean operators \texttt{and} and
 \texttt{or}, \texttt{not}. The Boolean operators \texttt{and} and
 \texttt{or} are so-called short-circuit operators and are analogous to
-\texttt{\&\&} and \texttt{\textbar{}\textbar{}}.
+\texttt{\&\&} and \texttt{\textbar{}\textbar{}}. Chaining questions can
+be used to "kill" candidates in technical screening. Example:
 
-Python supports the same set of the bitwise operator as it in C/C++
-languages (See
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mary\_songs }\OperatorTok{=}\NormalTok{ [}\DecValTok{576093}\NormalTok{, }\DecValTok{297863}\NormalTok{, }\DecValTok{871532}\NormalTok{]}
+\NormalTok{index }\OperatorTok{=} \DecValTok{297863}
+\BuiltInTok{print}\NormalTok{(index }\OperatorTok{==}\NormalTok{ index }\KeywordTok{in}\NormalTok{ mary\_songs)}
+\end{Highlighting}
+\end{Shaded}
+
+If you don't know about the chaining rule you may expect that results
+are \texttt{False}, but it's actually \texttt{True}.
+
+Next, Python supports the same set of the bitwise operator as it in
+C/C++ languages (See
 \href{https://docs.python.org/3.13/reference/expressions.html\#operator-precedence}{operator
 precedence}) and it includes: \texttt{\&}, \texttt{\textbar{}},
 \texttt{\textless{}\textless{}}, \texttt{\textgreater{}\textgreater{}},
@@ -1701,12 +1759,13 @@ Booleans are also the results of comparisons like:
 \hypertarget{containers}{%
 \subsection{Containers}\label{containers}}
 
-Python includes several built-in container types: lists, dictionaries,
-sets, and tuples. Containers are devoted to storing values.
+Python includes several built-in container types: \emph{lists},
+\emph{dictionaries}, \emph{sets}, and \emph{tuples}. Containers are
+devoted to storing values.
 
 A list is the Python equivalent of an array (conceptually, even inside
-Python interpreter it's really implemented as a list), but is resizeable
-and can contain elements of different types:
+Python interpreter it's really implemented as a list), but it is (i)
+resizeable; (ii) can contain elements of different types. Examples:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1745,7 +1804,9 @@ see slicing again in the context of NumPy arrays.
 }{Comparison of Containers }}\label{comparison-of-containers}}
 
 Sequence objects (typically) can be compared to other objects with the
-same sequence type. The comparison uses lexicographical ordering.
+same sequence type. The comparison uses lexicographical ordering to
+define order relations. If during comparison the type of objects does
+not support comparision operator the exception is raised.
 
 \hypertarget{strings}{%
 \subsection{Strings}\label{strings}}
@@ -3146,7 +3207,7 @@ base classes for extension by the user:
 \end{Highlighting}
 \end{Shaded}
 
-To inspect is the object is an instance of some class you can use
+To inspect if the object is an instance of some class you can use
 \href{https://docs.python.org/3/library/functions.html\#isinstance}{isinstance(obj,
 classinfo)} which is analog of C++
 \href{https://en.cppreference.com/w/cpp/language/dynamic_cast}{dynamic\_cast}.
@@ -3197,7 +3258,7 @@ professional and science literature this term is used rarely. This
 informal name shines a light that a lot of things inside the Python
 community happen informally without any standardization. The effect that
 both styles (formal and informal) can coexist can be obtained by looking
-into API and development style for Android OS and Linux/Windows OS. The
+into API and development styles for Android OS and Linux/Windows OS. The
 development for Android OS is mostly cowboy style.
 
 A class can implement certain operations that are invoked by special
@@ -3999,7 +4060,7 @@ must specify a slice for each dimension of the array. Example:
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\CommentTok{\# Create the following rank 2 array with shape (3, 4)}
+\CommentTok{\# Create the following rank 2 arrays with shape (3, 4)}
 \CommentTok{\# [[ 1  2  3  4]}
 \CommentTok{\#  [ 5  6  7  8]}
 \CommentTok{\#  [ 9 10 11 12]]}
@@ -4373,7 +4434,8 @@ Optimization}\label{profiling-and-compute-optimization}}
 \subsection{Collecting Preliminary Information About the
 System}\label{collecting-preliminary-information-about-the-system}}
 
-To obtain version of Python interpreter use the following command:\\
+To obtain a version of the Python interpreter use the following
+command:\\
 \texttt{python\ -\/-version}
 
 To collect a summary about your system running on \textbf{Windows OS
@@ -4847,8 +4909,7 @@ Library}\label{easy-interoperability-with-standard-c-library}}
 \ImportTok{from}\NormalTok{ cpython.version cimport PY\_VERSION\_HEX}
 
 \NormalTok{cpdef double f(double x):     }
-  \BuiltInTok{print}\NormalTok{(}\StringTok{"CPython version for which code is compiled:"}\NormalTok{, }
-\NormalTok{        PY\_VERSION\_HEX)}
+  \BuiltInTok{print}\NormalTok{(}\StringTok{"CPython version for which code is compiled:"}\NormalTok{, PY\_VERSION\_HEX)}
   \ControlFlowTok{return}\NormalTok{ sin(x }\OperatorTok{*}\NormalTok{ x)}
 \end{Highlighting}
 \end{Shaded}
@@ -5073,8 +5134,8 @@ Hot to run:
 \end{Shaded}
 
 Only if you wish to compare C++ and Python code you can create (or find)
-equivalent code for your Python Logic. For example this is the following
-code:
+equivalent code for your Python Logic. For example, this is the
+following code:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5151,8 +5212,8 @@ Content of \texttt{build\_and\_run.bat}:
 At the end of the script, there is an \texttt{input()} which will wait
 for input, and similar to C++ code there is a blocking for waiting input
 from standard input and processes will be alive. Sometimes it can be
-helpful of purpose of profiling to prevent the Python process from dying
-early.
+helpful for the purpose of profiling to prevent the Python process from
+dying early.
 
 For Windows OS collecting a large number of counters is possible via the
 \href{https://learn.microsoft.com/en-us/sysinternals/}{SysInternals
@@ -5195,9 +5256,8 @@ to Kill: Malware Hunting with the SysInternals Tools\\
 
 Python is used also by people without a CS background but with another
 background (biology, chemistry, etc.). The terminology used in these
-tools has an OS system flavor. And with these tools, you can actually
-look into these counters. Below we will present some terminology used in
-these tools:
+tools has an OS system flavor. With these tools, you can look into these
+counters. Below we will present some terminology used in these tools:
 
 \begin{quote}
 \textbf{User Space Time} - your Python interpreter, is not one thing
@@ -5346,8 +5406,9 @@ committed \texttt{500} Megabytes are private data specific for your
 interpreter, for numpy, and for libraries under which the python
 interpreter and numpy python module are dependent.
 
-There are several other tools from SysInternals suite that can be
-helpful:
+Several other tools from the
+\href{https://learn.microsoft.com/en-us/sysinternals/}{SysInternals}
+suite can be helpful:
 
 \begin{itemize}
 \item
@@ -5685,7 +5746,7 @@ allocations and memory accesses and provides a report with detailed
 information.
 
 The \href{https://valgrind.org/}{Valgrind} is a simulator. Once you use
-it in term of wall clock time you program (Python interpreter process)
+it in term of wall clock time your program (Python interpreter process)
 runs very slow. But \href{https://valgrind.org/}{Valgrind} and
 simulators in general produce accurate and repeatable performance
 counters.
@@ -5725,7 +5786,7 @@ manager}:
 \paragraph{Callgrind}\label{callgrind}}
 
 For example, you can analyze how the running code is using CPU Caching
-in emulated environment:
+in the emulated environment:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5733,8 +5794,8 @@ in emulated environment:
 \end{Highlighting}
 \end{Shaded}
 
-Callgrind measures only code that is executed. Please be sure you are
-making diverse and representative runs that exercise all appropriate
+Callgrind measures only the code that is executed. Please be sure you
+are making diverse and representative runs that exercise all appropriate
 code paths. Also, callgrind records the count of instructions, not the
 actual time spent in a function. Costs associated with I/O won't show up
 in the profile.
@@ -5931,7 +5992,7 @@ process for memory access.
 \begin{itemize}
 \item
   \texttt{perf\ stat\ -e\ \textquotesingle{}syscalls:sys\_enter\_*\textquotesingle{}\ python\ -c\ "pass"}.
-  This command count system calls. One system called roughlt speaking
+  This command count system calls. One system call roughly speaking
   takes 100-2000 instructions from the CPU. In Windows OS the switching
   from userspace to kernel space takes 1000 cycles. So if you have a lot
   of System Calls it will hurt your performance.
@@ -5999,10 +6060,11 @@ point if it is possible.
 expressive power when you can create 5-level nested comprehension
 construction in one line.
 
-\textbf{c.} Please provide links to original sources of information.
-Original sources are documentation of language or libraries. The
-knowledge in Society tends to be spread across different communities,
-rather than one person knowing everything.
+\textbf{c.} Please provide links to sources of information and original
+links to sources or documentation. The knowledge in Society tends to be
+spread across different communities, rather than one person knowing
+everything, concise references will help other people go beyond our or
+your knowledge.
 
 \textbf{d.} For big software packages with which you gained knowledge by
 spending plenty of time you have two options: Either Create a short
@@ -6038,7 +6100,7 @@ Section or create a reference to original documentation.
 \url{https://docs.python.org/3/library/index.html\#library-index}
 
 \hypertarget{mapping-concepts-from-other-languages-to-python}{%
-\subsection{Mapping Concepts from other Languages to
+\subsection{Mapping Concepts from Other Languages to
 Python}\label{mapping-concepts-from-other-languages-to-python}}
 
 {[}8{]} Matlab/Numpy translation:
