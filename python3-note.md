@@ -207,7 +207,7 @@ There are several resources about the subject:
 
 5. The CPython interpreter website contains a full-text search over Python documentation. You can use this utility both in terms of learning and in terms of finding details if you already know this language: https://docs.python.org/3/search.html
 
-6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here (in case you need dig into specific construction rules): https://docs.python.org/3/reference/grammar.html
+6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here (in case you need to dig into specific construction rules): https://docs.python.org/3/reference/grammar.html
 
 7. If you need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
 
@@ -220,7 +220,7 @@ Finally please take a look into materials from [references](#references) section
 It's important to understand that computational devices do not execute code in Java, C#, Matlab, or Python. Computers can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA). 
 
 A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments and writing results memory. Memory provides the storage of input and output results.
-The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how computers are working can be obtained from *System Architecture*, *Performace Engineering* courses and books.
+The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how computers work in details can be obtained from *System Architecture*, *Performace Engineering* courses and books.
 
 ## Programming Languages Taxonomy
 
@@ -473,7 +473,7 @@ The following expressions are considered `false` in Python:
 
 ##  First Line in Your Script
 
-The line `#!/usr/bin/env python3` in a well-developed script contains what is known sha-bang. It has a long history in Unix/Linux OS. For Windows, it's possible to use it as well. In Windows a binary application named `py.exe` is a launcher with performs a choice of a used interpreter based on the mentioned sha-bang. Formally this line is optional.
+The line `#!/usr/bin/env python3` in a well-developed script contains what is known as sha-bang. It has a long history in Unix/Linux OS. For Windows, it's possible to use it as well. In Windows a binary application named `py.exe` is a launcher with performs a choice of a used interpreter based on the mentioned sha-bang. Formally this line is optional.
 
 ## Possible Second Line. Source File Encoding.
 
@@ -2838,7 +2838,7 @@ Hot to run:
 python3 test.py
 ```
 
-Only if you wish to compare C++ and Python code you can create (or find) equivalent code for your Python Logic. For example this is the following code:
+Only if you wish to compare C++ and Python code you can create (or find) equivalent code for your Python Logic. For example, this is the following code:
 
 ```cpp
 #include <iostream>
@@ -2900,7 +2900,7 @@ echo ***************COMPILING/LINK IS FINISHED**********************************
 test.exe
 ```
 
-At the end of the script, there is an `input()` which will wait for input, and similar to C++ code there is a blocking for waiting input from standard input and processes will be alive. Sometimes it can be helpful of purpose of profiling to prevent the Python process from dying early.
+At the end of the script, there is an `input()` which will wait for input, and similar to C++ code there is a blocking for waiting input from standard input and processes will be alive. Sometimes it can be helpful for the purpose of profiling to prevent the Python process from dying early.
 
 For Windows OS collecting a large number of counters is possible via the [SysInternals Suite](https://learn.microsoft.com/en-us/sysinternals/) created by [Mark Russinovich](https://en.wikipedia.org/wiki/Mark_Russinovich):
 
@@ -2915,7 +2915,7 @@ For Windows OS collecting a large number of counters is possible via the [SysInt
 Even though these tools have a nice GUI interface, using them if you have a lack of Operation Systems background may not be easy at the beginning. These tools are powerful profiling/inspection tools that can be used to find malware software in the OS. If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the SysInternals Tools
 ](https://www.youtube.com/watch?v=A_TPZxuTzBU&ab_channel=MarkRussinovich). 
 
-Python is used also by people without a CS background but with another background (biology, chemistry, etc.). The terminology used in these tools has an OS system flavor. And with these tools, you can look into these counters. Below we will present some terminology used in these tools:
+Python is used also by people without a CS background but with another background (biology, chemistry, etc.). The terminology used in these tools has an OS system flavor. With these tools, you can look into these counters. Below we will present some terminology used in these tools:
 
 >
 > **User Space Time** - your Python interpreter, is not one thing inside Windows OS (press CTRL+Esc and you will see it). User space-time is the time that your process (python.exe) has spent in userspace. This time excludes the time that the system spends on another process.
@@ -2967,7 +2967,7 @@ import numpy
 
 If open VMMap it's possible to observe that after `import numpy` the 66 MBytes is a memory dedicated to images (i.e. executable file `python.exe` intepreter and loaded dynamic libraries). The committed `500` Megabytes are private data specific for your interpreter, for numpy, and for libraries under which the python interpreter and numpy python module are dependent.
 
-Several other tools from SysInternals suite can be helpful:
+Several other tools from the [SysInternals](https://learn.microsoft.com/en-us/sysinternals/) suite can be helpful:
 
 * [pskill](https://learn.microsoft.com/en-us/sysinternals/downloads/pskill). Windows OS does not come with a command-line 'kill' utility. The `pskill` can be used to kill processes by its identifier or by the name of the executable binary image. Example: `pskill python.exe` kills all Python interpreters running in the current system. 
 
@@ -3115,7 +3115,7 @@ Unlike the executable and dynamic library format in Windows OS (PE format), the 
 
 [Valgrind](https://valgrind.org/) is a famous tool used for memory debugging, memory leak detection, and profiling in case of using compiled languages. Valgrind works by running the program on a virtual machine that simulates the CPU and memory. Valgrind supports various Posix platforms but is not available under Windows OS. Once you run a program under valgrind it performs extensive checking of memory allocations and memory accesses and provides a report with detailed information.
 
-The [Valgrind](https://valgrind.org/) is a simulator. Once you use it in term of wall clock time you program (Python interpreter process) runs very slow. But [Valgrind](https://valgrind.org/) and simulators in general produce accurate and repeatable performance counters.
+The [Valgrind](https://valgrind.org/) is a simulator. Once you use it in term of wall clock time your program (Python interpreter process) runs very slow. But [Valgrind](https://valgrind.org/) and simulators in general produce accurate and repeatable performance counters.
 
 Valgrind is not only a single tool, but it contains internally several tools (https://valgrind.org/info/tools.html) and it includes:
 
@@ -3132,12 +3132,12 @@ sudo  apt-get install valgrind
 ```
 
 #### Callgrind
-For example, you can analyze how the running code is using CPU Caching in emulated environment:
+For example, you can analyze how the running code is using CPU Caching in the emulated environment:
 ```bash
 valgrind --tool=callgrind --simulate-cache=yes python -c "import numpy"
 ```
 
-Callgrind measures only code that is executed. Please be sure you are making diverse and representative runs that exercise all appropriate code paths. Also, callgrind records the count of instructions, not the actual time spent in a function. Costs associated with I/O won't show up in the profile.
+Callgrind measures only the code that is executed. Please be sure you are making diverse and representative runs that exercise all appropriate code paths. Also, callgrind records the count of instructions, not the actual time spent in a function. Costs associated with I/O won't show up in the profile.
 
 The result of this program returns the following counters:
 * Ir: I cache reads (instructions executed)
@@ -3220,7 +3220,7 @@ memory access. These units have access to the Register File, the TLB for address
 location. This operation occurs for every instruction of a program. Without the TLB, the virtual addressing mechanism would require several accesses to different page tables, significantly increasing the time needed. The TLB is a cache that stores the mapping between virtual page numbers and physical frame numbers, speeding up the address translation process for memory access.
 
 
-* `perf stat -e 'syscalls:sys_enter_*' python -c "pass"`. This command count system calls. One system called roughlt speaking takes 100-2000 instructions from the CPU. In Windows OS the switching from userspace to kernel space takes 1000 cycles. So if you have a lot of System Calls it will hurt your performance.
+* `perf stat -e 'syscalls:sys_enter_*' python -c "pass"`. This command count system calls. One system call roughly speaking takes 100-2000 instructions from the CPU. In Windows OS the switching from userspace to kernel space takes 1000 cycles. So if you have a lot of System Calls it will hurt your performance.
 
 * `perf stat -e 'block:*' python -c pass`. Count block device I/O events. These events are addressed directly to the block device. These events happen when a block device I/O request is issued (disk I/O).
 
