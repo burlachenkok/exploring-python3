@@ -3045,12 +3045,12 @@ cat /proc/$(pidof python)/status
 ```
 This file demonstrated the memory segments and libraries mapped by a program. There is no information about size. This information should be derived from you somehow. Specifically, each line corresponding at the beginning contains a pair of hyphen-separated numbers indicating the virtual address range (in hexadecimal format) at which the memory segment is mapped.
 
-In Linux OS the OS concept by design is tried to be represented as files. Dynamic (Shared) Libraries are also files. And you can obtain a list of all open files with the following command:
+In Linux OS the OS concept by design is tried to be represented as files. Dynamic (Shared) Libraries are also files. And you can obtain a list of all open files with the [lsof](https://linux.die.net/man/8/lsof) command:
 ```bash
 lsof -p `pidof python`
 ```
 
-The lsof command can also be used to look into open Internet network connections in the system:
+The [lsof](https://linux.die.net/man/8/lsof) command can also be used to look into open Internet network connections in the system:
 ```bash
 lsof -i
 ```
@@ -3059,6 +3059,15 @@ The Analogous program to Process Monitor under Linux OS is system util `strace`.
 ```bash
 strace python -c "import numpy" 2>&1 | grep .so | grep blas
 ```
+
+The `strace` by itself outputs the name of called system functions with arguments. String arguments are displayed in human readable form, bitwise flags sometimes are printed as integer constants, sometimes as named constants. Each line ends up with the `=` sign in output (by default output stream for `strace` is stderr). After the equal sign, there is a return code. The code `0` means that all is okay with the competition of the function.
+
+Next some statistics of system calls can be obtained via utilizing `-c` flags of `strace`:
+```bash
+strace -c python -c "import numpy" 2>&1
+```
+
+The statistics include: the number of errors from system call, number of calls of specific system call, spend seconds for all system calls of a specific type, and the percentage of all time budget spent for all system call for this call.
 
 Once I have identified that `import numpy` loads the following shared library `/usr/lib/x86_64-linux-gnu/libblas.so.3` I can make several things:
 
