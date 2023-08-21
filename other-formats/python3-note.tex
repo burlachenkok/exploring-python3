@@ -5598,7 +5598,8 @@ segment is mapped.
 
 In Linux OS the OS concept by design is tried to be represented as
 files. Dynamic (Shared) Libraries are also files. And you can obtain a
-list of all open files with the following command:
+list of all open files with the
+\href{https://linux.die.net/man/8/lsof}{lsof} command:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5606,8 +5607,8 @@ list of all open files with the following command:
 \end{Highlighting}
 \end{Shaded}
 
-The lsof command can also be used to look into open Internet network
-connections in the system:
+The \href{https://linux.die.net/man/8/lsof}{lsof} command can also be
+used to look into open Internet network connections in the system:
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -5624,6 +5625,28 @@ call it in the following way:
 \ExtensionTok{strace}\NormalTok{ python }\AttributeTok{{-}c} \StringTok{"import numpy"} \DecValTok{2}\OperatorTok{\textgreater{}\&}\DecValTok{1} \KeywordTok{|} \FunctionTok{grep}\NormalTok{ .so }\KeywordTok{|} \FunctionTok{grep}\NormalTok{ blas}
 \end{Highlighting}
 \end{Shaded}
+
+The \texttt{strace} by itself outputs the name of called system
+functions with arguments. String arguments are displayed in human
+readable form, bitwise flags sometimes are printed as integer constants,
+sometimes as named constants. Each line ends up with the \texttt{=} sign
+in output (by default output stream for \texttt{strace} is stderr).
+After the equal sign, there is a return code. The code \texttt{0} means
+that all is okay with the competition of the function.
+
+Next some statistics of system calls can be obtained via utilizing
+\texttt{-c} flags of \texttt{strace}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{strace} \AttributeTok{{-}c}\NormalTok{ python }\AttributeTok{{-}c} \StringTok{"import numpy"} \DecValTok{2}\OperatorTok{\textgreater{}\&}\DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+The statistics include: the number of errors from system call, number of
+calls of specific system call, spend seconds for all system calls of a
+specific type, and the percentage of all time budget spent for all
+system call for this call.
 
 Once I have identified that \texttt{import\ numpy} loads the following
 shared library \texttt{/usr/lib/x86\_64-linux-gnu/libblas.so.3} I can
