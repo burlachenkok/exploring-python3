@@ -2932,7 +2932,7 @@ int main()
 }
 ```
 
-Unfortunately to build even simple C++ Program under Windows OS you have to install [Microsoft Visual Studio](https://visualstudio.microsoft.com/) or [Microsoft Visual Studio C++ Command Line Tools](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170).
+Unfortunately, to build even a simple C++ Program under Windows OS you have to install [Microsoft Visual Studio](https://visualstudio.microsoft.com/) or [Microsoft Visual Studio C++ Command Line Tools](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170).
 
 Hot to build and run:
 ```bash
@@ -3084,9 +3084,18 @@ The close-by concepts in terms of userspace application are presented in Linux O
 
 > **Two most important types of memory for profiling applications:**
 >
-> * Current resident set size (VmRSS) - is analogous to Windows OS Working set and represents allocated memory from DRAM for your application.
+> * Current resident set size (VmRSS) - is analogous to Windows OS **Working Set** and represents allocated memory from DRAM for your application.
 >
 > * Current virtual memory size (VmSize) - is currently allocated memory for your process.
+
+Firstly, you can use the`/usr/bin/time` GNU/Linux program for example in the way:
+```
+time python -c "print(1)"
+```
+This execution returns three time metrics:
+* **real** - is a wall-clock time for executing the program.
+* **user** - is the amount of time spent in user mode code within the process.
+* **sys** - is the amount of time spent in kernel mode to serve the process requests.
 
 To obtain this information in Linux OS after launching your Python interpreter:
 ```python
@@ -3129,9 +3138,9 @@ strace -c python -c "import numpy" 2>&1
 
 The statistics include: 
 * The number of errors from system call.
-* Number of calls of specific system call.
+* Number of calls of specific system calls.
 * Spend seconds for all system calls of a specific type.
-* Oercentage of all time budget spent for all system call for this call.
+* Percentage of all time budget spent for all system calls for this call.
 
 Once I have identified that `import numpy` loads the following shared library `/usr/lib/x86_64-linux-gnu/libblas.so.3` I can make several things:
 
