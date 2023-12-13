@@ -3121,7 +3121,7 @@ The close-by concepts in terms of userspace application are presented in Linux O
 >
 > * Current virtual memory size (VmSize) - is currently allocated memory for your process.
 
-Firstly, you can use the`/usr/bin/time` GNU/Linux program for example in the way:
+Firstly, to measure roughly the time you can use the`/usr/bin/time` GNU/Linux program for example in the way:
 ```
 time python -c "print(1)"
 ```
@@ -3130,12 +3130,12 @@ This execution returns three time metrics:
 * **user** - is the amount of time spent in user mode code within the process.
 * **sys** - is the amount of time spent in kernel mode to serve the process requests.
 
-To obtain this information in Linux OS after launching your Python interpreter:
+You can obtain this information in Linux OS after launching your Python interpreter:
 ```python
 import numpy
 ```
 
-To obtain information about memory consumed by this process if your Python interpreter is only one Python interpreter currently running in the system then just call:
+To obtain information about memory consumed by this process if your Python interpreter if there is only one Python interpreter currently running in the system just call:
 ```bash
 cat /proc/$(pidof python)/status
 ```
@@ -3147,7 +3147,7 @@ cat /proc/$(pidof python)/maps
 ```
 This file demonstrated the memory segments and libraries mapped by a program. There is no explicit information about size of mapped images/libraries. Each line corresponding at the beginning contains a pair of hyphen-separated numbers indicating the virtual address range (in hexadecimal format) at which the memory segment is mapped.
 
-In Linux OS the OS concepts by design is tried to be represented as files. Dynamic (Shared) Libraries are also files. And you can obtain a list of all open files with the [lsof](https://linux.die.net/man/8/lsof) command:
+In Linux OS the all low level OS concepts by design is tried to be represented as files. Dynamic (Shared) Libraries are also files. And you can obtain a list of all open files with the [lsof](https://linux.die.net/man/8/lsof) command:
 ```bash
 lsof -p `pidof python`
 ```
@@ -3177,8 +3177,8 @@ The statistics include:
 
 Once I have identified that `import numpy` loads the following shared library `/usr/lib/x86_64-linux-gnu/libblas.so.3` I can make several things:
 
-* You can view the dependencies for a shared library ( or an executable file through) `ldd` system util. It will show dependencies on other `lib*.so` dynamic libraries. Very often you can see the following dependencies:
-  * **libc.so.6** - is the standard library of C language functions ([ISO C11](https://www.iso.org/standard/57853.html)), implementaion of [POSIX.1-2008](https://pubs.opengroup.org/onlinepubs/9699919799.2008edition/functions/contents.html), and another OS specific APIs.
+* I can view the dependencies for a shared library ( or an executable file through) `ldd` system util. It will show dependencies on other `lib*.so` dynamic libraries. Very often you can see the following dependencies:
+  * **libc.so.6** - is the standard library of C language functions ([ISO C11](https://www.iso.org/standard/57853.html)), implementaion of [POSIX.1-2008](https://pubs.opengroup.org/onlinepubs/9699919799.2008edition/functions/contents.html), and another Posix OS specific APIs. Therefore the name is slightly misleading.
   * **ld-linux.so.2** - dynamic linking library for ELF programs.
 
   Example:
@@ -3228,7 +3228,7 @@ Unlike the executable and dynamic library format in Windows OS (PE format), the 
 
 ### About Valgrind Tool for Linux OS
 
-[Valgrind](https://valgrind.org/) is a famous tool used for memory debugging, memory leak detection, and profiling in case of using compiled languages. Valgrind works by running the program on a virtual machine that simulates the CPU and memory. Valgrind supports various Posix platforms but is not available under Windows OS. Once you run a program under valgrind it performs extensive checking of memory allocations and memory accesses and provides a report with detailed information.
+[Valgrind](https://valgrind.org/) is a famous tool used for memory debugging, memory leak detection, and profiling in case of using compiled languages. Valgrind works by running the program on a virtual machine that simulates the CPU and memory. Valgrind supports various Posix platforms but it is not available under Windows OS. Once you run a program under valgrind it performs extensive checking of memory allocations and memory accesses and provides a report with detailed information.
 
 The [Valgrind](https://valgrind.org/) is a simulator. Once you use it in term of wall clock time your program (Python interpreter process) runs very slow. But [Valgrind](https://valgrind.org/) and simulators in general produce accurate and repeatable performance counters.
 
