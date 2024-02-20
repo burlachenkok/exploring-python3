@@ -6,11 +6,11 @@
 
 **Correspondence to:** konstantin.burlachenko@kaust.edu.sa
 
-**Revision Update:** Oct 07, 2023
+**Revision Update:** Feb 20, 2024
 
-**Revision Version:** [Release v1.6]
+**Revision Version:** [Release v1.7]
 
-© 2023 Konstantin Burlachenko, all rights reserved.
+© 2023, 2024 Konstantin Burlachenko, all rights reserved.
 
 ----
 
@@ -99,7 +99,7 @@
   * [Match Statement](#match-statement)
   * [Walrus](#walrus)
   * [Generators](#generators)
-- [Standard Tools and Some Libraries for Computing and Visualize](#standard-tools-and-some-libraries-for-computing-and-visualize)
+- [Standard Tools and Some Libraries for Computing and Visualization](#standard-tools-and-some-libraries-for-computing-and-visualization)
   * [Package Managers](#package-managers)
   * [Environment Managers](#environment-managers)
   * [Python Notebooks: General](#python-notebooks-general)
@@ -128,10 +128,10 @@
     + [Easy Interoperability with Standard C Library](#easy-interoperability-with-standard-c-library)
     + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
   * [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
-  * [Profiling Python Process with Tools Available in Operation Systems: Windows OS](#profiling-python-process-with-tools-available-in-operation-systems-windows-os)
+  * [Profiling Python Process with Tools Available in Operating Systems: Windows OS](#profiling-python-process-with-tools-available-in-operating-systems-windows-os)
     + [SysInternals Suite from Mark Rusinovich, et al.](#sysinternals-suite-from-mark-rusinovich--et-al)
     + [Understand which underlying Dynamic Libraries are Loaded into the Python interpreter](#understand-which-underlying-dynamic-libraries-are-loaded-into-the-python-interpreter)
-  * [Profiling Python Process with Tools Available in Operation Systems: Linux OS](#profiling-python-process-with-tools-available-in-operation-systems-linux-os)
+  * [Profiling Python Process with Tools Available in Operating Systems: Linux OS](#profiling-python-process-with-tools-available-in-operating-systems-linux-os)
     + [About Valgrind Tool for Linux OS](#about-valgrind-tool-for-linux-os)
       - [Callgrind](#callgrind)
       - [Massif](#massif)
@@ -158,14 +158,14 @@ If you search for "Python Tutorial" on Google, you will get about 695 million re
 
 Python is a popular scripting language, even though it has plenty of technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages), and it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons.
 
-You can check the popularity of Python scripting language in this world from these sources:
+You can check the popularity of Python scripting language in this world from these two sources:
 
 * The [TIOBE-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity on their metrics.
 * The [Google-Trends](https://trends.google.com/trends/explore?date=now%201-d&q=%2Fm%2F05z1_,%2Fm%2F0jgqg,C%23,%2Fm%2F07sbkfb,BASH&hl=r), which shows the relative interest in different topics over time in society.
 
 With this note, the authors have three objectives:
 
-1. To explain some technical details about certain language features from `Python 3.11` with examples. This can be a useful resource for those who found the Official Python Tutorial too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
+1. To explain some technical details about certain language features from `Python 3.11` with examples. This can be a useful resource for those who found the official Python Tutorial too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
 
 2. Give a brief overview of various tools that can assist development in Python if you are in circumstances with using this Language.
 
@@ -179,7 +179,7 @@ With this note, the authors have three objectives:
 
 > "...My original motivation for creating Python was the perceived need for a higher-level language in the Amoeba project. I realized that the development of system administration utilities in C was taking too long. Moreover, doing these in the Bourne shell wouldn't work for a variety of reasons. The most important one was that as a distributed micro-kernel system with a radically new design, Amoeba's primitive operations were very different (and finer-grain) than the traditional primitive operations available in the Bourne shell. So there was a need for a language that would "bridge the gap between C and the shell..." - [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum).
 
-As we have already stated, the most common implementation of the Python interpreter is CPython. It is named CPython because it is written in C/C++. Unlike some other languages, Python does not have an official standard. The only available resources for people who want to extend Python are:
+As we have already stated, the most common implementation of the Python interpreter is [CPython](https://github.com/python/cpython). It is named [CPython](https://github.com/python/cpython) because its core was written in C and C++. Unlike some other scripting and programming languages, Python does not have an official standard. The only available resources for people who want to extend Python are:
 
 * Language reference: https://docs.python.org/3/reference/
 * Source code of Python interpreter: https://github.com/python/cpython
@@ -195,13 +195,25 @@ def f(x):
 dis.dis(f)
 ```
 
-Documentation: [dis - Disassembler for Python bytecode](https://docs.python.org/3/library/dis.html?highlight=dis#module-dis).
+Output:
+```text
+  3           0 LOAD_FAST                1 (xmy)
+              2 LOAD_CONST               1 (1)
+              4 BINARY_ADD
+              6 STORE_FAST               1 (xmy)
+
+  4           8 LOAD_FAST                1 (xmy)
+             10 RETURN_VALUE
+```
+Documentation: 
+* [dis - Disassembler for Python bytecode](https://docs.python.org/3/library/dis.html?highlight=dis#module-dis)
+* [opcode - Python Bytecode Instructions](https://docs.python.org/3/library/dis.html#python-bytecode-instructions)
 
 ## Where to Learn About Python Officially
 
-There are several resources about the subject:
+There are several resources from which any can learn about Python scripting language:
 
-1. There is a book written by [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum) (the original author of this language).  Today it has been converted into a pretty big tutorial and it is not named as a "book", but named as a "tutorial": https://docs.python.org/3/tutorial/
+1. Firstly, there is a book written by [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum) (the original author of this language).  Today it has been converted into a pretty big tutorial and it is not named as a "book", but named as a "tutorial": https://docs.python.org/3/tutorial/
 
 2. All compiled documentation is available here in various formats (including PDF and HTML) : [https://docs.python.org/3.11/download.html](https://docs.python.org/3.11/download.html). The archive contains all the documents for the version of Python that you will select.
 
@@ -213,22 +225,26 @@ There are several resources about the subject:
 
 6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here (in case you need to dig into specific construction rules): https://docs.python.org/3/reference/grammar.html
 
-7. If you need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
+7. The Python scripting language (and another scripting language as [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html))  contains plenty of jargon and specific terminology. The Python documentation contains a separate document dedicated to it:
+https://docs.python.org/3/glossary.html
 
-Finally please take a look at materials from [references](#references) section of this document.
+8. If you need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
+
+Finally, please take a look at materials from [references](#references) section of this document.
 
 # Backgrounds
 
 ## How Typical Compute Device is Working
 
-It's important at least to understand that computational devices do not execute code in Java, C#, Matlab, or Python. Computers can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA). 
+It's important at least to understand that computational devices do not execute code in Java, C#, Matlab, or Python. Computers can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA).
 
-A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments and writing results memory. Memory provides the storage of input and output results.
+A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments from memory or registers and writing results back to memory or registers. Therefore virtual memory provides the scratch storage of input and output results.
+
 The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how computers work in details can be obtained from *System Architecture*, and *Performace Engineering* courses and books.
 
 ## Programming Languages Taxonomy in CS
 
-There are a lot of programming languages these days. One way to analyze programming languages is from the angle of the implemented type system (**types** are objects and operations with them, and this concept is close by to the concept of Algebras in mathematics, even in mathematics Algebra operations are closed under the underlying set and for **programming language types** it's not necessary the case):
+There are a lot of programming languages these days. One way to analyze programming languages is from the angle of the implemented type system (**type** are two sets: objects and operations with them. This concept is close to the concept of Algebras in mathematics, even in mathematics Algebra operations are closed under the underlying set, and for **programming language types** it's not necessarily the case):
 
 * **Static Type System** - statically typed system languages are those in which type checking is done at compile time.
 * **Dynamic Type System** - dynamically typed languages are those in which type checking is done at runtime (execution time).
@@ -243,7 +259,7 @@ Ruby and Python have a *Strong Dynamic Type System*. This means that:
 
 ## What is Object Orientated Programming (OOP) in CS
 
-Object-Orientated-Programming requires some special way to organize code, but it does not force to have a `class` keyword in Language. Please check this Appendix if you're curious about what is OOP from a Computer Science point of view: [C++ Technical Note/Object Orientated Design
+Object-oriented programming requires some special way to organize code, but it does not force it to have a `class` keyword in the Language. Please check this Appendix if you're curious about what is OOP from a Computer Science point of view: [C++ Technical Note/Object Orientated Design
 ](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#object-orientated-design).
 
 # Philosophy of Python
@@ -263,14 +279,31 @@ Some programming languages like [C#](https://learn.microsoft.com/en-us/dotnet/cs
 
 There is a clash of terminology if you have a C++, Java, or C# background. 
 
-In Python, everything that takes up memory in some form is called the **object**. In other languages (Java, C#, C++) object is an instance of the class. 
-
-So an object in Python terminology is:
+In Python, everything that takes up memory in some form is called the **object**. In other languages (Java, C#, C++) object is an instance of the class. So an object in Python terminology is:
 * Class instances 
 * Exotic built-in objects (e.g. files)
 * Fundamental built-in data types (e.g. integers)
 
-It's not true that all things are classes in Python, but all entities that take some memory are objects.
+It's not true that all things are classes in Python, but all entities that take some memory are objects. One way to get access to all objects in the Python interpreter is via utilizing [gc.get_objects()](https://docs.python.org/3/library/gc.html#gc.get_objects) API in the following way:
+
+```python
+import gc, sys
+
+class ExampleObject:
+    pass
+
+obj1 = ExampleObject()
+obj2 = ExampleObject()
+obj3 = ExampleObject()
+
+checedType = ExampleObject
+
+print("Available object with type: " + str(checedType))
+for obj in gc.get_objects():
+    if isinstance(obj, checedType):
+        print(obj, " | SIZE IN BYTES: ", sys.getsizeof(obj), "|ID:", id(obj), "|TYPE: ", type(obj))
+
+```
 
 ## Subtleties with Accessing Value of Variables
 
@@ -296,11 +329,11 @@ In fact, in Python, there are only 4 contexts (which are in C++ terminology call
 
 As we have said Object in Python is everything that takes memory. Fundamentally in Python Object equality can test one of two things:
 
-**Value equality** - what is tested is the fact that the objects have the same content. The programmer can define what this means by defining `__eq__` in user user-defined class. This operator semantically is the same as `==` in C++.
+**Value equality** - what is tested is the fact that the objects have the same content. The programmer can define what this means by defining [__eq__](https://docs.python.org/3/reference/datamodel.html#object.__eq__) in user user-defined class. This operator semantically is the same as `==` in C++.
 
-**Identity equality** - testing when two references are referenced to the same object. The programmer cannot determine what it means, it is defined by the Language. Such type of equality is used during the use of operators `is`, `is not` or you can explicitly request identity via the built-in function `id()`.
+**Identity equality** - testing when two references are referenced to the same object. The programmer cannot determine what it means, it is defined by the Language. Such type of equality is used during the use of operators [is](https://docs.python.org/3/reference/expressions.html#is-not), [is not](https://docs.python.org/3/reference/expressions.html#is-not) or you can explicitly request identity via the built-in function `id()`.
 
-In Python 2/3 there are no pointers. However, the built-in function called `id(obj)` according to [1],[2] means the address of an object in the interpreter's memory. 
+In Python 2/3 there are no pointers. However, the built-in function called `id(obj)` according to [1],[2], [link](https://docs.python.org/3/reference/datamodel.html#objects-values-and-types) means the address of an object in the interpreter's virtual memory.
 
 Therefore, in principle that two objects refer to the same memory can be checked in the following way:
 ```python
@@ -311,9 +344,9 @@ However, in reality, you will not meet this code too much. If you need to compar
 * `is`
 * `is not`
 
-But they have the same semantical meaning as using `id()`.
+They have the same semantical meaning as using `id()`.
 
-> The fact that `id(x)` is the memory address of object *x* is a CPython implementation detail. CPython can change this in the future. It's also hard to say what is guaranteed by the standard - because there is no standard.
+> The fact that `id(x)` is the memory address of object *x* is a CPython implementation detail. CPython can change this in the future. It's also hard to say what is guaranteed by the standard - because there is no standard (and this is a cons. of not having the standard).
 
 
 ## All Class Methods are Virtual in Terms of C++
@@ -332,13 +365,15 @@ In very specific circumstances you can manually remove, get, and set attributes:
 
 * [getattr()](https://docs.python.org/3/library/functions.html?highlight=getattr#getattr) - get the value of an attribute
 
+* [dir(obj)](https://docs.python.org/3/library/functions.html#dir) - collect the list of attributes for object `obj`.
+
 There is also no division of fields into public/private/protected as it is in C++ and there are no different types of inheritances. In Python, there is a limited type of support for `private` names, which we will describe later.
 
-> Payment for this flexibility - the class methods invoke mechanism implementation is suboptimal for Python runtime compared to available options for C and C++.
+> Payment for this flexibility - the class methods invoking mechanism implementation is suboptimal for Python runtime compared to available options for C and C++. Such flexible design embedded into scripting language is targetting for comfortable use rather then to computation time.
 
 ## Language Differences Between Python and C++
 
-1. Assignments opertor `=` does not copy data. The language just binds a right object to the left operand of the `=` operator. So equal operator `=` does not copy data, it reassigns object reference.
+1. Assignments opertor `=` in Python does not (semnatically) copy the actual data. The language just binds a right object to the left operand of the `=` operator. So equal operator `=` does not copy data, it reassigns object reference.
 
 2. In Python class data attributes override method attributes with the same name. To avoid accidental name conflicts, which may cause hard-to-find bugs in large programs, it is wise to use some kind of convention that minimizes the chance of conflicts.
 
@@ -361,7 +396,7 @@ There is also no division of fields into public/private/protected as it is in C+
     # Out: 12
     ```
 
-5. Python has the `elif` keyword. For Python, it's crucial because their syntax rules require creating indentation between `else` and `if`. The absence of such a keyword potentially will make the source code less readable. C++ Language is more flexible, and such a keyword is absent in C/C++ but is presented in the C Language Preprocessor. Example:
+5. Python has the `elif` keyword. For Python, it's crucial because syntax rules require creating indentation between `else` and `if`. The absence of such a keyword potentially will make the source code less readable. C++ Language is more flexible, and such a keyword is absent in C and in C++ but in fact it is presented in the C Language Preprocessor. Example:
 
     ```python
     if x < 0:
@@ -372,7 +407,7 @@ There is also no division of fields into public/private/protected as it is in C+
         pass
     ```
 
-6. In Python you may have the else branch inside the loops. If you did not read Python Tutorial [1] it can be the case that you never heard about it. This logic in the else path of a loop statement is executed when the loop terminates through exhaustion of the iterable or when the condition becomes false. However, the `else` path will not be executed if the loop has been early terminated with a `break` statement. See Also: https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops. 
+6. In Python you may have the else branch inside the loops. If you did not read Python Tutorial [1] (or it was a long time ago) it can be the case that you never heard about it. This logic in the else path of a loop statement is executed when the loop terminates through exhaustion of the iterable or when the condition becomes false. However, the `else` path will not be executed if the loop has been early terminated with a `break` statement. See Also: https://docs.python.org/3/tutorial/controlflow.html#break-and-continue-statements-and-else-clauses-on-loops. 
 
 7. In Python there is the "exotic" operator `**`. This operator can raise integers, real, and complex numbers to specific power. Such a built-in operator is absent in C++.
 
@@ -380,7 +415,7 @@ There is also no division of fields into public/private/protected as it is in C+
 
 9. The boolean literals are named as `true`, and `false` in C++. However, in Python, they are named as `True`, or `False`. The underlying type `bool` has the same typing both in C++ and in Python.
 
-10. In C/C++ you can implicitly cast expression to bool or integer type. In Python the following expressions are considered `False`: `None`, `0`, `empty sequence`.
+10. In C and in C++ you can implicitly cast expression in conditions to bool or integer type. In Python the following expressions are considered `False`: `None`, `0`, `empty sequence`, `False`.
 
 11. Python uses `.` to separate packages/subpackage/class like C#, and Java, while C++ uses the namespace resolution operator `::`.
 
@@ -389,31 +424,35 @@ There is also no division of fields into public/private/protected as it is in C+
 
 # Sources of Confusion between C++ and Python Software Engineers
 
-Python is a useful and nice *scripting language*, which of course more comfortable to use compared to [Perl](https://www.perl.org/books/beginning-perl/) or [Windows Batch](https://en.wikibooks.org/wiki/Windows_Batch_Scripting) and sometimes more comfortable to use compare to [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html). In our experience [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html) is still easier to use if the script contains executing external processes for different tasks and less logic.
+Python is a useful and nice *scripting language*, which of course more comfortable to use compared to [Perl](https://www.perl.org/books/beginning-perl/) or [Windows Batch](https://en.wikibooks.org/wiki/Windows_Batch_Scripting) and sometimes more comfortable to use compare to [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html). In our experience [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html) is still easier to use if the script contains more commands for executing external processes for different tasks and less logic.
 
-Python has a very fast learning curve which opened the door fortunately for people not only in CS to create useful scripts in day-to-day life.
+Python has a very fast learning curve which opened the doors (fortunately) for people not only in CS to create useful scripts in day-to-day life.
 
 > Python is a programming language which...
 
 Unfortunately, if you are around people with CS/EE/System/Compilers backgrounds it may be the case that these people will make a statement: *"Python is not a programming language"*.  To state that Python is *Programming Language* we need to define what is "Language" and what is "Programming" by itself.
 
-Let's start with the Language concept in the context of Programming. One meaning is that Language expresses ideas with defined formalisms and you don't care at all how these ideas are materialized. But in fact, it's not the only definition. The message that one scientist [B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) (author of C++) tries to bring for people for already 3 decades that *Programming Language* is the language that gives you a way to describe the algorithm and this algorithm will be executed in the computer (compute device). With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is a receipt for an interpreter, while C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler.
+Let's start with the Language concept in the context of Programming. One meaning is that Language expresses ideas with defined formalisms and you *don't care at all* how these ideas are materialized in the end system. Even though it may sounds reasonable, but in fact, it's not the only one definition. The message that one  scientists from programming languages area (e.g. [B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) author of C++) tries to bring for people for already 3 decades is that *Programming Language* is the language that gives you a way to describe the algorithm in a form that this algorithm will be executed in the computer (compute device).
 
-If you only start with Programming in your career, or if you have no experience in Compilers/OS/Systems you may not see the difference, but there is a (subtle) fundamental difference. It does not say that these languages are incorrect, but at least please understand that it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. Any level of Abstraction is not free in terms of consumed memory and execution time (if this abstraction is used during runtime, not during design).
+With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is a receipt for an interpreter, while C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler.
+
+If you only start with Programming in your career, or if you have no experience in Compilers/OS/Systems you may not see the difference, but there is a (subtle) fundamental difference. It does not say that scripting and just-in-time compiled-based languages are incorrect, but at least please understand that it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. The catch is that in fact, any level of Abstraction is not free in terms of consumed memory and execution time (if this abstraction is used during runtime, not during design).
 
 > Python is a general-purpose programming language.
 
 It is at the same time a very strong statement and at the same time vague statement. There can be three points of view on such a statement:
 
-1. By general-purpose programming language you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes may have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness).
+1. By general-purpose programming language, you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes may have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness). In fact, to have one mechanism that is sufficient for expressing any computable functions is a mechanism that allows expression sequencing (executing basic blocks of instructions sequentially), selection (selecting between several blocks for execution based on condition), and iteration (transfer control to a previous statement or beginning of basic block). For details see [Structured Program Theorem](https://en.wikipedia.org/wiki/Structured_program_theorem).
 
-2. By General Purpose you mean that you can use it across many domains. In this case how many are "many"? Depending on the definition of "Many" Python may lie in this class and may not.
+2. By General Purpose you mean that you can use it across many domains. In this case how many are "many"? Depending on the definition of "many" Python may lie in this class and may not.
 
-3. By General Purpose, you mean you can create programs for all programmable computing elements in the computing devices. If this is your definition and you believe that Python can help with this - it's *wrong*. Python by design is the replacement for Bash, it's not a replacement for C or C++, or any other traditional language. Conter example: You cannot create drivers for your devices in Python.
+3. By General Purpose, you mean you can create programs for all programmable computing elements in the computing devices. If this is your definition and you believe that Python can help with this then it's *wrong* (at least in our opinion). Python by design is the replacement for Bash, it's not a replacement for C and C++, or any other traditional compile language. Conter example: You cannot create drivers for your devices in Python.
 
 > Python is more elegant and short than C++.
 
-One more time it depends on what you mean exactly. Some logic that works with byte view into the virtual memory of the process even can not be expressed in Python at all. If consider an application that can be expressed in Python, then this is in general true if look into a number of lines of code in Python. However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Because compiling languages forces you to follow some discipline, and Python does not.
+One more time it depends on what you mean exactly. Some logic that works with byte view in the virtual memory of the process even can not be expressed in Python at all in the most effective way. Next, if you consider application classes that can be expressed in Python, then in general this is true if measure elegance by several lines of code in Python. 
+
+However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Compiling languages forces you to follow some discipline, and Python does not.
 
 Of course, there is a tool for Python that helps [pylint](https://pypi.org/project/pylint/), but a compiler and linker are far more powerful tools for detecting errors than a static analyzer applied for Language with Dynamic Type Systems at least from our experience.
 
@@ -431,13 +470,23 @@ This overstatement can also be read from the Python Tutorial. Please be aware th
 It depends on your point of view and your style, but there is a point of view where the following things presented in Python are benefits. They shine especially if you have limited time to finish a project:
 
   1. More correct code from a style point of view.
-  2. Automatic cross-platform serialization "pickling" for the user and built-in types from the Python standard library.
-  3. A lot of free and commercial IDE with IntelliSense.
+  2. Automatic cross-platform serialization "pickling" for the user and built-in types from the Python standard library. https://docs.python.org/3/library/pickle.html
+  3. A lot of free and commercial IDE with IntelliSense: 
+      * https://www.jetbrains.com/pycharm/
+      * https://code.visualstudio.com/
+      * https://visualstudio.microsoft.com/vs/features/python/
+      * https://www.activestate.com/products/komodo-ide/
+      
   4. Python uses <`.`> token to separate packages/subpackages/classes like C# and Java. Packages from Perl are called modules in Python.
-  5. An extremely big collection of extra modules for Python (e.g. official [pypi index storage](https://pypi.org/) has around 474.5K projects)
-  6. Built-in debugger.
-  7. There is no need to configure a compiler, linker, etc. (collectively known as a toolchain in software development).
-  8. There is no need to configure any build tool. While using highly flexible tools like [CMake](https://cmake.org/cmake/help/book/mastering-cmake/) or [GNU Make](https://www.gnu.org/software/make/manual/make.pdf) to build your project using one of language supported by [GCC](https://gcc.gnu.org/) you have to spend plenty of time to figure out how to work with these tools.
+  
+  5. An extremely big collection of extra modules for Python (e.g. official [pypi index storage](https://pypi.org/) has around 513.5K projects Feb, 20234)
+
+  6. Built-in Python [pdb](https://docs.python.org/3/library/pdb.html) debugger.
+
+  7. There is no need to configure a compiler, linker, etc. (collectively known as a toolchain in Software Development).
+
+  8. There is no need to configure in fact any build tool. The issue is that while using highly flexible tools like [CMake](https://cmake.org/cmake/help/book/mastering-cmake/) or [GNU Make](https://www.gnu.org/software/make/manual/make.pdf) to build your project using one of language supported by [GCC](https://gcc.gnu.org/) you have to spend plenty of time to figure out how to work with these tools, if you do not have this background already.
+
   9. Parsing of the function is performed only at the moment of the **direct call**, there is no compilation phase.
 
   > What you gain with (8) and (9) is the ability to start a project fast, what you lose is subtle control of how your source code of the program is materialized into the program (in OS or Systems terminology).
@@ -448,9 +497,7 @@ To run the script with a debugger call:
 python -m pdb scriptname.py
 ```
 
-After this, you will have the ability to insert text commands in the interactive shell with [pdb commands](https://docs.python.org/3/library/pdb.html#debugger-commands).
-
-Documentation: [pdb — The Python Debugger](https://docs.python.org/3/library/pdb.html?highlight=pdb#module-pdb).
+After this, you will have the ability to insert text commands in the interactive shell with: [pdb commands](https://docs.python.org/3/library/pdb.html#debugger-commands). See also documentation: [pdb: The Python Debugger](https://docs.python.org/3/library/pdb.html?highlight=pdb#module-pdb).
 
 ## How to Start Interpreter
 
@@ -464,7 +511,7 @@ Based on [1] the Python interpreter operates somewhat like the Unix shell. There
     ```bash
     python -c command [arg] ...
     ```
-    It executes the statement(s) in the command, analogous to the shell s `-c` option. Since Python statements often contain spaces or other characters that are special to the shell, it is usually advised to quote the command.
+    It executes the statement(s) in the command, analogous to the shell `-c` option. Since Python statements often contain spaces or other characters that are special to the shell, it is usually advised to quote the command.
 
 4. Some Python modules can be used as scripts. These can be invoked using `python -m module [arg] ...`, which executes the source file for the module as if you had spelled out its full name on the command line.
 
@@ -488,10 +535,13 @@ The following expressions are considered `False` in Python:
 * `None`
 * `0`
 * Sequence which `len() == 0` named as empty sequence.
+* Logica expression which gives `False`
 
 ##  First Line in Your Script
 
-The line `#!/usr/bin/env python3` in a well-developed script contains what is known as sha-bang. It has a long history in Unix/Linux OS. For Windows, it's possible to use it as well. In Windows, a binary application named `py.exe` is a launcher that performs a choice of a used interpreter based on the mentioned sha-bang. Formally this line is optional.
+The line `#!/usr/bin/env python3` in a well-developed script contains what is known as sha-bang. It has a long history in Unix/Linux OS. For Windows, it's possible to use it as well. In Windows, a binary application named `py.exe` is a launcher that performs a choice of a used interpreter based on the mentioned sha-bang. 
+
+Formally this line is optional.
 
 ## Possible Second Line and Source File Encoding.
 
@@ -504,18 +554,18 @@ The source file by itself is represented in characters. Characters that constitu
 
 ## Physical and Logical Lines of your Script
 
-Physical lines in the source code of a script are physical lines inside the text file encoded with one of the possible encodings.
+**Physical lines** in the source code of a script are physical lines inside the text file encoded with one of the possible encodings.
 
-A Logical line of a program is constructed from one or more physical lines by following the explicit or implicit line-joining rules:
+A **Logical Line** of a script program is constructed from one or more physical lines by following the explicit or implicit line-joining rules:
 
 * When a physical line ends in a backslash `\` character that is not part of a string literal or comment, it is joined with the following forming a single logical line, deleting the backslash and the following end-of-line character.
 
 * A physical and logical line that contains only spaces, tabs, and possibly a comment is ignored by the parser.
 
 * Normally you should use `\` for line continuation, however, Python automatically supports multi-line continuation inside the following constructions. When you are inside such an expression you can split your expression over more than one physical line without using the backslash symbol:
-  * Expressions in parentheses `()`, e.g. which is used for passing arguments to function invocation.
-  * Expressions in square brackets `[]`, e.g. which is used to initialize the list object.
-  * Expressions in curly braces `{}`, e.g. which is used to define sets or dictionaries.
+  * Expressions in parentheses `(arg0, arg1)`, e.g. which is used for passing arguments to function invocation.
+  * Expressions in square brackets `[item0, item1]`, e.g. which is used to initialize the list object.
+  * Expressions in curly braces `{setItem0, setItem1}`, e.g. which is used to define sets or dictionaries.
 
 A parser reads a Python script. The parsing of some pieces of Python source code (e.g., of the function) is performed only at the moment of the direct call of this function.
 
@@ -553,7 +603,7 @@ Documentation on this subject: https://docs.python.org/3.13/reference/datamodel.
 
 Typically, a simple statement is comprised of a single logical line. However, several simple statements may occur on a single logical line separated by semicolons. Example:
 ```python
-a=1;b=2;
+a=1; b=2;
 ```
 
 For a more precise definition see: https://docs.python.org/2/reference/simple_stmts.html
@@ -563,13 +613,13 @@ For a more precise definition see: https://docs.python.org/2/reference/simple_st
 Generally, compound statements are written on multiple logical lines using indentation, although sometimes if a compound statement has only one branch in it, and the body of it contains only simple statements, it can be written on a single logical line. Example:
 
 ```python
-if 1: print (2); print (2); #legal python code
+if 1: print (2); print (3); #legal python code
 ```
 which is equivalent to:
 ```python
 if 1:
     print (2)
-    print (2)
+    print (3)
 ```
 
 ## Empty(Pass) Statements
@@ -589,7 +639,7 @@ print("Hello {1} / {0}".format(12,14))
 
 The default behavior is to output the line into `stdout` with a new line. If you don't want to output a new line then in Python 3 you can specify the end character in the following way:
 ```python
-print("hello",end='!')
+print("hello", end='!')
 ```
 
 If you want to print not to `stdout`, but to `stderr` it can be attained in the following way:
@@ -633,7 +683,7 @@ Output:
 a=123
 ```
 
-String interpolation (named in Python as "formatted string literal") is evaluated during script execution. In terms of type, they are just `str` and it's not a new type. 
+String interpolation (named in Python as **"formatted string literal"**) is evaluated during script execution. In terms of type, the f-strings are just usual string `str` and it's not a new type. 
 
 Finally, old string formatting from Python 2 which is still supported in Python 3 for C style `printf()` C++ specification. Example:
 ```python
@@ -648,7 +698,7 @@ for i in range(5):
     print(i)
 ```
 
-The object returned by `range()` behaves as if it is a list, but it is not. It is an object of class `range` that returns the successive items of the desired sequence when you iterate over it. It does not make the list, thus saving space. In the old days, the Python language created a list, but it was a lot of time ago in Python `2.*`, and currently we can forget that such a situation had a place to be.
+The object returned by `range()` behaves as if it is a list, but it is not. It is an object of class `range` that returns the successive items of the desired sequence when you iterate over it. It does not make the list, thus saving space. In the old days, the Python language created a list with `range()` and implicit sequence with `xrange()`, but it was a lot of time ago in Python `2.*`, and currently we can forget that such a situation had a place to be.
 
 When you are looping through dictionaries you are enumerating through `keys`. If the key and corresponding value are important to you, then you can retrieve the value and key at the same time.  For doing it you should use the [items()](https://docs.python.org/3/library/stdtypes.html?highlight=items#dict.items) method in the dictionary built-in type.
 
@@ -664,7 +714,7 @@ To loop over a sequence in reverse order, first, specify the sequence in a forwa
 ## More about Conditions
 
 The conditions used in `while` and `if` statements can contain any operators, but typically it contains:
-* The comparison operators `in` and `not in` which are called membership tests.
+* The comparison operators `in` and `not in` which are called **membership tests**.
 * The operators `is` and `is not` compare whether two objects are the same object in memory.
 
 What can confuse people with C++/Java/C#/C backgrounds is that comparisons can be chained. For example, `a < b == c` tests the following *"a is less than b" **and** "b equals c"*.
@@ -688,16 +738,21 @@ In Python when you use an expression (not necessarily Boolean) that internally u
 ```python
 #/usr/bin/env python3
 # Python
+
 a=123 or 12
 print(a)
 # Output: 123
 ```
 
 ```cpp
+// C++
+
 #include <iostream>
 int main() {
   int a = 123 || 12;  
-  // (Alternative) notation "123 or 12" is rarely used in C++
+  // Alternative notation: 
+  //   "123 or 12" is rarely used in C++
+  //   https://en.cppreference.com/w/cpp/language/operator_alternative
 
   std::cout << a;
   // Output: 1
@@ -754,9 +809,14 @@ print(a <= b < c) # Prints "True"
 
 ## Built-in Containers
 
-Python includes several built-in container types: *lists*, *dictionaries*, *sets*, and *tuples*. Containers are devoted to storing values.
+Python includes several built-in container types:
 
-A list is the Python equivalent of an array (conceptually, even inside Python interpreter it's really implemented as a list), but it is (i) resizeable; (ii) can contain elements of different types. Examples:
+* Lists
+* Dictionaries
+* Sets
+* Tuples 
+
+Containers are devoted to storing values. A list is the Python equivalent of an array (conceptually, even inside Python interpreter it's really implemented as a list), but it is (i) resizeable; (ii) can contain elements of different types. Examples:
 
 ```python
 xs = [3, 1, 2]    # Create a list
@@ -827,10 +887,10 @@ print('  wo rld '.strip())      # Strip surrounding whitespace; prints "wo rld"
 
 Python can manipulate with strings, which can be expressed in several ways:
 
-* String enclosed in single quotes ('...') can use double quotes <"> inside the string literal.
-* String enclosed in double quotes ("...") can use single quotes <'> inside the string literal.
-* String enclosed in triple quotes ("""...""") or ('''...''') is a multiline string. Multiline strings can be placed in several strings. In this case, the used new line character is part of the string literal.
-* The raw string literal is represented as r"..." or r'...' or r'''...''' or r"""...""". Inside the raw string you can use backslash characters in the usual way. The raw string notion is similar to C++11 construction `R"(hello\n)"`.
+* String enclosed in single quotes (`'`...`'`) can use double quotes <`"`> inside the string literal.
+* String enclosed in double quotes (`"`...`"`) can use single quotes <`'`> inside the string literal.
+* String enclosed in triple quotes (`"""`...`"""`) or (`'''`...`'''`) is a multiline string. Multiline strings can be placed in several strings. In this case, the used new line character is part of the string literal!
+* The raw string literal is represented as `r"`...`"` or `r'`...`'` or `r'''`...`'''` or `r"""`...`"""`. Inside the raw string you can use backslash characters in the usual way. The raw string notion is similar to C++11 construction `R"(hello\n)"`.
 * Two or more string literals next to each other are automatically concatenated without using the plus sign. This syntax and semantics coincide exactly with C++/C.
 
 ## Dictionaries
@@ -898,9 +958,7 @@ for animal, legs in d.items():
     print('A %s has %d legs' % (animal, legs))
 ```
 
-Iterating over a set has the same syntax as iterating over a list. 
-
-However, since sets are unordered, you cannot make assumptions about the order in which you visit the elements of the set:
+Iterating over a set has the same syntax as iterating over a list. However, since sets are unordered, you cannot make assumptions about the order in which you visit the elements of the set:
 ```python
 animals = {'cat', 'dog', 'fish'}
 for idx, animal in enumerate(animals):
@@ -913,14 +971,14 @@ for idx, animal in enumerate(animals):
 
 In Python languages, you will not find the keyword `interface` such as in Java/C# or pure virtual class methods as in C++. In other words, Python does not have interfaces as a language concept. 
 
-Instead of a specific (and robust) interface notion Python (and other scripting languages) uses what is known as Duck Typing. This concept is described typically in the following way:
+Instead of a specific (and robust, but more long and verbose) interface notion the Python scripting language (and other scripting languages as well) uses what is known as *Duck Typing*. This concept is described typically in the following way:
 
 > *"If it walks like a duck and it quacks like a duck, then it must be a duck"*.
 
 In Python, any object may be used in any context until it is used in a way that it does not support. In this latter case the [AttributeError](
 https://docs.python.org/3/library/exceptions.html#AttributeError) will be raised.
 
-If you define your classes in Python and you want the objects of your class can be used in specific language construction (like) iteration you should support **protocol**:
+If you define your classes in Python and you want the objects of your class can be used in specific language construction (like) iteration you should support **protocol**. Next we will go through main protocols:
 
 * **Container protocol.** Built-in container types in Python
 tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` operations for them. The support of `in` and `not in` is known as container protocol. For your types, you should define 
@@ -934,28 +992,30 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
   def __len__(self)
   ```
 
-- **Inerrable protocol.** Built-in container types in Python support the [iter(x)](https://docs.python.org/3/library/functions.html#iter), [next(x)](https://docs.python.org/3/library/functions.html#next) operators. 
 
-  Such objects can be used in for-loops:
+- **Inerrable protocol.** Built-in container types in Python supports the calling of [iter(x)](https://docs.python.org/3/library/functions.html#iter), [next(x)](https://docs.python.org/3/library/functions.html#next) operators. Such objects can be used in for-loops:
   ```python
   for i in iterable: smth(i)
   ```
-  For your types you should define:
+
+  For your types to provide the ability to use these built-in functions you should define:
     ```python
     def __iter__(self) 
     def __next__(self)
     ```
 
-More details:  https://docs.python.org/3/tutorial/classes.html#iterators
+    More details:  https://docs.python.org/3/tutorial/classes.html#iterators
 
-- **Sequence protocol.** Except `dict`, all built-in container types in Python support indexing. It's known as *sequence protocol*. For your classes, you should define [__getitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [__setitem__](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [__delitem__](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). Once you will define these operators you can use the following language operators:
+- **Sequence protocol.** Except `dict`, all built-in container types in Python support indexing. It's known as *sequence protocol*. For your classes, you should define [\_\_getitem\_\_](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [\_\_setitem\_\_](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [\_\_delitem\_\_](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). 
 
-  ```python
-  x [integral_index] 
-  x.index(someValue) 
-  x.count(someValue) 
-  produceReverseSeq = reversed(x)
-  ```
+  Once you will define these operators you can use the following language operators:
+
+    ```python
+    x [integral_index] 
+    x.index(someValue) 
+    x.count(someValue) 
+    produceReverseSeq = reversed(x)
+    ```
 
 ## Introspection of System
 
@@ -981,9 +1041,11 @@ print(f"Host: {socket.gethostname()} / IP: {socket.gethostbyname(socket.gethostn
 ```
 
 ## Introspection of Python Objects
-In Python terminology, everything that takes some memory is an object.  The [dir(obj)](https://docs.python.org/3/library/functions.html#dir) built-in function displays the attributes of an object.  Attributes that all objects (typically) have:
+In Python terminology, everything that takes some memory is an object.  
+
+The [dir(obj)](https://docs.python.org/3/library/functions.html#dir) built-in function displays the attributes of an object.  Attributes that all objects (typically) have:
 * `__name__` - is the name of the current module [link](https://docs.python.org/3/reference/import.html?highlight=__name__#name__).
-* `__doc__` - documentation string for the object [link](https://docs.python.org/3/library/types.html?highlight=__doc__#types.ModuleType.__doc__).
+* `__doc__`  - documentation string for the object [link](https://docs.python.org/3/library/types.html?highlight=__doc__#types.ModuleType.__doc__).
 * `__class__` - type name of the object [link](https://docs.python.org/3/library/stdtypes.html?highlight=__class__#instance.__class__).
 * `__file__` - the name of the current source file. [link](https://docs.python.org/3/reference/import.html?highlight=__file__#file__)
 
@@ -998,7 +1060,7 @@ print(a.__class__)
 
 Comprehensions Syntax provides a short syntax to create several iterrable expressions with short syntax. List comprehensions in Python:
 ```python
-[expr(item) for an item in iterrable if condition (item)]  
+[expr(item) for an item in iterable if condition (item)]  
 ```
 
 Set comprehensions in Python:
@@ -1017,8 +1079,8 @@ Generator comprehensions in Python (more about generators is [generators](#gener
 ```
 
 List comprehension is described in Python Tutorial [1]: 
-* [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
-*  [nested list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions)
+* [List Comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
+*  [Nested List Comprehensions](https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions)
 
 ## List and Set Comprehensions
 
@@ -1039,7 +1101,7 @@ squares = [x ** 2 for x in nums]
 print(squares)   # Prints [0, 1, 4, 9, 16]
 ```
 
-List comprehensions can also contain conditions:
+As we have already implicitly described the list comprehensions can also contain conditions:
 ```python
 nums = [0, 1, 2, 3, 4]
 even_squares = [x ** 2 for x in nums if x % 2 == 0]
@@ -1080,7 +1142,7 @@ print(d[(1, 2)])                        # Prints "1"
 
 A tuple consists of several values separated by commas. It is not possible to assign to the individual values of tuple elements, however, it is possible to create tuples that contain mutable objects, such as lists. Tuples are immutable and usually contain a heterogeneous sequence of elements that are accessed via unpacking.
 
-A tuple with one item is constructed by a special syntax rule. We construct it via a value followed by a comma (it is not sufficient to enclose a single value in parentheses). And so, creating a tuple with one element is possible only with this required syntactic trick. Example:
+A tuple with one item is constructed by a special syntax rule. We should construct it via a "value" followed by a comma (it is not sufficient to enclose a single value in parentheses). And so, creating a tuple with one element is possible only with this required syntactic trick. Example:
 ```python
 a = (12,)  
 ```
@@ -1095,7 +1157,7 @@ You can create a tuple from the list:
 b = tuple([1,2,23])
  ```
 
-If you want to include tuples in another tuple you need to use parentheses `()`, so that nested tuples are interpreted correctly. Example of creating a tuple with 2 elements where the second element is a tuple by itself:
+If you want to include tuples in another tuple you need to use nested parentheses `()`, so that nested tuples are interpreted correctly. Example of creating a tuple with 2 elements where the second element is a tuple by itself:
  ```python
  a=(1,(2,3,4,5,6))
  ```
@@ -1211,12 +1273,12 @@ This is an introduction to the function definition. We will see more details abo
 
 3. Dict can be merged with another dict via [update()](https://docs.python.org/3/library/stdtypes.html?highlight=update#dict.update) method.
 
-4. In Python another datatype that is built-in in the Language is set. On sets, you can perform set-theoretic operations. Example:
+4. In Python another datatype that is built-in in the Language is [set](https://docs.python.org/3/library/stdtypes.html#set). On sets, you can perform set-theoretic operations. Example:
     ```python
     aSet = {1,2}   # set
     ```
 
-5. Creating an empty set, possible only through the constructor `set()`. It is because `{}` is reserved as an empty dictionary description and interpreter due to its design (it has a Dynamic Type System) can not derive information that you want an empty set, no dictionary. Example:
+5. Creating an empty set, possible only through the constructor `set()`. It is because `{}` is reserved as an empty dictionary description and interpreter due to its design (it has a Dynamic Type System) and it can not derive information that you want an empty set, and no dictionary. Example:
     ```python
     emptySet = set()
     ```
@@ -1226,7 +1288,7 @@ This is an introduction to the function definition. We will see more details abo
     sym = '0' if 1> 5 else ''1" 
     ```
 
-    Documentation: https://docs.python.org/2/reference/expressions.html#conditional-expressions
+    Documentation: https://docs.python.org/3/reference/expressions.html#conditional-expressions
 
 7. Launch the Python web server to share files from the current directory:
     ```bash
@@ -1255,21 +1317,22 @@ This is an introduction to the function definition. We will see more details abo
 
 10. Deleted statement is a statement with `del` buil-in operator. It is used in two different contexts:
 
-* Delete statement `del` is used to delete elements from a container such as a list. 
-* Also, it is used to delete variables from the interpreter. After variable deletion, the variable is not defined. If a variable is not "defined" which means it has not been assigned a value or deleted, trying to use it for reading will give you an error. Trying to use it for writing will create a new variable. Objects are never explicitly destroyed. When they become unreachable they may be garbage-collected. An implementation is allowed to postpone garbage collection or omit it altogether it is a matter of implementation quality how garbage collection is implemented.
+* Delete statement `del` is used to delete elements from a container such as a list.
+
+* Also, it is used to delete variables from the interpreter. After variable deletion, the variable is not defined. If a variable is not "defined" which means it has not been assigned a value or deleted, trying to use it for reading will give you an error. Trying to use it for writing will create a new variable. Objects are never explicitly destroyed. When they become unreachable they may be garbage-collected. An implementation is allowed to postpone garbage collection or omit it altogether. It is a matter of implementation quality how garbage collection is implemented.
 
 ## Classes
 
 ### User-Defined Classes in Python in C++ terminology
 
-Firstly, Python has limited support for private attribute objects. When you name attributes as `__attributename` the interpreter performs name mangling. In reality, this attribute in case have access to it outside methods of the class will have the name `_classname__attribute`. 
+Firstly, Python has limited support for private attribute objects. When you name attributes as `__attributename` the interpreter performs name mangling. In reality,  in case of accessing to this attribute outside of the class will have the name `_classname__attribute`. 
 
 In C++ terminology Python classes have the following characteristics:
 
   1. Normal class members (including the data members) are public except for some small support for Private Variables.
   2. All member functions/methods are virtual.
   3. Like in C++, most built-in operators with special syntax (arithmetic operators, etc.) can be redefined for user-defined classes.
-  4. Python Data attributes correspond to "data members" in C ++.
+  4. Python Data attributes correspond to *"data members"* in C ++.
   5. Python supports multiple inheritance, and exceptions.
   6. In Python (and in Perl) there is no such term as function overloading.
 
@@ -1301,7 +1364,7 @@ class Greeter(object):
         print('A' * n_a + 'CH' + 'O' * n_o + '!!')
         Greeter.sneezes += 1
         
-    def __str__(self):  # The str dunder (or magic) function
+    def __str__(self):  # The str "magic" function
         return f'Greeter for {self.name}'
 
 g = Greeter('Fred')  # Construct an instance of the Greeter class
@@ -1365,18 +1428,18 @@ These variations exist in the first place because there are several different co
 
 ## Global and Nonlocal Variables
 
-In the previous example frp, [Variables Introspection](#variables-introspection) section we have used [nonlocal](https://docs.python.org/3/reference/simple_stmts.html#nonlocal), and [global](https://docs.python.org/3/reference/simple_stmts.html#global) keywords. Now, let's take a close look at its meaning.
+In the previous example from [Variables Introspection](#variables-introspection) section we have used [nonlocal](https://docs.python.org/3/reference/simple_stmts.html#nonlocal), and [global](https://docs.python.org/3/reference/simple_stmts.html#global) keywords. Now, let's take a close look into its meaning.
 
-**global.** The global statement is a declaration that holds for the entire current code block. It means that the listed identifiers are to be interpreted as globals. Global variable scope changed immediately to the module-level binding without any intermediate outer scope, relative to the current scope. Also, it is impossible to assign value to a global variable without using `global`. However, you actually (formally) refer to global variables if you want to read from them.
+**global.** The global statement is a declaration that holds for the entire current code block. It means that the listed identifiers will be interpreted as global vairables. Global variable scope changed immediately to the module-level binding without any intermediate outer scope, relative to the current scope. It is impossible to assign value to a global variable without using `global`. However, you can actually (formally) refer to global variables if you want to only *read* from them.
 
-**nonlocal.**  The nonlocal statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals. So nonlocal variables changed the scope to the outer function. This is important because the default behavior for binding is to search the local namespace first. Names listed in a nonlocal statement must not collide with pre-existing bindings in the local scope.
+**nonlocal.**  The nonlocal statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals. So *nonlocal* variables changed the scope to the outer function. This is important because the default behavior for binding is to search the local namespace first. Names listed in a *nonlocal* statement must not collide with pre-existing bindings in the local scope.
 
-You should use this variable access modifiers when you're going to *write* to the variable and provide an interpreter and hint about what you are going to do exactly:
+You should use this variable access modifiers when you're going to *write* to the variable and provide an interpreter the hint about what you are going to do exactly:
 
-* You want to define a new local variable and you provide the default value with the `=` operator
+* You want to define a new local variable and you provide the default value with the `=` operator.
 * You do not want to create a local variable, but instead, you want to write to a global variable or variable from a previous(nested) context.
 
-In C++/C#/Java, such nonlocal scope is impossible because in these languages you cannot define a function inside another function. At the syntax level in C++, you actually can define lambda function inside a function, but it is a syntax sugar. You can read more about Lambda C++ functions from [C++ Technical Note from C++1998 to C++2020/ Lambda Functions](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#lambda-functions). In C++ you cannot define a function inside a function because by design of the language it does not add extra expressibility. And similar to the idea of "universal base class" these do not make any sense in C++ mentality.
+In C++/C#/Java, such a *nonlocal* scope is impossible because in these languages you cannot define a function inside another function. At the syntax level in C++, you actually can define lambda function inside a function, but it is a syntax sugar. You can read more about Lambda C++ functions from [C++ Technical Note from C++1998 to C++2020/ Lambda Functions](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#lambda-functions). In C++ you cannot define a function inside a function because by design of the language it does not add extra expressibility. And similar to the idea of "universal base class" the concept of having nested relations between function does not have any sense in C++ mentality.
 
 ## Modules and Packages
 
@@ -1397,15 +1460,15 @@ To import the module the following instructions should be used:
  import my_module
 ```
 
-It is typical, but it is not required by interpreter design to place all import statements at the beginning of a module. Each module has its private namespace, which is used as the global namespace by all functions defined in the module.
+It is typical, but it is not required by interpreter design to place all import statements at the beginning of a module. Next, each module has its private namespace, which is used as the global namespace by all functions defined in the module.
 
 In the form of an import statement in the form of:
 ```python
 import my_module
 ```
-In this form all global symbols that are defined in `my_module` and available through `my_module.<function|variable name>`. The import statement does not add the names of the functions defined in `my_module` directly to the current namespace. 
+In this form all global symbols that are defined in `my_module` and available through `my_module.<function|variable name>`. 
 
-Next, there is a variant of the import statement that imports names from a module directly into the importing modules namespace:
+The import statement does not add the names of the functions defined in `my_module` directly to the current namespace. However, there is a variant of the import statement that imports names from a module directly into the importing modules namespace:
 ```python
 from my_module import func_f, func_g
 ```
@@ -1428,7 +1491,7 @@ import my_module as my
 
 To inspect the name defined in module `my` you should use the built-in function `dir()` e.g. in the following way `dir(my)`. It is used to find names that the module defines. 
 
-When you launch any Python scripts if all is OK in OS and you have enough privileges inside OS then the script will be launched and executed. However, it is important to mention that the `import` statement (by default) is executed only once per Python session. If you want to reload the module (e.g. because the source code has been changed and you don't want to relaunch the application) please consulate  [Module Reloading] (#module-reloading).
+When you launch any Python scripts if all is OK in Operating System(OS) and you have enough privileges inside OS then the script will be launched and executed. However, it is important to mention that the `import` statement (by default) is executed only once per Python session. If you want to reload the module (e.g. because the source code has been changed and you don't want to relaunch the application) please consulate  [Module Reloading] (#module-reloading) section.
 
 ### Packages
 
@@ -1440,8 +1503,7 @@ Let's execute code:
 ```python
 from package_name.module_name import *
 ```
-
-The `__all__` variable defines the modules that you should import to a client who have requested this [import wildcard form](https://docs.python.org/3/tutorial/modules.html?highlight=__all__#importing-from-a-package).
+Specifically for in this case the `__all__` variable defines the modules that you should import to a client ( who have requested this [import wildcard form](https://docs.python.org/3/tutorial/modules.html?highlight=__all__#importing-from-a-package) ).
 
 ### Reference between Modules in Packages
 
@@ -1463,48 +1525,52 @@ When you import a module via keyword [import](https://docs.python.org/3/referenc
 
 1. The interpreter first searches for a built-in module. The built-in module names are built-in into the language and are listed in `sys.builtin_module_names`.
 
-2. In a list of directories given by the variable `sys.path`.
+2. In a list of directories given by the variable `sys.path`. Python programs can modify the `sys.path` variable itself during runtime. Importantly, the variable `sys.path` after starting the interpreter as a process Python Runtime initializes this variable with these locations:
 
-Python programs can modify the `sys.path` variable itself during runtime. Importantly, the variable `sys.path` after starting the interpreter as a process Python Runtime initializes this variable with these locations:
+    * The directory containing the input script (or the current directory).
 
-* The directory containing the input script (or the current directory)
-* Paths in environment variable PYTHONPATH
-* The installation-dependent default such as the site-packages directory.
+    * Paths in environment variable `PYTHONPATH`.
+
+    * The installation-dependent default such as the site-packages directory.
 
 ## About Functions: Now in Details
 
 ### About Indentation
 
-As you know Python was designed using indentation, and there are no scopes constructed with `{}` as in C/C++. During writing language construction sometimes it can be shorter, but sometimes when you have 3-9 nested loops of Algorithm logic, the indentation makes the problem less readable and more error-prone. In principle, you can use both spaces and tabs, but it is recommended to use spaces instead of tabs according to this recommendation:
+As you know Python was designed using indentation, and there are no scopes constructed with `{}` as in C-based languages (e.g. C, C++, etc.). During writing language construction sometimes, the indentation style can be shorter. But sometimes when you have 3-9 nested loops of Algorithm logic, the indentation makes the logic less readable and more error-prone.
+
+In principle, you can use both spaces and tabs for indentation, but it is recommended to use spaces instead of tabs according to this recommendation:
 https://www.python.org/dev/peps/pep-0008/#tabs-or-spaces
 
 ### Function Body
 
 The first statement of the function body can optionally be a string literal - this string literal is the functions documentation string, or docstring.
 
-The execution of a function introduces a new symbol table used for the local variables of the function. More precisely, all variable assignments in a function store the value in the local symbol table.
+The execution of a function introduces a new symbol table used for the local variables of the function. More precisely, all variable assignments in a function store the value in the *local symbol table*.
 
-Variable references first look in the local symbol table, then in the local symbol tables of enclosing functions, then in the global symbol table, and finally in the table of built-in names. Global variables and variables of enclosing functions cannot be directly assigned a value within a function (unless you use `global` and `nolocal` statements). Although they may be referenced.
+Variable references first look in the *local symbol table*, then in the *local symbol tables of enclosing functions*, and then in the *global symbol table*, and finally in the table of *built-in names*. Global variables and variables of enclosing functions cannot be directly assigned a value within a function (unless you use `global` and `nolocal` statements). Although they may be referenced.
 
 ### Function Arguments and Return Value
 
 The actual parameters (arguments) to a function call are introduced by themselves in the local symbol table of the called function when it is called. Arguments are passed by value, where the value is always an object reference, not the value of the object. A function definition associates the function name with the function object in the current symbol table.
 
-The `return` statement returns with a value from a function. Return without an expression argument returns None. Falling off the end of a function also returns `None` implicitly.
+The `return` statement returns with a value from a function. Return without an expression argument returns `None` implicitly. Falling off the end of a function also returns `None` implicitly.
 
 ### Default Argument Value
 
-The most useful form is to specify a default value for one or more arguments. 
+You can specify a default value for one or more arguments. 
 
-> Warning: The default value is evaluated only once.
+> Warning: The default value is evaluated only once, and by itself default value it by itself a *"variable"*.
 
 ### Keyword and Positional Arguments
 
-Functions can be called using keyword arguments of the form `kwarg = value`. Keyword parameters are also referred to as *named parameters*. Rules for using keyword parameters are the following:
+Functions can be called using keyword arguments of the form `kwarg = value`. Keyword parameters are also referred to as *named parameters*. 
 
-* In a function call, keyword arguments must follow (usual) positional arguments
-* All the keyword arguments passed must match one of the arguments accepted by the function
-* No argument may receive a value more than once
+Rules for using keyword parameters are the following:
+
+* In a function call, keyword arguments must follow (usual) positional arguments.
+* All the keyword arguments passed must match one of the arguments accepted by the function.
+* No argument may receive a value more than once.
 
 ### Syntax to Split Positional and Keyword Arguments
 
@@ -1627,19 +1693,27 @@ This concept is called decorator because the intention of using it is to decorat
 
 Classes provide a means of bundling data and functionality together. In C++ terminology the data members in Python are public, and all member functions are virtual and public. 
 
-The method function is declared with an explicit first argument representing the object, which is provided implicitly by the call. 
+The method function is declared with an **explicit** first argument representing the object, which is provided implicitly by the method call. 
 
-Like in C++, most built-in operators with special syntax can be redefined for class instances. Unlike C++ built-in types can be used as base classes for extension by the user:
-```python
-class A(int): pass
-print(issubclass(A, int))
-# Print: True
-```
+Like in C++, most built-in operators with special syntax can be redefined for class instances. 
+
+Unlike C++ built-in types can be used as base classes for extension by the user.
 
 To inspect if the object is an instance of some class you can use [isinstance(obj, classinfo)](https://docs.python.org/3/library/functions.html#isinstance) which is the analog of C++ [dynamic_cast](https://en.cppreference.com/w/cpp/language/dynamic_cast).
 
 To inspect class relationships you can use [issubclass(classDerived, classBase)](https://docs.python.org/3/library/functions.html#issubclass). This functionality is absent by design in C++. The C++ style says if you need it, you should implement it and pay for it with computing time and memory.
 
+```python
+class A(int): pass
+print(issubclass(A, int))
+# Print: True
+print(isinstance(int(), int))
+# Print: True
+print(isinstance(A(), int))
+# Print: True
+```
+
+For another built-in functions see: https://docs.python.org/3/library/functions.html
 
 The [super()](https://docs.python.org/3/library/functions.html#super) lets you avoid referring to the base class explicitly, which can be nice sometimes.
 
@@ -1680,12 +1754,13 @@ A class can implement certain operations that are invoked by special syntax. A c
 
 For efficiency reasons, each module is only imported once per interpreter session.  If you change your module source code you have two options on how to reload this module:
 
-* Restart the interpreter.
-* Use [reload()](https://docs.python.org/3/library/imp.html?highlight=reload#imp.reload) function from [imp](https://docs.python.org/3/library/imp.html) module which provides access the import internals. Example: 
-  ```python
-  import imp
-  imp.reload(module_name)
-  ```
+1. Restart the interpreter.
+
+2. Use [reload()](https://docs.python.org/3/library/imp.html?highlight=reload#imp.reload) function from [imp](https://docs.python.org/3/library/imp.html) module which provides access the import internals. Example: 
+    ```python
+    import imp
+    imp.reload(module_name)
+    ```
 
 ## Encoding During Reading Files and With Statement
 
@@ -1712,7 +1787,7 @@ with open("my_file.txt", "rt") as f:
 
 The reason for closing files and closing in general is the following. Some objects contain references to external resources such as open files in the filesystem. These resources are freed when the object is garbage-collected, but since garbage collection is not guaranteed to happen, such objects also provide an explicit way to release the external resource, usually with a `close()` method.
 
-This design demonstrates that garbage collection is not a universal solution for all situations and for various types of resources.
+This design demonstrates that Garbage Collection is not a universal solution for all situations and for various types of resources available inside the process/script runtime.
 
 ## Defaultdict
 
@@ -1756,9 +1831,9 @@ Once a match is found and the corresponding branch of code is executed, the matc
 
 ## Walrus
 
-In Python, unlike C and C++, assignment inside expressions which is used in the conditional statement must be done explicitly with the walrus operator `:=`. It's the same as the operator `=` in C++ applied in the context of expression inside the `if` statement.
+In Python (unlike in C and in C++) assignment inside expressions which is used in the conditional statement must be done explicitly with the walrus operator `:=`. It's the same as the operator `=` in C++ applied in the context of expression inside the `if` statement.
 
-Yhe operator `:=` in Python can be used *only* in the context when you want to perform an assignment inside an expression that is used for conditions in the `if` statement.
+The operator `:=` in Python can be used *only* in the context when you want to perform an assignment inside conditions in the `if` statement.
 
 
 ```python
@@ -1810,21 +1885,21 @@ print(next(a))   # run to second yield statement, etc.
 # Next yield will throw a StopIteration exception    
 ```
 
-# Standard Tools and Some Libraries for Computing and Visualize
+# Standard Tools and Some Libraries for Computing and Visualization
 
 ## Package Managers
 
-To have the ability to launch a project you typically need to install the needed libraries. It is so because culture during *Python* script development lies in the high utilization of external libraries.
+To have the ability to launch a project you typically need to install the needed libraries. It is so because culture during *Python* script development lies in the huge utilization of external libraries.
 
 Two standard way to install libraries for Python is `pip` and `conda` package managers. 
 
-The `pip` package manager is preinstalled with a Python interpreter. I prefer not to use pip directly, but instead use command for call pip directly from Python:
+The `pip` package manager is preinstalled with a Python interpreter. You may prefer not to use pip directly, but instead use the command for call pip directly from Python:
 ```python
 python -m pip list
 ```
-I have found it useful to eliminate problems with various installations of Python interpreters in the system.
+It can be useful to eliminate problems with various installations of Python interpreters in the system (if you have several interpreters).
 
-To install conda there are two ways: 
+Alternative to pip is [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html). You can install conda in two ways: 
 
 1. Use Anaconda distribution containing Conda.
 2. Install Miniconda (https://docs.conda.io/en/latest/miniconda.html).
@@ -1840,22 +1915,22 @@ export PATH="${PATH}:~/miniconda3/bin"
 This code snippet has been taken from this OpenSource project: https://github.com/burlachenkok/flpytorch/tree/main.
 
 It turns out that `conda` has two different goals:
-  1. Package manager.
-  2. Environment manager.
+  1. Package Manager.
+  2. Environment Manager.
 
-And `pip` by itself has only package manager functionality. Next, let's take a look into a package manager commands comparison of these two tools:
+And in fact `pip` by itself has only package manager functionality. Next, let's take a look into a package manager commands comparison of these two tools:
 
 | # | **Command in Conda**      | **Command in Pip** | **Description** |
 |---|---------------|------------|------------------------|
 | 1 | conda search  | pip search | Search package                       |
-| 2 | conda install/uninstall      | pip install/uninstall name   | install/uninstall package              |
-| 3 | conda update  | pip install --upgrade name     | upgrade package                       |
-| 4 | conda install package=version | pip install package=version  | Install a specific version of package   |
-| 5 | conda list  | pip list   | List of installed packages      |
-| 6 | conda install mnist --channel conda-forge | pip install somepkg --extra-index-url http://myindex.org  |     Install package from non-standart place |
-| 7 | conda update package_name | pip install -U package_name | Upgrade package |
-| 8 | [Use pip for it, not conda](https://docs.conda.io/projects/conda-build/en/latest/user-guide/wheel-files.html) | pip install *.whl | Install package from local WHL ([Python wheel packaging standard](https://packaging.python.org/en/latest/specifications/binary-distribution-format/)) distribution.
-| 9 | conda list \| grep <package_name> | pip show <package_name> | Show information about package |
+| 2 | conda install/uninstall      | pip install/uninstall name   | install/uninstall package             |
+| 3 | conda install package=version | pip install package=version  | Install a specific version of package   |
+| 4 | conda list  | pip list   | List of installed packages      |
+| 5 | conda install mnist --channel conda-forge | pip install somepkg --extra-index-url http://myindex.org  |     Install package from non-standart place |
+| 6 | conda update package_name | pip install -U package_name | Upgrade package |
+| 7 | [Use pip for it, not conda](https://docs.conda.io/projects/conda-build/en/latest/user-guide/wheel-files.html) | pip install *.whl | Install package from local WHL ([Python wheel packaging standard](https://packaging.python.org/en/latest/specifications/binary-distribution-format/)) distribution.
+| 8 | conda list \| grep <package_name> | pip show <package_name> | Show information about package |
+|
 
 Conda cheatsheet:
 https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf
@@ -1864,6 +1939,7 @@ Conda documentation by the tasks:
 https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/index.html
 
 How to use pip:
+
 https://pip.readthedocs.org/en/stable/
 
 Standard packages repository named as 
@@ -1872,9 +1948,9 @@ https://pypi.python.org/pypi
 
 ## Environment Managers
 
-Each project can have a specific requirement in a specific version of the library and this is the motivation behind the environment manager idea which is presented in Python ecosystem.
+Each project may have a specific requirement in a specific version of the library and this is the motivation behind the environment manager idea which is presented in Python ecosystem.
 
-The venv module is a standard virtual environment in Python. In this section, we will compare venv with conda. If you want to obtain a list of available conda environments please use [conda info -e](https://docs.conda.io/projects/conda/en/main/commands/info.html).
+The `venv` module is a standard virtual environment in Python. In this section, we will compare `venv` with `conda`. If you want to obtain a list of available conda environments please use [conda info -e](https://docs.conda.io/projects/conda/en/main/commands/info.html).
 
 
 | # | **Command in Conda**      | **Command in venv module** | **Description** |
@@ -1887,6 +1963,7 @@ The venv module is a standard virtual environment in Python. In this section, we
 | 6 |  conda env export --file myenv.yml |  pip freeze > requirements.txt | Export  information about packages in the current environment | 
 | 7|   conda env create --file myenv.yml | pip install -r requirements.txt | Install all packages from requirement list |
 | 8 |  conda remove --name myenv --all	| Remove directory in filesystem with environment and it's scripts | Remove environment |
+|
 
 ## Python Notebooks: General
 
@@ -1910,14 +1987,17 @@ python -m notebook --ip 0.0.0.0 --port 8888
 >  ```python
 >  netstat -nap | grep -E "tcp(.)*LISTEN"
 >  ```
-> Please be aware that if the server is running on some machine it can be a case that the computer administrator blocks the ports for connecting to it from outside. In Linux-based OS, by default, in most cases, people use iptables to configure acceptance of incoming connections. 
+> Please be aware that if the server is running on some machine it can be a case that the computer administrator blocks the ports for connecting to it from outside. In Linux-based OS, by default, in most cases, people use [iptables](https://linux.die.net/man/8/iptables) to configure acceptance of incoming connections. 
+
 > The first thing you can try to execute from the root is the following command to allow all incoming connections from all interfaces:
 > ```python
 > iptables -I INPUT -j ACCEPT
 > ```
-> It's bad for production, but fine for development.
+> It's bad for production, but fine for development or prototyping.
 
-Python notebook files extension is `*.ipynb`. The notebook contains code snippets and markdown text organized by cells. Therefore cells roughly speaking can be of two types: Code and Markdown.
+Python notebook files extension is `*.ipynb`. The notebook contains code snippets and Markdown text organized by cells. Therefore cells can be one of two types: 
+* Code
+* Markdown.
 
 ## Python Notebooks: Working in a web-based interface
 
@@ -1935,8 +2015,9 @@ Python notebook files extension is `*.ipynb`. The notebook contains code snippet
 |  CTRL+M, B | Create code cell|
 | CTRL+M, M	| Convert code cell to text cell |
 | CTRL+M, Y | Convert text cell to code cell |
-| %%bash; ls -1; lsb_release --all | Magic sequence to execute bash commands via `%%bash`. [Documentation](https://ipython.org/ipython-doc/dev/interactive/magics.html#cellmagic-bash). |
-| !pip install numpy | Magic command for executing bash command at code cell via using `!` mark. [Documentation](https://ipython.org/ipython-doc/dev/interactive/magics.html#magic-sx).|
+| %%bash; ls -1; lsb_release --all | Magic sequence to execute bash commands via `%%bash`: [Documentation](https://ipython.org/ipython-doc/dev/interactive/magics.html#cellmagic-bash). |
+| !pip install numpy | Alternative magic command for executing bash command at code cell via using `!` mark: [Documentation](https://ipython.org/ipython-doc/dev/interactive/magics.html#magic-sx).|
+|
 
 
 Example of usage timeit inside code cells:
@@ -1950,11 +2031,13 @@ https://ipython.org/ipython-doc/dev/interactive/magics.html
 
 ## PyTorch Resources
 
-[PyTorch](https://pytorch.org/) is a big numerical package which most often used for the purpose of training Machine Learning models. However, it can be used in another situation as well:
+[PyTorch](https://pytorch.org/) is a big numerical package which most often used for the purpose of training (Deep Learning based) Machine Learning models. However, it can be used in another situation. For example:
 * You have computations in [NumPy](https://numpy.org/), and you want to port them to GPU
-* You work in the domain when you have to deal with explicit mathematical functions. The function is pretty complex to compute partial derivatives explicitly.
+* You work in the domain when you have to deal with explicit mathematical functions. The function is pretty complex to compute partial derivatives explicitly, and you want to automatize this process via computing partial derivatives numerically, but in effective way for reasonably big dimensions.
 
 In both cases [PyTorch](https://pytorch.org/) will help you.
+
+Next we will provide references to Torch documentation:
 
 | **Description**      | **Link** |
 |------------------|------------|      
@@ -1984,7 +2067,7 @@ Losses/Binary Coss-Entropy with logits loss | [https://pytorch.org/docs/master/g
 | Autograd | https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html |
 |
 
-> Comment: In the context of deep learning the logits mean the layer or scalars from R that are fed into softmax or similar layer in which the image(or output) is a probabilistic simplex.
+> Comment: In the context of deep learning the logits mean the layer or scalars real values that are fed into softmax or similar layer in which the image(or output) is a probabilistic simplex.
 
 ## Matplotlib
 
@@ -2100,13 +2183,14 @@ Numpy provides various functions for manipulating arrays; you can see the full l
 
 Broadcasting explanation: https://numpy.org/doc/stable/user/basics.broadcasting.html.
 
-(If you think that Broadcasting is an incorrect thing to be designed in the first place - you are not alone).
+(If you think that *broadcasting* is an incorrect thing to be designed in the first place - you are not alone).
 
 To use the `numpy` library in your project you need to:
 * Install it with your package manager via `pip install numpy`
 * Import numpy via `import numpy as np`
 
 ### Arrays
+
 A numpy array is a grid of values, **all of the same type**, and is indexed by a tuple of nonnegative integers.  The number of dimensions is the rank of the array. The shape of an array is a tuple of integers giving the size of the array along each dimension. 
 * Rank of the array - is a number of dimensions.
 * Tensor (in Machine Learning / Deep Learning) - is a name used to describe multidimensional arrays.
@@ -2144,9 +2228,9 @@ d = np.eye(2)         # Create a 2x2 identity matrix
 print(d)              # Prints "[[ 1.  0.]
                       #          [ 0.  1.]]"
 
-e = np.random.random((2,2))  # Create an array filled with random values
-print(e)                     # Might print "[[ 0.42  0.42]
-                             #               [ 0.42  0.42]]"
+e = np.random.random((2,2))  # Create an array filled with random values in [0,1) sampled uiformly at random.
+print(e)                     # Might print "[[ 0.42  0.52]
+                             #               [ 0.78  0.12]]"
   
 f = np.arange(5)             # Create an array with the values from 0 to 4
 print(f)                     # Prints "[0 1 2 3 4]"
@@ -2222,7 +2306,7 @@ print(col_r2, col_r2.shape)  # Prints "[[ 2]
 ```
 
 
-The ellipsis is used in NumPy to slice higher-dimensional data structures. It's designed to mean at this point, insert as many full slices (`:`) to extend the multi-dimensional slice to all dimensions.
+The ellipses are used in NumPy to slice higher-dimensional data structures. It's designed to mean at this point, insert as many full slices (`:`) as necessary to extend the multi -dimensional slice to all dimensions.
 
 ```python
 a = np.array ([[1,2,3], [4,5,6]])
@@ -2390,7 +2474,9 @@ print(y)    # Prints "[[ 0  1  2  3]
 
 ### Broadcasting
 
-Broadcasting is a mechanism that allows numpy to work with arrays of different shapes when performing arithmetic operations. Frequently we have a smaller array and a larger array, and we want to use the smaller array multiple times to perform some operation on the larger array. Unfortunately in practice that mechanism can lead to confusion. So be very careful!
+Broadcasting is a mechanism that allows numpy to work with arrays of different shapes when performing arithmetic operations. Frequently we have a smaller array and a larger array, and we want to use the smaller array multiple times to perform some operation on the larger array. 
+
+> Unfortunately, in practice that mechanism can lead to confusion when you broadcast unintentionally. So be very careful!
 
 Example: Add a constant vector to each row of a matrix. 
 
@@ -2461,7 +2547,9 @@ Broadcasting two arrays together follows these rules:
 ## Collecting Preliminary Information About the System
 
 To obtain a version of the Python interpreter use the following command:
-`python --version`
+```bash
+python --version
+```
 
 To collect a summary  about your system running on **Windows OS Family** please use the following command:
 ```bash
@@ -2535,7 +2623,9 @@ Please research what solutions suit your needs and use these benchmarks as a fir
 
 ## Usage of Matrix-Matrix Multiplication
 
-One general recommendation (which is mentioned in any applied Machine Learning courses these days), if you can cast your problem into operations from linear algebra supported by Numpy, is to use vectors and matrices instead of the explicit loop in the Python interpreter. Speedup improvement from using matrices directly can be on the order of `10-20`.
+One general recommendation (which is mentioned in any applied Machine Learning courses these days) is the following. If you can cast your problem into operations from linear algebra supported by [NumPy](https://numpy.org/) - then use vectors and matrices from [NumPy](https://numpy.org/) instead of the explicit loop in the Python interpreter. 
+
+Speedup improvement from using matrices directly can be on the order of `10-20`.
 
 Concrete Example:
 
@@ -2614,24 +2704,30 @@ RESULTS
 
 ## Cython
 
+
 [Cython](https://cython.readthedocs.io/en/latest/index.html) is Python with C data types. Official documentation: https://cython.readthedocs.io/en/latest/index.html.
 
 Cython has two major use cases: 
 1. Extending the CPython interpreter with fast binary modules.
 2. Interfacing Python code with external C libraries.
 
-Almost any piece of Python code is also valid Cython code. Usually, the speedups are between **2x** to **1000x**. It depends on how much you use the Python interpreter compared to situations where your code is in C/C++ Libraries.
+Almost any piece of Python code is also valid Cython code. Usually, the speedups are between **2x** to **1000x**. And actually it depends on how much you use the Python interpreter compared to situations where your code is in C or C++ Libraries.
 
-There are two file types for Cython:
+> By the way, the notion of low-level and high-level is pretty vague. For people operating in the level of scripting languages, the level at which you create algorithms in C or C++ is considered informally as low-level. And for compilers writers C and C++ are already high level. Therefore notion of high (or low) level highly depends on context.
+
+There are two file types for [Cython](https://cython.org/):
 * `*.pyx` - something similar to C/C++ source files.
-* `*.pxd` - something similar to C-header files. PXD files are imported into PYX files with the `cimport` keyword.
+* `*.pxd` - something similar to C-header files.
 
-The files in Cython have several functions inside them:
-* `def-functions` - Python functions are defined using the def statement, as in Python. Only Python functions can be called from this function.
+ PXD files are imported into PYX files with the `cimport` keyword. The files in [Cython](https://cython.org/) have several types of function definitions inside them:
 
-* `cdef-functions` - C functions are defined using the new compare to Python `cdef` statement. Within a Cython module, Python functions and C functions can call each other.
+* `def functions` - It is usual python functions, and they are defined using the usual (in context of Python) `def` statement, as in Python. **Restriction:** Only Python functions can be called from this function.
 
-* `cpdef-functions` - is a hybrid of `cdef` and `def`. It uses the faster C calling conventions when being called from other Cython codes and uses a Python interpreter when they are called from Python. Essentially it will create a C function and a wrapper for Python.
+* `cdef functions` - C-like functions are defined using the new `cdef` statement. It is not avaialble in Python. Within a Cython module, Python functions and C functions can call each other.
+
+* `cpdef functions` - is a hybrid of `cdef` and `def`. It uses the *faster C calling conventions* when being called from other Cython codes and uses a Python interpreter when they are called from Python. Essentially such functions have implicitly two interfaces:
+  * When they are called as a C function 
+  * When they are called through the Python wrapper.
 
 
 During passing argument from `cdef` to `def` functions and vice versa there is an automatic type casting occurs:
@@ -2643,7 +2739,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
 
 1. The first step is to take the usual Python file "*.py" and change the extension to "*.pyx".
 
-2. The second and most powerful step that can be used now while using Cython is to append type information to variables. In practice especially if you are using loops it brings good speedup immediately. Examples:
+2. The second and most powerful step that can be used while using Cython is to append type information to variables. In practice especially if you are using loops it brings good speedup immediately. Examples:
 
     ```python
     #!/usr/bin/env python3
@@ -2686,7 +2782,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
       return s
     ```
 
-4. The Next Step is to build your code because Cython is not an interpretable Python language extension. The script that describes that you want to build all *.pyx files in the current directory, which is typically used for projects that use Cython:
+4. The Next Step is to build your code. The Cython is not an interpretable Python language extension. The script that describes that you want to build all *.pyx files in the current directory, which is typically used for projects that use Cython:
     ```python
     #!/usr/bin/env python
     # filename: setup.py
@@ -2701,7 +2797,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
     ```
 5. Launch the build process from the previous description:
     ```bash
-    python build.py build_ext --in place
+    python build.py build_ext --inplace
     ```
     The output of this command is
     * `*.so` in Unix-like OS.
@@ -2728,7 +2824,7 @@ cdef struct Grail:
   float volume
 ```
 
-You can use `ctypedef` as an equivalent for C/C++ typedef:
+You can use `ctypedef` as an equivalent for C/C++ [typedef](https://en.cppreference.com/w/cpp/language/typedef):
 ```
 ctypedef unsigned long ULong
 ```
@@ -2759,9 +2855,9 @@ cpdef double f(double x):
 
 External declaration in form `cdef extern from "math.h":     double sin(double x)` declares the `sin()` function in a way that makes it available to Cython code. It instructs Cython to generate C code that includes the `math.h` header file. 
 
-The C compiler will see the original declaration in math.h at compile time. Importantly Cython does not parse "math.h" and requires a separate definition in such form.
+The C compiler will see the original declaration in math.h at compile time. Importantly Cython does not parse "math.h" therefore it requires such a separate definition in such form.
 
-It is possible to declare and call into any C library as long as the module that Cython generates is properly linked against the shared or static library.
+It is possible to declare and call any C library functions as long as the module that Cython generates is properly linked against the shared or static library.
 
 ### Example of Function Integration in Cython and Python
 ```
@@ -2846,7 +2942,7 @@ Information about text report format which is dumped into standard output can be
 
 * **ncalls** - the number of calls.
 * **tottime** -  the total time spent in the given function, excluding time made in calls to sub-functions.
-* **cumtime** - is the cumulative time spent in this and all subfunctions
+* **cumtime** - is the cumulative time spent in this and all subfunctions.
 
 For most use cases the most prevalent way to measure performance is using the [cProfile](https://docs.python.org/3/library/profile.html#module-cProfile) module.
 
@@ -2863,12 +2959,12 @@ import timeit
 timeit.timeit("'-'.join([str(n) for n in range(1)])", setup="", number=1000000)
 ```
 
-## Profiling Python Process with Tools Available in Operation Systems: Windows OS
+## Profiling Python Process with Tools Available in Operating Systems: Windows OS
 
-From the perspective of Operation System (OS) the Python Process is just a program operating in userspace. In modern OS the processes can not issue direct requests to BIOS and all communication with OS happens via System Calls. So even though your program is not built from some source code:
-* You are using precompiled/prebuilt version of the Python interpreter
-* You are using precompiled/prebuilt version of dynamic libraries distributed with packages
-* You have also the source code of your Pyhon program that is interpreted by the interpreter on the fly.
+From the perspective of Operating System (OS) the Python Process is just a program operating in user space. In modern OS the processes cannot issue direct requests to BIOS and all communication with OS happens via System Calls. So even though your program is not built from some source code:
+* You are using a precompiled/prebuilt version of the Python interpreter
+* You are using a precompiled/prebuilt version of dynamic libraries distributed with packages
+* You have also the source code of your Python program that is interpreted by the interpreter on the fly.
 
 ### SysInternals Suite from Mark Rusinovich, et al.
 
@@ -2964,40 +3060,41 @@ At the end of the script, there is an `input()` which will wait for input, and s
 
 For Windows OS collecting a large number of counters is possible via the [SysInternals Suite](https://learn.microsoft.com/en-us/sysinternals/) created by [Mark Russinovich](https://en.wikipedia.org/wiki/Mark_Russinovich):
 
-* [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) will allow you to collect statistics and exact systems calls that process (such as `python.exe`) did with Files, Registry, Network, Dynamic Libraries, Threads, and Processes. It also allows us to inspect how long call stacks are and inspect during the timeline of execution where there is a bottleneck - I/O, Memory, and CPU Computing.
+* [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) will allow you to collect statistics and systems calls information (with passed argument) that process (such as `python.exe`) exhibits to work with Files, Registry, Network, Dynamic Libraries, Threads, and Processes. It also allows us to inspect how depth are call stacks and inspect during the timeline of execution where there is a bottleneck - I/O, Memory, and CPU Computing.
 
 * [Process Explorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer). It allows inspecting the name of files that are currently open to specific processes (such as `python.exe`) and, a list of dynamic libraries (`.dll`) mapped into virtual images of the process (such as `python.exe`).
 
-* [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap). It demonstrates a process of the virtual memory map.
+* [VMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/vmmap). It demonstrates a process virtual memory map.
 
-* [RAMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/RAMMap). It demonstrates a distribution of physical DRAM memory among parts in Windows OS.
+* [RAMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/RAMMap). It demonstrates a distribution of physical DRAM memory among different processes inside Windows OS.
 
-Even though these tools have a nice GUI interface, using them if you have a lack of Operation Systems background may not be easy at the beginning. These tools are powerful profiling/inspection tools that can be used to find malware software in the OS. If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the SysInternals Tools
+Even though these tools have a nice GUI interface, using them if you have a lack of Operating Systems background may not be easy at the beginning. These tools are powerful profiling/inspection tools that can be used to find malware software in the OS. 
+
+If you have never heard about these tools, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the SysInternals Tools
 ](https://www.youtube.com/watch?v=A_TPZxuTzBU&ab_channel=MarkRussinovich). 
 
-Python is used also by people without a CS background but with another background (biology, chemistry, etc.). The terminology used in these tools has an OS system flavor. With these tools, you can look into these counters. Below we will present some terminology used in these tools:
+Python is used also by people without a CS background but with another background (biology, chemistry, etc.). The terminology used in these tools has an OS system flavor. Below we will present some terminology used in these tools:
 
 >
-> **User Space Time** - your Python interpreter, is not one thing inside Windows OS (press CTRL+Esc and you will see it). User space-time is the time that your process (python.exe) has spent in userspace. This time excludes the time that the system spends on another process.
+> **User Space Time** - your Python interpreter, is not one thing inside Windows OS (press CTRL+Esc and you will see it). User space-time is the time that your process (python.exe) has spent in user space. This time excludes the time that the system spends on other processes and the time that was needed to handle the system request inside OS.
 >
-> **Kernel Space Time** - your Python interpreter and any program will request OS for example to open the file. After the moment you have initialized the System Call and you form the request to OS (in fact to I/O Dispatcher) your execution thread that executes code inside the Python interpreter will be blocked and will be sleep. In this moment on behalf of this thread, the OS will spend time executing logic inside the kernel. At least some operations that OS did on behalf of your thread after I/O Dispatching to correct Driver(s) will take some time. All this time is called Kernel Space-Time.
+> **Kernel Space Time** - your Python interpreter and any program (written in C, C++, Assembly, etc.) will request OS for different utility functionality examples to open the file. The amount of this utility functionality is huge and this is why the development of OS is treated as a big thing by itself. So, at a particular moment, your program initializes the System Call and you form the request to OS (in fact to the I/O Dispatcher of OS) and your execution thread that executes code inside the Python interpreter will be blocked and will be sleep. In this moment on behalf of this thread, the OS will spend time executing logic inside the kernel services, and in the stack of the drivers to handle your request. All these operations that OS did on behalf of your thread after I/O Dispatching to correct Driver(s) will take some time. All this time collectively is called Kernel Space-Time.
 >
-> **Working Set** - *working set* or *pinned memory* or *non-paged memory* is the same concept which means physical DRAM memory dedicated to your process.
+> **Working Set** - *working set* or *pinned memory* or *non-paged memory* is the same concept, but the name of the concept depends on the Operating System, and on the background of the speaker. The concept means the actual physical DRAM memory dedicated to your process.
 >
-> **Virtual Memory** - It is a concept that separates a program's view of memory from the system's physical memory view. In general, an operating system decides when to store the program's code and data in physical memory and when to store it in some file. Virtual memory is a conceptual memory that you may want to address.
+> **Virtual Memory** - this concept separates a program's view of memory from the system's physical memory view. In general, an operating system decides when to store the program's code and data in physical memory and when to store it in some file. Virtual memory is a conceptual memory that you may want to address.
 >
 > **Commit Memory** - Almost always the tools from SysInternals report the Committed Virtual Memory that your process has requested. The *commit limit* is the sum of physical memory and the sizes of the paging files used for backing up your data. In Windows OS there is another type of memory *"reserved virtual memory"*, which is a memory address reserved by the application, but the application does not (and ca not) use it, until memory is committed. When a process commits a region of virtual memory, the operating system guarantees that it can maintain all the data the process stores in the memory either in physical memory or on disk.
 >
 > **Physical Memory** - The installed physical memory in the computer by the Windows memory manager populates memory with the code and data from all processes, device drivers, and the OS. The amount of memory can affect performance, because when data or code a process or the operating system needs is not present, the memory manager must bring it in from disk. 
 >
-> **System Virtual Memory Limit** -  the sum of roughly the size of physical memory plus the maximum configured size of any paging files.
+> **System Virtual Memory Limit** -  the physical memory size plus the maximum configured size of any paging files.
 >
-> **Nonpaged Memory (Kernel) Pool** - authors of drivers for Windows OS have two options for places where to allocate memory. One of these resources is a nonpaged memory pool. The OS kernel and drivers use a nonpaged pool to store data that might be accessed when the system can't handle page faults. 
-The kernel enters such a state when it executes interrupt service routines (ISRs) and deferred procedure calls (DPCs). A nonpaged pool is always kept present in physical memory. Information About this value can be obtained from *"Process Explorer->System Information->Memory"*.
+> **Nonpaged Memory (Kernel) Pool** - authors of drivers for Windows OS have two options for selecting the place from which to allocate the memory. One of these resources is a nonpaged memory pool. The OS kernel and drivers use a nonpaged pool to store data that might be accessed when the system can't handle page faults. The kernel enters such a state when it executes interrupt service routines (ISR) and deferred procedure calls (DPC). A nonpaged pool is always kept present in physical memory. Information About this value can be obtained from *"Process Explorer->System Information->Memory"*.
 >
 > **Paged (Kernel) Pool** - A paged pool is used by OS and device drivers in situations that can store data that is backed in the paging file, and not necessarily presented in physical memory. Information About this value can be obtained from *"Process Explorer->System Information->Memory"*.
 >
-> **Context Switches** - When the time slice has elapsed for the thread assigned to a specific processor, or a running thread needs to wait, or a thread with a higher priority has become ready to run the OS performs a context switch. A high-level picture is that the OS saves the context of the thread that just finished executing, places the thread that just finished executing at the end of the queue for its priority, and finds the highest priority queue that contains ready threads and executes it.
+> **Context Switches** - When the time slice has elapsed for the thread assigned to a specific processor, a running thread needs to wait, or a thread with a higher priority has become ready to run the OS performs a context switch. A high-level picture is that the OS saves the context of the thread that just finished executing, places the thread that just finished executing at the end of the queue for its priority, and finds the highest priority queue that contains ready threads and executes it. After this OS dispatches another thread ready to be executed in the processor core.
 
 [Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) allows you to capture your application (as a Python interpreter process `python.exe`) and obtain the following statistics:
 * Windows Registry Access Statistics
@@ -3006,7 +3103,7 @@ The kernel enters such a state when it executes interrupt service routines (ISRs
 * Amount of sent and received bytes via Communication Network
 * Stack Summary. That gives you the view of stacks.
 
-Process Monitor not only produce statistic but produces pretty detailed information about system calls devoted to Registry, Filesystem, Network, Creation of Threads inside your Python interpreter, and Load Dynamic Libraries. Also, Process Monitor not only detects one of these event types, but also provides you with a calling stack at the moment of the call, arguments for a call (such as the name of the file in case of file activity), and exports this information into Comma Separated Values (CSV) text file, that can be opened e.g. in Office tools such as Microsoft Excel.
+As we have mentioned Process Monitor not only produces statistics but produces pretty detailed information about system calls devoted to Registry, Filesystem, Network, Creation of Threads inside your Python interpreter, and Load Dynamic Libraries. Also, Process Monitor not only detects one of these event types, but also provides you with a calling stack at the moment of the call, arguments for a call (such as the name of the file in case of file activity), and exports this information into Comma Separated Values (CSV) text file, that can be opened e.g. in Microsoft Office tools such as Microsoft Excel.
 
 In addition to getting aggregated statistics about some events, the *Tools->Count Occurrences* can be obtained. 
 
@@ -3015,37 +3112,51 @@ For example during launching this Python code in an interactive session:
 import numpy
 ```
 * The path: `C:\Program Files\python3.9\DLLs` has been used `507` times.
-* Total it was `575` accesses to Windows Registry
-* Total it was `7982` accesses to File System
+* Totally it was `575` accesses to Windows Registry
+* Totally it was `7982` accesses to File System
 * Number of sent and received bytes across the network: `0`
 * From the analysis of operations duration the most time is spent on File I/O access, which unfortunately has no relation to `numpy` itself. Rather than that these files are dynamic libraries that are required to support Python interpreter by itself.
 * The interactive session during its run has used `27` Megabytes of physical DRAM.
 * The interpreter first carried approximately `4500` file operations, and after that, it carried `3400` file operations.
 * Interactive session during its run has used `500` Megabytes of virtual committed memory. The pretty horrible aspect is that this memory once Numpy has been imported is not freed in any way. This virtual memory is committed by the process.
 
-If open VMMap it's possible to observe that after `import numpy` the 66 MBytes is a memory dedicated to images (i.e. executable file `python.exe` interpreter and loaded dynamic libraries). The committed `500` Megabytes are private data specific for your interpreter, for numpy, and for libraries under which the Python interpreter and numpy depend.
+If open VMMap it's possible to observe that after `import numpy` the 66 MBytes is a memory dedicated to images (i.e. executable file `python.exe` interpreter and loaded dynamic libraries). The committed `500` Megabytes are private data specific for your interpreter, for `numpy`, and for libraries under which the Python interpreter and `numpy` depend.
 
-Several other tools from the [SysInternals](https://learn.microsoft.com/en-us/sysinternals/) suite can be helpful:
+Several other tools from the [SysInternals](https://learn.microsoft.com/en-us/sysinternals/) suite can be helpful as well:
 
 * [pskill](https://learn.microsoft.com/en-us/sysinternals/downloads/pskill). Windows OS does not come with a command-line 'kill' utility. The `pskill` can be used to kill processes by its identifier or by the name of the executable binary image. Example: `pskill python.exe` kills all Python interpreters running in the current system. 
 
 * [pslist](https://learn.microsoft.com/en-us/sysinternals/downloads/pslist). These tools obtain as input name of the process image file and reports:
-Number of Threads (Thd), Number of Handles to kernel objects(Hnd), Virtual Memory in KBytes (VM), Working Set in KBytes (WS), Page Faults (Faults), Non-Paged Pool (NonP)
-Paged Pool (Page), Context Switches (Cswtch). Example: `pslist -x python`
+  * Number of Threads (Thd)
+  * Number of Handles to kernel objects(Hnd)
+  * Virtual Memory in KBytes (VM)
+  * Working Set in KBytes (WS)
+  * Page Faults (Faults)
+  * Non-Paged Pool (NonP)
+  * Paged Pool (Page)
+  * Context Switches (Cswtch). 
 
-* [listdlls](https://learn.microsoft.com/en-us/sysinternals/downloads/listdlls). ListDLLs is a utility that reports the Dynamic Link Library(DLL) loaded into processes or lists the processes that have a particular DLL loaded. An example of usage comes in the next section.
+Example: `pslist -x python`
+
+* [listdlls](https://learn.microsoft.com/en-us/sysinternals/downloads/listdlls). ListDLLs is a utility that reports the Dynamic Link Library(DLL) loaded into processes or lists the processes that have a particular DLL loaded. 
+
+  Example:
+  ```bash
+  Listdlls.exe python.exe
+  ```
+
 
 
 ### Understand which underlying Dynamic Libraries are Loaded into the Python interpreter
 
-Next, we want to highlight how to understand what binaries implement specific functionality. It can provide information for you about versions, names, and design choices for the implementation of specific module functionality. Python interpreter is a binary application working in userspace. At its core Python interpreter interprets commands. 
+Next, we want to highlight how to understand what binaries implement specific functionality. It can provide information for you about versions, names, and design choices for the implementation of specific module functionality. Python interpreter is a binary application working in userspace of OS. At its core Python interpreter interprets commands. 
 
 The big extra functionality is obtained from using [Python Modules](https://packaging.python.org/en/latest/glossary/#term-Module) which as said in [Python Glossary](https://packaging.python.org/en/latest/glossary/) can be one of two types:
   * [Pure Module](https://packaging.python.org/en/latest/glossary/#term-Pure-Module) written in Python
   * [Extension Module](https://packaging.python.org/en/latest/glossary/#term-Extension-Module) written in low-level (in Python terminology) C/C++/Java/etc.
 
 In the case of using modules written in compiled languages, they will be loaded in the form of a shared dynamic library object (.so) file for Linux or as (.dll) for Windows. However, this dynamic library has a `.pyd` file extension. 
-> In terms of flexibility, this is a good design for creating software, but is such design is good or bad from the general perspective of creating software (especially when time is computation time is important) is out of the scope of this note. 
+> In terms of flexibility, the pure modules is a good design for creating software, but is such design is good or bad from the general perspective of creating software (especially when time is computation time are important) is out of the scope of this note. 
 
 For example to identify which Dynamic Libraries implement `numpy` functionality you can do the following:
 
@@ -3055,7 +3166,7 @@ For example to identify which Dynamic Libraries implement `numpy` functionality 
 4. Dump updated list of used dynamic libraries in the python process with [Listdlls](https://learn.microsoft.com/en-us/sysinternals/downloads/listdlls): `listdlls.exe python.exe -v > b.txt`
 5. Use one of the diff tools ([Araxis Merge](https://www.araxis.com/merge/index.en) of GNU Diff in Windows OS available as a part of [MSYS2](https://www.msys2.org/)) to compare a.txt and b.txt: `diff a.txt b.txt`.
 
-While doing this in my Machine with installed Numpy 1.21.4 I can observe that one of the load libraries is `openBLAS`. From this, we can conclude that Numpy in its implementation leverages this libray. If you want to look into the name of symbols of specific dynamic libraries under Windows it's possible to use [dll export viewer](https://www.nirsoft.net/utils/dll_export_viewer.html). If you plan to automotize this process and write script in Windows Batch, Bash, or Python you should use the [dumpbin](https://learn.microsoft.com/en-us/cpp/build/reference/dumpbin-reference?view=msvc-170) tool from Microsoft MSVC Toolchain. For example in the following way:
+While doing this in my Machine with installed `Numpy 1.21.4` I can observe that one of the load libraries is `openBLAS`. From this, we can conclude that Numpy in its implementation leverages this library. If you want to look into the name of symbols of specific dynamic libraries under Windows it's possible to use [dll export viewer](https://www.nirsoft.net/utils/dll_export_viewer.html). If you plan to automatize this process and write script in Windows Batch, Bash, or Python you should use the [dumpbin](https://learn.microsoft.com/en-us/cpp/build/reference/dumpbin-reference?view=msvc-170) tool from Microsoft MSVC Toolchain. For example in the following way:
 
 
 * Activate Environment from Windows Command Line: 
@@ -3078,28 +3189,29 @@ While doing this in my Machine with installed Numpy 1.21.4 I can observe that on
   dumpbin /headers "C:\Program Files\python3.9\lib\site-packages\numpy\.libs\libopenblas.XWYDX2IKJW2NMTWSFYNGFUWKQU3LYTCZ.gfortran-win_amd64.dll" | grep headers
   ```
 
-## Profiling Python Process with Tools Available in Operation Systems: Linux OS
+## Profiling Python Process with Tools Available in Operating Systems: Linux OS
 
 The close-by concepts in terms of userspace application are presented in Linux OS with slightly changed terminology:
 
 > **Two most important types of memory for profiling applications:**
 >
-> * Current resident set size (VmRSS) - is analogous to Windows OS Working set and represents allocated memory from DRAM for your application.
+> * Current resident set size (VmRSS) - is analogous to Windows OS Working set and represents allocated memory from DRAM for your application and is not swapped out to the disk. So it only includes the portion of the memory that is currently resident in physical RAM.
 >
-> * Current virtual memory size (VmSize) - is currently allocated memory for your process.
+> * Current virtual memory size (VmSize) - is currently allocated virtual memory for your process. It includes all the memory that the process can access, including both the physical RAM and swap space.
 
-To obtain this information in Linux OS after launching your Python interpreter:
+[FROM HERE]
+
+To obtain information about this metrics in Linux OS firslty you should launch interpreter:
 ```python
 import numpy
 ```
 
-To obtain information about memory consumed by this process if your Python interpreter is only one Python interpreter currently running in the system then just call:
+Next, to obtain information about memory consumed by this process if your Python interpreter is only one Python interpreter currently running in the system then just call:
 ```bash
 cat /proc/$(pidof python)/status
 ```
 
-Next To find out which shared libraries a process is currently using, we can list the
-contents of the corresponding Linux-specific files you can make:
+To find out which shared libraries a process is currently using, we can list the contents of the corresponding Linux-specific files you can make:
 ```bash
 cat /proc/$(pidof python)/maps
 ```
