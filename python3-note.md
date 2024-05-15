@@ -154,9 +154,9 @@
 
 # Introduction
 
-If you search for "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator Guido Van Rossum. You can find it here: https://docs.python.org/3/tutorial/index.html. This tutorial is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
+If you search for "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator [Guido Van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum). You can find it here: https://docs.python.org/3/tutorial/index.html. This tutorial is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language, even though it has plenty of technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages), and it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons.
+Python is a popular scripting language, even though it has plenty of technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages), and it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch.
 
 You can check the popularity of Python scripting language in this world from these two sources:
 
@@ -165,9 +165,9 @@ You can check the popularity of Python scripting language in this world from the
 
 With this note, the authors have three objectives:
 
-1. To explain some technical details about certain language features from `Python 3.11` with examples. This can be a useful resource for those who found the official Python Tutorial too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
+1. To explain some technical details about certain language features from [Python 3.11](https://docs.python.org/3.11/) with examples. This can be a useful resource for those who found the official [Python Tutorial](https://docs.python.org/3.11/tutorial/index.html) too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
 
-2. Give a brief overview of various tools that can assist development in Python if you are in circumstances with using this Language.
+2. Give a brief overview of various tools that can assist development in Python if you are in circumstances using this Language mainly developed by debugging and profiling processes inside Windows OS and Linux OS families.
 
 3. Provide a bridge from system-aware people to Python, as from Python to system-aware mentality.
 
@@ -184,7 +184,7 @@ As we have already stated, the most common implementation of the Python interpre
 * Language reference: https://docs.python.org/3/reference/
 * Source code of Python interpreter: https://github.com/python/cpython
 
-Python (and any interpreter) parses the program's text (source code) line by line (that is represented or in text form or extremely high-level instructions). Even though Python is interpreted, internally the commands are translated into [Python Virtual Machine](https://docs.python.org/3/glossary.html#term-virtual-machine) before execution. If you want to see what the commands look like, you can use the [dis](https://docs.python.org/3/library/dis.html#module-dis) module to help you with that:
+Python (and any interpreter) parses the program's text (source code) line by line (that is represented or in text form or extremely high-level instructions which are not the same as instructions for CPU). Even though Python is interpreted, internally the commands are translated into [Python Virtual Machine](https://docs.python.org/3/glossary.html#term-virtual-machine) before execution. If you want to see how the commands look like, you can use the [dis](https://docs.python.org/3/library/dis.html#module-dis) module to help you with that:
 
 ```python
 import dis
@@ -213,7 +213,7 @@ Documentation:
 
 There are several resources from which any can learn about Python scripting language:
 
-1. Firstly, there is a book written by [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum) (the original author of this language).  Today it has been converted into a pretty big tutorial and it is not named as a "book", but named as a "tutorial": https://docs.python.org/3/tutorial/
+1. Firstly, there is a book written by [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum), who is the original author of this language. Today it has been converted into a pretty big tutorial and it is not named as a "book", but named as a "tutorial": https://docs.python.org/3/tutorial/
 
 2. All compiled documentation is available here in various formats (including PDF and HTML) : [https://docs.python.org/3.11/download.html](https://docs.python.org/3.11/download.html). The archive contains all the documents for the version of Python that you will select.
 
@@ -225,8 +225,7 @@ There are several resources from which any can learn about Python scripting lang
 
 6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here (in case you need to dig into specific construction rules): https://docs.python.org/3/reference/grammar.html
 
-7. The Python scripting language (and another scripting language as [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html))  contains plenty of jargon and specific terminology. The Python documentation contains a separate document dedicated to it:
-https://docs.python.org/3/glossary.html
+7. The Python scripting language (and another scripting language as [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html))  contains plenty of jargon and specific terminology. The Python documentation contains a separate document dedicated to it described in the glossary: https://docs.python.org/3/glossary.html
 
 8. If you need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
 
@@ -236,11 +235,11 @@ Finally, please take a look at materials from the [references](#references) sect
 
 ## How Typical Compute Device is Working
 
-It's important at least to understand that computational devices do not execute code in Java, C#, Matlab, or Python. Computers can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA).
+It's important at least to understand that computational devices do not execute code in [Java](https://www.java.com/), [C#](https://dotnet.microsoft.com/en-us/languages/csharp), [Matlab](https://www.mathworks.com/products/matlab.html), or [Python](https://www.python.org/). Compute devices (such as Central Processing Unit, Graphical Processing Unit) can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA) which connects software implementation with hardware implementation of electrical circuits that represent ISA functionality.
 
-A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments from memory or registers and writing results back to memory or registers. Therefore virtual memory provides the scratch storage of input and output results.
+A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments from memory or registers and writing results back to memory or registers, and virtual memory provides the scratch storage of input and output results.
 
-The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how computers work in details can be obtained from *System Architecture*, and *Performace Engineering* courses and books.
+The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how computers work in details can be obtained from *System Architecture*, and *Performace Engineering* courses and books. But what is important for understanding it.
 
 ## Programming Languages Taxonomy in CS
 
@@ -259,20 +258,22 @@ Ruby and Python have a *Strong Dynamic Type System*. This means that:
 
 ## What is Object Orientated Programming (OOP) in CS
 
-Object-oriented programming requires some special way to organize code, but it does not force it to have a `class` keyword in the Language. Please check this Appendix if you're curious about what is OOP from a Computer Science point of view: [C++ Technical Note/Object Orientated Design
-](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#object-orientated-design).
+Object-oriented programming requires some special way to organize code, but it does not force it to have a `class` keyword in the Language. Please check this Appendix if you're curious about what is OOP from a Computer Science point of view [C++ Technical Note/Object Orientated Design](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#object-orientated-design) which is enough for any practical purposes.
 
 # Philosophy of Python
 
-If you want to understand some hidden principles built in Python language then after having a workable version of Python Interpreter read the output from the following command, which Python developers have left as Paschal Egg:
+If you want to understand some hidden built-in principles inside Python language then after having a workable version of Python Interpreter read the output from the following command, which Python developers have left as Paschal Egg:
+
 ```bash
 python -c "import this"
 ```
+
 This provides a point of view of the world from the point of view of Python.
 
 # If Arriving at Python from C++
 
 ## About Events
+
 Some programming languages like [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) contain native support of event-based communication between objects to support Object Orientated Programming, however, Python (and [C++](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md)) programming language does not contain a native event-based system, even though there are frameworks on top of it that support that (for example [Qt](https://www.qt.io/)). 
 
 ## Meaning of Object
@@ -284,7 +285,9 @@ In Python, everything that takes up memory in some form is called the **object**
 * Exotic built-in objects (e.g. files)
 * Fundamental built-in data types (e.g. integers)
 
-It's not true that all things are classes in Python, but all entities that take some memory are objects. One way to get access to all objects in the Python interpreter is via utilizing [gc.get_objects()](https://docs.python.org/3/library/gc.html#gc.get_objects) API in the following way:
+It's not true that all things are classes in Python, but all entities that take some memory are objects in Python terminology. 
+
+One way to get access to all objects in the Python interpreter is via utilizing [gc.get_objects()](https://docs.python.org/3/library/gc.html#gc.get_objects) API in the following way:
 
 ```python
 import gc, sys
@@ -307,9 +310,9 @@ for obj in gc.get_objects():
 
 ## Subtleties with Accessing Value of Variables
 
-Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the level of Language). Functions return and accept arguments by reference in the terminology of C++, C#, and Java. Consequently, you do not have access to raw access to underlying value directly.
+Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the level of Language). Functions return and accept arguments by reference in the terminology of C++, C#, and Java. Consequently, you do not have *direct* access to raw access to underlying values.
 
-Moreover, there is a very strange thing with the default argument which has been in Python since the early `2.*` version. For the default argument - the default value is passed by reference and *calculated once*.  This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, and the default value is just shorthand to not write arguments in some circumstances.
+Moreover, there is still one very sometimes not nice aspect with the default argument which is presented in Python since the early `2.*` version. For the default argument - the default value is passed by reference and *calculated once*.  This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, and the default value is just shorthand to not write arguments in some circumstances.
 
 ## Context in Python as Scope in C++
 
