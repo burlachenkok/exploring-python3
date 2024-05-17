@@ -154,9 +154,9 @@
 
 # Introduction
 
-If you search for "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator [Guido Van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum). You can find it here: https://docs.python.org/3/tutorial/index.html. This tutorial is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
+If you search for "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator [Guido Van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum). You can find it here: https://docs.python.org/3/tutorial/index.html. This official Python tutorial (https://docs.python.org/3/tutorial/index.html) is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language, even though it has plenty of technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages), and it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch.
+Python is a popular scripting language and is very well-designed in style. However, it has plenty of technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages), and it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch.
 
 You can check the popularity of Python scripting language in this world from these two sources:
 
@@ -1905,9 +1905,9 @@ print(next(a))   # run to second yield statement, etc.
 
 ## Package Managers
 
-To have the ability to launch a project you typically need to install the needed libraries. It is so because culture during *Python* script development lies in the huge utilization of external libraries.
+To have the ability to launch the project in Python which is big enough you typically need to install the extra libraries. The culture of Python scripts development (and in fact reallife circumstances of Python interpreter development itself) rely on huge utilization of external libraries.
 
-Two standard ways to install libraries for Python are `pip` and `conda` package managers. 
+Two pretty standard ways to install libraries for Python are installation via `pip` and `conda` package managers. 
 
 The `pip` package manager is preinstalled with a Python interpreter. You may prefer not to use pip directly, but instead use the command for call pip directly from Python:
 ```python
@@ -1948,7 +1948,8 @@ In fact `pip` by itself has only package manager functionality. Next, let's take
 | 8 | conda list \| grep <package_name> | pip show <package_name> | Show information about package |
 |
 
-Relative links:
+Links to Relative Information:
+
 * Conda cheatsheet: https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf
 * Conda documentation by the tasks: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/index.html
 * How to use pip: https://pip.readthedocs.org/en/stable/
@@ -1975,9 +1976,11 @@ The `venv` module is a standard virtual environment in Python. In this section, 
 
 ## Python Notebooks: General
 
-Jupyter documentation is available here https://docs.jupyter.org/en/latest/. Jupyter Notebooks presents a way to create source code mixed with documentation in the form of Markdown. Also, Notebooks can serialize the results of numerical computation in the form of graphics into a single file.
+Jupyter Notebooks presents a way to create source code mixed with documentation in the form of Markdown. Also, Notebooks can serialize the results of numerical computation in the form of graphics into a single file.
 
 Python Notebooks by itself does not provide means to debug Python Notebooks, however some IDEs such as [Visual Studio Code](https://code.visualstudio.com/) support debugging of code inside Python Notebooks.
+
+Documentation about Jupyter is available here: https://docs.jupyter.org/en/latest/.
 
 The following command will start the web server and open the client:
 
@@ -1985,7 +1988,7 @@ The following command will start the web server and open the client:
 python -m notebook
 ```
 
-Start the web server and allow connection from outside (incoming connection from all network interfaces will be accepted):
+Start the web server and allow incoming connection from all network interfaces will be accepted:
 
 ```bash
 python -m notebook --ip 0.0.0.0 --port 8888
