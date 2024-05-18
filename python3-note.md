@@ -3336,17 +3336,18 @@ Callgrind measures only the code that is executed. Please be sure you are making
 
 The result of this program returns the following counters:
 
-* **Ir:** Instruction cache reads (instructions)
+* **Ir:** Instructions executed
 * **I1mr:** Instruction L1 cache read misses (instruction wasn't in L1 cache but was in L2)
 * **I2mr:** Instruction L2 cache read misses (instruction wasn't in L1 or L2 cache, and had to be fetched from memory)
-* **Dr:** D cache reads (memory reads)
-* **D1mr:** Data L1 cache read misses (data location not in L1 data cache, but in L2 data cache)
-* **D2mr:** Data L2 cache read misses (location not in D1 or L2)
-Dw: D cache writes (memory writes)
-* **D1mw:** D1 cache write misses (location not in D1 cache, but in L2)
-* **D2mw:** L2 cache data write misses (location not in D1 or L2)
+* **Dr:** Total memory reads
+* **D1mr:** Data L1 cache read misses (data was not in L1 data cache, but in L2 data cache)
+* **D2mr:** Data L2 cache read misses (dats was not in L1 or L2 data cache)
+* **Dw:** Total memory writes
+* **D1mw:** D1 cache write misses (location not in L1 cache, but in L2)
+* **D2mw:** L2 cache data write misses
 
 Please take in mind:
+
 * L1 miss will typically cost around 5-10 cycles
 * L2 miss can cost as much as 100-200 cycles
 
