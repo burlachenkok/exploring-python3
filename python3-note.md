@@ -3225,7 +3225,7 @@ To find out which shared libraries a process is currently using, we can list the
 ```bash
 cat /proc/$(pidof python)/maps
 ```
-This file demonstrated the memory segments and libraries mapped by a program. There is no explicit information about size of mapped images/libraries. Each line corresponding at the beginning contains a pair of hyphen-separated numbers indicating the virtual address range (in hexadecimal format) at which the memory segment is mapped.
+This file demonstrated the memory segments and libraries mapped by a program. There is no explicit information about size of mapped images/libraries. Each line corresponding at the beginning contains a pair of hyphen-separated numbers indicating the virtual address range (in hexadecimal format) at which the memory segment is mapped into adress space of process (python interpreter).
 
 In Linux OS the OS concepts by design is tried to be represented as files. Dynamic (Shared) Libraries are also files. And you can obtain a list of all open files with the [lsof](https://linux.die.net/man/8/lsof) command:
 ```bash
@@ -3253,9 +3253,9 @@ The statistics include:
 * The number of errors from system call.
 * Number of calls of specific system call.
 * Spend seconds for all system calls of a specific type.
-* Oercentage of all time budget spent for all system call for this call.
+* Percentage of all time budget spent for all system call for this call.
 
-Once I have identified that `import numpy` loads the following shared library `/usr/lib/x86_64-linux-gnu/libblas.so.3` I can make several things:
+Once you e.g. have identified that `import numpy` loads the following shared library `/usr/lib/x86_64-linux-gnu/libblas.so.3` it is possible to make several things:
 
 * You can view the dependencies for a shared library ( or an executable file through) `ldd` system util. It will show dependencies on other `lib*.so` dynamic libraries. Very often you can see the following dependencies:
   * **libc.so.6** - is the standard library of C language functions ([ISO C11](https://www.iso.org/standard/57853.html)), implementaion of [POSIX.1-2008](https://pubs.opengroup.org/onlinepubs/9699919799.2008edition/functions/contents.html), and another OS specific APIs.
@@ -3283,36 +3283,35 @@ Once I have identified that `import numpy` loads the following shared library `/
 
 > The [objdump](https://man7.org/linux/man-pages/man1/objdump.1.html) has the following format:
 >
->**1st** column - the symbol's value, sometimes referred to as its address.
+>**1-st** column - the symbol's value, sometimes referred to as its address.
 >
->**2nd** column - flags. Some of them:  
->* 'l'  means symbols visible only within a >particular file being linked (local scope).
+>**2-nd** column - flags. 
+>* 'l'  means symbols visible only within a particular file being linked (local scope).
 >* 'g' means symbols that can be referenced from within functions located in other files (global scope) 
 >* 'd' debugging symbol 
 >* 'D' dynamic symbol 
 >* 'F' symbol is the name of the function 
 >* 'O' symbol is the name of the object file 
 >
->**3rd** column can be represented in several options for a symbol:
+>**3-rd** column can be represented in several options for a symbol:
 >
 > * It is the name of the section in which the symbol is defined 
 > * It has the name *ABS* if essentially there is no section and the address of Symbol is an absolute address. 
-> * It has name *UND* if symbol currently is not defined.And will be defined later.
+> * It has name *UND* if symbol currently is not defined. And will be defined later.
 >
-> **4th** column - alignment.
+> **4-th** column - alignment.
 >
-> **5th** column - symbol's name is displayed.
+> **5-th** column - symbol's name is displayed.
 
-
-Unlike the executable and dynamic library format in Windows OS (PE format), the Linux ELF format does not contain a name binding to a specific library.
+Unlike the executable and dynamic library format in Windows OS (PE format) which contains information about actual name of dynamic library for symbol, the Linux ELF format does not contain a name binding to a specific dynamic/shared library name.
 
 ### About Valgrind Tool for Linux OS
 
 [Valgrind](https://valgrind.org/) is a famous tool used for memory debugging, memory leak detection, and profiling in case of using compiled languages. Valgrind works by running the program on a virtual machine that simulates the CPU and memory. Valgrind supports various Posix platforms but is not available under Windows OS. Once you run a program under valgrind it performs extensive checking of memory allocations and memory accesses and provides a report with detailed information.
 
-The [Valgrind](https://valgrind.org/) is a simulator. Once you use it in terms of wall clock time your program (Python interpreter process) runs very slow. But [Valgrind](https://valgrind.org/) and simulators in general produce accurate and repeatable performance counters.
+The [Valgrind](https://valgrind.org/) is a simulator. Once you use it in terms of wall clock time your program (Python interpreter process) runs very slow. But [Valgrind](https://valgrind.org/) and CPU simulators in general produce accurate and repeatable performance counters.
 
-Valgrind is not only a single tool, but it contains internally several tools (https://valgrind.org/info/tools.html) and it includes:
+Valgrind is not only a single tool, but it internally contains several tools (https://valgrind.org/info/tools.html) and it includes:
 
 * [Memcheck](https://valgrind.org/docs/manual/mc-manual.html) - Detects memory-management problems.
 * [Callgrind](https://valgrind.org/docs/manual/cl-manual.html) - Call functions profiler and CPU cache profiler.
@@ -3327,6 +3326,7 @@ sudo  apt-get install valgrind
 ```
 
 #### Callgrind
+
 For example, you can analyze how the running code is using CPU Caching in the emulated environment:
 ```bash
 valgrind --tool=callgrind --simulate-cache=yes python -c "import numpy"
@@ -3335,12 +3335,13 @@ valgrind --tool=callgrind --simulate-cache=yes python -c "import numpy"
 Callgrind measures only the code that is executed. Please be sure you are making diverse and representative runs that exercise all appropriate code paths. Also, callgrind records the count of instructions, not the actual time spent in a function. Costs associated with I/O won't show up in the profile.
 
 The result of this program returns the following counters:
-* **Ir:** I cache reads (instructions executed)
-* **I1mr:** I1 cache read misses (instruction wasn't in I1 cache but was in L2)
-* **I2mr:** L2 cache instruction read misses (instruction wasn't in I1 or L2 cache, had to be fetched from memory)
+
+* **Ir:** Instruction cache reads (instructions)
+* **I1mr:** Instruction L1 cache read misses (instruction wasn't in L1 cache but was in L2)
+* **I2mr:** Instruction L2 cache read misses (instruction wasn't in L1 or L2 cache, and had to be fetched from memory)
 * **Dr:** D cache reads (memory reads)
-D1mr: D1 cache read misses (data location not in D1 cache, but in L2)
-* **D2mr:** L2 cache data read misses (location not in D1 or L2)
+* **D1mr:** Data L1 cache read misses (data location not in L1 data cache, but in L2 data cache)
+* **D2mr:** Data L2 cache read misses (location not in D1 or L2)
 Dw: D cache writes (memory writes)
 * **D1mw:** D1 cache write misses (location not in D1 cache, but in L2)
 * **D2mw:** L2 cache data write misses (location not in D1 or L2)
