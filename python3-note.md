@@ -175,11 +175,11 @@ With this note, the authors have three objectives:
 
 ## What is Python
 
-[Python](https://www.python.org/) is an interpretable scripting language. Python was designed originally only as a replacement for [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html), which has been described in that [Blog Post](https://python-history.blogspot.com/2009/01/personal-history-part-1-cwi.html?fbclid=IwAR1v3C4KHiJtBbG4NYVY2o__lMchCNVKQGe2ozoI-gcxnwCYNvcdxzD_sHU) written by the original author back in 2009:
+[Python](https://www.python.org/) is an interpretable scripting language. Historically Python was designed originally only as a replacement for [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html), which has been described in that [Blog Post](https://python-history.blogspot.com/2009/01/personal-history-part-1-cwi.html?fbclid=IwAR1v3C4KHiJtBbG4NYVY2o__lMchCNVKQGe2ozoI-gcxnwCYNvcdxzD_sHU) written by the original author back in 2009:
 
 > "...My original motivation for creating Python was the perceived need for a higher-level language in the Amoeba project. I realized that the development of system administration utilities in C was taking too long. Moreover, doing these in the Bourne shell wouldn't work for a variety of reasons. The most important one was that as a distributed micro-kernel system with a radically new design, Amoeba's primitive operations were very different (and finer-grain) than the traditional primitive operations available in the Bourne shell. So there was a need for a language that would "bridge the gap between C and the shell..." - [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum).
 
-As we have already stated, the most common implementation of the Python interpreter is [CPython](https://github.com/python/cpython). It is named [CPython](https://github.com/python/cpython) because its core was written in C. Unlike most programming languages, Python does not have an official standard. The only available resources for people who want to create own Python interpreter, or create some system some system software:
+As we have already stated, the most common implementation of the Python interpreter is [CPython](https://github.com/python/cpython). It is named [CPython](https://github.com/python/cpython) because its core was written in C. Unlike most programming languages, Python does not have an official standard. The only available resources for people who want to create their own Python interpreter, or create some system some system software:
 
 * Language reference: https://docs.python.org/3/reference/
 * Source code of Python interpreter: https://github.com/python/cpython
@@ -211,41 +211,41 @@ Documentation:
 
 ## Where to Learn About Python Officially
 
-There are several resources from which any can learn about Python scripting language:
+There are several resources from which anyone can learn about Python scripting language:
 
 1. Firstly, there is a book written by [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum), who is the original author of this language. Today it has been converted into a pretty big tutorial and it is not named as a "book", but named as a "tutorial": https://docs.python.org/3/tutorial/
 
 2. All compiled documentation is available here in various formats (including PDF and HTML) : [https://docs.python.org/3.11/download.html](https://docs.python.org/3.11/download.html). The archive contains all the documents for the version of Python that you will select.
 
-3. Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes are here. 
+3. Python Language Reference: https://docs.python.org/3.8/reference/index.html. For example, this is a [link](https://docs.python.org/3/reference/datamodel.html#emulating-callable-objects) to the detailed description of different built-in functions for user-defined classes that you need to implement in your classes to support some built-in operators. 
 
-4. Python Interpreter is distributed with various standard modules called Python Standard Library: https://docs.python.org/3/library/index.html. For example, this a [link](https://docs.python.org/3/library/stdtypes.html) to documentation that described Standard Types.
+4. Python Interpreter is distributed with various standard modules called Python Standard Library: https://docs.python.org/3/library/index.html. You can find documentation that describes Standard Types through this [link](https://docs.python.org/3/library/stdtypes.html).
 
-5. The CPython interpreter website contains a full-text search over Python documentation. You can use this utility both in terms of learning and in terms of finding details if you already know this language: https://docs.python.org/3/search.html
+5. The CPython interpreter website contains a full-text search over Python documentation. You can use this utility both in terms of learning and in terms of finding details if you already know this scripting language: https://docs.python.org/3/search.html
 
-6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules can be found here (in case you need to dig into specific construction rules): https://docs.python.org/3/reference/grammar.html
+6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules (which describes syntax rules) can be found here (in case you need to go into the level of specific construction rules): https://docs.python.org/3/reference/grammar.html
 
-7. The Python scripting language (and another scripting language as [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html))  contains plenty of jargon and specific terminology. The Python documentation contains a separate document dedicated to it described in the glossary: https://docs.python.org/3/glossary.html
+7. The Python scripting language (and another scripting language as [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html))  contains plenty of jargon and specific terminology. The Python glossary can be found here: https://docs.python.org/3/glossary.html
 
 8. If you need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
 
-Finally, please take a look at materials from the [references](#references) section of this document.
+Finally, some extra materials can be found from the [references](#references) section of this document.
 
 # Backgrounds
 
 ## How Typical Compute Device is Working
 
-It's important at least to understand that computational devices do not execute code in [Java](https://www.java.com/), [C#](https://dotnet.microsoft.com/en-us/languages/csharp), [Matlab](https://www.mathworks.com/products/matlab.html), or [Python](https://www.python.org/). Compute devices (such as Central Processing Unit, Graphical Processing Unit) can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA) which connects software implementation with hardware implementation of electrical circuits that represent ISA functionality.
+It's important at least to understand that computational devices do not execute code in [Java](https://www.java.com/), [C#](https://dotnet.microsoft.com/en-us/languages/csharp), [Matlab](https://www.mathworks.com/products/matlab.html), or [Python](https://www.python.org/). Compute devices (such as Central Processing Units, Graphical Processing Units) can not do it. The real computation devices execute binary code compiled in the form of Instruction Set Architecture(ISA) which connects software implementation with hardware implementation of electrical circuits that represent ISA functionality.
 
-A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments from memory or registers and writing results back to memory or registers, and virtual memory provides the scratch storage of input and output results.
+A simplified compute CPU device has computation cores that execute arithmetic operations via reading arguments from memory or registers and writing results back to memory or registers. Virtual memory provides the scratch storage of input and output results for your process (and other processes running in the Operating System(OS)).
 
-The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how computers work in details can be obtained from *System Architecture*, and *Performace Engineering* courses and books. But what is important for understanding it.
+The control unit in the CPU controls the execution and operation of Electrical Components (developed by Electrical Engineers). Finer details about how CPU works in details can be obtained from *System Architecture*, and *Performace Engineering* courses and books. 
 
 ## Programming Languages Taxonomy in CS
 
 There are a lot of programming languages these days. One way to analyze programming languages is from the angle of the implemented type system (**type** are two sets: objects and operations with them. This concept is close to the concept of Algebras in mathematics, even in mathematics Algebra operations are closed under the underlying set, and for **programming language types** it's not necessarily the case):
 
-* **Static Type System** - statically typed system languages are those in which type checking is done at compile time.
+* **Static Type System** - statically typed system languages are those in which type checking is done at compile-time.
 * **Dynamic Type System** - dynamically typed languages are those in which type checking is done at runtime (execution time).
 * **Strong Type System** or **Strong Type safety** - implicit type casting is prohibited.
 * **Weak Type System** or **Weak Type safety** - implicit type casting is allowed.
@@ -281,6 +281,7 @@ Some programming languages like [C#](https://learn.microsoft.com/en-us/dotnet/cs
 There is a clash of terminology if you have a C++, Java, or C# background. 
 
 In Python, everything that takes up memory in some form is called the **object**. In other languages (Java, C#, C++) object is an instance of the class. So an object in Python terminology is:
+
 * Class instances 
 * Exotic built-in objects (e.g. files)
 * Fundamental built-in data types (e.g. integers)
@@ -444,7 +445,7 @@ If you only start with Programming in your career or you are from another domain
 
 It is at the same time a very strong statement and at the same time vague statement. There can be three points of view on such a statement:
 
-1. By general-purpose programming language, you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes in practice may have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness), because they were designed for only one specific purpose. In fact, to have one mechanism that is sufficient for expressing any computable functions is a mechanism that allows expression sequencing (executing basic blocks of instructions sequentially), selection (selecting between several blocks for execution based on condition), and iteration (transfer control to a previous statement or beginning of basic block). For details see [Structured Program Theorem](https://en.wikipedia.org/wiki/Structured_program_theorem).
+1. By general-purpose programming language, you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes in practice may have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness), because they were designed for only one specific purpose. To have one mechanism that is sufficient for expressing any computable functions is a mechanism that allows expression sequencing (executing basic blocks of instructions sequentially), selection (selecting between several blocks for execution based on condition), and iteration (transfer control to a previous statement or beginning of basic block). For details see [Structured Program Theorem](https://en.wikipedia.org/wiki/Structured_program_theorem).
 
 2. By General Purpose you mean that you can use it across many domains. In this case how many are "many"? Depending on the definition of "many" Python may lie in this class and may not.
 
@@ -463,7 +464,7 @@ Of course, there is a tool for Python that helps [pylint](https://pypi.org/proje
 > Python is everywhere
 
 This overstatement can also be read from the Python Tutorial. Please be aware that (any) interpretable language that exists or will be created in the future fundamentally will have the following downsides:
-[C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages). If you are creating own scripting language please be aware about this.
+[C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages). If you are creating own scripting language please be aware of this.
 
 # Python Basics
 
@@ -597,7 +598,7 @@ https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
 * **Integers (int)**. The type that is used to represent integers in Python interpreter does not have any fixed number of bits. Instead, it has a varying size. In this sense, an integer has an unlimited range. You can practically hold as big an integer as you want until you start having problems with virtual memory in the interpreter process.
 
-* **Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerical fields, such a statement in some circumstances may be incorrect. However, for purpose of interpreter maybe it is good enough.
+* **Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerical fields, such a statement in some circumstances may be incorrect. However, for the purpose of interpreter maybe it is good enough.
 
 Documentation on this subject: https://docs.python.org/3.13/reference/datamodel.html
 
@@ -625,6 +626,7 @@ if 1:
 ```
 
 ## Empty(Pass) Statements
+
 The `pass` statement does "nothing" similar to the C++ `;` statement. Such empty statements are used in programming languages when language requires a statement, but the logic of the algorithm requires "do nothing".
 
 ## Division of Numbers in Python
@@ -653,7 +655,7 @@ print("hello {0}".format("world"), end='\n', file=sys.stderr)
 You can use various formatting rules described here to configure output:
 https://docs.python.org/3.11/library/string.html#formatspec
 
-Since Python 3.6 a string interpolation feature has been added (https://www.python.org/dev/peps/pep-0498/) in the interpreter. It is presented in Bash and similar scripting languages.
+Since Python 3.6 a string interpolation feature has been added (https://www.python.org/dev/peps/pep-0498/) in the interpreter. It is presented in Bash and similar scripting languages, however syntax may vary from interpreter to interpreter.
 Example:
 ```python
 a = 123
@@ -722,7 +724,7 @@ The conditions used in `while` and `if` statements can contain any operators, bu
 
 What can confuse people with C++/Java/C#/C backgrounds is that comparisons can be chained. For example, `a < b == c` tests the following *"a is less than b" **and** "b equals c"*.
 
-Comparisons may be combined using the Boolean operators `and` and `or`, `not`. The Boolean operators `and` and `or` are so-called short-circuit operators and are analogous to `&&` and `||`.  The bollean negotiation carried with operator `not` which is equivalent to operator `!`.
+Comparisons may be combined using the Boolean operators `and` and `or`, `not`. The Boolean operators `and` and `or` are so-called short-circuit operators and are analogous to `&&` and `||`.  The boolean negotiation carried with operator `not` which is equivalent to operator `!`.
 
 > Chaining questions can be used to "kill" candidates in technical screening. Example:
 >
@@ -734,14 +736,15 @@ Comparisons may be combined using the Boolean operators `and` and `or`, `not`. T
 >
 > If you don't know about the chaining rule you may expect that results are `False`, but it's actually `True`. 
 
-Python supports the same set of the bitwise operator as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it includes:
+Python supports the same set of the bitwise operators as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it includes:
 * `&` - for bitwise and.
 * `|` - for bitwise or.
-* `<<` - left bitwise/arithemtic shift.
+* `<<` - left bitwise/arithmetic shift.
 * `>>` - right arithmetic shift with sign extension.
 * `~` - operator yields the bitwise inversion.
+* `^` - for bitwise xor.
 
-> In C++ `>>` from C++20 the right-shift on signed integral types is an arithmetic right shift. However, before C++20 it was implementation dependent.
+> In C++ `>>` from C++20 the right shift on signed integral types is an arithmetic right shift. However, before C++20 it was implementation dependent.
 
 In Python when you use an expression (not necessarily Boolean) that internally uses Boolean operators, the return value of a short-circuit operator is the last evaluated expression (which is not the case in C++ where you don't obtain this information):
 
@@ -772,8 +775,7 @@ int main() {
 
 ## Basic Data Types
 
-Python has several basic data types including integers, floats, booleans, and strings. These data types behave in ways that are familiar to other programming languages.
-As it has been mentioned in [Python 3.11/Glossary](https://docs.python.org/3.11/glossary.html#term-type) an object’s type is accessible as its __class__ attribute or can be retrieved with `type(obj)`.
+Python has several basic data types including integers, floats, booleans, and strings. These data types behave in ways that are familiar to other programming languages. As it has been mentioned in [Python 3.11/Glossary](https://docs.python.org/3.11/glossary.html#term-type) an object’s type is accessible as its __class__ attribute or can be retrieved with `type(obj)`.
 
 ```python
 x = 3
@@ -854,7 +856,7 @@ print(nums[:-1])      # Slice indices can be negative; prints "[0, 1, 2, 3]"
 nums[2:4] = [8, 9]    # Assign a new sublist to a slice
 print(nums)           # Prints "[0, 1, 8, 9, 4]"
 ```
-Deletion from the list and another containers happens via using [del](https://docs.python.org/3/tutorial/datastructures.html#the-del-statement) statement in the language which invokes [__del__]
+Deletion from the list and other containers happens via using [del](https://docs.python.org/3/tutorial/datastructures.html#the-del-statement) statement in the language which invokes [__del__]
 (https://docs.python.org/3/reference/datamodel.html#object.__del__) special method in the class definition.
 
 
@@ -903,8 +905,8 @@ Python can manipulate with strings, which can be expressed in several ways:
 
 * String enclosed in single quotes (`'`...`'`) can use double quotes <`"`> inside the string literal.
 * String enclosed in double quotes (`"`...`"`) can use single quotes <`'`> inside the string literal.
-* String enclosed in triple quotes (`"""`...`"""`) or (`'''`...`'''`) is a multiline string. Multiline strings can be placed in several strings. In this case, the used new line character is part of the string literal!
-* The raw string literal is represented as `r"`...`"` or `r'`...`'` or `r'''`...`'''` or `r"""`...`"""`. Inside the raw string, you can use backslash characters in the usual way. The raw string notion is similar to [C++11 construction](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#prefixes-for-strings-from-c11) `R"(hello\n)"`.
+* String enclosed in triple quotes (`"""`...`"""`) or (`'''`...`'''`) is a multiline string. Multiline strings can be placed in several strings. In this case, the used new line character is part of the string literal.
+* The raw string literal is represented as `r"`...`"` or `r'`...`'` or `r'''`...`'''` or `r"""`...`"""`. Inside the raw string, you can use backslash characters in the usual way. In this mode backslash inside string literals does not have any specific meaning. The raw string notion is similar to [C++11 construction](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#prefixes-for-strings-from-c11) `R"(hello\n)"`.
 * Two or more string literals next to each other are automatically concatenated without using the plus sign. This syntax and semantics coincide exactly with C++/C.
 
 ## Dictionaries
@@ -984,13 +986,13 @@ for idx, animal in enumerate(animals):
 
 ## Interfaces and Protocols
 
-In Python languages, you will not find the keyword `interface` such as in Java/C# or pure virtual class methods as in C++. In other words, Python does not have interfaces as a language concept as pure language concept.
+In Python languages, you will not find the keyword `interface` such as in Java/C# or `pure virtual class` methods as in C++. In other words, Python does not have interfaces as a language concept as a pure language concept.
 
 Instead of a specific (and robust, but more long and verbose) interface notion the Python scripting language (and other scripting languages as well) uses what is known as *Duck Typing*. This concept is described typically in the following way:
 
 > *"If it walks like a duck and it quacks like a duck, then it must be a duck"*.
 
-In Python, any object may be used in any context until it is used in a way that it does not support. In this latter case the [AttributeError](
+In Python, any object may be used in any context until it is used in a way that it object does not support it. In this latter case the [AttributeError](
 https://docs.python.org/3/library/exceptions.html#AttributeError) will be raised.
 
 If you define your classes in Python and you want the objects of your class can be used in specific language construction like iteration you should support **protocol**. Next, we will go through the main protocols:
@@ -1023,7 +1025,7 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
 
 - **Sequence protocol.** Except `dict`, all built-in container types in Python support indexing. It's known as *sequence protocol*. For your classes, you should define [\_\_getitem\_\_](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__getitem__), [\_\_setitem\_\_](https://docs.python.org/3/reference/datamodel.html#object.__setitem__), [\_\_delitem\_\_](https://docs.python.org/3/reference/datamodel.html?highlight=__getitem__#object.__delitem__). 
 
-  Once you will define these operators you can use the following language operators:
+  Once you define these operators you can use the following language operators:
 
     ```python
     x [integral_index] 
@@ -1070,7 +1072,6 @@ Example:
 a = 1
 print(a.__class__)
 ```
-
 
 ## Comprehensions Syntax
 
