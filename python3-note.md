@@ -154,24 +154,24 @@
 
 # Introduction
 
-If you search for "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator [Guido Van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum). You can find it here: https://docs.python.org/3/tutorial/index.html. This official Python tutorial (https://docs.python.org/3/tutorial/index.html) is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
+If you search "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator [Guido Van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum). You can find it here: https://docs.python.org/3/tutorial/index.html. This official Python tutorial (https://docs.python.org/3/tutorial/index.html) is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language and is very well-designed in style. However, it has plenty of technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages), and it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch.
+Python is a popular scripting language and it is honest that it is very well-designed in style and has been picked up seriously by a broad category of people. However, if be completely honest, we should not forget that it is a scripting language. And, it has a lot of  technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages) and it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch in depth.
 
 You can check the popularity of Python scripting language in this world from these two sources:
 
-* The [TIOBE-Index](https://www.tiobe.com/tiobe-index/), which ranks programming languages by their popularity on their metrics.
+* The [TIOBE-Index](https://www.tiobe.com/tiobe-index/) which ranks programming languages by their popularity on their metrics.
 * The [Google-Trends](https://trends.google.com/trends/explore?date=now%201-d&q=%2Fm%2F05z1_,%2Fm%2F0jgqg,C%23,%2Fm%2F07sbkfb,BASH&hl=r), which shows the relative interest in different topics over time in society.
 
 With this note, the authors have three objectives:
 
 1. To explain some technical details about certain language features from [Python 3.11](https://docs.python.org/3.11/) with examples. This can be a useful resource for those who found the official [Python Tutorial](https://docs.python.org/3.11/tutorial/index.html) too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
 
-2. Give a brief overview of various tools that can assist development in Python if you are in circumstances using this Language mainly developed by debugging and profiling processes inside Windows OS and Linux OS families.
+2. Give a brief overview of various tools that can assist development in Python if you are in the circumstances using this Language. These tools are mainly developed for the purposes of debugging and profiling executable programs inside Windows OS and Linux OS families.
 
-3. Provide a bridge from system-aware people to Python, as from Python to system-aware mentality.
+3. Provide a bridge between Python and System-Aware mentality.
 
-> If after reading you wish to contribute to this document, please take a look into [contributions section](#contributions-to-this-document) of this document.
+> If after reading this note you wish to contribute to this note, please take a look into [contributions section](#contributions-to-this-document).
 
 ## What is Python
 
@@ -179,7 +179,7 @@ With this note, the authors have three objectives:
 
 > "...My original motivation for creating Python was the perceived need for a higher-level language in the Amoeba project. I realized that the development of system administration utilities in C was taking too long. Moreover, doing these in the Bourne shell wouldn't work for a variety of reasons. The most important one was that as a distributed micro-kernel system with a radically new design, Amoeba's primitive operations were very different (and finer-grain) than the traditional primitive operations available in the Bourne shell. So there was a need for a language that would "bridge the gap between C and the shell..." - [Guido van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum).
 
-As we have already stated, the most common implementation of the Python interpreter is [CPython](https://github.com/python/cpython). It is named [CPython](https://github.com/python/cpython) because its core was written in C and C++. Unlike some other scripting and programming languages, Python does not have an official standard. The only available resources for people who want to extend Python are:
+As we have already stated, the most common implementation of the Python interpreter is [CPython](https://github.com/python/cpython). It is named [CPython](https://github.com/python/cpython) because its core was written in C. Unlike most programming languages, Python does not have an official standard. The only available resources for people who want to create own Python interpreter, or create some system some system software:
 
 * Language reference: https://docs.python.org/3/reference/
 * Source code of Python interpreter: https://github.com/python/cpython
