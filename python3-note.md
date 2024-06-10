@@ -2106,6 +2106,7 @@ Losses/Binary Coss-Entropy with logits loss | [https://pytorch.org/docs/master/g
 
 > Comment: In the context of deep learning the logits mean the layer or scalars real values [from all possible range of real numbers] that are fed into softmax or similar layer in which the image(or output) is a probabilistic simplex.
 
+
 ## Matplotlib
 
 [Matplotlib](http://matplotlib.org/) is a plotting library. This section gives a brief introduction to the **`matplotlib.pyplot`** module, which provides a plotting system similar to  MATLAB. Documentation: http://matplotlib.org/api/pyplot_api.html
@@ -2956,6 +2957,10 @@ import integration
 integration.integrate_f(0.0,100.0,100000)
 integration.integrate_f_std(0.0,100.0,100000)
 ```
+
+## Use Python functools package
+
+[Functools](https://docs.python.org/3/library/functools.html) provide wrappers to a functions with a memoizing trick from dynamic programming. For example [@functools.lru_cache(maxsize)](https://docs.python.org/3/library/functools.html#functools.lru_cache) saves up to the maxsize most recent calls. It can save time if function is periodically called with the same arguments.
 
 ## Profiling Python Code with Python Tools
 
