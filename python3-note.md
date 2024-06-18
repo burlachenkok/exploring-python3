@@ -1,5 +1,11 @@
 # Technical Note. Exploring Python3 Language from a Computing Perspective 
 
+<div align="center">
+<img src="imgs/logo_gen.jpg" alt="book logo" width="85%"/>
+</div>
+
+----
+
 [Konstantin Burlachenko](https://burlachenkok.github.io/)
 
 [King Abdullah University of Science and Technology](https://www.kaust.edu.sa/en), Thuwal, Saudi Arabia.
