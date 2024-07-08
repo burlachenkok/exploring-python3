@@ -162,7 +162,7 @@
 
 If you search "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator [Guido Van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum). You can find it here: https://docs.python.org/3/tutorial/index.html. This official Python tutorial (https://docs.python.org/3/tutorial/index.html) is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language and it is honest that it is very well-designed in style and has been picked up seriously by a broad category of people. However, if be completely honest, we should not forget that it is a scripting language. And, it has a lot of  technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages) and it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch in depth.
+Python is a popular scripting language. It is very well-designed in style and has been picked up seriously by a broad category of people. However, if be completely honest, we should not forget that it is a scripting language. And, it has a lot of  technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages). In addition, it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch in depth.
 
 You can check the popularity of Python scripting language in this world from these two sources:
 
@@ -441,11 +441,11 @@ Python has a very fast learning curve which opened the doors (fortunately) for p
 
 Unfortunately, if you are around people with CS/EE/System/Compilers backgrounds it may be the case that these people will make a statement: *"Python is not a programming language"*.  To state that Python is *Programming Language* we need to define what is "Language" and what is "Programming" by itself.
 
-Let's start with the "Language" concept in the context of Programming. One meaning is that Language expresses ideas with defined formalisms and you *don't care at all* how these ideas are materialized in the end system. Even though it may sound reasonable it's not the only definition. The message that one scientist from programming languages area (e.g. [B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) author of C++) tries to bring for people for already 3 decades is that *Programming Language* is the language that gives you a way to describe the algorithm in a form that this algorithm will be executed in the computer (compute device).
+Let's start with the "Language" concept in the context of Programming. One meaning is that Language expresses ideas with defined formalisms and you *don't care at all* how these ideas are materialized in the end system. Even though it may sound reasonable it's not the only one definition. The message that one scientist from programming languages area (e.g. [B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) author of C++) tries to bring for people for already 3 decades is that *Programming Language* is the language that gives you a way to describe the algorithm in a form that this algorithm will be executed in the computer (compute device).
 
-With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is a receipt for an interpreter, while C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler. We do not want to offend any scripting language, but we want to highlight there is a problem with the definition.
+With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is a receipt for an interpreter, while C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler. We do not want to offend any scripting language, but we want to highlight there is a problem with the definition of meaning what is a programming language in the first place.
 
-If you only start with Programming in your career or you are from another domain and not from CS exactly, or if you are from CS but with no experience in Compilers/OS/Systems you may not see the difference. But there is a subtle fundamental difference. It does not say that scripting and just-in-time compiled-based languages are incorrect, but at least please understand that it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. The catch is that in fact, any level of Abstraction is not free in terms of consumed memory and execution time (if this abstraction is used during runtime, not during design).
+If you only start with Programming in your career or you are from another domain and not from CS exactly, or if you are from CS but with no experience in Compilers/OS/Systems you may not see the difference. But there is a subtle fundamental difference. It does not say that scripting and just-in-time compiled-based languages are incorrect, but at least please understand it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. The catch is that in fact, any level of Abstraction is not free in terms of consumed memory and execution time (if this abstraction is used during runtime, not during design).
 
 > Python is a general-purpose programming language.
 
@@ -459,13 +459,13 @@ It is at the same time a very strong statement and at the same time vague statem
 
 > Python is more elegant and short than C++.
 
-One more time it depends on what you mean exactly. Some logic that works with byte view in the virtual memory of the process even can not be expressed in Python at all in an effective way. 
+One more time it depends on what you mean exactly. Some logic that works with byte view in the virtual memory of the process even can not be expressed in Python at all in an effective way.
 
 Next, if you consider application classes that can be expressed in Python, then in general this is true if measure elegance by amount of lines of code in Python. 
 
-However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Compiling languages forces you to follow some discipline, and Python does not.
+However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Compiling languages forces you to follow some discipline, and Python does not. If you have high professionalism in Python you may induce this discipline in some another way, but not at the language level.
 
-Of course, there is a tool for Python that helps [pylint](https://pypi.org/project/pylint/), but a compiler and linker are far more powerful tools for detecting errors than a static analyzer applied for Language with Dynamic Type Systems at least from our experience.
+Of course, there is a tool for Python that helps [pylint](https://pypi.org/project/pylint/), but a compiler and linker are far more powerful tools for detecting errors than a static analyzer applied for Language with Dynamic Type Systems.
 
 > Python is everywhere
 
@@ -476,7 +476,7 @@ This overstatement can also be read from the Python Tutorial. Please be aware th
 
 ## Language Benefits
 
-It depends on your point of view and your style, but there is a point of view where the following things presented in Python are benefits. They shine especially if you have limited time to finish a project:
+It depends on your point of view and your style, but there is a point of view where the following things presented in Python are benefits. They shine especially if you have limited physical time to finish a project in a social sense:
 
   1. More correct code from a style point of view.
   2. Automatic cross-platform serialization "pickling" for the user and built-in types from the Python standard library. https://docs.python.org/3/library/pickle.html
@@ -494,9 +494,9 @@ It depends on your point of view and your style, but there is a point of view wh
 
   7. There is no need to configure a compiler, linker, etc. (collectively known as a toolchain in Software Development).
 
-  8. There is no need to configure any build tool. The issue is that while using highly flexible tools like [CMake](https://cmake.org/cmake/help/book/mastering-cmake/) or [GNU Make](https://www.gnu.org/software/make/manual/make.pdf) to build your project using one of language supported by [GCC](https://gcc.gnu.org/) you have to spend plenty of time to figure out how to work with these tools if you do not have this background already.
+  8. There is no need to configure any build tool. The issue is that while using highly flexible tools like [CMake](https://cmake.org/cmake/help/book/mastering-cmake/) or [GNU Make](https://www.gnu.org/software/make/manual/make.pdf) to build your project using one of language supported by [GCC](https://gcc.gnu.org/) you have to spend plenty of time to figure out how to work with these tools (if you do not have this background already).
 
-  9. Parsing of the function is performed only at the moment of the **direct call**, there is no compilation phase.
+  9. Parsing of the function in Python is performed only at the moment of the **direct call**, there is no compilation phase.
 
   > What you gain with (8) and (9) is the ability to start a project fast, what you lose is subtle control of how your source code of the program is materialized into the executable program.
 
@@ -541,6 +541,7 @@ Based on [1] the Python interpreter operates somewhat like the Unix shell. There
 ## What is a False Statement
 
 The following expressions are considered `False` in Python:
+
 * `None`
 * `0`
 * Empty Sequence. An empty sequence is the sequence for which `len() == 0`.
@@ -548,7 +549,7 @@ The following expressions are considered `False` in Python:
 
 ##  First Line in Your Script
 
-The line `#!/usr/bin/env python3` in a well-developed script (for POSIX OS Family) contains what is known as sha-bang. It has a long history in Unix/Linux OS. For Windows, it's possible to use it as well. In Windows, a binary application named `py.exe` is a launcher that performs a choice of a used interpreter based on the mentioned sha-bang. 
+The line `#!/usr/bin/env python3` in a well-developed script (for POSIX OS Family) contains what is known as sha-bang. It has a long history in Unix/Linux OS and it is used to understand which interpreter to use from OS perspective. For Windows, it's possible to use it as well. In Windows, a binary application named `py.exe` is a launcher that performs a choice of a used interpreter based on the mentioned sha-bang.
 
 Formally this line is optional.
 
@@ -571,16 +572,16 @@ A **Logical Line** of a script program is constructed from one or more physical 
 
 * A physical and logical line that contains only spaces, tabs, and possibly a comment is ignored by the parser.
 
-* Normally you should use `\` for line continuation, however, Python automatically supports multi-line continuation inside the following constructions. When you are inside such an expression you can split your expression over more than one physical line without using the backslash symbol:
-  * Expressions in parentheses `(arg0, arg1)`, e.g. which is used for passing arguments to function invocation.
-  * Expressions in square brackets `[item0, item1]`, e.g. which is used to initialize the built-in list object.
-  * Expressions in curly braces `{setItem0, setItem1}`, e.g. which is used to define built-in sets or dictionaries.
+* Normally you should use `\` for line continuation. However, Python automatically supports multi-line continuation inside the following constructions. When you are inside such an expression you can split your expression over more than one physical line without using the backslash symbol:
+  * Expressions in parentheses `(arg0, arg1)`, e.g. which is used for passing arguments to [function](https://docs.python.org/3/reference/compound_stmts.html#function) invocation or when you define a [tuple](https://docs.python.org/3/library/stdtypes.html#tuples).
+  * Expressions in square brackets `[item0, item1]`, e.g. which is used to initialize the built-in [list](https://docs.python.org/3/library/stdtypes.html#list) object.
+  * Expressions in curly braces `{setItem0, setItem1}`, e.g. which is used to define built-in [sets](https://docs.python.org/3/library/stdtypes.html#set) and [dictionaries](https://docs.python.org/3/library/stdtypes.html#dict).
 
-A parser reads a Python script. The parsing of some pieces of Python source code (e.g., of the function) is performed only at the moment of the direct call of this function. I.e. if you have errors in the function, but you did not invoke it you will not observe problems a-priori.
+A parser reads a Python script. The parsing of some pieces of Python source code (e.g., of the function) as we already mentioned is performed only at the moment of the direct call of this function. I.e. if you have errors in the function, but you did not invoke it you will not observe problems a-priori.
 
 ## Comments
 
-Comments in Python start with the hash character `#` and extend to the end of the physical line.
+Comments in Python start with the hash character `#` and extend to the end of the physical line. One workaround about limitation about supporting multiline strings is create unnamed string inside the function body, but not as a a first string, see this tween by Guido Van Rossum: https://x.com/gvanrossum/status/112670605505077248 from 2011.
 
 ## Operator Precedence
 
@@ -600,7 +601,7 @@ https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
 * **Ellipsis.** There is a single object with this value. This object is accessed through the built-in literal `...`. If the expression `...` is used inside the condition, then `...` is implicitly converted into `True`.
 
-* **NoneType.** This type has a single object. This object is accessed through the built-in name `None`. It is used to signify the absence of a value in many situations. Also, it is returned from functions that do not explicitly return anything. If this expression is used inside the condition, then `...` is implicitly converted into `False`.
+* **NoneType.** This type has a single object. This object is accessed through the built-in name `None`. It is used to signify the absence of a value in many situations. Also, it is returned from functions that do not explicitly return anything. If this expression is used inside the condition, then `None` is implicitly converted into `False`.
 
 * **Integers (int)**. The type that is used to represent integers in Python interpreter does not have any fixed number of bits. Instead, it has a varying size. In this sense, an integer has an unlimited range. You can practically hold as big an integer as you want until you start having problems with virtual memory in the interpreter process.
 
@@ -610,7 +611,8 @@ Documentation on this subject: https://docs.python.org/3.13/reference/datamodel.
 
 ## Simple Statements
 
-Typically, a simple statement is comprised of a single logical line. However, several simple statements may occur on a single logical line separated by semicolons. Example:
+Typically, a simple statement is comprised of a single logical line. However, several simple statements may occur on 
+a single logical line separated by semicolons. Example:
 ```python
 a=1; b=2;
 ```
@@ -668,7 +670,7 @@ a = 123
 print (f"Hello {a}")
 ```
 
-The f-string form is known as a formatted string literal. To use formatted string literals, you should begin a string with `f` or `F` before the opening quotation mark in the form of <`'`>, <`"`>, <`"""`>, <`'''`>.
+The f-string form is known as a formatted string literal. To use formatted string literals, you should begin a string with `f` or `F`, before the opening quotation mark in the form of <`'`>, <`"`>, <`"""`>, <`'''`>.
 
 Inside this string, you can write an arbitrary Python expression between `{` and `}`. Also, you can refer to variables or literal values. During using f-string you can pass an integer after the `:`. It will cause that field to be a minimum number of characters wide. This is useful for making columns line up. Example:
 ```python
@@ -742,7 +744,7 @@ Comparisons may be combined using the Boolean operators `and` and `or`, `not`. T
 >
 > If you don't know about the chaining rule you may expect that results are `False`, but it's actually `True`. 
 
-Python supports the same set of the bitwise operators as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it includes:
+Next, Python in fact supports the same set of the bitwise operators as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it includes:
 * `&` - for bitwise and.
 * `|` - for bitwise or.
 * `<<` - left bitwise/arithmetic shift.
@@ -781,7 +783,7 @@ int main() {
 
 ## Basic Data Types
 
-Python has several basic data types including integers, floats, booleans, and strings. These data types behave in ways that are familiar to other programming languages. As it has been mentioned in [Python 3.11/Glossary](https://docs.python.org/3.11/glossary.html#term-type) an object’s type is accessible as its __class__ attribute or can be retrieved with `type(obj)`.
+Python has several basic data types including [integers](https://docs.python.org/3/library/functions.html#int), [floats](https://docs.python.org/3/library/functions.html#float), [booleans](https://docs.python.org/3/library/functions.html#bool), and strings. These data types behave in ways that are familiar to other programming languages. As it has been mentioned in [Python 3.11/Glossary](https://docs.python.org/3.11/glossary.html#term-type) an object’s type is accessible as its __class__ attribute or can be retrieved with `type(obj)`.
 
 ```python
 x = 3
@@ -876,7 +878,7 @@ Python has great support for strings:
 
 ```python
 hello = 'hello'    # String literals can use single quotes
-world = "world"    # or double quotes; it does not matter.
+world = "world"    # And string literals can be enclosed into double quotes
 
 print(hello)       # Prints "hello"
 print(len(hello))  # String length; prints "5"
@@ -887,12 +889,12 @@ print(hw)                 # Prints "hello world"
 hw12 = '%s %s %d' % (hello, world, 12)  # C/C++ sprintf style string formatting
 print(hw12)                             # prints "hello world 12"
 
-hw21 = '{} {} {}'.format(hello, world, 21)  # formatting with format function in C# style
-print(hw21)                                 # prints "hello world 21"
+hw21 = '{} {} {}'.format(hello, world, 21)         # formatting with format function in C# style
+print(hw21)                                        # prints "hello world 21"
 hw13 = '{} {} {:.2f}'.format(hello, world, 1 / 3)  # float formatting
 print(hw13)                                        # prints "hello world 0.33"
-hw3 = f'{hello} {world} {1 / 3:.2f}' # the f-strings
-print(hw3)                           # prints "hello world 0.33"
+hw3 = f'{hello} {world} {1 / 3:.2f}'               # the f-strings
+print(hw3)                                         # prints "hello world 0.33"
 ```
 
 String objects have a bunch of useful methods, for example:
@@ -1065,7 +1067,7 @@ print(f"Host: {socket.gethostname()} / IP: {socket.gethostbyname(socket.gethostn
 
 ## Introspection of Python Objects
 
-In Python terminology, everything that takes some memory is an object.  
+In Python terminology, everything that takes some memory is an Object.  
 
 The [dir(obj)](https://docs.python.org/3/library/functions.html#dir) built-in function displays the attributes of an object.  Attributes that all objects (typically) have:
 * `__name__` - is the name of the current module [link](https://docs.python.org/3/reference/import.html?highlight=__name__#name__).
@@ -1191,15 +1193,15 @@ All containers can be unpacked as follows:
 
 ```python
 t = (3, 2, 1)
-a, b, c = t  # unpacks the tuple t; prints "3 2 1"
+a, b, c = t            # unpacks the tuple t; prints "3 2 1"
 print(a, b, c)
 
 l = [3, 2, 1]
-a, b, c = l  # unpacks the list l; prints "3 2 1"
+a, b, c = l            # unpacks the list l; prints "3 2 1"
 print(a, b, c)
 
 s = {3, 2, 1}
-a, b, c = s  # unpacks the set s; prints "1 2 3" (set ordering)
+a, b, c = s            # unpacks the set s; prints "1 2 3" (set ordering)
 print(a, b, c)
 
 d = {'c': 3, 'b': 2, 'a': 1}
@@ -1355,7 +1357,7 @@ In C++ terminology Python classes have the following characteristics:
   1. Normal class members (including the data members) are public except for some small support for private variables.
   2. All member functions/methods are virtual.
   3. Like in C++, most built-in operators with special syntax (arithmetic operators, etc.) can be redefined for user-defined classes.
-  4. Python Data attributes correspond to *"data members"* in C ++.
+  4. Python Data attributes correspond to *"data members"* in C++.
   5. Python supports multiple inheritance, and exceptions.
   6. In Python (and in Perl) there is no such term as function overloading.
 
@@ -1416,8 +1418,7 @@ There are several ways to take a look at available symbols:
 
 * [globals()](https://docs.python.org/3/library/functions.html#globals) - will give you a dictionary of current available global variables.
 * [locals()](https://docs.python.org/3/library/functions.html#locals) and [vars()](https://docs.python.org/3/library/functions.html#vars) - will give you a dictionary of local variables.
-* [dir()](https://docs.python.org/3/library/functions.html#dir) - will give you the list of in-scope variables which includes locals, and enclosed variables from another function if you use the style in which you define a function inside the function.
-
+* [dir()](https://docs.python.org/3/library/functions.html#dir) - will give you the list of in-scope variables which includes locals, and enclosed variables from another function. If you use the style in which you define a function inside the function, then this function will not show you globals.
 
 Example:
 ```python
@@ -1470,14 +1471,16 @@ In C++/C#/Java, such a *nonlocal* scope is impossible because in these languages
 
 A module is a file containing Python definitions and statements. The file name is the module name with the suffix `.py`. Python module files are files written with Python language and in general they look like usual scripts.  Within a module, the module name (as a string) is available as the value of the global variable `__name__`.  
 
-Typically, you can launch the Python module as a script if the authors of the module provide some utility functionality either with `python script_name.py` or `python -m script_name`. During launching the module, the code in the module will be executed, just as if you imported it, but with one difference the __name__ will be set to "__main__".  The part of the code for executing the script in the module typically has the following conditions:
+Typically, you can launch the Python module as a script if the authors of the module provide some utility functionality either with `python script_name.py` or `python -m script_name`. During launching the module, the code in the module will be executed, just as if you imported it, but with one difference the __name__ will be set to "__main__".  
+
+The part of the code for executing the script funtionality of the module typically has the following quard condition:
 
 ```python
 if __name__ == "__main__":
     pass
 ```
 
-It provides means to distinguish behavior when the script is used for execution logic, rather than be a facade interface to some functionality.
+It provides you some means to distinguish behavior when the script is used for execution logic, rather than be a facade interface to some functionality.
 
 To import the module the following instructions should be (typically) used:
 ```python
@@ -1521,7 +1524,7 @@ When you launch any Python scripts if all is OK in the Operating System(OS) and 
 
 Packages are a way of structuring Python's module namespace by using "dotted module names" in a hierarchical way. 
 
-Firstly, you should have several source code files with modules. To group these modules into the package you should place modules in one directory and create file `__init__.py` in this directory. The `__init__.py` files are required to make Python treat directories containing the module source files as packages. This prevents directories with a common name, such as string, from unintentionally hiding valid modules that occur later on the module search path. In the simplest case, `__init__.py` can just be an empty file, but it can also execute the initialization code for the package or set the `__all__` variable.
+Firstly, you should have several source code files with modules. Next, to group these modules into the package you should place modules in one directory and create file `__init__.py` in this directory. The `__init__.py` files are required to make Python treat directories containing the module source files as packages. This prevents directories with a common name, such as string, from unintentionally hiding valid modules that occur later on the module search path. In the simplest case, `__init__.py` can just be an empty file, but it can also execute the initialization code for the package or set the `__all__` variable.
 
 Let's execute the code:
 ```python
@@ -1549,7 +1552,7 @@ When you import a module via keyword [import](https://docs.python.org/3/referenc
 
 1. The interpreter first searches for a built-in module. The built-in module names are built-in into the language and are listed in `sys.builtin_module_names`.
 
-2. In a list of directories given by the variable `sys.path`. Python programs can modify the `sys.path` variable itself during runtime. Importantly, the variable `sys.path` after starting the interpreter as a process Python Runtime initializes this variable with these locations:
+2. Next, intepreter try to find module in a list of directories given by the variable `sys.path`. Python programs can modify the `sys.path` variable itself during runtime. Importantly, the variable `sys.path` after starting the interpreter as a process Python Runtime initializes this variable with these locations:
 
     * The directory containing the input script (or the current directory).
 
@@ -1727,7 +1730,7 @@ This concept is called decorator because the intention of using it is to decorat
 Common examples of standard decorators that can be observed in Python codes are:
 
 * [@staticmethod](https://docs.python.org/3/library/functions.html#staticmethod) - which is a class method that does not receive an implicit first argument as a reference to the class object.
-* [@classmethod](https://docs.python.org/3/library/functions.html#classmethod) - which is a class method that does not receive an implicit first argument as a reference to the class object, but the class method has as an implicit first argument which is a class type.
+* [@classmethod](https://docs.python.org/3/library/functions.html#classmethod) - which is a class method that does receive an implicit first argument as a reference to the class object. Therefor the "class method" has as an implicit first argument which is a class type.
 
 ## Classes in Python
 
@@ -1784,9 +1787,9 @@ obj = DerivedAB(time. Sleepxy()
 
 ## Magic Methods for Classes
 
-> Magic is an official term used by the Python community, even though in professional and science literature this term is used rarely. This informal name shines a light that a lot of things inside the Python community happen informally without any standardization. 
+> Magic is an official term used by the Python community, even though in professional and science literature this term is used rarely. This informal name shines a light that a lot of things inside the Python community happen informally without standardization. 
 >
-> Python is not the only place where such a situation exists. The effect that both styles (formal and informal) can coexist can be obtained by looking into API and development styles for Android OS and Linux/Windows OS. It is well known that the development for Android OS is mostly cowboy style.
+> By the way it does mean that this wrong. Python is not the only place where such a situation exists. The effect that both styles (formal and informal) can coexist can be obtained by looking into API and development styles for Android OS and Linux/Windows OS or IOS. It is well known that the development for Android OS is mostly cowboy style.
 
 A class can implement certain operations that can be invoked by special syntax. A complete list of these special methods is available in The Python Language Reference [2] https://docs.python.org/3/reference/datamodel.html#special-method-names.
 
