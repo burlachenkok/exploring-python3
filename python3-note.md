@@ -14,7 +14,7 @@
 
 **Revision Update:** Feb 20, 2024
 
-**Revision Version:** [Release v1.7]
+**Revision Version:** [Release v1.8]
 
 © 2023, 2024 Konstantin Burlachenko, all rights reserved.
 
