@@ -3428,6 +3428,11 @@ Helgrind is a tool for detecting synchronization errors in programs that use the
 * Potential deadlocks arising from lock ordering problems.
 * Accessing memory without adequate locking or synchronization (Data races)
 
+#### HeapTrack. A heap memory profiler for Linux
+
+An alternative memory profiling tool for Linux is [https://github.com/KDE/heaptrack](https://github.com/KDE/heaptrack)
+It has lower overhead than Valgrind and nice built-in GUI visualizers.
+
 ### Profiling Hardware Counters with Perf Tool
 
 To install the Perf tool under Linux you should perform the following command mentioned Ubuntu questions website [how-to-install-perf-monitoring-tool](https://askubuntu.com/questions/50145/how-to-install-perf-monitoring-tool):
