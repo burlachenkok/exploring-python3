@@ -3083,7 +3083,7 @@ int main()
 }
 ```
 
-Unfortunately to build even simple C++ Program under Windows OS you have to install [Microsoft Visual Studio](https://visualstudio.microsoft.com/) or [Microsoft Visual Studio C++ Command Line Tools](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170).
+Unfortunately, to build even a simple C++ Program under Windows OS you have to install [Microsoft Visual Studio](https://visualstudio.microsoft.com/) or [Microsoft Visual Studio C++ Command Line Tools](https://learn.microsoft.com/en-us/cpp/build/vscpp-step-0-installation?view=msvc-170).
 
 Hot to build and run:
 ```bash
@@ -3123,7 +3123,7 @@ For Windows OS collecting a large number of counters is possible via the [SysInt
 
 * [RAMMap](https://learn.microsoft.com/en-us/sysinternals/downloads/RAMMap). It demonstrates a distribution of physical DRAM memory among different processes inside Windows OS.
 
-Even though these tools have a nice GUI interface, using them if you have a lack of Operating Systems background may not be easy at the beginning. These tools are powerful profiling/inspection tools that can be used to find malware software in the OS. 
+Even though these tools have a nice GUI interface, using them if you have a lack of Operating Systems background may not be easy. These tools are powerful profiling/inspection tools that can be used for example to find malware software in the OS or get a general picture of what is going on.
 
 If you have never heard about these tools, and the tools look a bit complicated for you, please take a look at some talk by [Mark Rusinovich](https://en.wikipedia.org/wiki/Mark_Russinovich). E.g. [License to Kill: Malware Hunting with the SysInternals Tools
 ](https://www.youtube.com/watch?v=A_TPZxuTzBU&ab_channel=MarkRussinovich). 
@@ -3133,13 +3133,13 @@ Python is used also by people without a CS background but with another backgroun
 >
 > **User Space Time** - your Python interpreter, is not the only one thing running inside Windows OS (press CTRL+Esc and you will see it). User space-time is the time that your process (python.exe) has spent in user space which includes code from python.exe and loaded dynamic/shared libraries. This time excludes the time that the system spends on other processes and the time that was needed to handle the system request inside OS.
 >
-> **Kernel Space Time** - your Python interpreter and any program (written in C, C++, Assembly, etc.) will request OS for different utility functionality, for example, to open the file. The amount of this utility functionality is huge and this is why the development of OS is treated as a big thing by itself. At a particular moment, your program initializes the System Call and you form the request to OS (in fact to the I/O Dispatcher of OS) and your execution thread that executes code inside the Python interpreter will be typically blocked and will be sleep. In this moment on behalf of this thread, the OS will spend time executing logic inside the kernel services, and in the stack of the drivers to handle your request. All these operations that OS did on behalf of your thread after I/O Dispatching to correct Driver(s) will take some time. All this time collectively is called Kernel Space-Time.
+> **Kernel Space Time** - your Python interpreter and any program (written in C, C++, Assembly, etc.) will request OS for different utility functionality, for example, to open the file. The amount of this utility functionality is huge and this is why the development of OS is treated as a big thing by itself. At a particular moment, your program initializes the System Call and you form the request to OS (in fact to the I/O Dispatcher of OS) and your execution thread that executes code inside the Python interpreter will be typically blocked and will be sleep. In this moment on behalf of this thread, the OS will spend time executing logic inside the kernel services, and in the stack of the drivers to handle your request. All these operations that OS did for your thread after I/O Dispatching to correct Driver(s) will take some time. All this time collectively is called Kernel Space-Time.
 >
 > **Working Set** - *working set* or *pinned memory* or *non-paged memory* is the same concept, but the name of the concept depends on the Operating System, and on the background of the speaker. The concept means the actual physical DRAM memory dedicated to your process.
 >
 > **Virtual Memory** - this concept separates a program's view of memory from the system's physical memory view. In general, an operating system decides when to store the program's code and data in physical memory and when to store it in some file. Virtual memory is a conceptual memory that you may want to address.
 >
-> **Commit Memory** - Almost always the tools from SysInternals report the Committed Virtual Memory that your process has requested. The *commit limit* is the sum of physical memory and the sizes of the paging files used for backing up your data. In Windows OS there is another type of memory *"reserved virtual memory"*, which is a memory address reserved by the application, but the application does not (and ca not) use it, until memory is committed. When a process commits a region of virtual memory, the operating system guarantees that it can maintain all the data the process stores in the memory either in physical memory or on disk.
+> **Commit Memory** - Almost always the tools from SysInternals report the Committed Virtual Memory that your process has requested. The *commit limit* is the sum of physical memory and the sizes of the paging files used for backing up your data. In Windows OS there is another type of memory *"reserved virtual memory"*, which is a memory address reserved by the application, but the application does not (and can not) use it, until memory is committed. When a process commits a region of virtual memory, the operating system guarantees that it can maintain all the data the process stores in the memory either in physical memory or on disk.
 >
 > **Physical Memory** - The installed physical memory in the computer by the Windows memory manager populates memory with the code and data from all processes, device drivers, and the OS. The amount of memory can affect performance, because when data or code a process or the operating system needs is not present, the memory manager must bring it in from disk. 
 >
@@ -3151,7 +3151,7 @@ Python is used also by people without a CS background but with another backgroun
 >
 > **Context Switches** - When the time slice has elapsed for the thread assigned to a specific processor, a running thread needs to wait, or a thread with a higher priority has become ready to run the OS performs a context switch. A high-level picture is that the OS saves the context of the thread that just finished executing, places the thread that just finished executing at the end of the queue for its priority, and finds the highest priority queue that contains ready threads and executes it. After this OS dispatches another thread ready to be executed in the processor core.
 
-[Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) allows you to capture your application (as a Python interpreter process `python.exe`) and obtain the following statistics:
+[Process Monitor](https://learn.microsoft.com/en-us/sysinternals/downloads/procmon) allows you to capture your application (as a Python interpreter process named as `python.exe`) and obtain the following statistics:
 * Windows Registry Access Statistics
 * File Summary Statistics
 * Process Activity Timelines
@@ -3251,8 +3251,6 @@ The close-by concepts in terms of userspace application are presented in Linux O
 >
 > * Current virtual memory size (VmSize) - is currently allocated virtual memory for your process. It includes all the memory that the process can access, including both the physical RAM and swap space.
 
-[FROM HERE]
-
 To obtain information about these metrics in Linux OS firstly you should launch the interpreter:
 ```python
 import numpy
@@ -3299,8 +3297,8 @@ The statistics include:
 
 Once you e.g. have identified that `import numpy` loads the following shared library `/usr/lib/x86_64-linux-gnu/libblas.so.3` it is possible to make several things:
 
-* You can view the dependencies for a shared library ( or an executable file through) `ldd` system util. It will show dependencies on other `lib*.so` dynamic libraries. Very often you can see the following dependencies:
-  * **libc.so.6** - is the standard library of C language functions ([ISO C11](https://www.iso.org/standard/57853.html)), implementaion of [POSIX.1-2008](https://pubs.opengroup.org/onlinepubs/9699919799.2008edition/functions/contents.html), and another OS specific APIs.
+* You can view the dependencies for a shared library ( or an executable file through) via `ldd` system util. It will show dependencies on other `lib*.so` dynamic libraries. Very often you can see the following dependencies:
+  * **libc.so.6** - is the standard library of three things at the same time: C language functions ([ISO C11](https://www.iso.org/standard/57853.html)), implementaion of [POSIX.1-2008](https://pubs.opengroup.org/onlinepubs/9699919799.2008edition/functions/contents.html), and another OS specific APIs.
   * **ld-linux.so.2** - dynamic linking library for ELF programs.
 
   Example:
@@ -3431,7 +3429,7 @@ Helgrind is a tool for detecting synchronization errors in programs that use the
 #### HeapTrack. A heap memory profiler for Linux
 
 An alternative memory profiling tool for Linux is [https://github.com/KDE/heaptrack](https://github.com/KDE/heaptrack)
-It has lower overhead than Valgrind and nice built-in GUI visualizers.
+It has a lower overhead than Valgrind and nice built-in GUI visualizers.
 
 ### Profiling Hardware Counters with Perf Tool
 
@@ -3474,6 +3472,16 @@ Some of them:
 * `perf stat -e migrations python -c "import numpy"`. Report the number of process migrations. In computing, process migration is a specialized form of process management whereby processes are moved from one computing environment to another.
 
 * `perf list`. List all currently known software and hardware events in the OS.
+
+### Partially Ported Sysinternals Software Suite for Linux
+
+Sysinternals utilities help you manage, troubleshoot, and diagnose application usage both for Windows and Linux systems and applications. Demo of usage [Sysinternals for Linux deep dive (demo), 2022](https://www.youtube.com/watch?v=_ZTaJ-sbLfk&t=429s)
+
+Ported To Linux:
+* https://github.com/Sysinternals/ProcMon-for-Linux
+* https://github.com/Sysinternals/SysmonForLinux
+* https://github.com/Sysinternals/ProcDump-for-Linux
+* https://github.com/Sysinternals/SysinternalsEBPF
 
 # Acknowledgements
 
