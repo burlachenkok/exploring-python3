@@ -3475,13 +3475,13 @@ Some of them:
 
 ### Partially Ported Sysinternals Software Suite for Linux
 
-Sysinternals utilities help you manage, troubleshoot, and diagnose application usage both for Windows and Linux systems and applications. Demo of usage [Sysinternals for Linux deep dive (demo), 2022](https://www.youtube.com/watch?v=_ZTaJ-sbLfk&t=429s)
-
-Ported To Linux:
+Sysinternals utilities help you manage, troubleshoot, and diagnose application usage both for Windows and Linux systems and applications. Demo of usage [Sysinternals for Linux deep dive (demo), 2022](https://www.youtube.com/watch?v=_ZTaJ-sbLfk&t=429s). At the current moment, several tools have been ported to Linux:
 * https://github.com/Sysinternals/ProcMon-for-Linux
 * https://github.com/Sysinternals/SysmonForLinux
 * https://github.com/Sysinternals/ProcDump-for-Linux
 * https://github.com/Sysinternals/SysinternalsEBPF
+
+However, the most useful tool from this  [Process Monitor for Linux](https://github.com/Sysinternals/ProcMon-for-Linux).
 
 # Acknowledgements
 
