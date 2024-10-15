@@ -1892,7 +1892,7 @@ The reason for closing files and closing in general is the following. Some objec
 
 [Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) is working mostly like a [std::map](https://en.cppreference.com/w/cpp/container/map) in C++. 
 
-Specifically, when the key is encountered for the first time and it is not already in the mapping then an entry value corresponding to the requested *key* is automatically created using the default_factory function and is instantiated.
+Specifically, when the key is encountered for the first time and it is not already in the mapping then an entry value corresponding to the requested *key* is automatically created using the default_factory function for a type specified for defaultdict.
 
 Example:
 
