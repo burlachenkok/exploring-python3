@@ -162,7 +162,7 @@
 
 If you search "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator [Guido Van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum). You can find it here: https://docs.python.org/3/tutorial/index.html. This official Python tutorial (https://docs.python.org/3/tutorial/index.html) is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language. It is very well-designed in style and has been picked up seriously by a broad category of people. However, if be completely honest, we should not forget that it is a scripting language. And, it has a lot of  technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages). In addition, it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch in depth.
+Python is a popular scripting language. It is very well-designed in style and has been picked up seriously by a broad category of people. However, to be completely honest, we should not forget that it is a scripting language. And, it has a lot of  technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages). In addition, it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch in depth.
 
 You can check the popularity of Python scripting language in this world from these two sources:
 
@@ -173,7 +173,7 @@ With this note, the authors have three objectives:
 
 1. To explain some technical details about certain language features from [Python 3.11](https://docs.python.org/3.11/) with examples. This can be a useful resource for those who found the official [Python Tutorial](https://docs.python.org/3.11/tutorial/index.html) too complex or confusing. This can also help to fill in the gaps in one's understanding of the subject.
 
-2. Give a brief overview of various tools that can assist development in Python if you are in the circumstances using this Language. These tools are mainly developed for the purposes of debugging and profiling executable programs inside Windows OS and Linux OS families.
+2. Give a brief overview of various tools that can assist development in Python if you are in the circumstances using this Language. These tools are mainly developed to debug and profile executable programs inside Windows OS and Linux OS families.
 
 3. Provide a bridge between Python and System-Aware mentality.
 
@@ -229,13 +229,13 @@ There are several resources from which anyone can learn about Python scripting l
 
 5. The CPython interpreter website contains a full-text search over Python documentation. You can use this utility both in terms of learning and in terms of finding details if you already know this scripting language: https://docs.python.org/3/search.html
 
-6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules (which describes syntax rules) can be found here (in case you need to go into the level of specific construction rules): https://docs.python.org/3/reference/grammar.html
+6. The syntax of most Programming Languages is typically described with Backus Naur forms for Context-Free-Grammars (CFG). These grammar rules (which describe syntax rules) can be found here (in case you need to go into the level of specific construction rules): https://docs.python.org/3/reference/grammar.html
 
 7. The Python scripting language (and another scripting language as [Bash](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html))  contains plenty of jargon and specific terminology. The Python glossary can be found here: https://docs.python.org/3/glossary.html
 
 8. If you need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
 
-Finally, some extra materials can be found from the [references](#references) section of this document.
+Finally, some extra materials can be found in the [references](#references) section of this document.
 
 # Backgrounds
 
@@ -259,8 +259,8 @@ There are a lot of programming languages these days. One way to analyze programm
 C and C++ have a *Strong Static Type System*. Examples of Languages with *Weak Type System* are [JavaScript](https://www.w3schools.com/js/default.asp) and [Perl](https://www.perl.org/books/beginning-perl/).
 
 Ruby and Python have a *Strong Dynamic Type System*. This means that:
-* Types are inferred at runtime (Dynamic Type System).
-* Implicit conversions between types are not allowed (Strong Type System).
+* Types are inferred at runtime (Dynamic Type System)
+* Implicit conversions between types are not allowed (Strong Type System)
 
 ## What is Object Orientated Programming (OOP) in CS
 
@@ -317,9 +317,9 @@ for obj in gc.get_objects():
 
 ## Subtleties with Accessing Value of Variables
 
-Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the Language level). Functions return and accept arguments by reference in the terminology of C++, C#, and Java. Consequently, you do not have *direct* access to raw view of underlying value.
+Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the Language level). Functions return and accept arguments by reference in the terminology of C++, C#, and Java. Consequently, you do not have *direct* access to the raw view of underlying value.
 
-Moreover, there is still one not nice aspect with the default argument presented in Python since the early `2.*` version. For the default argument - the default value is passed by reference and *calculated once*.  This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, and the default value is just shorthand not to write arguments in some circumstances.
+Moreover, there is still one not-nice aspect with the default argument presented in Python since the early `2.*` version. For the default argument - the default value is passed by reference and *calculated once*.  This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, and the default value is just shorthand not to write arguments in some circumstances.
 
 ## Context in Python as Scope in C++
 
@@ -420,7 +420,7 @@ Next, there is also no division of fields into public/private/protected as it is
 
 7. In Python there is the "exotic" operator `**`. This operator can raise integers, real, and complex numbers to specific powers. Such a built-in operator is absent in C++.
 
-8. Unlike many C-based languages, Python does not have a unary post(postfix) `++` increment or `--` decrement operators that increment or decrement integer operands by one. The reasons for having this inside compile based languages because for such construction there is a typically just Assembly command.
+8. Unlike many C-based languages, Python does not have a unary post(postfix) `++` increment or `--` decrement operators that increment or decrement integer operands by one. The reason for having this inside compile-based languages is because for such construction there is a typically just Assembly command.
 
 9. The boolean literals are named as `true`, and `false` in C++. However, in Python, they are named as `True`, or `False`. The underlying type `bool` has the same typing both in C++ and in Python.
 
@@ -441,10 +441,10 @@ Python has a very fast learning curve which opened the doors (fortunately) for p
 Unfortunately, if you are around people with CS/EE/System/Compilers backgrounds it may be the case that these people will make a statement: *"Python is not a programming language"*.  To state that Python is *Programming Language* we need to define what is "Language" and what is "Programming" by itself.
 
 Let's start with the "Language" concept in the context of Programming. One meaning is that Language expresses ideas with defined formalisms and you *don't care at all* how these ideas are materialized in the real end system. 
-Even though it may sound reasonable it's not the only one definition. The message that one scientist from programming languages area ([B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) author of C++) tries to bring for people for already 3 decades is that *Programming Language* is the language that gives you a way to describe the algorithm in a form that this algorithm will be executed in the compute device.
+Even though it may sound reasonable it's not the only definition. The message that one scientist from the programming languages area ([B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) author of C++) tries to bring for people for already 3 decades is that *Programming Language* is the language that gives you a way to describe the algorithm in a form that this algorithm will be executed in the computing device.
 
 With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is a receipt for an interpreter, while C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler. 
-We do not want to offend any scripting language, but we want to highlight there is a problem with the definition of meaning what is a programming language in the first place.
+We do not want to offend any scripting language, but we want to highlight there is a problem with the definition of the meaning what is a programming language in the first place.
 
 If you only start with Programming in your career or you are from another domain and not from CS exactly, or if you are from CS but with 
 no experience in Compilers/OS/Systems you may not see the difference. But there is a subtle fundamental difference. 
@@ -455,7 +455,7 @@ The catch is that in fact, any level of Abstraction is not free in terms of cons
 
 It is at the same time a very strong statement and at the same time vague statement. There can be three points of view on such a statement:
 
-1. By general-purpose programming language, you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes in practice may have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness), because they were designed for only one specific purpose. To have one mechanism that is sufficient for expressing any computable functions is a mechanism that allows expression sequencing (executing basic blocks of instructions sequentially), selection (selecting between several blocks for execution based on condition), and iteration (transfer control to a previous statement or beginning of basic block). For details see [Structured Program Theorem](https://en.wikipedia.org/wiki/Structured_program_theorem).
+1. By general-purpose programming language, you mean that you can create any Algorithm in it. If this is a definition, then it's correct. Only DSL languages constructed for special purposes in practice may have a lack of being [Turing Complete](https://en.wikipedia.org/wiki/Turing_completeness) because they were designed for only one specific purpose. To have one mechanism that is sufficient for expressing any computable functions is a mechanism that allows expression sequencing (executing basic blocks of instructions sequentially), selection (selecting between several blocks for execution based on condition), and iteration (transfer control to a previous statement or beginning of basic block). For details see [Structured Program Theorem](https://en.wikipedia.org/wiki/Structured_program_theorem).
 
 2. By General Purpose you mean that you can use it across many domains. In this case how many are "many"? Depending on the definition of "many" Python may lie in this class and may not.
 
@@ -465,7 +465,7 @@ It is at the same time a very strong statement and at the same time vague statem
 
 One more time it depends on what you mean exactly. Some logic that works with byte view in the virtual memory of the process even can not be expressed in Python at all in an effective way. But if you consider application classes that can be expressed in Python, then in general this is true if measure elegance by amount of lines of code in Python. 
 
-However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Compiling languages forces you to follow some discipline, and Python does not. If you have high professionalism in Python you may induce this discipline in some another way, but not at the language level. There are tools for Python that helps (e.g. [pylint](https://pypi.org/project/pylint/)), but a compiler and linker are far more powerful tools for detecting errors than any static analyzer applied for the language with dynamic type system.
+However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Compiling languages forces you to follow some discipline, and Python does not. If you have high professionalism in Python you may induce this discipline in some another way, but not at the language level. There are tools for Python that help (e.g. [pylint](https://pypi.org/project/pylint/)), but a compiler and linker are far more powerful tools for detecting errors than any static analyzer applied for the language with the dynamic type system.
 
 > Python is everywhere
 
@@ -544,7 +544,7 @@ The following expressions are considered `False` in Python:
 
 * `None`
 * `0`
-* Empty Sequence: An empty sequence is the sequence for which `len() == 0`
+* Empty Sequence: An empty sequence is a sequence for which `len() == 0`
 * `False` logical expression: Logical expression which gives `False` as a result
 
 ##  First Line in Your Script
@@ -577,11 +577,11 @@ A **Logical Line** of a script program is constructed from one or more physical 
   * Expressions in square brackets `[item0, item1]`, e.g. which is used to initialize the built-in [list](https://docs.python.org/3/library/stdtypes.html#list) object.
   * Expressions in curly braces `{setItem0, setItem1}`, e.g. which is used to define built-in [sets](https://docs.python.org/3/library/stdtypes.html#set) and [dictionaries](https://docs.python.org/3/library/stdtypes.html#dict).
 
-A parser reads a Python script. The parsing of some pieces of Python source code (e.g., of the function) as we already mentioned is performed only at the moment of the direct call of this function. I.e. if you have errors in the function, but you did not invoke it you will not observe problems a-priori (from Python interpreter side).
+A parser reads a Python script. The parsing of some pieces of Python source code (e.g., of the function) as we already mentioned is performed only at the moment of the direct call of this function. I.e. if you have errors in the function, but you did not invoke it you will not observe problems a-priori (from the Python interpreter side).
 
 ## Comments
 
-Comments in Python start with the hash character `#` and extend to the end of the physical line. One workaround about limitation about supporting multiline strings is create unnamed string inside the function body, but not as a a first string, see this tweet by Guido Van Rossum: https://x.com/gvanrossum/status/112670605505077248 from 2011.
+Comments in Python start with the hash character `#` and extend to the end of the physical line. One workaround about the limitation of supporting multiline strings is to create an unnamed string inside the function body, but not as a first string, see this tweet by Guido Van Rossum: https://x.com/gvanrossum/status/112670605505077248 from 2011.
 
 ## Operator Precedence
 
@@ -607,7 +607,7 @@ https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
 * **Integers (int)**. The type that is used to represent integers in Python interpreter does not have any fixed number of bits. Instead, it has a varying size. In this sense, an integer has an unlimited range. You can practically hold as big an integer as you want until you start having problems with virtual memory in the interpreter process.
 
-* **Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerical fields, such a statement in some circumstances may be incorrect. However, for designer of the interpreter maybe it is good enough.
+* **Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerical fields, such a statement in some circumstances may be incorrect. However, for the designer of the interpreter maybe it is good enough.
 
 Documentation on this subject: https://docs.python.org/3.13/reference/datamodel.html
 
@@ -667,7 +667,7 @@ print("hello {0}".format("world"), end='\n', file=sys.stderr)
 You can use various formatting rules described here to configure output:
 https://docs.python.org/3.11/library/string.html#formatspec
 
-Since Python 3.6 a string interpolation feature has been added (https://www.python.org/dev/peps/pep-0498/) into the Python scriptig language. 
+Since Python 3.6 a string interpolation feature has been added (https://www.python.org/dev/peps/pep-0498/) into the Python scripting language. 
 It is presented in Bash and similar scripting languages, however syntax may vary from interpreter to interpreter.
 
 
@@ -736,7 +736,7 @@ To loop over a sequence in reverse order, first, specify the sequence in a forwa
 ## More About Conditions
 
 The conditions used in `while` and `if` statements can contain any operators, but typically contain:
-* The comparison operators `in` and `not in` which are called **membership tests**.
+* The comparison operators `in` and `not in` are called **membership tests**.
 * The operators `is` and `is not` compare whether two objects are the same object in memory.
 * Arithmetic comparison.
 
@@ -754,7 +754,7 @@ Comparisons may be combined using the Boolean operators `and` and `or`, `not`. T
 >
 > If you don't know about the chaining rule you may expect that results are `False`, but it's actually `True`. 
 
-Next, Python in fact supports the same set of the bitwise operators as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it includes:
+Next, Python supports the same set of the bitwise operators as it in C/C++ languages (See [operator precedence](https://docs.python.org/3.13/reference/expressions.html#operator-precedence)) and it includes:
 * `&` - for bitwise and.
 * `|` - for bitwise or.
 * `<<` - left bitwise/arithmetic shift.
@@ -847,7 +847,7 @@ Python includes several built-in container types:
 * [Sets](https://docs.python.org/3/library/stdtypes.html#set)
 * [Tuples](https://docs.python.org/3/library/stdtypes.html#tuples)
 
-Containers are devoted to storing values. A [list](https://docs.python.org/3/library/stdtypes.html#lists) is the Python equivalent of an array (conceptually, even inside the Python interpreter it's implemented as a list which can be checked from source code of interpreter). Python lists are (i) resizeable; (ii) can contain elements of different types. Examples:
+Containers are devoted to storing values. A [list](https://docs.python.org/3/library/stdtypes.html#lists) is the Python equivalent of an array (conceptually, even inside the Python interpreter it's implemented as a list that can be checked from the source code of the interpreter). Python lists are (i) resizeable; (ii) can contain elements of different types. Examples:
 
 ```python
 xs = [3, 1, 2]    # Create a list
@@ -925,7 +925,7 @@ Python can manipulate with strings, which can be expressed in several ways:
 * String enclosed in single quotes (`'`...`'`) can use double quotes <`"`> inside the string literal.
 * String enclosed in double quotes (`"`...`"`) can use single quotes <`'`> inside the string literal.
 * String enclosed in triple quotes (`"""`...`"""`) or (`'''`...`'''`) is a multiline string. Multiline strings can be placed in several strings. In this case, the used new line character is part of the string literal.
-* The raw string literal is represented as `r"`...`"` or `r'`...`'` or `r'''`...`'''` or `r"""`...`"""`. Inside the raw string, you can use backslash characters in the usual way. In this mode backslash inside string literals does not have any specific meaning. The raw string notion is similar to [C++11 construction](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#prefixes-for-strings-from-c11) `R"(hello\n)"`.
+* The raw string literal is represented as `r"`...`"` or `r'`...`'` or `r'''`...`'''` or `r"""`...`"""`. Inside the raw string, you can use backslash characters in the usual way. In this mode, backslash inside string literals does not have any specific meaning. The raw string notion is similar to [C++11 construction](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#prefixes-for-strings-from-c11) `R"(hello\n)"`.
 * Two or more string literals next to each other are automatically concatenated without using the plus sign. This syntax and semantics coincide exactly with C++ and C.
 
 ## Dictionaries
@@ -1507,12 +1507,12 @@ A module is a file containing Python definitions and statements.
 The file name is the module name with the suffix `.py`. Python module files are files written with Python language and in general they look like usual scripts.  Within a module, the module name (as a string) is available as the value of the global variable `__name__`.
 
 Typically, you can launch the Python module as a script if the authors 
-of the module provide some utility functionality either with `python script_name.py` or 
+of the module provides some utility functionality either with `python script_name.py` or 
 `python -m script_name`. 
 
 During launching the module, the code in the module will be executed, just as if you imported it, but with one difference the __name__ will be set to "__main__".
 
-The part of the code for executing the script funtionality of the module typically has the following quard condition:
+The part of the code for executing the script functionality of the module typically has the following guard condition:
 
 ```python
 if __name__ == "__main__":
@@ -1535,8 +1535,7 @@ In the form of an import statement in the form of:
 ```python
 import my_module
 ```
-In this form all global symbols are defined in `my_module` and 
-sart to be available through
+In this form, all global symbols are defined in `my_module` and start to be available through
 
  `my_module.<function|variable name>`. 
 
@@ -1597,7 +1596,7 @@ When you import a module via keyword [import](https://docs.python.org/3/referenc
 
 1. The interpreter first searches for a built-in module. The built-in module names are built-in into the language and are listed in `sys.builtin_module_names`.
 
-2. Next, intepreter try to find module in a list of directories given by the variable `sys.path`.     * The variable `sys.path` after starting the interpreter containts:
+2. Next, the interpreter tries to find the module in a list of directories given by the variable `sys.path`.     * The variable `sys.path` after starting the interpreter contains:
 
     * The directory containing the input script (or the current directory)
 
