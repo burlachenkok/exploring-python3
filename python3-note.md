@@ -317,9 +317,9 @@ for obj in gc.get_objects():
 
 ## Subtleties with Accessing Value of Variables
 
-Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the Language level). Functions return and accept arguments by reference in the terminology of C++, C#, and Java. Consequently, you do not have *direct* access to raw access to underlying values.
+Python has named references to objects. It has no variables available to the programmer for reference by value (at least at the Language level). Functions return and accept arguments by reference in the terminology of C++, C#, and Java. Consequently, you do not have *direct* access to raw view of underlying value.
 
-Moreover, there is still one very sometimes not nice aspect with the default argument presented in Python since the early `2.*` version. For the default argument - the default value is passed by reference and *calculated once*.  This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, and the default value is just shorthand not to write arguments in some circumstances.
+Moreover, there is still one not nice aspect with the default argument presented in Python since the early `2.*` version. For the default argument - the default value is passed by reference and *calculated once*.  This (unfortunately) creates an implicit global default value object. For C++ this is not observed, because arguments are passed by value, and the default value is just shorthand not to write arguments in some circumstances.
 
 ## Context in Python as Scope in C++
 
@@ -378,7 +378,7 @@ In very specific circumstances you can even manually remove, get, and set attrib
 
 Next, there is also no division of fields into public/private/protected as it is in C++ and there are no different types of inheritances. In Python, there is a limited type of support for `private` names, which we will describe later.
 
-> Payment for this flexibility - the class methods invoking mechanism implementation is suboptimal for Python runtime compared to available options for C and C++. Such flexible design embedded into scripting language is targetting for comfortable use and we understand that sometimes this flexibility to extend libraries is pretty nice to have, but this flexibility is not free. The price you pay suboptimal computation time.
+> Payment for this flexibility - the class methods invoking mechanism implementation is suboptimal for Python runtime compared to available options for C and C++. Such flexible design embedded into scripting language is targetting for comfortable use and we understand that sometimes this flexibility to extend libraries is pretty nice to have, but this flexibility is not free. The price you pay suboptimal time to invoke the function.
 
 ## Language Differences Between Python and C++
 
@@ -388,7 +388,7 @@ Next, there is also no division of fields into public/private/protected as it is
 
 3. Essentially nothing in Python makes it possible to enforce data hiding - it is all based upon convention.
 
-4. In Python, when using logical connectives, the result of a compound expression is equal to the result of the last subexpression evaluated. In C and C++ the result of a Boolean expression with short-circuiting is always an integer 0 or 1:
+4. In Python, when using logical connectives, the result of a compound expression is equal to the result of the last subexpression evaluated. In C and C++ the result of a Boolean expression with short-circuiting is always an integer `0` or `1`:
 
     ```cpp
     #include <iostream>
@@ -405,7 +405,7 @@ Next, there is also no division of fields into public/private/protected as it is
     # Out: 12
     ```
 
-5. Python has the `elif` keyword. For Python, it's crucial because syntax rules require creating indentation between `else` and `if`. The absence of such a keyword potentially will make the source code less readable. C++ Language contains parenthesis '{', '}', and such operators are absent in Python. In the experience of the authors of this note, explicit blocking in code makes it more readable, but there are technical debates around this question. Example:
+5. Python has the `elif` keyword. For Python, it's crucial because syntax rules require creating indentation between `else` and `if`. The absence of such a keyword potentially will make the source code less readable. C++ Language contains parenthesis '{', '}', and such operators are absent in Python. In the experience of the authors of this note, explicit blocking in code makes it more readable (but there are technical debates around this aspect). Example:
 
     ```python
     if x < 0:
@@ -420,7 +420,7 @@ Next, there is also no division of fields into public/private/protected as it is
 
 7. In Python there is the "exotic" operator `**`. This operator can raise integers, real, and complex numbers to specific powers. Such a built-in operator is absent in C++.
 
-8. Unlike many C-based languages, Python does not have a unary post(postfix) `++` increment or `--` decrement operators that increment or decrement integer operands by one.
+8. Unlike many C-based languages, Python does not have a unary post(postfix) `++` increment or `--` decrement operators that increment or decrement integer operands by one. The reasons for having this inside compile based languages because for such construction there is a typically just Assembly command.
 
 9. The boolean literals are named as `true`, and `false` in C++. However, in Python, they are named as `True`, or `False`. The underlying type `bool` has the same typing both in C++ and in Python.
 
@@ -429,7 +429,6 @@ Next, there is also no division of fields into public/private/protected as it is
 11. Python uses `.` to separate packages/subpackage/classes like C#, and Java, while C++ uses the namespace resolution operator `::`.
 
 12. In Python (and in Perl) there is no such term as function overloading, while C++ provides function overloading.
-
 
 # Sources of Confusion between C++ and Python Software Engineers
 
@@ -441,11 +440,16 @@ Python has a very fast learning curve which opened the doors (fortunately) for p
 
 Unfortunately, if you are around people with CS/EE/System/Compilers backgrounds it may be the case that these people will make a statement: *"Python is not a programming language"*.  To state that Python is *Programming Language* we need to define what is "Language" and what is "Programming" by itself.
 
-Let's start with the "Language" concept in the context of Programming. One meaning is that Language expresses ideas with defined formalisms and you *don't care at all* how these ideas are materialized in the end system. Even though it may sound reasonable it's not the only one definition. The message that one scientist from programming languages area (e.g. [B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) author of C++) tries to bring for people for already 3 decades is that *Programming Language* is the language that gives you a way to describe the algorithm in a form that this algorithm will be executed in the computer (compute device).
+Let's start with the "Language" concept in the context of Programming. One meaning is that Language expresses ideas with defined formalisms and you *don't care at all* how these ideas are materialized in the real end system. 
+Even though it may sound reasonable it's not the only one definition. The message that one scientist from programming languages area ([B. Stroustroup](https://scholar.google.com/citations?user=Rr9Y8acAAAAJ&hl=ru&oi=ao) author of C++) tries to bring for people for already 3 decades is that *Programming Language* is the language that gives you a way to describe the algorithm in a form that this algorithm will be executed in the compute device.
 
-With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is a receipt for an interpreter, while C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler. We do not want to offend any scripting language, but we want to highlight there is a problem with the definition of meaning what is a programming language in the first place.
+With this very strict definition [Python](https://www.python.org/), [Java](https://www.java.com/), [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) are not Programming Languages. Python is a receipt for an interpreter, while C# and Java are runtimes coupled with a Just-In-Time(JIT) compiler. 
+We do not want to offend any scripting language, but we want to highlight there is a problem with the definition of meaning what is a programming language in the first place.
 
-If you only start with Programming in your career or you are from another domain and not from CS exactly, or if you are from CS but with no experience in Compilers/OS/Systems you may not see the difference. But there is a subtle fundamental difference. It does not say that scripting and just-in-time compiled-based languages are incorrect, but at least please understand it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. The catch is that in fact, any level of Abstraction is not free in terms of consumed memory and execution time (if this abstraction is used during runtime, not during design).
+If you only start with Programming in your career or you are from another domain and not from CS exactly, or if you are from CS but with 
+no experience in Compilers/OS/Systems you may not see the difference. But there is a subtle fundamental difference. 
+It does not say that scripting and just-in-time compiled-based languages are incorrect, but at least please understand it's not the computer that executes this program, but what is executing is another (one more) level of abstraction. 
+The catch is that in fact, any level of Abstraction is not free in terms of consumed memory and execution time (if this abstraction is used during runtime, not during design time).
 
 > Python is a general-purpose programming language.
 
@@ -459,13 +463,9 @@ It is at the same time a very strong statement and at the same time vague statem
 
 > Python is more elegant and short than C++.
 
-One more time it depends on what you mean exactly. Some logic that works with byte view in the virtual memory of the process even can not be expressed in Python at all in an effective way.
+One more time it depends on what you mean exactly. Some logic that works with byte view in the virtual memory of the process even can not be expressed in Python at all in an effective way. But if you consider application classes that can be expressed in Python, then in general this is true if measure elegance by amount of lines of code in Python. 
 
-Next, if you consider application classes that can be expressed in Python, then in general this is true if measure elegance by amount of lines of code in Python. 
-
-However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Compiling languages forces you to follow some discipline, and Python does not. If you have high professionalism in Python you may induce this discipline in some another way, but not at the language level.
-
-Of course, there is a tool for Python that helps [pylint](https://pypi.org/project/pylint/), but a compiler and linker are far more powerful tools for detecting errors than a static analyzer applied for Language with Dynamic Type Systems.
+However, the first thing in creating algorithms - they should be correct. In our experience, what is interesting after some amount of code is that there is a very strange asymmetry that you will observe once you create projects in Python and C++ with 40K lines of code and more. With at least such a big size Python is not even close to C++. Compiling languages forces you to follow some discipline, and Python does not. If you have high professionalism in Python you may induce this discipline in some another way, but not at the language level. There are tools for Python that helps (e.g. [pylint](https://pypi.org/project/pylint/)), but a compiler and linker are far more powerful tools for detecting errors than any static analyzer applied for the language with dynamic type system.
 
 > Python is everywhere
 
@@ -544,12 +544,12 @@ The following expressions are considered `False` in Python:
 
 * `None`
 * `0`
-* Empty Sequence. An empty sequence is the sequence for which `len() == 0`.
-* Logical expression which gives `False`.
+* Empty Sequence: An empty sequence is the sequence for which `len() == 0`
+* `False` logical expression: Logical expression which gives `False` as a result
 
 ##  First Line in Your Script
 
-The line `#!/usr/bin/env python3` in a well-developed script (for POSIX OS Family) contains what is known as sha-bang. It has a long history in Unix/Linux OS and it is used to understand which interpreter to use from OS perspective. For Windows, it's possible to use it as well. In Windows, a binary application named `py.exe` is a launcher that performs a choice of a used interpreter based on the mentioned sha-bang.
+The line `#!/usr/bin/env python3` in a well-developed script (for POSIX OS Family) contains what is known as sha-bang. It has a long history in Unix/Linux OS and it is used to understand which interpreter to use from OS perspective. For Windows OS, it's possible to use it as well. In Windows, a binary application named `py.exe` is a launcher that performs a choice of a used interpreter based on the mentioned sha-bang.
 
 Formally this line is optional.
 
@@ -572,28 +572,30 @@ A **Logical Line** of a script program is constructed from one or more physical 
 
 * A physical and logical line that contains only spaces, tabs, and possibly a comment is ignored by the parser.
 
-* Normally you should use `\` for line continuation. However, Python automatically supports multi-line continuation inside the following constructions. When you are inside such an expression you can split your expression over more than one physical line without using the backslash symbol:
+* Normally you should use `\` for line continuation. However, Python automatically supports multi-line continuation inside the following constructions, and when you are inside such an expression you can split your expression over more than one physical line without using the backslash symbol:
   * Expressions in parentheses `(arg0, arg1)`, e.g. which is used for passing arguments to [function](https://docs.python.org/3/reference/compound_stmts.html#function) invocation or when you define a [tuple](https://docs.python.org/3/library/stdtypes.html#tuples).
   * Expressions in square brackets `[item0, item1]`, e.g. which is used to initialize the built-in [list](https://docs.python.org/3/library/stdtypes.html#list) object.
   * Expressions in curly braces `{setItem0, setItem1}`, e.g. which is used to define built-in [sets](https://docs.python.org/3/library/stdtypes.html#set) and [dictionaries](https://docs.python.org/3/library/stdtypes.html#dict).
 
-A parser reads a Python script. The parsing of some pieces of Python source code (e.g., of the function) as we already mentioned is performed only at the moment of the direct call of this function. I.e. if you have errors in the function, but you did not invoke it you will not observe problems a-priori.
+A parser reads a Python script. The parsing of some pieces of Python source code (e.g., of the function) as we already mentioned is performed only at the moment of the direct call of this function. I.e. if you have errors in the function, but you did not invoke it you will not observe problems a-priori (from Python interpreter side).
 
 ## Comments
 
-Comments in Python start with the hash character `#` and extend to the end of the physical line. One workaround about limitation about supporting multiline strings is create unnamed string inside the function body, but not as a a first string, see this tween by Guido Van Rossum: https://x.com/gvanrossum/status/112670605505077248 from 2011.
+Comments in Python start with the hash character `#` and extend to the end of the physical line. One workaround about limitation about supporting multiline strings is create unnamed string inside the function body, but not as a a first string, see this tweet by Guido Van Rossum: https://x.com/gvanrossum/status/112670605505077248 from 2011.
 
 ## Operator Precedence
 
 Based on [C++ Technical Note/Lexical Analysis](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#lexical-analysis) - in the terminology of Programming Languages, tokens are separate words of a program text. In most programming languages, the tokens fundamentally can be one of the following types:
 
-* a. **Operators**
+* a. Operators
 * b. Separators
 * c. Identifiers
 * d. Keywords
 * e. Literal constants
 
-So, operators in Programming are one of the five fundamental language concepts. Information about operator precedence in Python Language is available here:
+So, operators in almost all Programming are one of the five fundamental language concepts. 
+
+Information about operator precedence in Python Language is available here:
 https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
 ## Simple Built-In Types
@@ -605,7 +607,7 @@ https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
 * **Integers (int)**. The type that is used to represent integers in Python interpreter does not have any fixed number of bits. Instead, it has a varying size. In this sense, an integer has an unlimited range. You can practically hold as big an integer as you want until you start having problems with virtual memory in the interpreter process.
 
-* **Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerical fields, such a statement in some circumstances may be incorrect. However, for interpreter maybe it is good enough.
+* **Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerical fields, such a statement in some circumstances may be incorrect. However, for designer of the interpreter maybe it is good enough.
 
 Documentation on this subject: https://docs.python.org/3.13/reference/datamodel.html
 
@@ -621,7 +623,8 @@ For a more precise definition see: https://docs.python.org/2/reference/simple_st
 
 ## Compound Statements
 
-Generally, compound statements are written on multiple logical lines using indentation, although sometimes if a compound statement has only one branch in it, and the body of it contains only simple statements, it can be written on a single logical line. Example:
+Generally, compound statements are written on multiple logical lines using indentation.
+However, if a compound statement has only one branch in it, and the body of it contains only simple statements, it can be written on a single logical line. Example:
 
 ```python
 if 1: print (2); print (3); #legal python code
@@ -638,7 +641,8 @@ if 1:
 The `pass` statement does "nothing" similar to the C++ `;` statement. Such empty statements are used in programming languages when language requires a statement, but the logic of the algorithm requires "do nothing".
 
 ## Division of Numbers in Python
-The division operator in Python 3.* `/` always returns a float. To do floor division and get an integer result you can use the `//` operator. To calculate the remainder, you can use `%` similar to C/C++/Java.
+The division operator in Python 3.* `/` always returns a float. 
+To do floor division and get an integer result you can use the `//` operator. To calculate the remainder, you can use `%` similar to C/C++/Java.
 
 ## Printing
 
@@ -663,7 +667,10 @@ print("hello {0}".format("world"), end='\n', file=sys.stderr)
 You can use various formatting rules described here to configure output:
 https://docs.python.org/3.11/library/string.html#formatspec
 
-Since Python 3.6 a string interpolation feature has been added (https://www.python.org/dev/peps/pep-0498/) in the interpreter. It is presented in Bash and similar scripting languages, however syntax may vary from interpreter to interpreter.
+Since Python 3.6 a string interpolation feature has been added (https://www.python.org/dev/peps/pep-0498/) into the Python scriptig language. 
+It is presented in Bash and similar scripting languages, however syntax may vary from interpreter to interpreter.
+
+
 Example:
 ```python
 a = 123
@@ -704,7 +711,10 @@ print("%i %.2f" % (1, 0.12345))
 
 ## Enumeration and Loops
 
-Python's `for` statement iterates over the items of any sequence. If you do need to iterate over a sequence of numbers, the built-in function [range()](https://docs.python.org/3/library/stdtypes.html?highlight=range#range) function will help you with that:
+Python's `for` statement iterates over the items of any sequence. 
+
+If you do need to iterate over a sequence of numbers, the built-in function [range()](https://docs.python.org/3/library/stdtypes.html?highlight=range#range) function will help you with that:
+
 ```python
 for i in range(5):
     print(i)
@@ -726,7 +736,7 @@ To loop over a sequence in reverse order, first, specify the sequence in a forwa
 ## More About Conditions
 
 The conditions used in `while` and `if` statements can contain any operators, but typically contain:
-* The comparison operators `in` and `not in` are called **membership tests**.
+* The comparison operators `in` and `not in` which are called **membership tests**.
 * The operators `is` and `is not` compare whether two objects are the same object in memory.
 * Arithmetic comparison.
 
@@ -752,7 +762,7 @@ Next, Python in fact supports the same set of the bitwise operators as it in C/C
 * `~` - operator yields the bitwise inversion.
 * `^` - for bitwise xor.
 
-> In C++ `>>` from C++20 the right shift on signed integral types is an arithmetic right shift. However, before C++20 it was implementation dependent.
+> Side note: in C++ `>>` from C++20 the right shift on signed integral types is an arithmetic right shift. However, before C++20 it was implementation dependent.
 
 In Python when you use an expression (not necessarily Boolean) that internally uses Boolean operators, the return value of a short-circuit operator is the last evaluated expression (which is not the case in C++ where you don't obtain this information):
 
@@ -851,7 +861,9 @@ x = xs.pop()      # Remove and return the last element of the list
 print(x, xs)      # Prints "bar [3, 1, 'foo']"
 ```
 
-In addition to accessing list elements one at a time, Python provides concise syntax to access the sublist. This is known as [slicing](https://docs.python.org/3/reference/expressions.html#slicings). We will see slicing again in the context of [NumPy](https://numpy.org/) arrays.
+In addition to accessing list elements one at a time, Python provides concise syntax to access the sublist. 
+
+This is known as [Slicing](https://docs.python.org/3/reference/expressions.html#slicings). We will see slicing again in the context of [NumPy](https://numpy.org/) arrays.
 
 ```python
 nums = list(range(5)) # range is a function that creates a list of integers
@@ -864,8 +876,8 @@ print(nums[:-1])      # Slice indices can be negative; prints "[0, 1, 2, 3]"
 nums[2:4] = [8, 9]    # Assign a new sublist to a slice
 print(nums)           # Prints "[0, 1, 8, 9, 4]"
 ```
-Deletion from the list and other containers happens via using [del](https://docs.python.org/3/tutorial/datastructures.html#the-del-statement) statement in the language which invokes [__del__]
-(https://docs.python.org/3/reference/datamodel.html#object.__del__) special method in the class definition.
+Deletion from the list and other containers happens via using [del](https://docs.python.org/3/tutorial/datastructures.html#the-del-statement) statement in the language which invokes `__del__`
+special method in the class definition ([link]((https://docs.python.org/3/reference/datamodel.html#object.__del__) )).
 
 
 ## Comparison of Containers 
@@ -879,9 +891,8 @@ Python has great support for strings:
 ```python
 hello = 'hello'    # String literals can use single quotes
 world = "world"    # And string literals can be enclosed into double quotes
-
 print(hello)       # Prints "hello"
-print(len(hello))  # String length; prints "5"
+print(len(hello))  # String length. Prints "5"
 
 hw = hello + ' ' + world  # String concatenation
 print(hw)                 # Prints "hello world"
@@ -889,12 +900,12 @@ print(hw)                 # Prints "hello world"
 hw12 = '%s %s %d' % (hello, world, 12)  # C/C++ sprintf style string formatting
 print(hw12)                             # prints "hello world 12"
 
-hw21 = '{} {} {}'.format(hello, world, 21)         # formatting with format function in C# style
-print(hw21)                                        # prints "hello world 21"
-hw13 = '{} {} {:.2f}'.format(hello, world, 1 / 3)  # float formatting
-print(hw13)                                        # prints "hello world 0.33"
-hw3 = f'{hello} {world} {1 / 3:.2f}'               # the f-strings
-print(hw3)                                         # prints "hello world 0.33"
+hw21 = '{} {} {}'.format(hello, world, 21)         # Formatting with format function in C# style
+print(hw21)                                        # Prints "hello world 21"
+hw13 = '{} {} {:.2f}'.format(hello, world, 1 / 3)  # Float formatting
+print(hw13)                                        # Prints "hello world 0.33"
+hw3 = f'{hello} {world} {1 / 3:.2f}'               # The f-strings
+print(hw3)                                         # Prints "hello world 0.33"
 ```
 
 String objects have a bunch of useful methods, for example:
@@ -915,7 +926,7 @@ Python can manipulate with strings, which can be expressed in several ways:
 * String enclosed in double quotes (`"`...`"`) can use single quotes <`'`> inside the string literal.
 * String enclosed in triple quotes (`"""`...`"""`) or (`'''`...`'''`) is a multiline string. Multiline strings can be placed in several strings. In this case, the used new line character is part of the string literal.
 * The raw string literal is represented as `r"`...`"` or `r'`...`'` or `r'''`...`'''` or `r"""`...`"""`. Inside the raw string, you can use backslash characters in the usual way. In this mode backslash inside string literals does not have any specific meaning. The raw string notion is similar to [C++11 construction](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#prefixes-for-strings-from-c11) `R"(hello\n)"`.
-* Two or more string literals next to each other are automatically concatenated without using the plus sign. This syntax and semantics coincide exactly with C++/C.
+* Two or more string literals next to each other are automatically concatenated without using the plus sign. This syntax and semantics coincide exactly with C++ and C.
 
 ## Dictionaries
 
@@ -935,6 +946,7 @@ print(d.get('fish', 'N/A'))          # "fish" is no longer a key; prints "N/A"
 ```
 
 ## Sets
+
 A set is an unordered collection of distinct elements. As a simple example, consider the following:
 
 ```python
@@ -994,14 +1006,14 @@ for idx, animal in enumerate(animals):
 
 ## Interfaces and Protocols
 
-In Python languages, you will not find the keyword `interface` such as in Java/C# or `pure virtual class` methods as in C++. In other words, Python does not have interfaces as a language concept as a pure language concept.
+In Python languages, you will not find the keyword `interface` such as in Java/C# or `pure virtual class` methods as in C++. In other words, Python does not have interfaces as a *pure language concept*.
 
-Instead of a specific (and robust, but more long and verbose) interface notion the Python scripting language (and other scripting languages as well) uses what is known as *Duck Typing*. This concept is described typically in the following way:
+Instead of a specific and robust (but more long and verbose) interface notion the Python scripting language (and other scripting languages as well) uses what is known as *Duck Typing*. This concept is described typically in the following way:
 
 > *"If it walks like a duck and it quacks like a duck, then it must be a duck"*.
 
-In Python, any object may be used in any context until it is used in a way that it object does not support it. In this latter case the [AttributeError](
-https://docs.python.org/3/library/exceptions.html#AttributeError) will be raised.
+In Python, any object may be used in any context until it is used in a way that it object does not support it. 
+In this latter case the [AttributeError](https://docs.python.org/3/library/exceptions.html#AttributeError) will be raised.
 
 If you define your classes in Python and you want the objects of your class can be used in specific language construction like iteration you should support **protocol**. Next, we will go through the main protocols:
 
@@ -1085,12 +1097,12 @@ print(a.__class__)
 
 Comprehensions Syntax provides a short syntax to create several iterrable expressions with short syntax. List comprehensions in Python:
 ```python
-[expr(item) for an item in iterable if condition (item)]  
+[expr(item) for item in iterable if condition (item)]  
 ```
 
 Set comprehensions in Python:
 ```python
-{expr(item) for an item in iterable_container if condition (item)}
+{expr(item) for item in iterable_container if condition (item)}
 ```
 
 Dictionary comprehensions in Python:
@@ -1104,7 +1116,7 @@ Generator comprehensions in Python (more about generators is [generators](#gener
 ```
 
 List comprehension is described in the Python Tutorial [1]: 
-* [List Comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
+*  [List Comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
 *  [Nested List Comprehensions](https://docs.python.org/3/tutorial/datastructures.html#nested-list-comprehensions)
 
 ## List and Set Comprehensions
@@ -1151,7 +1163,9 @@ print(nums)
 
 ## Tuples
 
-A tuple (in Python) is an immutable ordered list of values. A tuple is in many ways similar to a list. One of the most important differences is that tuples can be used as keys in dictionaries and as elements of sets, while lists cannot. Tuples are created using parenthesis in the following form: `(elementA, elementB)`. 
+A tuple (in Python) is an immutable ordered list of values. A tuple is in many ways similar to a list. One of the most important differences is that tuples can be used as keys in dictionaries and as elements of sets, while lists cannot. 
+
+Tuples are created using parenthesis in the following form: `(elementA, elementB)`. 
 
 Example:
 
@@ -1207,13 +1221,16 @@ print(a, b, c)
 d = {'c': 3, 'b': 2, 'a': 1}
 a, b, c = d            # unpacks the keys of the dict d; prints "c b a"
 print(a, b, c)
+
 ak, bk, ck = d.keys()  # unpacks the keys of the dict d; prints "c b a"
 print(ak, bk, ck)
+
 a, b, c = d.values()   # unpacks the values of the dict d; prints "3 2 1"
 print(a, b, c)
+
 (ak, a), (bk, b), (ck, c) = d.items()  # unpacks key-value tuples of the dict d
-print(ak, bk, ck)      # prints "c b a"
-print(a, b, c)         # prints "3 2 1"
+print(ak, bk, ck)                      # prints "c b a"
+print(a, b, c)                         # prints "3 2 1"
 ```
 
 The asterisk (`*`) can be used as an unpacking operator:
@@ -1229,7 +1246,7 @@ b = {*s, *t, *l}  # unpacks s, t, and l side to side in a new set
 print(b)          # prints "{1, 2, 3, 4, 5, 6, 7, 8, 9}"
 ```
 
-For dictionaries, we use the double-asterisks `**` to unpack key values or the `zip` function to construct a dictionary from two separate lists with keys and values:
+For dictionaries, we use the double-asterisks `**` to unpack key-value pairs.
 
 ```python
 d1 = {'c': 3, 'b': 2, 'a': 1}
@@ -1237,7 +1254,11 @@ d2 = {'d': 4, 'e': 5, 'f': 6}
 d = {**d1, **d2}
 print(d)                 
 # Prints: {'c': 3, 'b': 2, 'a': 1, 'd': 4, 'e': 5, 'f': 6}
+```
 
+ Use the `zip` function to construct a dictionary from two separate lists with keys and values:
+
+ ```python
 keys = ['a', 'b', 'c']
 values = [1, 2, 3]
 print(type(zip(keys, values)))
@@ -1281,7 +1302,9 @@ hello('Bob', 'Fred')             # Prints "Hello, ['Bob', 'Fred']"
 hello('Bob', 'Fred', loud=True)  # Prints "HELLO, ['BOB', 'FRED']!"
 ```
 
-This is an introduction to the function definition. We will see more details about [functions in details](#about-functions-now-in-details) a bit later.
+This is an introduction to the function definition. 
+
+We will see more details about [functions in details](#about-functions-now-in-details) a bit later.
 
 ## Random Interesting Constructions
 
@@ -1325,7 +1348,9 @@ This is an introduction to the function definition. We will see more details abo
     a, b = 0, 1
     ```
 
-9. Exceptions with variable names. See [Handling Exceptions](https://docs.python.org/3/tutorial/errors.html#handling-exceptions). Example:
+9. Exceptions with variable names. See [Handling Exceptions](https://docs.python.org/3/tutorial/errors.html#handling-exceptions). 
+
+    Example:
 
 
     ```python
@@ -1340,26 +1365,29 @@ This is an introduction to the function definition. We will see more details abo
         pass
     ```
 
-10. A deleted statement is a statement with `del` buil-in operator. It is used in two different contexts:
+10. A deleted statement is a statement with `del` buil-in operator. It can be used in two different contexts:
 
-* Delete statement `del` is used to delete elements from a container such as a list.
+    * Delete statement `del` is used to delete elements from a container such as a list.
 
-* Also, it is used to delete variables from the interpreter. After variable deletion, the variable is not defined. If a variable is not "defined" which means it has not been assigned a value or deleted, trying to use it for reading will give you an error. Trying to use it for writing will create a new variable. Objects are never explicitly destroyed. When they become unreachable they may be garbage-collected. An implementation is allowed to postpone garbage collection or omit it altogether. It is a matter of implementation quality how garbage collection is implemented.
+    * Also, it is used to delete variables from the interpreter. After variable deletion, the variable is not defined. If a variable is not "defined" which means it has not been assigned a value or deleted, trying to use it for reading will give you an error. Trying to use it for writing will create a new variable. Objects are never explicitly destroyed. When they become unreachable they may be garbage-collected. An implementation is allowed to postpone garbage collection or omit it altogether. It is a matter of implementation quality how garbage collection is implemented.
 
 ## Classes
 
 ### User-Defined Classes in Python in C++ terminology
 
-Firstly, Python has limited support for private attribute objects. When you name attributes as `__attributename` the interpreter performs name mangling. In reality,  in case of accessing this attribute outside of the class will have the name `_classname__attribute`. 
+Firstly, Python has limited support for private attribute objects. 
+
+When you name attributes as `__attributename` the interpreter performs name mangling. In reality, in case of accessing this attribute outside of the class will have the name `_classname__attribute`.
 
 In C++ terminology Python classes have the following characteristics:
 
-  1. Normal class members (including the data members) are public except for some small support for private variables.
-  2. All member functions/methods are virtual.
-  3. Like in C++, most built-in operators with special syntax (arithmetic operators, etc.) can be redefined for user-defined classes.
-  4. Python Data attributes correspond to *"data members"* in C++.
-  5. Python supports multiple inheritance, and exceptions.
-  6. In Python (and in Perl) there is no such term as function overloading.
+  1. Normal class members including the data members are public except for some small support for private variables
+  2. All member functions/methods are virtual
+  3. Like in C++, most built-in operators with special syntax (arithmetic operators, etc.) can be redefined for user-defined classes
+  4. Python Data attributes correspond to *"data members"* in C++
+  5. Python supports multiple inheritance
+  6. Python supports exceptions
+  7. In Python (and in Perl) there is no such term as function overloading
 
 
 ### The Syntax for Defining Classes
@@ -1406,7 +1434,7 @@ print(g)             # Call __str__; prints "Greeter for Fred"
 
 | **Convention**      | **Example** | **Meaning** |
 |---------------|------------|------------------------|
-| Single Leading Underscore  | `_var` |  This naming convention indicates a name is meant for internal use. Generally (with one exception) not enforced by the Python interpreter. In this case, it was meant as a hint to the programmer only. The exception case is the behavior of wildcard imports. During import using the wildcard symbol (`from my_module import *`), these symbols will not be imported in the global namespace. |
+| Single Leading Underscore  | `_var` |  This naming convention indicates a name is meant for internal use. Generally (with one exception) not enforced by the Python interpreter. In this case, it was meant as a hint to the programmer only. The exception case is the behavior of wildcard imports. During import using the wildcard symbol (`from my_module import *`), these symbols **will not be imported in the global namespace**. |
 | Single Trailing Underscore     | `var_`         | Used by convention to avoid naming conflicts with Python keywords.          |
 | Double Leading Underscore      | `__var`           | Triggers name mangling when used in a class context. Enforced by the Python interpreter to make name mangling for variables. Python interpreter will automatically use correct mangling inside methods of the class. Outside the class, Python interpreters will not perform any name mangling. |
 | Double Leading and Trailing Underscore | `__var__`        | Indicates special methods defined by the Python language. Avoid this naming scheme for your attributes if you use it just for variables. |
@@ -1416,8 +1444,8 @@ print(g)             # Call __str__; prints "Greeter for Fred"
 
 There are several ways to take a look at available symbols:
 
-* [globals()](https://docs.python.org/3/library/functions.html#globals) - will give you a dictionary of current available global variables.
-* [locals()](https://docs.python.org/3/library/functions.html#locals) and [vars()](https://docs.python.org/3/library/functions.html#vars) - will give you a dictionary of local variables.
+* [globals()](https://docs.python.org/3/library/functions.html#globals) - will give you a dictionary of current available global variables
+* [locals()](https://docs.python.org/3/library/functions.html#locals) and [vars()](https://docs.python.org/3/library/functions.html#vars) - will give you a dictionary of local variables
 * [dir()](https://docs.python.org/3/library/functions.html#dir) - will give you the list of in-scope variables which includes locals, and enclosed variables from another function. If you use the style in which you define a function inside the function, then this function will not show you globals.
 
 Example:
@@ -1454,24 +1482,35 @@ These variations exist in the first place because there are several different co
 
 In the previous example from the [Variables Introspection](#variables-introspection) section we have used [nonlocal](https://docs.python.org/3/reference/simple_stmts.html#nonlocal), and [global](https://docs.python.org/3/reference/simple_stmts.html#global) keywords. Now, let's take a close look at its meaning.
 
-**global.** The global statement is a declaration that holds for the entire current code block. It means that the listed identifiers will be interpreted as global variables. Global variable scope changed immediately to the module-level binding without any intermediate outer scope, relative to the current scope. It is impossible to assign value to a global variable without using `global`. However, you can actually (formally) refer to global variables if you want to only *read* from them.
+**global.** The global statement is a declaration that holds for the entire current code block scope. 
+This declaration means that the listed identifiers will be interpreted as global variables. Global variable scope changed immediately to the module-level binding without any intermediate outer scope, relative to the current scope. It is impossible to assign value to a global variable without using `global`. However, you can actually (formally) refer to global variables if you want to only *read* from them.
 
-**nonlocal.**  The nonlocal statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals. So *nonlocal* variables changed the scope to the outer function. This is important because the default behavior for binding is to search the local namespace first. Names listed in a *nonlocal* statement must not collide with pre-existing bindings in the local scope.
+**nonlocal.**  The nonlocal statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals. So *nonlocal* variables changed the scope to the outer function. This is important because the default behavior for binding value is to search the local namespace first. Names listed in a *nonlocal* statement must not collide with pre-existing bindings in the local scope.
 
 You should use this variable access modifiers when you're going to *write* to the variable and provide an interpreter the hint about what you are going to do exactly:
 
-* You want to define a new local variable and you provide the default value with the `=` operator.
+* You want to define a new local variable and you provide the default value with the `=`.
 * You do not want to create a local variable, but instead, you want to write to a global variable or variable from a previous(nested) context.
 
-In C++/C#/Java, such a *nonlocal* scope is impossible because in these languages you cannot define a function inside another function. At the syntax level in C++, you actually can define a lambda function inside a function, but it is a syntax sugar. You can read more about Lambda C++ functions from [C++ Technical Note from C++1998 to C++2020/ Lambda Functions](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#lambda-functions). In C++ you cannot define a function inside a function because by design of the language it does provide extra expressibility. Similar to the idea of a "universal base class" the concept of having nested relations between functions does not have any sense in C++ mentality.
+In C++/C#/Java, such a *nonlocal* scope is impossible because in these languages you cannot define a function inside another function. 
+
+At the syntax level in C++, you actually can define a lambda function inside a function, but it is a syntax sugar. 
+
+You can read more about Lambda C++ functions from [C++ Technical Note from C++1998 to C++2020/ Lambda Functions](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#lambda-functions). In C++ you cannot define a function inside a function because by design of the language it does provide extra expressibility. Similar to the idea of a "universal base class" the concept of having nested relations between functions does not have any sense in C++ mentality.
 
 ## Modules and Packages
 
 ### Modules
 
-A module is a file containing Python definitions and statements. The file name is the module name with the suffix `.py`. Python module files are files written with Python language and in general they look like usual scripts.  Within a module, the module name (as a string) is available as the value of the global variable `__name__`.  
+A module is a file containing Python definitions and statements. 
 
-Typically, you can launch the Python module as a script if the authors of the module provide some utility functionality either with `python script_name.py` or `python -m script_name`. During launching the module, the code in the module will be executed, just as if you imported it, but with one difference the __name__ will be set to "__main__".  
+The file name is the module name with the suffix `.py`. Python module files are files written with Python language and in general they look like usual scripts.  Within a module, the module name (as a string) is available as the value of the global variable `__name__`.
+
+Typically, you can launch the Python module as a script if the authors 
+of the module provide some utility functionality either with `python script_name.py` or 
+`python -m script_name`. 
+
+During launching the module, the code in the module will be executed, just as if you imported it, but with one difference the __name__ will be set to "__main__".
 
 The part of the code for executing the script funtionality of the module typically has the following quard condition:
 
@@ -1487,25 +1526,31 @@ To import the module the following instructions should be (typically) used:
  import my_module
 ```
 
-It is typical, but it is not required by interpreter design to place all import statements at the beginning of a module. Next, we would like to say that each module has its private namespace, which is used as the global namespace by all functions defined in the module.
+It is typical, but it is not required by interpreter design to place all 
+import statements at the beginning of a module. 
+
+Next, we would like to say that each module has its private namespace, which is used as the global namespace by all functions defined in the module.
 
 In the form of an import statement in the form of:
 ```python
 import my_module
 ```
-In this form all global symbols are defined in `my_module` and available through `my_module.<function|variable name>`. 
+In this form all global symbols are defined in `my_module` and 
+sart to be available through
+
+ `my_module.<function|variable name>`. 
 
 The import statement does not add the names of the functions defined in `my_module` directly to the current namespace. However, there is a variant of the import statement that imports names from a module directly into the importing module's namespace:
 ```python
 from my_module import func_f, func_g
 ```
 
- In this form of import statement, the imported module name itself is not introduced into the global namespace of the current module.
+ In this form of import statement, the imported module name itself is not introduced into the global namespace of the current module. The next variant is to import all names that a module defines:
 
-The next variant is to import all names that a module defines:
 ```python
 from my_module import *
 ```
+
 It imports all symbols except variables and functions whose names start with an underscore `_` from the imported module and are imported into the current module global namespace.
 
 A module typically contains function and class definitions. But also, it can contain executable statements. These statements are intended to initialize the module. They are executed only the first time the module name is encountered in an import statement.
@@ -1518,7 +1563,7 @@ import my_module as my
 
 To inspect the name defined in module `my` you should use the built-in function `dir()` e.g. in the following way `dir(my)`. It can be used to find names that the module defines. 
 
-When you launch any Python scripts if all is OK in the Operating System(OS) and you have enough privileges inside the OS then the script will be launched and executed. However, it is important to mention that the `import` statement (by default) is executed only once per Python session. If you want to reload the module (e.g. because the source code has been changed and you don't want to relaunch the application) please consulate  [Module Reloading] (#module-reloading) section.
+When you launch any Python scripts if all is OK in the Operating System(OS) and you have enough privileges inside the OS then the script will be launched and executed. However, it is important to mention that the `import` statement (by default) is executed only once per Python session. If you want to reload the module (e.g. because the source code has been changed and you don't want to relaunch the application) please consulate  [Module Reloading](#module-reloading) section.
 
 ### Packages
 
@@ -1552,13 +1597,16 @@ When you import a module via keyword [import](https://docs.python.org/3/referenc
 
 1. The interpreter first searches for a built-in module. The built-in module names are built-in into the language and are listed in `sys.builtin_module_names`.
 
-2. Next, intepreter try to find module in a list of directories given by the variable `sys.path`. Python programs can modify the `sys.path` variable itself during runtime. Importantly, the variable `sys.path` after starting the interpreter as a process Python Runtime initializes this variable with these locations:
+2. Next, intepreter try to find module in a list of directories given by the variable `sys.path`.     * The variable `sys.path` after starting the interpreter containts:
 
-    * The directory containing the input script (or the current directory).
+    * The directory containing the input script (or the current directory)
 
-    * Paths in environment variable `PYTHONPATH`.
+    * Paths in environment variable `PYTHONPATH`
 
-    * The installation-dependent default paths such as the site-packages directory.
+    * The installation-dependent default paths such as the site-packages directory
+
+    * Python scripts can modify the `sys.path` variable itself during runtime. 
+
 
 ## About Functions: Now in Details
 
@@ -1625,8 +1673,8 @@ def f(a, **args):
 ```
 
 Next, if you want to call a function by passing a *tuple* and *dictionary*, but transfer this not as objects but make a substitution of the content of *tuple* and *dictionary* as a formal argument you should:
-* Expand `list` or `tuple` object with `*` for positional arguments only.
-* Expand the dictionary dict` object with `**`for keyword arguments only.
+* Expand `list` or `tuple` object with `*` for positional arguments only
+* Expand the dictionary dict object with `**` for keyword arguments only
 
 Example:
 ```python
@@ -1656,10 +1704,12 @@ The small anonymous functions can be created with the lambda keyword. Lambda fun
 sum = lambda x,y: x+y
 ```
 Which is the same as the following lambda construction since C++11:
-``cpp
+```cpp
 auto sum = [](int x, int y){return x + y;};
 ```
-and the following C++14 generic lambda construction since C++14:
+
+And the following C++14 generic lambda construction since C++14:
+
 ```cpp
 auto sum = [](auto x, auto y){return x + y;};
 ```
@@ -1668,7 +1718,7 @@ auto sum = [](auto x, auto y){return x + y;};
 
 Function annotations ([link](https://docs.python.org/3/tutorial/controlflow.html#function-annotations)) and type annotation ([link](https://docs.python.org/3/library/typing.html)) are completely optional metadata information about the types used by user-defined functions (see [PEP 3107](https://peps.python.org/pep-3107/) and [PEP 484](https://peps.python.org/pep-0484/) for more information). 
 
-Annotations are stored in the `__annotations__` attribute of the function as a dictionary.  Parameter annotations are defined by a colon after the parameter name, followed by a Python expression evaluating the value of the annotation. Return function annotations are defined by a literal `->`, followed by an expression, similar to the trailing return type in C++. Annotations do not affect any part of the function (if the function does not use this system metadata in its logic).
+Annotations are stored in the `__annotations__` attribute of the function as a **dictionary**.  Parameter annotations are defined by a colon after the parameter name, followed by a Python expression evaluating the value of the annotation. Return function annotations are defined by a literal `->`, followed by an expression, similar to the trailing return type in C++. Annotations do not affect any part of the function (if the function does not use this system metadata in its logic).
 
 General Convention uses parameter annotations with expressions that produce a `type` value, and this functionality is used to augment Python with type information. 
 
@@ -1676,10 +1726,10 @@ Example:
 
 ```python
 def f(ham:str , eggs:str  =  'eggs' )->str: 
-    print( "Annotations from function:" , f . __annotations__ )
+    print( "Annotations from function:" , f.__annotations__ )
     return "1"
 
-print( "Annotations outside function:" , f . __annotations__ )
+print( "Annotations outside function:" , f.__annotations__)
 
 f("1", "2")
 ```
@@ -1729,8 +1779,8 @@ This concept is called decorator because the intention of using it is to decorat
 
 Common examples of standard decorators that can be observed in Python codes are:
 
-* [@staticmethod](https://docs.python.org/3/library/functions.html#staticmethod) - which is a class method that does not receive an implicit first argument as a reference to the class object.
-* [@classmethod](https://docs.python.org/3/library/functions.html#classmethod) - which is a class method that does receive an implicit first argument as a reference to the class object. Therefor the "class method" has as an implicit first argument which is a class type.
+* [@staticmethod](https://docs.python.org/3/library/functions.html#staticmethod) - which is a class method that **does not** receive an implicit first argument as a reference to the class object.
+* [@classmethod](https://docs.python.org/3/library/functions.html#classmethod) - which is a class method that **does** receive an implicit first argument as a reference to the class object. Therefor the "class method" has as an implicit first argument which is a class type.
 
 ## Classes in Python
 
@@ -1740,7 +1790,7 @@ The method function is declared with an **explicit** first argument representing
 
 Like in C++, most built-in operators with special syntax can be redefined for class instances. 
 
-Unlike C++ built-in types can be used as base classes for extension by the user.
+Unlike C++ built-in types in Python can be used as base classes for extension by the user.
 
 To inspect if the object is an instance of some class you can use [isinstance(obj, classinfo)](https://docs.python.org/3/library/functions.html#isinstance) which is the analog of C++ [dynamic_cast](https://en.cppreference.com/w/cpp/language/dynamic_cast).
 
@@ -1781,15 +1831,21 @@ class DerivedAB(DerivedA, DerivedB):
       Base.f(self)                 # Call Base explicitly
       super(DerivedAB, self).f()   # Call one of direct base with using super()
       DerivedB.f(self)             # Call DerivedB explicitly
+      DerivedA.f(self)             # Call DerivedB explicitly
 
-obj = DerivedAB(time. Sleepxy()
+obj = DerivedAB()
+obj.f()
 ```
 
 ## Magic Methods for Classes
 
-> Magic is an official term used by the Python community, even though in professional and science literature this term is used rarely. This informal name shines a light that a lot of things inside the Python community happen informally without standardization. 
+> Magic is an official term used by the Python community, even though in professional and science literature this term is used rare. 
 >
-> By the way it does mean that this wrong. Python is not the only place where such a situation exists. The effect that both styles (formal and informal) can coexist can be obtained by looking into API and development styles for Android OS and Linux/Windows OS or IOS. It is well known that the development for Android OS is mostly cowboy style.
+> This informal name shines a light that a lot of things inside the Python community happen informally without standardization. 
+>
+> By the way it does mean that this is bad and wrong...
+>
+> Python is not the only place where such a situation exists. The effect that both styles (formal and informal) can coexist can be obtained by looking into API and development styles for Android OS and Linux/Windows OS or IOS. It is well known that the development for Android OS is mostly cowboy style.
 
 A class can implement certain operations that can be invoked by special syntax. A complete list of these special methods is available in The Python Language Reference [2] https://docs.python.org/3/reference/datamodel.html#special-method-names.
 
@@ -1835,11 +1891,12 @@ The reason for closing files and closing in general is the following. Some objec
 
 [Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) is a subclass (derived class) of the built-in [dict](https://docs.python.org/3/library/stdtypes.html?highlight=dict#dict) class. It can be found in the [collections](https://docs.python.org/3/library/collections.html) module in the Python standard library.
 
- [Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) is working mostly like a [std::map](https://en.cppreference.com/w/cpp/container/map) in C++. 
+[Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) is working mostly like a [std::map](https://en.cppreference.com/w/cpp/container/map) in C++. 
 
 Specifically, when the key is encountered for the first time and it is not already in the mapping then an entry value corresponding to the requested *key* is automatically created using the default_factory function and is instantiated.
 
 Example:
+
 ```python
 from collections import defaultdict
 
@@ -2847,7 +2904,7 @@ https://cython.readthedocs.io/en/latest/src/userguide/language_basics.html#autom
     ```
 5. Launch the build process from the previous description:
     ```bash
-    python build.py build_ext --inplace
+    python setup.py build_ext --inplace
     ```
     The output of this command is
     * `*.so` in Unix-like OS.
