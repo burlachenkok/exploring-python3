@@ -235,6 +235,8 @@ There are several resources from which anyone can learn about Python scripting l
 
 8. If you need to understand how some built-in type is implemented you more likely need to go to the level of a source code of Python interpreter: https://github.com/python/cpython
 
+9. A class can implement certain operations that can be invoked by special syntax. A complete list of these special methods is available in the Python Language Reference: https://docs.python.org/3/reference/datamodel.html#special-method-names.
+
 Finally, some extra materials can be found in the [references](#references) section of this document.
 
 # Backgrounds
@@ -1838,7 +1840,7 @@ obj.f()
 
 ## Magic Methods for Classes
 
-> Magic is an official term used by the Python community, even though in professional and science literature this term is used rare. 
+> Magic is an official term used by the Python community, even though in professional and science literature this term is used rarely. 
 >
 > This informal name shines a light that a lot of things inside the Python community happen informally without standardization. 
 >
