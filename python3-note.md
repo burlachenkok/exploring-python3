@@ -1087,7 +1087,10 @@ The [dir(obj)](https://docs.python.org/3/library/functions.html#dir) built-in fu
 * `__name__` - is the name of the current module [link](https://docs.python.org/3/reference/import.html?highlight=__name__#name__).
 * `__doc__`  - documentation string for the object [link](https://docs.python.org/3/library/types.html?highlight=__doc__#types.ModuleType.__doc__).
 * `__class__` - type name of the object [link](https://docs.python.org/3/library/stdtypes.html?highlight=__class__#instance.__class__).
-* `__file__` - the name of the current source file. [link](https://docs.python.org/3/reference/import.html?highlight=__file__#file__)
+* `__file__` - the name of the source file here module has been defined. [link](https://docs.python.org/3/reference/import.html?highlight=__file__#file__)
+* `__dic__`  is a dictionary used to store an object's attributes. Not all instances have it, but typically it's the case. [link](https://docs.python.org/3/reference/datamodel.html#object.__dict__)
+
+
 
 Example:
 ```python
@@ -1782,12 +1785,14 @@ Common examples of standard decorators that can be observed in Python codes are:
 
 * [@staticmethod](https://docs.python.org/3/library/functions.html#staticmethod) - which is a class method that **does not** receive an implicit first argument as a reference to the class object.
 * [@classmethod](https://docs.python.org/3/library/functions.html#classmethod) - which is a class method that **does** receive an implicit first argument as a reference to the class object. Therefor the "class method" has as an implicit first argument which is a class type.
+* [@property](https://docs.python.org/3/library/functions.html#property) - this is a decorator (see [Appendix Object Orientated Design Patterns
+ in Technical Note From C++98 to C++2x.](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#object-orientated-design-patterns)) that turns the method into a "getter" for a read-only attribute with the same name.
 
 ## Classes in Python
 
 Classes provide a means of bundling data and functionality together. In C++ terminology the data members in Python are public, and all member functions are virtual and public. 
 
-The method function is declared with an **explicit** first argument representing the object, which is provided implicitly by the method call and by convention is typically called `self`. For comparison traditionally in C++, the reference to the object is not declared by the programmer and the pointer to the object is accessible through `this`. Only recently in C++23 the alternative syntax with explicit declaring `this` object has been added into the language. See [Technical Note. From C++98 to C++2x/C++23 - Language Features](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#10-ref-qualified-methods-from-c11-and-more-about-explicit-object-parameter-from-c23).
+The method function is declared with an **explicit** first argument representing the object, provided implicitly by the method call and by convention, typically called `self`. For comparison traditionally in C++, the reference to the object is not declared by the programmer and the pointer to the object is accessible through `this`. Only recently in C++23 the alternative syntax with explicit declaring `this` object has been added into the language. See [Technical Note. From C++98 to C++2x/C++23 - Language Features](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#10-ref-qualified-methods-from-c11-and-more-about-explicit-object-parameter-from-c23).
 
 Like in C++, most built-in operators with special syntax can be redefined for class instances. 
 
