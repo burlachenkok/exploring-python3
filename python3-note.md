@@ -22,6 +22,7 @@
 
 - [Technical Note. Exploring Python3 Language from a Computing Perspective](#technical-note-exploring-python3-language-from-a-computing-perspective)
 - [Introduction](#introduction)
+  * [Motivation from Hello World Measurements](#motivation-from-hello-world-measurements)
   * [What is Python](#what-is-python)
   * [Where to Learn About Python Officially](#where-to-learn-about-python-officially)
 - [Backgrounds](#backgrounds)
@@ -178,6 +179,48 @@ With this note, the authors have three objectives:
 3. Provide a bridge between Python and System-Aware mentality.
 
 > If after reading this note you wish to contribute to this note, please take a look into [contributions section](#contributions-to-this-document).
+
+## Motivation from Hello World Measurements
+
+Consider the "Hello World" application implemented in C++23:
+
+```cpp
+// Compiled with Microsoft Visual Studio Community 2022 (64-bit) Version 17.11.4; Compiler Flags: /O2 /GL /std:c++latest
+#include <print>
+int main() {
+    std::println("Hello World!");
+    getchar();
+    return 0;
+}
+```
+
+Now, let's create the equivalent "Hello World" script in Python:
+```
+#!/usr/bin/env python3
+// Launched with: Python 3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)] on win32
+
+print("Hello World!")
+input()
+```
+
+With the tools introduced in this document, you can precisely measure the system resources each program consumes on both Windows and Linux operating systems. 
+
+Below is a sample comparison of resource usage on Windows 11 Home, highlighting key differences in performance and resource allocation between C++ and Python:
+
+| Consumed Resource | C++ Hello World | Python Hello World |
+| :---------------- | :------: | ----: |
+| Consumed Clocks of CPU | 6M clocks   | 74M clocks |
+| Peak Private Bytes | 0.4 MB   | 3.6 MB |
+| Page Faults  | 970   | 2531 |
+| Peak Working Set  | 3.7 MB   | 9.8 MB |
+| Peak OS Handles  | 43   | 82 |
+| File I/O Bytes | 0  | 163 348 |
+| File I/O Operations | 5  | 635 |
+| Registry Operations | 52  | 154 |
+
+This comparison highlights the considerable resource disparities between a low-level, compiled language (C++) and an interpreted, high-level language (Python). 
+
+By investigating such basic applications, we gain insight into the underlying costs associated with higher-level language abstractions and runtime environments, guiding informed choices for resource-sensitive applications.
 
 ## What is Python
 
