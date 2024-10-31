@@ -220,9 +220,9 @@ Below is a sample comparison of resource usage on Windows 11 Home, highlighting 
 | File I/O Operations | 5  | 635 |
 | Registry Operations | 52  | 154 |
 
-This comparison highlights the considerable resource disparities between a low-level, compiled language (C++) and an interpreted, high-level language (Python). 
+This comparison made through [SysInternals Suite from Mark Rusinovich et al](#sysinternals-suite-from-mark-rusinovich-et-al) highlights the considerable resource disparities between a low-level, compiled language (C++) and an interpreted, high-level scripting language (Python).
 
-By investigating such basic applications, we gain insight into the underlying costs associated with higher-level language abstractions and runtime environments, guiding informed choices for resource-sensitive applications.
+By investigating such basic applications, we can gain insight into the underlying costs associated with higher-level language abstractions and runtime environments, guiding informed choices for resource-sensitive applications.
 
 ## What is Python
 
