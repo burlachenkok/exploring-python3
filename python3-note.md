@@ -188,9 +188,10 @@ Consider the "Hello World" application implemented in C++23:
 ```cpp
 // Compiled with Microsoft Visual Studio Community 2022 (64-bit) Version 17.11.4; Compiler Flags: /O2 /GL /std:c++latest
 #include <print>
+#include <stdio.h>
 int main() {
     std::println("Hello World!");
-    getchar();
+    getchar(); // Wait for IO from standard input to not kill process by OS and have the ability to inspect process
     return 0;
 }
 ```
@@ -202,10 +203,10 @@ Now, let's create the equivalent "Hello World" script in Python:
 // Launched with: Python 3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)] on win32
 
 print("Hello World!")
-input()
+input()    # Wait for IO from standard input to not kill process by OS and have the ability to inspect process
 ```
 
-With the tools described in this document, you can precisely measure the consumed system resources each program consumes on both Windows and Linux operating systems and go beyond considering only line numbers (6 lines in C++ program and 2 lines in Python script).
+With the tools described in this document, you can precisely measure the consumed system resources each program consumes on both Windows and Linux operating systems and go beyond considering only line numbers (7 lines in C++ program and 2 lines in Python script).
 
 Below is a sample comparison of resource usage on Windows 11 Home, highlighting key differences in performance and resource allocation between C++ and Python:
 
