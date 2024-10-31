@@ -239,24 +239,34 @@ As we have already stated, the most common implementation of the Python interpre
 Python (and any interpreter) parses the program's text (source code) line by line (that is represented or in text form or extremely high-level instructions which are not the same as instructions for CPU). Even though Python is interpreted, internally the commands are translated into [Python Virtual Machine](https://docs.python.org/3/glossary.html#term-virtual-machine) before execution. If you want to see how the commands look like, you can use the [dis](https://docs.python.org/3/library/dis.html#module-dis) module to help you with that:
 
 ```python
-import dis
+#!/usr/bin/env python3
+
+import dis, sys
+
 def f(x):
     xmy = xmy + 1
     return xmy
 
-dis.dis(f)
+print("="*50)
+print("Python version: ", str(sys.version).replace('\n', ' '))
+print("="*50)
+dis.dis(f, file=sys.stdout)
 ```
 
 Output:
 ```text
-  3           0 LOAD_FAST                1 (xmy)
+==================================================
+Python version:  3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)]
+==================================================
+  6           0 LOAD_FAST                1 (xmy)
               2 LOAD_CONST               1 (1)
               4 BINARY_ADD
               6 STORE_FAST               1 (xmy)
 
-  4           8 LOAD_FAST                1 (xmy)
+  7           8 LOAD_FAST                1 (xmy)
              10 RETURN_VALUE
 ```
+
 Documentation: 
 * [dis - Disassembler for Python bytecode](https://docs.python.org/3/library/dis.html?highlight=dis#module-dis)
 * [opcode - Python Bytecode Instructions](https://docs.python.org/3/library/dis.html#python-bytecode-instructions)
