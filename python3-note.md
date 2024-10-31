@@ -177,7 +177,7 @@ With this note, the authors have three objectives:
 
 2. Give a brief overview of various tools that can assist development in Python if you are in the circumstances using this Language. These tools are mainly developed to debug and profile executable programs inside Windows OS and Linux OS families.
 
-3. Provide a bridge between Python and System-Aware mentality.
+3. Provide a bridge between Python and System-Aware mentality which will reveal more information about the consumed resources of your scripts.
 
 > If after reading this note you wish to contribute to this note, please take a look into [contributions section](#contributions-to-this-document).
 
