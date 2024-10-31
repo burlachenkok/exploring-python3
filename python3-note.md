@@ -207,7 +207,7 @@ With the tools introduced in this document, you can precisely measure the system
 
 Below is a sample comparison of resource usage on Windows 11 Home, highlighting key differences in performance and resource allocation between C++ and Python:
 
-| Consumed Resource | C++ Hello World | Python Hello World |
+| Resource Metric	 | C++ Application for Hello World | Python Script for Hello World |
 | :---------------- | :------: | ----: |
 | Consumed Clocks of CPU | 6M clocks   | 74M clocks |
 | Peak Private Bytes | 0.4 MB   | 3.6 MB |
