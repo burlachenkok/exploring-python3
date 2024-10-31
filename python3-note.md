@@ -136,7 +136,7 @@
     + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
   * [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
   * [Profiling Python Process with Tools Available in Operating Systems: Windows OS](#profiling-python-process-with-tools-available-in-operating-systems-windows-os)
-    + [SysInternals Suite from Mark Rusinovich, et al.](#sysinternals-suite-from-mark-rusinovich--et-al)
+    + [SysInternals Suite from Mark Rusinovich et al](#sysinternals-suite-from-mark-rusinovich-et-al)
     + [Understand which underlying Dynamic Libraries are Loaded into the Python interpreter](#understand-which-underlying-dynamic-libraries-are-loaded-into-the-python-interpreter)
   * [Profiling Python Process with Tools Available in Operating Systems: Linux OS](#profiling-python-process-with-tools-available-in-operating-systems-linux-os)
     + [About Valgrind Tool for Linux OS](#about-valgrind-tool-for-linux-os)
@@ -3128,7 +3128,7 @@ From the perspective of Operating System (OS) the Python Process is just a progr
 * You are using a precompiled/prebuilt version of dynamic libraries distributed with packages
 * You have also the source code of your Python program that is interpreted by the interpreter on the fly.
 
-### SysInternals Suite from Mark Rusinovich, et al.
+### SysInternals Suite from Mark Rusinovich et al
 
 To get a general picture of the executed Python process with your scripts - one way is to observe it from system call characteristics. To take hands-on experience and also analyze overheads from Python, for example, you can use the following code snippet:
 
