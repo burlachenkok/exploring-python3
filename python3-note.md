@@ -205,7 +205,7 @@ print("Hello World!")
 input()
 ```
 
-With the tools introduced in this document, you can precisely measure the system resources each program consumes on both Windows and Linux operating systems. 
+With the tools described in this document, you can precisely measure the consumed system resources each program consumes on both Windows and Linux operating systems and go beyond considering only line numbers (6 lines in C++ program and 2 lines in Python script).
 
 Below is a sample comparison of resource usage on Windows 11 Home, highlighting key differences in performance and resource allocation between C++ and Python:
 
