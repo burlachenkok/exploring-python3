@@ -1546,7 +1546,8 @@ In the previous example from the [Variables Introspection](#variables-introspect
 **global.** 
 
 Documentation: [https://docs.python.org/3/reference/simple_stmts.html#global](https://docs.python.org/3/reference/simple_stmts.html#global)
-Syntax: `global_stmt ::=  "global" identifier ("," identifier)*`
+
+`global_stmt ::=  "global" identifier ("," identifier)*`
 
 The global statement is a declaration that holds for the entire current code block scope. 
 This declaration means that the listed identifiers will be interpreted as global variables. Global variable scope changed immediately to the module-level binding without any intermediate outer scope, relative to the current scope. It is impossible to assign value to a global variable without using `global`. However, you can actually (formally) refer to global variables if you want to only *read* from them.
@@ -1554,7 +1555,8 @@ This declaration means that the listed identifiers will be interpreted as global
 **nonlocal.** 
 
 Documentation: [https://docs.python.org/3/reference/simple_stmts.html#the-nonlocal-statement](https://docs.python.org/3/reference/simple_stmts.html#the-nonlocal-statement)
-Syntax: `nonlocal_stmt ::=  "nonlocal" identifier ("," identifier)*`
+
+`nonlocal_stmt ::=  "nonlocal" identifier ("," identifier)*`
 
 The nonlocal statement causes the listed identifiers to refer to previously bound variables in the nearest enclosing scope excluding globals. So *nonlocal* variables changed the scope to the outer function. This is important because the default behavior for binding value is to search the local namespace first. Names listed in a *nonlocal* statement must not collide with pre-existing bindings in the local scope.
 
