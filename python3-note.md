@@ -200,7 +200,7 @@ Now, let's create the equivalent "Hello World" script in Python:
 
 ```python
 #!/usr/bin/env python3
-// Launched with: Python 3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)] on win32
+# Launched with: Python 3.9.0 (tags/v3.9.0:9cf6752, Oct  5 2020, 15:34:40) [MSC v.1927 64 bit (AMD64)] on win32
 
 print("Hello World!")
 input()    # Wait for IO from standard input to not kill process by OS and have the ability to inspect process
@@ -220,6 +220,8 @@ Below is a sample comparison of resource usage on Windows 11 Home, highlighting 
 | File I/O Bytes | 0  | 163 348 |
 | File I/O Operations | 5  | 635 |
 | Registry Operations | 52  | 154 |
+| Installed Environment | 0  | 1.60 GB, Python 3.9 (MSC v.1927 64 bit (AMD64)) |
+| Executable Script/Application | 112 KB  | 274 bytes |
 
 This comparison made through [SysInternals Suite from Mark Rusinovich et al](#sysinternals-suite-from-mark-rusinovich-et-al) highlights the considerable resource disparities between a low-level, compiled language (C++) and an interpreted, high-level scripting language (Python).
 
