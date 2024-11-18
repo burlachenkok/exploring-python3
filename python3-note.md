@@ -220,7 +220,7 @@ Below is a sample comparison of resource usage on Windows 11 Home, highlighting 
 | File I/O Bytes | 0  | 163 348 |
 | File I/O Operations | 5  | 635 |
 | Registry Operations | 52  | 154 |
-| Installed Extra Runtime Environment | 0  | 1.60 GB, Python 3.9 (MSC v.1927 64 bit (AMD64)) |
+| Extra Runtime Environment (not part of OS) | 0  | 1.60 GB, Python 3.9 (MSC v.1927 64 bit (AMD64)) |
 | Executable Script/Application | 112 KB  | 274 bytes |
 
 This comparison made through [SysInternals Suite from Mark Rusinovich et al](#sysinternals-suite-from-mark-rusinovich-et-al) highlights the considerable resource disparities between a low-level, compiled language (C++) and an interpreted, high-level scripting language (Python).
