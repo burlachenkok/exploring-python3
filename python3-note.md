@@ -164,7 +164,7 @@
 
 If you search "Python Tutorial" on Google, you will get about 695 million results. Among them, one tutorial stands out as a reliable and authoritative source - it is the official tutorial of the Python programming language, written by its creator [Guido Van Rossum](https://en.wikipedia.org/wiki/Guido_van_Rossum). You can find it here: https://docs.python.org/3/tutorial/index.html. This official Python tutorial (https://docs.python.org/3/tutorial/index.html) is based on the most widely used Python distribution, [CPython](https://www.python.org/), which you can download from https://www.python.org/. There are also other Python distributions, such as [Jython](https://www.jython.org/) and [Python for .NET](https://pythonnet.github.io/), but they are less popular. 
 
-Python is a popular scripting language. It is very well-designed in style and has been picked up seriously by a broad category of people. However, to be completely honest, we should not forget that it is a scripting language. And, it has a lot of  technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages). In addition, it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch in depth.
+Python is a popular scripting language. It is very well-designed in style and has been picked up seriously by a broad category of people. However, to be honest, we should not forget that it is a scripting language. And, it has a lot of  technical limitations common to all scripting languages described in the section of this document  [C++ Technical Note / Downsides of Interpretable Languages](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#downsides-of-interpretable-languages). In addition, it lacks an official [ISO/IEEE](https://www.iso.org) standard. The lack of standardization has its pros. and cons. which we will not touch in depth.
 
 You can check the popularity of Python scripting language in this world from these two sources:
 
@@ -220,7 +220,7 @@ Below is a sample comparison of resource usage on Windows 11 Home, highlighting 
 | File I/O Bytes | 0  | 163 348 |
 | File I/O Operations | 5  | 635 |
 | Registry Operations | 52  | 154 |
-| Installed Environment | 0  | 1.60 GB, Python 3.9 (MSC v.1927 64 bit (AMD64)) |
+| Installed Extra Runtime Environment | 0  | 1.60 GB, Python 3.9 (MSC v.1927 64 bit (AMD64)) |
 | Executable Script/Application | 112 KB  | 274 bytes |
 
 This comparison made through [SysInternals Suite from Mark Rusinovich et al](#sysinternals-suite-from-mark-rusinovich-et-al) highlights the considerable resource disparities between a low-level, compiled language (C++) and an interpreted, high-level scripting language (Python).
