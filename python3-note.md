@@ -1857,7 +1857,7 @@ Common examples of standard decorators that can be observed in Python codes are:
 
 * [@staticmethod](https://docs.python.org/3/library/functions.html#staticmethod) - which is a class method that **does not** receive an implicit first argument as a reference to the class object.
 * [@classmethod](https://docs.python.org/3/library/functions.html#classmethod) - which is a class method that **does** receive an implicit first argument as a reference to the class object. Therefor the "class method" has as an implicit first argument which is a class type.
-* [@property](https://docs.python.org/3/library/functions.html#property) - this is a decorator (see [Appendix Object Orientated Design Patterns
+* [@property](https://docs.python.org/3/library/functions.html#property) - this is a decorator for properties. (see [Appendix Object Orientated Design Patterns
  in Technical Note From C++98 to C++2x.](https://github.com/burlachenkok/CPP_from_1998_to_2020/blob/main/Cpp-Technical-Note.md#object-orientated-design-patterns)) that turns the method into a "getter" for a read-only attribute with the same name.
 
 ## Classes in Python
@@ -1950,7 +1950,7 @@ print(sys.getdefaultencoding())
 If you want to open the file in the specified encoding you can specify this in [open()](
 https://docs.python.org/3/library/functions.html#open).
 
-To open and close files you can use open()/close() calls.  One shorthand to automatize this operation is to use [with](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) statement. 
+To open and close files you can use open()/close() calls. One shorthand to automatize this operation is to use [with](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement) statement. 
 
 With statement provides two facilities:
 * The opening of the file.
@@ -2032,7 +2032,7 @@ The class-based iterators is a functionality that is implemented via two functio
 
 See also [Interface and Protocols](#interfaces-and-protocols) in this document. 
 
-Generators in Python are a specific type of function that uses the (`yield`) statement.  What makes generators compact and `__iter__()`,`__next__()` methods are created automatically.
+Generators in Python are a specific type of function that uses the (`yield`) statement.  What makes generators compact that `__iter__()`,`__next__()` methods are created automatically.
 
 Example:
 
@@ -2070,7 +2070,7 @@ print(next(a))   # run to second yield statement, etc.
 
 ## Package Managers
 
-To have the ability to launch the project in Python which is big enough you typically need to install the extra libraries. The culture of Python script development (and in reality Python interpreter development itself) relies on huge utilization of external libraries.
+To have the ability to launch the big enough project in Python you typically need to install the extra libraries. The culture of Python script development (and in reality Python interpreter development itself) relies on huge utilization of external libraries.
 
 Two pretty standard ways to install libraries for Python are installation via `pip` and `conda` package managers. 
 
@@ -2233,7 +2233,7 @@ Next, we will provide references to Torch documentation:
 | Data relative/Dataset | https://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset |
 | Data relative/Custom data loader | https://pytorch.org/tutorials/beginner/data_loading_tutorial.html |
 | Module/About Modules | https://pytorch.org/tutorials/beginner/blitz/neural_networks_tutorial.html |
-| ModuleBase class for all neural network Module/Layer | https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module |
+| Module - Base class for all neural network Module/Layer | https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module |
 | The module that allows building a network sequentially |https://pytorch.org/docs/master/nn.html#torch.nn.Sequential |
 | Turn on/off module training mode | https://pytorch.org/docs/master/generated/torch.nn.Module.html#torch.nn.Module.train |
 | Linear Layer/Module | https://pytorch.org/docs/master/generated/torch.nn.Linear.html#torch.nn.Linear |
@@ -2368,13 +2368,13 @@ Broadcasting explanation: https://numpy.org/doc/stable/user/basics.broadcasting.
 (If you think that *broadcasting* is an incorrect thing to be designed in the first place - you are not alone).
 
 To use the `numpy` library in your project you need to:
-* Install it with your package manager via `pip install numpy`
+* Install it with your package manager, e.g. via `pip install numpy`
 * Import numpy via `import numpy as np`
 
 ### Arrays
 
 A numpy array is a grid of values, **all of the same type**, and is indexed by a tuple of nonnegative integers.  The number of dimensions is the rank of the array. The shape of an array is a tuple of integers giving the size of the array along each dimension. 
-* Rank of the array - is several dimensions.
+* Rank of the array - is number of  dimensions.
 * Tensor (in Machine Learning / Deep Learning) - is a name used to describe multidimensional arrays.
 * Shape - description of dimensions for a multidimensional array organized as a tuple. Each dimension of a multi-dimensional array is called a "dimension" or "axe".
 
@@ -2417,8 +2417,7 @@ print(e)                     # Might print "[[ 0.42  0.52]
 f = np.arange(5)             # Create an array with the values from 0 to 4
 print(f)                     # Prints "[0 1 2 3 4]"
 
-g = np.arange(4.2, 7.1, 0.5)  # Create an array with the values from 4.2 to 
-                              # 7.1 on steps of 0.5
+g = np.arange(4.2, 7.1, 0.5)  # Create an array with the values from 4.2 to 7.1 on steps of 0.5
 print(g)                      # Prints "[4.2 4.7 5.2 5.7 6.2 6.7]"
 
 h = np.linspace(10, 20, 5)  # Create an array with 5 equally spaced values 
