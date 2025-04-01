@@ -519,7 +519,7 @@ It is at the same time a very strong statement and at the same time vague statem
 
 2. By General Purpose you mean that you can use it across many domains. In this case how many are "many"? Depending on the definition of "many" Python may lie in this class and may not.
 
-3. By General Purpose, you mean you can create programs for all programmable computing elements in the computing devices. If this is your definition and you believe that Python can help with this then it's *wrong* (at least in our opinion). Python by design is the replacement for Bash, it's not a replacement for C and C++, or any other traditional compile language. Conter example: You cannot create drivers for your devices in Python.
+3. By General Purpose, you mean you can create programs for all programmable computing elements in the computer. If this is your definition and you believe that Python can help with this then it's *wrong* (at least in our opinion). Python by design is the replacement for Bash, it's not a replacement for C and C++, or any other traditional compile language. Conter example: You cannot create drivers for your devices in Python.
 
 > Python is more elegant and short than C++.
 
@@ -539,7 +539,7 @@ This overstatement can also be read from the Python Tutorial. Please be aware th
 It depends on your point of view and your style, but there is a point of view where the following things presented in Python are benefits. They shine especially if you have limited physical time to finish a project in a social sense:
 
   1. More correct code from a style point of view.
-  2. Automatic cross-platform serialization "pickling" for the user and built-in types from the Python standard library. https://docs.python.org/3/library/pickle.html
+  2. Automatic cross-platform serialization or "pickling" for the user and built-in types from the Python standard library. https://docs.python.org/3/library/pickle.html
   3. A lot of free and commercial IDE with IntelliSense: 
       * [PyCharm](https://www.jetbrains.com/pycharm/)
       * [Visual Studio Code](https://code.visualstudio.com/)
@@ -667,7 +667,7 @@ https://docs.python.org/3.13/reference/expressions.html#operator-precedence
 
 * **Integers (int)**. The type that is used to represent integers in Python interpreter does not have any fixed number of bits. Instead, it has a varying size. In this sense, an integer has an unlimited range. You can practically hold as big an integer as you want until you start having problems with virtual memory in the interpreter process.
 
-* **Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerical fields, such a statement in some circumstances may be incorrect. However, for the designer of the interpreter maybe it is good enough.
+* **Real (float).** This type represents machine-level double-precision floating point numbers. From Documentation: *"...there is no reason to complicate the language with two kinds of floating-point numbers..."* It's the design choice for a language. Of course, for people involved in scientific numerical fields, such a statement in some circumstances may be incorrect.
 
 Documentation on this subject: https://docs.python.org/3.13/reference/datamodel.html
 
@@ -739,7 +739,7 @@ print (f"Hello {a}")
 
 The f-string form is known as a formatted string literal. To use formatted string literals, you should begin a string with `f` or `F`, before the opening quotation mark in the form of <`'`>, <`"`>, <`"""`>, <`'''`>.
 
-Inside this string, you can write an arbitrary Python expression between `{` and `}`. Also, you can refer to variables or literal values. During using f-string you can pass an integer after the `:`. It will cause that field to be a minimum number of characters wide. This is useful for making columns line up. Example:
+Inside this string, you can write an arbitrary Python expression between `{` and `}`. Also, you can refer to variables or literal values. During using f-string you can pass an integer after the `:`. It will cause that field during printing to have a minimum number of characters wide. This is useful for making columns line up. Example:
 ```python
 a = 123
 print (f"Hello {a:10}")
@@ -764,7 +764,7 @@ a=123
 
 String interpolation (named in Python as **"formatted string literal"**) is evaluated during script execution. In terms of type, the f-strings are just usual string `str` and it's not a new type. 
 
-Finally, old string formatting from Python 2 which is still supported in Python 3 for C style `printf()` C++ specification. Example:
+Finally, old string formatting from Python 2 is still supported in Python 3 for C style `printf()` C++ specification. Example:
 ```python
 print("%i %.2f" % (1, 0.12345))
 ```
@@ -796,7 +796,7 @@ To loop over a sequence in reverse order, first, specify the sequence in a forwa
 ## More About Conditions
 
 The conditions used in `while` and `if` statements can contain any operators, but typically contain:
-* The comparison operators `in` and `not in` are called **membership tests**.
+* The comparison operators `in` and `not in` that are called **membership tests**.
 * The operators `is` and `is not` compare whether two objects are the same object in memory.
 * Arithmetic comparison.
 
@@ -1047,7 +1047,7 @@ for animal in d:
     print(f'A {animal} has {legs} legs')
 ```
 
-If you want access to keys and their corresponding values, it's better to use `items` method:
+If you want access to keys and their corresponding values, it's better to use `items()` method:
 
 ```python
 d = {'person': 2, 'cat': 4, 'spider': 8}
@@ -1075,7 +1075,9 @@ Instead of a specific and robust (but more long and verbose) interface notion th
 In Python, any object may be used in any context until it is used in a way that it object does not support it. 
 In this latter case the [AttributeError](https://docs.python.org/3/library/exceptions.html#AttributeError) will be raised.
 
-If you define your classes in Python and you want the objects of your class can be used in specific language construction like iteration you should support **protocol**. Next, we will go through the main protocols:
+If you define your classes in Python and you want the objects of your class can be used in specific language construction like iteration you should support **protocol**. 
+
+Next, we will go through the main protocols:
 
 * **Container protocol.** Built-in container types in Python
 tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` operations for them. The support of `in` and `not in` is known as container protocol. For your types, you should define 
@@ -1090,7 +1092,7 @@ tuple, list, str, dict, set, range, and bytes all support `in`, and `not in` ope
   ```
 
 
-- **Inerrable protocol.** Built-in container types in Python supports the calling of [iter(x)](https://docs.python.org/3/library/functions.html#iter), [next(x)](https://docs.python.org/3/library/functions.html#next) operators. Such objects can be used in for-loops:
+- **Iterrable protocol.** Built-in container types in Python supports the calling of [iter(x)](https://docs.python.org/3/library/functions.html#iter), [next(x)](https://docs.python.org/3/library/functions.html#next) operators. Such objects can be used in for-loops:
   ```python
   for i in iterable: smth(i)
   ```
@@ -1139,15 +1141,14 @@ print(f"Host: {socket.gethostname()} / IP: {socket.gethostbyname(socket.gethostn
 
 ## Introspection of Python Objects
 
-In Python terminology, everything that takes some memory is an Object.  
+As we said in Python terminology, everything that takes some memory is an Object.
 
 The [dir(obj)](https://docs.python.org/3/library/functions.html#dir) built-in function displays the attributes of an object.  Attributes that all objects (typically) have:
-* `__name__` - is the name of the current module [link](https://docs.python.org/3/reference/import.html?highlight=__name__#name__).
+* `__name__` - is the name of the current object or module if apply dir for module [link](https://docs.python.org/3/reference/import.html?highlight=__name__#name__).
 * `__doc__`  - documentation string for the object [link](https://docs.python.org/3/library/types.html?highlight=__doc__#types.ModuleType.__doc__).
 * `__class__` - type name of the object [link](https://docs.python.org/3/library/stdtypes.html?highlight=__class__#instance.__class__).
 * `__file__` - the name of the source file here module has been defined. [link](https://docs.python.org/3/reference/import.html?highlight=__file__#file__)
 * `__dic__`  is a dictionary used to store an object's attributes. Not all instances have it, but typically it's the case. [link](https://docs.python.org/3/reference/datamodel.html#object.__dict__)
-
 
 
 Example:
@@ -1202,6 +1203,7 @@ print(squares)   # Prints [0, 1, 4, 9, 16]
 ```
 
 As we have already implicitly described the list comprehensions can also contain conditions:
+
 ```python
 nums = [0, 1, 2, 3, 4]
 even_squares = [x ** 2 for x in nums if x % 2 == 0]
@@ -1432,7 +1434,7 @@ We will see more details about [functions in details](#about-functions-now-in-de
 
     * Delete statement `del` is used to delete elements from a container such as a list.
 
-    * Also, it is used to delete variables from the interpreter. After variable deletion, the variable is not defined. If a variable is not "defined" which means it has not been assigned a value or deleted, trying to use it for reading will give you an error. Trying to use it for writing will create a new variable. Objects are never explicitly destroyed. When they become unreachable they may be garbage-collected. An implementation is allowed to postpone garbage collection or omit it altogether. It is a matter of implementation quality how garbage collection is implemented.
+    * Also, it is used to delete variables from the interpreter. After variable deletion, the variable is not defined. If a variable is not "defined" it means it has not been assigned a value or deleted. Trying to use it for reading will give you an error. Trying to use it for writing will create a new variable. Objects are never explicitly destroyed. When they become unreachable they may be garbage-collected. An implementation is allowed to postpone garbage collection or omit it altogether. It is a matter of implementation quality how garbage collection is implemented.
 
 ## Classes
 
