@@ -6,21 +6,15 @@
 
 ----
 
-[Konstantin Burlachenko](https://burlachenkok.github.io/)
+[Konstantin Burlachenko](https://burlachenkok.github.io/)  
 
-[King Abdullah University of Science and Technology](https://www.kaust.edu.sa/en), Thuwal, Saudi Arabia.
+**Revision Update:** Apr 2, 2025
 
-**Correspondence to:** konstantin.burlachenko@kaust.edu.sa
+**Revision Version:** [Release v2.0]
 
-**Revision Update:** Oct 31, 2024
-
-**Revision Version:** [Release v1.9]
-
-© 2023, 2024 Konstantin Burlachenko, all rights reserved.
+© 2023-2025 Konstantin Burlachenko, all rights reserved.
 
 ----
-
-- [Technical Note. Exploring Python3 Language from a Computing Perspective](#technical-note-exploring-python3-language-from-a-computing-perspective)
 - [Introduction](#introduction)
   * [Motivation from Hello World Measurements](#motivation-from-hello-world-measurements)
   * [What is Python](#what-is-python)
@@ -28,17 +22,17 @@
 - [Backgrounds](#backgrounds)
   * [How Typical Compute Device is Working](#how-typical-compute-device-is-working)
   * [Programming Languages Taxonomy in CS](#programming-languages-taxonomy-in-cs)
-  * [What is Object Orientated Programming (OOP) in CS](#what-is-object-orientated-programming-oop-in-cs)
+  * [What is Object Orientated Programming (OOP) in CS](#what-is-object-orientated-programming--oop--in-cs)
 - [Philosophy of Python](#philosophy-of-python)
-- [If Arriving at Python from C++](#if-arriving-at-python-from-c)
+- [If Arriving at Python from C++](#if-arriving-at-python-from-c--)
   * [About Events](#about-events)
   * [Meaning of Object](#meaning-of-object)
   * [Subtleties with Accessing Value of Variables](#subtleties-with-accessing-value-of-variables)
-  * [Context in Python as Scope in C++](#context-in-python-as-scope-in-c)
+  * [Context in Python as Scope in C++](#context-in-python-as-scope-in-c--)
   * [Pointers and Object Reference Equality](#pointers-and-object-reference-equality)
-  * [All Class Methods are Virtual in Terms of C++](#all-class-methods-are-virtual-in-terms-of-c)
-  * [Language Differences Between Python and C++](#language-differences-between-python-and-c)
-- [Sources of Confusion between C++ and Python Software Engineers](#sources-of-confusion-between-c-and-python-software-engineers)
+  * [All Class Methods are Virtual in Terms of C++](#all-class-methods-are-virtual-in-terms-of-c--)
+  * [Language Differences Between Python and C++](#language-differences-between-python-and-c--)
+- [Sources of Confusion between C++ and Python Software Engineers](#sources-of-confusion-between-c---and-python-software-engineers)
 - [Python Basics](#python-basics)
   * [Language Benefits](#language-benefits)
   * [How to Start Interpreter](#how-to-start-interpreter)
@@ -51,11 +45,11 @@
   * [Simple Built-In Types](#simple-built-in-types)
   * [Simple Statements](#simple-statements)
   * [Compound Statements](#compound-statements)
-  * [Empty(Pass) Statements](#emptypass-statements)
+  * [Empty(Pass) Statements](#empty-pass--statements)
   * [Division of Numbers in Python](#division-of-numbers-in-python)
   * [Printing](#printing)
   * [Enumeration and Loops](#enumeration-and-loops)
-  * [More about Conditions](#more-about-conditions)
+  * [More About Conditions](#more-about-conditions)
   * [Basic Data Types](#basic-data-types)
   * [Boolean Variables and Operators](#boolean-variables-and-operators)
   * [Built-in Containers](#built-in-containers)
@@ -64,7 +58,7 @@
   * [Dictionaries](#dictionaries)
   * [Sets](#sets)
   * [Loops](#loops)
-- [Python Technical Details: One Step after Basics](#python-technical-details-one-step-after-basics)
+- [Python Technical Details: One Step after Basics](#python-technical-details--one-step-after-basics)
   * [Interfaces and Protocols](#interfaces-and-protocols)
   * [Introspection of System](#introspection-of-system)
   * [Introspection of Python Objects](#introspection-of-python-objects)
@@ -76,7 +70,7 @@
   * [Functions: Introduction](#functions--introduction)
   * [Random Interesting Constructions](#random-interesting-constructions)
   * [Classes](#classes)
-    + [User-Defined Classes in Python in C++ terminology](#user-defined-classes-in-python-in-c-terminology)
+    + [User-Defined Classes in Python in C++ terminology](#user-defined-classes-in-python-in-c---terminology)
     + [The Syntax for Defining Classes](#the-syntax-for-defining-classes)
 - [Technical Details about Language Concepts](#technical-details-about-language-concepts)
   * [Convention about Variable Names](#convention-about-variable-names)
@@ -87,7 +81,7 @@
     + [Packages](#packages)
     + [Reference between Modules in Packages](#reference-between-modules-in-packages)
     + [Rules for Search Modules and Packages](#rules-for-search-modules-and-packages)
-  * [About Functions: Now in Details](#about-functions-now-in-details)
+  * [About Functions: Now in Details](#about-functions--now-in-details)
     + [About Indentation](#about-indentation)
     + [Function Body](#function-body)
     + [Function Arguments and Return Value](#function-arguments-and-return-value)
@@ -109,8 +103,8 @@
 - [Standard Tools and Some Libraries for Computing and Visualization](#standard-tools-and-some-libraries-for-computing-and-visualization)
   * [Package Managers](#package-managers)
   * [Environment Managers](#environment-managers)
-  * [Python Notebooks: General](#python-notebooks-general)
-  * [Python Notebooks: Working in a web-based interface](#python-notebooks-working-in-a-web-based-interface)
+  * [Python Notebooks: General](#python-notebooks--general)
+  * [Python Notebooks: Working in a web-based interface](#python-notebooks--working-in-a-web-based-interface)
   * [PyTorch Resources](#pytorch-resources)
   * [Matplotlib](#matplotlib)
     + [Plots](#plots)
@@ -134,17 +128,23 @@
     + [About Cython Language](#about-cython-language)
     + [Easy Interoperability with Standard C Library](#easy-interoperability-with-standard-c-library)
     + [Example of Function Integration in Cython and Python](#example-of-function-integration-in-cython-and-python)
+  * [Use Python functools package](#use-python-functools-package)
   * [Profiling Python Code with Python Tools](#profiling-python-code-with-python-tools)
-  * [Profiling Python Process with Tools Available in Operating Systems: Windows OS](#profiling-python-process-with-tools-available-in-operating-systems-windows-os)
+  * [Profiling Python Process with Tools Available in Operating Systems: Windows OS](#profiling-python-process-with-tools-available-in-operating-systems--windows-os)
     + [SysInternals Suite from Mark Rusinovich et al](#sysinternals-suite-from-mark-rusinovich-et-al)
-    + [Understand which underlying Dynamic Libraries are Loaded into the Python interpreter](#understand-which-underlying-dynamic-libraries-are-loaded-into-the-python-interpreter)
-  * [Profiling Python Process with Tools Available in Operating Systems: Linux OS](#profiling-python-process-with-tools-available-in-operating-systems-linux-os)
+    + [Understand which underlying Dynamic Libraries are loaded into the Python interpreter](#understand-which-underlying-dynamic-libraries-are-loaded-into-the-python-interpreter)
+  * [Profiling Python Process with Tools Available in Operating Systems: Linux OS](#profiling-python-process-with-tools-available-in-operating-systems--linux-os)
     + [About Valgrind Tool for Linux OS](#about-valgrind-tool-for-linux-os)
       - [Callgrind](#callgrind)
       - [Massif](#massif)
       - [Helgrind](#helgrind)
+      - [HeapTrack. A heap memory profiler for Linux](#heaptrack-a-heap-memory-profiler-for-linux)
     + [Profiling Hardware Counters with Perf Tool](#profiling-hardware-counters-with-perf-tool)
     + [Partially Ported Sysinternals Software Suite for Linux](#partially-ported-sysinternals-software-suite-for-linux)
+    + [Network Information](#network-information)
+    + [CPU and Memory and Input-Output Information](#cpu-and-memory-and-input-output-information)
+  * [Profiling Python Process with Cross-Platform Tools](#profiling-python-process-with-cross-platform-tools)
+    + [GPU-related information with NVIDIA-SMI (Cross-Platform)](#gpu-related-information-with-nvidia-smi--cross-platform-)
 - [Acknowledgements](#acknowledgements)
 - [Contributions to This Document](#contributions-to-this-document)
 - [References](#references)
@@ -154,9 +154,9 @@
   * [Tutorials for Libraries](#tutorials-for-libraries)
   * [How To](#how-to)
   * [Repositories](#repositories)
+  * [Performance Relative Materials](#performance-relative-materials)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 
 ----
 
