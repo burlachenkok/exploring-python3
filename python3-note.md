@@ -3617,6 +3617,67 @@ Sysinternals utilities help you manage, troubleshoot, and diagnose application u
 
 However, the most useful tool from this  [Process Monitor for Linux](https://github.com/Sysinternals/ProcMon-for-Linux).
 
+### Network Information
+
+Please install the following programs:
+
+*  For nicstat: `sudo apt-get install nicstat`
+
+| #  | Command       | Description                      | Requires Root Access |
+|----|-------------|----------------------------------|-----------------|
+| 1  | `netstat -i`        | Interface Counters. **Iface:** interface name, **MTU:** Maximum Transmission Unit, **RX-OK:** Count of *packets* received successfully, **RX-ERR:** Count of receive errors, **RX-DRP:** Count of dropped packets on receive, **TX-OK:** Count of packets transmitted successfully, **TX-ERR:** Count of transmit errors, **TX-DRP:** Count of dropped packets on transmit  | No |
+| 2  | `ip -s link`             | Interface Counters. In Bytes and Packages. **RX:** received, **TX:** Count of packets transmitted successfully.   | No |
+| 3  | `nicstat`        | The byte throughput for send and receive through interface. **rKb/s** - read Kbytes/s, **wKb/s** - write Kbytes/s, **rPk/s** and **wPk/s** - read/write Packets per second, **rAvs** and **wAVS** -- read/write average size in bytes. | No |
+
+### CPU and Memory and Input-Output Inforrmation
+
+Please intstall the following binaries:
+  - **syscounts** -- `sudo apt-get install libbpf-tools`
+  - **lscpu** -- `sudo apt install util-linux`
+  - **lstopo** -- `sudo apt install hwloc`
+  - **mpstat** -- `sudo apt install sysstat`
+  - **vfsstat-bpfcc** -- `sudo apt install bpfcc-tools`
+
+| #  | Command       | Description                      | Requires Root Access |
+|----|-------------|----------------------------------|-----------------|
+| 1  | `uptime`        | Load averages  | No |
+| 2  | `vmstat -S M`        | System wide statistics: **swpd** - swaped-out memory(MB), **free** - free memory(MB), **buff** - buffer caches (MB), **us** - user-time percent, **sy** - kernel-time percent, **id** - idle percent, **wa** - I/O blocking percent in disk I/O  | No |
+| 3| `mpstat -P ALL` | Per-CPU-core balance statistics: **user, system, iowait** times; **irq** - hardware interrupts triggered by external hardware devices, **soft** - software interrupts triggered by software. | No
+| 4 | `free -h` | Memory usage including swap file | No
+| 5 | `iostat -sxz` | Disk I/O statistics. **tps** - disk transactions/second; **kB/s** -  the total data transfer rate both reads and writes combined in kilobytes per second; **rqm/s** - queued requests/second; **await** - average I/O response time (ms), **util** - utilization. | No
+| 6 | `iostat` | Disk I/O statistics | No
+| 7 | `sar -n DEV` | Network device statistics | No
+| 8 | `syscount-perf -d 1` | System call statistics system-wide | Yes
+| 9 | `lscpu` | Information about CPU and CPU Architecture relative information. | No
+| 10 | `lstopo --output-format console` | Show hardware topology of the system | No
+| 11 | `lsblk -o NAME,MODEL,SIZE,TYPE,ROTA` | List physical HDDs and SSDs in your system. | No
+| 12 | `swapon` | Show configured devices for swap files and swap usage | No
+| 13 | `sar -B` | Displays memory paging statistics in Linux. Pages read from disk (**pgpgin/s**) and pages written to disk (**pgpgout/s**) per second.	If **pgpgout/s** is high, the system might be under memory pressure. The **pgpgin/s** or **pgpgout/s** high values may suggest high swap activity. | No
+| 14 | `sar -r` | The `sar -r` is used to display memory statistics. | No
+| 15 | `sar -S` | Swap space statistics: **kbswpfree** - 	amount of free swap space in kilobytes; **kbswpused** -	amount of swap space used in kilobytes; **%swpused** - percentage of swap space used. | No
+| 16 | `sar -v` | Filesystem statistics: **dentunused** - unused dirs, **file-nr** - file handles in use, **inode-nr** - inodes (file metadata) in use | No
+| 17 | `df -h` | Report filesystem usage and available capacity | No
+| 18 | `df -h fname` | Report filesystem usage and available capacity for the device which holds fname file. | No
+| 19 | `vfsstat-bpfcc 1 1` | Virtual File System statistics. Virtual File System (VFS) layer is included and always used in Linux (and most modern UNIX-like operating systems) for all file systems (FS). It acts as an abstraction layer between the user-space file operations (opening, reading, writing) and the actual underlying file system (e.g. ext4). Writing directly to a disk without using a filesystem is possible, but it is typically not performed - it allmost always break the filesystem, and requires root priviligies.| Yes.
+
+## Profiling Python Process with Cross-Platform Tools
+
+### GPU Related information with NVIDIA-SMI (Cross-Platform)
+
+| #  | Command       | Description                      | Requires Root Access |
+|----|-------------|----------------------------------|-----------------|
+| 1  | `ls -1 /dev/nvidia*`        | List of installed NVIDIA Devices in the system  | No |
+| 2  | `nvidia-smi -L`             | List of installed NVIDIA Video Cards   | No |
+| 3  | `nvidia-smi -q -d MEMORY`        | NVIDIA Devices Memory Report | No |
+| 4  | `nvidia-smi -q -d UTILIZATION`   | NVIDIA Devices Utilization Report | No |
+| 5  | `nvidia-smi -q -d TEMPERATURE`   | NVIDIA Devices Temperature Report | No |
+| 6  | `nvidia-smi -q -d POWER`   | NVIDIA Devices Power Report | No |
+| 7  | `nvidia-smi -q -d CLOCK`   | NVIDIA Devices Clock Report | No |
+
+
+
+
+
 # Acknowledgements
 
 Konstantin Burlachenko would like to acknowledge:
