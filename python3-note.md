@@ -3342,7 +3342,7 @@ The big extra functionality is obtained from using [Python Modules](https://pack
   * [Extension Module](https://packaging.python.org/en/latest/glossary/#term-Extension-Module) written in low-level (in Python terminology) C/C++/Java/etc.
 
 In the case of using modules written in compiled languages, they will be loaded in the form of a shared dynamic library object (.so) file for Linux or as (.dll) for Windows. However, this dynamic library has a `.pyd` file extension. 
-> In terms of flexibility, the pure modules are a good design for creating software, but is such design is good or bad from the general perspective of creating software (especially when time is computation time are important) is out of the scope of this note. 
+> In terms of flexibility, the pure modules are a good design for creating software, but is such design is good or bad from the general perspective of creating software (especially when computation time is important) is out of the scope of this note. 
 
 For example to identify which Dynamic Libraries implement `numpy` functionality you can do the following:
 
@@ -3411,7 +3411,7 @@ The [lsof](https://linux.die.net/man/8/lsof) command can also be used to look in
 lsof -i
 ```
 
-The Analogous program to Process Monitor under Linux OS is system util `strace`. It allows monitoring system calls. For example, you call it in the following way:
+The analog program to Process Monitor under Linux OS is system util `strace`. It allows monitoring system calls. For example, you call it in the following way:
 ```bash
 strace python -c "import numpy" 2>&1 | grep .so | grep blas
 ```
@@ -3495,7 +3495,7 @@ Valgrind is not only a single tool, but it internally contains several tools (ht
 
 To install Valgrind in Linux OS with [apt package manager](https://help.ubuntu.com/community/AptGet/Howto):
 ```bash
-sudo  apt-get install valgrind
+sudo apt-get install valgrind
 ```
 
 #### Callgrind
@@ -3529,7 +3529,7 @@ Please take in mind:
 With [massif](https://valgrind.org/docs/manual/ms-manual.html) you can look into dynamic memory allocation happening in the program. Any executable code operating in Linux OS in case of dynamically allocated memory utilizes one of the following functions:
 
 * Use C/C++ runtime memory allocations with [malloc](https://en.cppreference.com/w/c/memory/malloc), [calloc](https://en.cppreference.com/w/c/memory/calloc), [realloc](https://en.cppreference.com/w/c/memory/realloc), [new](https://en.cppreference.com/w/cpp/memory/new/operator_new), [new[]](https://en.cppreference.com/w/cpp/memory/new/operator_new)
-* Use lower-level OS system calls such as [mmap](https://man7.org/linux/man-pages/man2/mmap.2.html), [mremap](https://man7.org/linux/man-pages/man2/mremap.2.html), and [brk](https://man7.org/linux/man-pages/man2/brk.2.html), [memalign](https://linux.die.net/man/3/memalign).
+* Use lower-level OS system calls such as [mmap](https://man7.org/linux/man-pages/man2/mmap.2.html), [mremap](https://man7.org/linux/man-pages/man2/mremap.2.html), [brk](https://man7.org/linux/man-pages/man2/brk.2.html), [memalign](https://linux.die.net/man/3/memalign).
 
 Valgrind can measure all these calls in the following way:
 ```bash
@@ -3567,12 +3567,12 @@ It has a lower overhead than Valgrind and nice built-in GUI visualizers.
 
 ### Profiling Hardware Counters with Perf Tool
 
-To install the Perf tool under Linux you should perform the following command mentioned Ubuntu questions website [how-to-install-perf-monitoring-tool](https://askubuntu.com/questions/50145/how-to-install-perf-monitoring-tool):
+To install the Perf tool under Linux you should perform the following command mentioned in Ubuntu questions website [how-to-install-perf-monitoring-tool](https://askubuntu.com/questions/50145/how-to-install-perf-monitoring-tool):
 ```bash
 apt-get install linux-tools-common linux-tools-generic linux-tools-`uname -r`
 ```
 
-In modern CPUs from ARM Cortex A5 [link](https://developer.arm.com/documentation/ddi0434/c/performance-monitoring-unit/about-the-performance-monitoring-unit?lang=en), and most modern processes support Performance Monitoring Unit(PMU) unit. There is a helper library [libpfm4](https://man7.org/linux/man-pages/man3/libpfm.3.html) available in Linux OS that collects all the needed information from this unit. The Library [libpfm4](https://man7.org/linux/man-pages/man3/libpfm.3.html) saves all counters and carries collecting of them.
+In modern CPUs from ARM Cortex A5 [link](https://developer.arm.com/documentation/ddi0434/c/performance-monitoring-unit/about-the-performance-monitoring-unit?lang=en), and most modern processes support Performance Monitoring Unit (PMU) unit. There is a helper library [libpfm4](https://man7.org/linux/man-pages/man3/libpfm.3.html) available in Linux OS that collects all the needed information from this unit. The Library [libpfm4](https://man7.org/linux/man-pages/man3/libpfm.3.html) saves all counters and carries collecting of them.
 
 This library is exploited by the tool called [perf](https://perf.wiki.kernel.org/index.php/Main_Page) and this tool measures various hardware counters per process. 
 
@@ -3593,7 +3593,7 @@ Some of them:
 
   > **Why TLB Cache is important:**
   >
-  > The Control Unit inside the microprocessor operates at the level of micro-operations and it essentially selects the way to connect electrical components using multiplexers and demultiplexers, turning on/off different electronic components, and controlling the control lines. The Load Store units (LS) in the execution pipeline are in charge of carrying memory access. These LS units have access to the Register File, the TLB for address translation, and the Memory Cache. If the data is not available in the Cache, then the CPU Cache requests a block of memory from the Memory Controller, which accesses the DRAM memory via the DRAM memory controller.
+  > The Control Unit inside the microprocessor operates at the level of micro-operations and it essentially selects the way to connect electrical components using multiplexers and demultiplexers, turning on/off different electronic components, and controlling the control lines. The Load Store units (LS) in the execution pipeline are in charge of carrying memory access. These LS units have access to the Register File, the TLB for address translation, and the CPU Memory Cache. If the data is not available in the Cache, then the CPU Cache requests a block of memory from the Memory Controller, which accesses the DRAM memory via the DRAM memory controller.
   >
   > Even if you are from the world of scripting languages and you may miss details about memory access, you may heard about L1, L2, L3 (Last Level Cache) Caches. However, there is a more horrible thing than "Data Cache Miss" - it is a miss in Translation Lookaside Buffer (TLB). To read code or data from memory, the first step is to find the actual physical address of the specific memory location. This operation occurs for every instruction of a program. Without the TLB, the virtual addressing mechanism would require several accesses to different page tables, significantly increasing the time needed. The TLB is a cache that stores the mapping between virtual page numbers and physical frame numbers, speeding up the address translation process for memory access.
 
